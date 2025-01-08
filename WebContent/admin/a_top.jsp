@@ -7,28 +7,26 @@
 
         <h1>TOP</h1>
 
-        <form action="" method="get">
-            <!-- フォームの入力フィールド -->
-            <button type="submit">店舗一覧</button>
-        </form>
+
 
         <form action="/meal-mate/admin/a_create_store_1" method="get">
             <!-- フォームの入力フィールド -->
             <button type="submit">店舗作成</button>
         </form>
 
-        <form action="" method="get">
-            <!-- フォームの入力フィールド -->
-            <button type="submit">グループ一覧</button>
-        </form>
+
 
         <form action="/meal-mate/admin/a_create_group_1" method="get">
             <!-- フォームの入力フィールド -->
             <button type="submit">グループ作成</button>
         </form>
 
-        <button onclick="location.href=''">作成</button>
-        <button onclick="location.href=''">キャンセル</button>
+
+        <form action="" method="get">
+            <!-- フォームの入力フィールド -->
+            <button type="submit">グループ・店舗一覧</button>
+        </form>
+
 
     </c:param>
 </c:import>
