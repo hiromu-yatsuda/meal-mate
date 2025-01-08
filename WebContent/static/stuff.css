@@ -1,6 +1,13 @@
 /* 背景のスタイル設定（画面全体にグラデーション背景を適用） */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background: linear-gradient(135deg, #2c3e50, #34495e);
+    background-attachment: fixed;
 }
 
 /* メインコンテンツのスタイル（中央揃えと背景設定を行う） */
@@ -21,7 +28,7 @@ main {
     justify-content: center; /* 水平方向で中央揃え */
     align-items: center; /* 垂直方向で中央揃え */
     margin: 20px; /* 外側の余白を設定 */
-    width: 150px; /* ボタンの幅 */
+    width: 157px; /* ボタンの幅 */
     height: 150px; /* ボタンの高さ */
     font-size: 18px; /* フォントサイズ */
     font-weight: bold; /* 太字を適用 */
@@ -86,3 +93,184 @@ h1 {
 
 
 
+
+/* フォームスタイル */
+.form-create {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-create-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.input-create[type="text"], input[type="checkbox"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.input-create[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* ボタンスタイル */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button#cancel {
+    background-color: #6c757d;
+}
+
+button#cancel:hover {
+    background-color: #495057;
+}
+
+/* その他のスタイル */
+p {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.koumokumei {
+	font-weight: bold; /* 太字 */
+    color: #000080; /* 濃い青色 */
+
+}
+
+.csvsenntaku {
+    display: flex; /* Flexboxを有効化 */
+    flex-wrap: wrap; /* 改行を許可 */
+    gap: 50px 100px; /* 縦50px、横100pxに調整 */
+    justify-content: center; /* 中央揃え */
+    align-items: center; /* 垂直方向の調整 */
+}
+
+.option {
+    display: flex;
+    flex-direction: column; /* 縦方向に並べる */
+    align-items: center; /* 中央揃え */
+    text-align: center; /* テキストの中央揃え */
+}
+
+.text_imgcsvsenntaku {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 軽い影を追加 */
+    border-radius: 8px; /* 角を少し丸める (必要なら追加) */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ホバー時のアニメーション */
+}
+
+.text_imgcsvsenntaku:hover {
+    transform: scale(1.05); /* ホバー時に拡大 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* ホバー時の影を強調 */
+}
+
+h2 {
+    font-size: 1.8rem; /* 文字サイズ */
+    font-weight: bold; /* 太字にする */
+    color: #FFD700; /* ゴールド系の明るい黄色 */
+    text-transform: uppercase; /* すべて大文字にする (必要なら削除) */
+    letter-spacing: 1.5px; /* 文字間隔を調整 */
+    text-align: center; /* 中央揃え */
+    margin-bottom: 10px; /* 画像との間にスペースを設ける */
+    position: relative; /* 擬似要素のために必要 */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); /* テキストに軽い影を追加 */
+}
+
+
+
+form {
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+form p, label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+}
+input[type="text"], input[type="time"], input[type="file"] {
+    width: calc(100% - 20px);
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.time input {
+    display: inline-block;
+    width: 48%;
+}
+.time p {
+    display: inline-block;
+    width: 4%;
+    text-align: center;
+}
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+#uploadedImages {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#uploadedImages img {
+    width: 100px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

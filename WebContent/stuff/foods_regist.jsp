@@ -7,6 +7,9 @@
 	<c:param name="title">従業員 - 商品登録</c:param>
 	<c:param name="body">
 
+<header>
+    <%@ include file="../stuffnav.jsp" %>
+</header>
 
 			<form id="foods_reg">
 			<div class="input-group">

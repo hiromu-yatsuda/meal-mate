@@ -4,81 +4,74 @@
 <%-- バーコード印刷用に、後ほど大幅修正あり --%>
 
 <c:import url="/stuffbase.jsp">
-	<c:param name="title">従業員 - 商品一覧</c:param>
-	<c:param name="body">
+    <c:param name="title">従業員 - 商品一覧</c:param>
+    <c:param name="body">
 
+    <header>
+        <%@ include file="../stuffnav.jsp" %>
+    </header>
 
-<h1>商品一覧</h1>
-
-
-
-<table>
-<tr>
-<td>商品名</td>
-<td>もちもちもっくん</td>
-</tr>
-<tr>
-<td>JANコード</td>
-<td>292929292</td>
-
-</tr>
-
-
-<tr>
-<td>原材料</td>
-<td>豚</td>
-<td>ウシ</td>
-<td>パンダ</td>
-
-</tr>
-</table>
-
-<table>
-<tr>
-<td>商品名</td>
-<td>もちもちもっくん</td>
-</tr>
-<tr>
-<td>JANコード</td>
-<td>292929292</td>
-
-</tr>
-
-
-<tr>
-<td>原材料</td>
-<td>豚</td>
-<td>ウシ</td>
-<td>パンダ</td>
-
-</tr>
-</table>
+    <h1>商品一覧</h1>
+	<form class="form-create" id="stuff_reg">
 
 
 
-    <c:forEach var="proData" items="${jancode}">
-        <table border="1">
+        <table>
             <tr>
                 <td>商品名</td>
-                <td>${proName_List}</td>
+                <td>もちもちもっくん</td>
             </tr>
             <tr>
                 <td>JANコード</td>
-                <td>${jancode}</td>
+                <td>292929292</td>
             </tr>
             <tr>
                 <td>原材料</td>
-                <td>
-                    <c:forEach var="item" items="${foods}">
-                        ${item}<br/>
-                    </c:forEach>
-                </td>
+                <td>豚</td>
+                <td>ウシ</td>
+                <td>パンダ</td>
             </tr>
         </table>
-        <br/>
-    </c:forEach>
 
+        <table>
+            <tr>
+                <td>商品名</td>
+                <td>もちもちもっくん</td>
+            </tr>
+            <tr>
+                <td>JANコード</td>
+                <td>292929292</td>
+            </tr>
+            <tr>
+                <td>原材料</td>
+                <td>豚</td>
+                <td>ウシ</td>
+                <td>パンダ</td>
+            </tr>
+        </table>
 
+        <c:forEach var="proData" items="${jancode}">
+            <table border="1">
+                <tr>
+                    <td>商品名</td>
+                    <td>${proName_List}</td>
+                </tr>
+                <tr>
+                    <td>JANコード</td>
+                    <td>${jancode}</td>
+                </tr>
+                <tr>
+                    <td>原材料</td>
+                    <td>
+                        <c:forEach var="item" items="${foods}">
+                            ${item}<br/>
+                        </c:forEach>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+        </c:forEach>
 
-		</c:param>
+	</form>
+    </c:param>
 </c:import>

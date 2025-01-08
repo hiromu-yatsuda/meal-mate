@@ -7,6 +7,9 @@
 	<c:param name="title">従業員 - 商品登録_CSV</c:param>
 	<c:param name="body">
 
+<header>
+    <%@ include file="../stuffnav.jsp" %>
+</header>
 
 <div id="csv_read">
 <button onclick="location.href=''">CSVファイルをアップロード</button>
