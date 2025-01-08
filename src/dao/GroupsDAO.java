@@ -27,7 +27,7 @@ public class GroupsDAO extends DAO {
         return line;
     }
 
-    public List<Groups>all() throws Exception {
+    public List<Groups> all() throws Exception {
         List<Groups> groups = new ArrayList<Groups>();
 
         Connection connection = getConnection();
