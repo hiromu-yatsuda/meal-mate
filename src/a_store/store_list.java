@@ -32,14 +32,14 @@ public class store_list extends HttpServlet {
     		System.out.println("daoの結果");
     		System.out.println(s_list);
 
-    		req.getRequestDispatcher("group_list.jsp").forward(req, resp);
+    		req.getRequestDispatcher("/admin/group_list.jsp").forward(req, resp);
 
     	} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			System.out.println("グループID検索DAOでエラー");
 
-			req.getRequestDispatcher("a_top.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/a_top.jsp").forward(req, resp);
 
     	}
 

@@ -13,58 +13,38 @@
 
 
 <table>
+<thead>
 <tr>
-<td>グループID</td>
-<td>グループ名</td>
-<td>電話番号</td>
-<td>メールアドレス</td>
+<th>グループID</th>
+<th>グループ名</th>
+<th>電話番号</th>
+<th>メールアドレス</th>
 </tr>
+</thead>
+
+<thead>
+<c:forEach var="group" items="${groupsList}">
 <tr>
-<td><a href="">239</a></td>
-<td>セブンイレブン</td>
-<td>0334579384</td>
-<td>afidgui@safd.fgs</td>
-
+<td>
+	<form action="" method="get">
+		<input type="hidden" name="groupCode" value="${group.groupCode}" />
+        	<button type="submit" style="background:none;border:none;color:blue;text-decoration:underline;cursor:pointer;">
+            	${group.groupCode}
+    	</button>
+    </form>
+</td>
+<td>${group.phoneNum}</td>
+<td>${group.email}</td>
+<td>${group.name}</td>
 </tr>
-
-<tr>
-<td><a href="">454</a></td>
-<td>みみ青果</td>
-<td>03323479384</td>
-<td>dsfgi@safd.fgs</td>
-
-</tr>
-
-
+</c:forEach>
+</thead>
 </table>
 
 
 
-<%--
-    <c:forEach var="proData" items="${jancode}">
-        <table border="1">
-            <tr>
-                <td>商品名</td>
-                <td>${proName_List}</td>
-            </tr>
-            <tr>
-                <td>JANコード</td>
-                <td>${jancode}</td>
-            </tr>
-            <tr>
-                <td>原材料</td>
-                <td>
-                    <c:forEach var="item" items="${foods}">
-                        ${item}<br/>
-                    </c:forEach>
-                </td>
-            </tr>
-        </table>
-        <br/>
-    </c:forEach>
 
 
- --%>
 
 
 
@@ -80,18 +60,18 @@
 
 <%-- ページネーションの設定はサーブレットで行う --%>
 <%-- ページネーションリンク --%>
+
 <div>
     <c:if test="${currentPage > 1}">
-        <a href="GroupListServlet?page=${currentPage - 1}">前へ</a>
+        <a href="a_group_list?page=${currentPage - 1}">前へ</a>
     </c:if>
     <c:forEach var="i" begin="1" end="${totalPages}">
-        <a href="GroupListServlet?page=${i}">${i}</a>
+        <a href="a_group_list?page=${i}">${i}</a>
     </c:forEach>
     <c:if test="${currentPage < totalPages}">
-        <a href="GroupListServlet?page=${currentPage + 1}">次へ</a>
+        <a href="a_group_list?page=${currentPage + 1}">次へ</a>
     </c:if>
 </div>
-
 
 		</c:param>
 </c:import>
