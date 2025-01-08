@@ -34,6 +34,7 @@ public class group_list extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			System.out.println("グループ一覧取得DAOでエラー");
+			req.getRequestDispatcher("a_top.jsp").forward(req, resp);
 		}
 
 

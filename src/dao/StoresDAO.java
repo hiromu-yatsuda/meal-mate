@@ -18,7 +18,7 @@ public class StoresDAO extends DAO {
     }
 
     public List<Stores> searchBygId(String gId) throws Exception {
-        GroupsDAO gDao = new GroupsDAO();
+//        GroupsDAO gDao = new GroupsDAO();
 
         List<Stores> stores = new ArrayList<Stores>();
         Connection connection = getConnection();
@@ -31,11 +31,11 @@ public class StoresDAO extends DAO {
 
         while (rSet.next()) {
             Stores store = new Stores();
-            Groups group = gDao.search(rSet.getString("group_code"));
+//            Groups group = gDao.search(rSet.getString("group_code"));
 
             store.setStoreCode(rSet.getString("store_code"));
             store.setName(rSet.getString("name"));
-            store.setGroups(group);
+//            store.setGroups(group);
             store.setPhoneNum(rSet.getString("phone_num"));
             store.setLatitude(rSet.getDouble("latitude"));
             store.setLongitude(rSet.getDouble("longitude"));

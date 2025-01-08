@@ -1,6 +1,7 @@
 package a_store;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +20,7 @@ public class store_list extends HttpServlet {
 //    	グループコードを取得
     	String g_id = req.getParameter("g_id");
 
+    	g_id = "146";
     	System.out.println(g_id);
 
     	StoresDAO dao = new StoresDAO();
@@ -26,15 +28,20 @@ public class store_list extends HttpServlet {
 
     	try {
 
-    		Stores s_list = dao.searchBysId(g_id);
+    		List<Stores> s_list = dao.searchBygId(g_id);
     		System.out.println("daoの結果");
     		System.out.println(s_list);
+
+    		req.getRequestDispatcher("group_list.jsp").forward(req, resp);
 
     	} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			System.out.println("グループID検索DAOでエラー");
-		}
+
+			req.getRequestDispatcher("a_top.jsp").forward(req, resp);
+
+    	}
 
 
 
