@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log("ja_Latitude: " + latitude); // 座標をコンソールに出力
                     console.log("js_Longitude: " + longitude); // 座標をコンソールに出力
 
-                    fetch('/MealMate/map', {
+                    fetch('/meal-mate/map', {
                         method: 'post',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
