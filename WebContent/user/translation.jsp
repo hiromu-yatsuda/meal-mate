@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="ja">
-<%@ include file="./../userbase.html" %>
+<%@ include file="./../userbase.jsp" %>
 <head>
 <style>
 body {

@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<%@ include file="../userbase.html" %>
+<%@ include file="../userbase.jsp" %>
 <div>
 <a>食材登録画面</a>
 </div>

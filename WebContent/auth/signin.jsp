@@ -16,7 +16,7 @@ body {
     height: 100vh; /* ビューポートの高さを100%に設定 */
     background: url('../img/happa1.png') no-repeat center center; /* 画像を中央に配置 */
     background-size: cover; /* 画面全体をカバーするように調整 */
-   
+
 }
 
 /* サインインフォームのコンテナ */
@@ -85,7 +85,7 @@ label {
 </style>
 </head>
 <body>
-<%@ include file="../userbase.html" %>
+<%@ include file="../userbase.jsp" %>
 <div class="signin-container">
     <!-- フォームタイトル -->
     <h1>Signin</h1>
@@ -124,7 +124,7 @@ label {
 
     <!-- エラーメッセージ表示 -->
     <ul id="errorMessages">
-        <% 
+        <%
         // エラーメッセージをリクエスト属性から取得
         String errorMessage = (String) request.getAttribute("errorMessage");
         if (errorMessage != null) { // エラーメッセージが存在する場合

@@ -16,7 +16,7 @@ body {
     height: 100vh; /* ビューポート全体の高さを設定 */
     background: url('../img/happa1.png') no-repeat center center; /* 画像を中央に配置 */
     background-size: cover; /* 画面全体をカバーするように調整 */
-    
+
 }
 
 /* ログインフォームのコンテナスタイル */
@@ -25,7 +25,7 @@ body {
     padding: 20px; /* 内側のスペースを設定 */
     background-color: #fff; /* 背景色を白に設定 */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 軽いシャドウで立体感を追加 */
-	
+
 }
 
 /* ログインフォームのヘッダー */
@@ -36,7 +36,7 @@ body {
     padding: 10px; /* ヘッダー内側のスペース */
     border-bottom: 1px solid #ddd; /* 下線の追加 */
     font-size: 80px; /* フォントサイズを設定 */
-	
+
 }
 
 /* テキスト入力とパスワード入力のスタイル */
@@ -93,7 +93,7 @@ body {
 </style>
 </head>
 <body>
-<%@ include file="../userbase.html" %>
+<%@ include file="../userbase.jsp" %>
 <div class="login-container">
     <!-- ログインフォームのタイトル -->
     <h1>Login</h1>
@@ -116,7 +116,7 @@ body {
 
     <!-- エラーメッセージ表示部分 -->
     <ul id="errorMessages">
-        <% 
+        <%
         // リクエスト属性からエラーメッセージを取得
         String errorMessage = (String) request.getAttribute("errorMessage");
         if (errorMessage != null) { // エラーメッセージが存在する場合
