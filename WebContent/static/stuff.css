@@ -1,0 +1,88 @@
+/* 背景のスタイル設定（画面全体にグラデーション背景を適用） */
+body {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+}
+
+/* メインコンテンツのスタイル（中央揃えと背景設定を行う） */
+main {
+    display: flex; /* フレックスボックスを使用してレイアウト調整 */
+    margin: 0; /* 外側の余白をなしに設定 */
+    padding: 0; /* 内側の余白をなしに設定 */
+    font-family: 'Poppins', sans-serif; /* Google Fontsから洗練されたフォントを使用 */
+    background: linear-gradient(135deg, #2c3e50, #34495e); /* グラデーション背景 */
+    align-items: center; /* 垂直方向で中央揃え */
+    justify-content: center; /* 水平方向で中央揃え */
+    height: 55vh; /* 画面高さの55%を占める */
+}
+
+/* アイコン全体のスタイル設定 */
+.button-top {
+    display: flex; /* フレックスボックスで中央揃え */
+    justify-content: center; /* 水平方向で中央揃え */
+    align-items: center; /* 垂直方向で中央揃え */
+    margin: 20px; /* 外側の余白を設定 */
+    width: 150px; /* ボタンの幅 */
+    height: 150px; /* ボタンの高さ */
+    font-size: 18px; /* フォントサイズ */
+    font-weight: bold; /* 太字を適用 */
+    color: #fff; /* テキストカラーを白に設定 */
+    border: none; /* ボーダーなし */
+    border-radius: 20px; /* 角を丸くする */
+    cursor: pointer; /* ポインターを表示（クリック可能なことを示す） */
+    text-align: center; /* テキストを中央揃え */
+    transition: transform 0.2s, background-color 0.2s; /* アニメーションの設定 */
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.2)); /* 半透明なグラデーション背景 */
+}
+
+/* 緑色ベースのグラデーション背景を適用（食品関連のアイコン） */
+#food {
+    background: linear-gradient(45deg, #339933, #66cc66);
+}
+
+/* 青色ベースのグラデーション背景を適用（スタッフ関連のアイコン） */
+#stuff {
+    background: linear-gradient(45deg, #0099CC, #33b5e5);
+}
+
+/* 黄色ベースのグラデーション背景を適用（店舗関連のアイコン） */
+#store {
+    background: linear-gradient(45deg, #CC9900, #ffcc33);
+}
+
+/* ボタンのホバー時の効果（ボタンを少し大きくする） */
+.button-top:hover {
+    transform: scale(1.1);
+}
+
+/* ボタンがフォーカスされた時のスタイル（視覚的な効果を追加） */
+.button-top:focus {
+    outline: none; /* フォーカス時のデフォルトの枠線を削除 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* ぼんやりとした影を追加 */
+}
+
+/* アイコンを2段に分けて配置するためのコンテナスタイル */
+.icon-container {
+    display: flex; /* フレックスボックスでレイアウト調整 */
+    flex-wrap: wrap; /* 子要素を折り返す */
+    justify-content: space-evenly; /* 子要素を均等に配置 */
+    max-width: 500px; /* コンテナの最大幅を設定 */
+    margin: 0 auto; /* 中央揃えのために余白を設定 */
+}
+
+/* タイトル（h1タグ）のスタイル設定 */
+h1 {
+    color: white; /* テキストカラーを白に設定 */
+    text-align: center; /* テキストを中央揃え */
+    font-family: 'Arial', sans-serif; /* フォントを設定（必要に応じて変更） */
+    font-size: 2.5rem; /* タイトルっぽい大きさを設定 */
+    font-weight: bold; /* 太字で強調 */
+    letter-spacing: 0.1em; /* 文字間隔を広げることで高級感を追加 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* おしゃれな影を追加 */
+    margin: 20px 0 0 0; /* 上下の余白を調整 */
+}
+
+
+
+
+
+
