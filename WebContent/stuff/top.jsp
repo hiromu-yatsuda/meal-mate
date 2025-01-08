@@ -12,7 +12,7 @@
 	<h1>TOP</h1>
 
 
-<form action="/MealMate/stuff/create_stuff_1" method="get">
+<form action="/meal-mate/stuff/create_stuff_1" method="get">
     <!-- フォームの入力フィールド -->
     <button class="button-top" type="submit">店舗作成</button>
 </form>

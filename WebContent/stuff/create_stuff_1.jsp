@@ -6,7 +6,7 @@
         <c:param name="body">
             <h1>従業員作成</h1>
 
-            <form action="/MealMate/stuff/create_stuff_1" method="post">
+            <form action="/meal-mate/stuff/create_stuff_1" method="post">
                 <div class="input-group">
                     <div class="form-group">
                         <label for="s_name">名前</label>

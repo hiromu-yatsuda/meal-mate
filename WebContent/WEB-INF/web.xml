@@ -7,7 +7,7 @@
 
 <context-param>
 	<param-name>upload-dir</param-name>
-	<param-value>C:/work/pleiades/workspace/MealMate/WebContent</param-value>
+	<param-value>C:/work/pleiades/workspace/meal-mate/WebContent</param-value>
 </context-param>
 
 </web-app>

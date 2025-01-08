@@ -10,7 +10,7 @@
 <h1>店舗登録確認</h1>
 
 
-<form action="/MealMate/admin/a_create_store_1/regist" method="post">
+<form action="/meal-mate/admin/a_create_store_1/regist" method="post">
 	<table>
 		<tr>
 			<td>店舗名</td>

@@ -5,7 +5,7 @@
     <c:param name="title">管理 - アカウント作成</c:param>
     <c:param name="body">
 
-        <form action="/MealMate/admin/create_accounts_1" method="post">
+        <form action="/meal-mate/admin/create_accounts_1" method="post">
 
             <div class="id">
                 <label>ID：</label>

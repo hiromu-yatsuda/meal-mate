@@ -12,7 +12,7 @@
             <button type="submit">店舗一覧</button>
         </form>
 
-        <form action="/MealMate/admin/a_create_store_1" method="get">
+        <form action="/meal-mate/admin/a_create_store_1" method="get">
             <!-- フォームの入力フィールド -->
             <button type="submit">店舗作成</button>
         </form>
@@ -22,7 +22,7 @@
             <button type="submit">グループ一覧</button>
         </form>
 
-        <form action="/MealMate/admin/a_create_group_1" method="get">
+        <form action="/meal-mate/admin/a_create_group_1" method="get">
             <!-- フォームの入力フィールド -->
             <button type="submit">グループ作成</button>
         </form>

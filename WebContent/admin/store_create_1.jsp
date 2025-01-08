@@ -9,7 +9,7 @@
 	<h1>店舗登録</h1>
 
 
-	<form action="/MealMate/admin/a_create_store_1" method="post">
+	<form action="/meal-mate/admin/a_create_store_1" method="post">
 	<div class="name">
 	<label>店舗名：</label>
     <input type="text" name="name" id="name" placeholder="店舗名を入力してください"  required>

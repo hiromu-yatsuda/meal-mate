@@ -7,7 +7,7 @@
 
         <h1>グループ作成</h1>
 
-        <form action="/MealMate/admin/a_create_group_1" method="post">
+        <form action="/meal-mate/admin/a_create_group_1" method="post">
             <div class="name">
                 <label>グループ名：</label>
                 <input type="text" name="name" id="name" placeholder="グループ名を入力してください" required>

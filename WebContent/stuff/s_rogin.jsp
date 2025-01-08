@@ -5,7 +5,7 @@
 	<c:param name="title">管理 - ログイン</c:param>
 	<c:param name="body">
 
-		<form action="/MealMate/stuff/rogin" method="post">
+		<form action="/meal-mate/stuff/rogin" method="post">
 
 			<div class="mail">
 				<label>メールアドレス：</label>

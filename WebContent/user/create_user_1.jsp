@@ -14,7 +14,7 @@
 	IDはランダム
 
 
-<form action="/MealMate/user/create_user_1" method="post">
+<form action="/meal-mate/user/create_user_1" method="post">
 				<div class="name">
 				<label>NAME：</label>
     			<input type="text" name="name" id="name" placeholder="John Smith"  required>

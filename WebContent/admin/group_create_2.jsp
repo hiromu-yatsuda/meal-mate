@@ -33,7 +33,7 @@
     <p>上記のグループを作成しますか？</p>
 
     <div id="decision">
-<form action="/MealMate/admin/a_create_group_1/regist" method="post">
+<form action="/meal-mate/admin/a_create_group_1/regist" method="post">
 <div id="confirmed">
         <button onclick="location.href=''"> 作成 </button>
 </div>
