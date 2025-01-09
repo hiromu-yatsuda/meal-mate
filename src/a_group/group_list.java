@@ -29,11 +29,13 @@ public class group_list extends HttpServlet {
 //        	次のページ
         	get_page = Integer.parseInt(req.getParameter("page"));
 
-        	if ( get_page > 0 ) {
+//        	if ( get_page > 0 ) {
                 current_page = get_page;
-            }
+//            }
 
     	}
+
+    	System.out.println(current_page);
 
 
 
@@ -52,13 +54,23 @@ public class group_list extends HttpServlet {
 
 //    		どこから
     		int start_dao = 0;
+
+
     		start_dao = (current_page - 1) * num_dao;
 
 
 
-//    		グループ一覧を取得
-    		List<Groups> g_list = dao.all(num_dao, start_dao);
-			System.out.println(g_list);
+//    		20データずつのグループ一覧を取得
+    		List<Groups> g_list = dao.all_20(num_dao, start_dao);
+
+//    		全てのデータ（ページネーション用）
+    		List<Groups> g_list_all = dao.all();
+
+
+			System.out.println(g_list_all);
+			System.out.println(g_list_all.size());
+
+    		System.out.println(g_list);
 			System.out.println(g_list.size());
 
 
@@ -76,11 +88,14 @@ public class group_list extends HttpServlet {
 			int g_list_page = 0;
 
 //			全データ数
-			int g_list_size = g_list.size();
+			int g_list_size = g_list_all.size();
 
 
-			int page_count = g_list_size * 20;
+			int page_count = g_list_size / 20;
+			System.out.println(page_count);
+
 			int page_count_rem = g_list_size % 20;
+			System.out.println(page_count_rem);
 
 			if(page_count_rem > 0){
 				g_list_page = page_count + 1;
@@ -116,7 +131,7 @@ public class group_list extends HttpServlet {
 			req.setAttribute("total_page", g_list_page);
 
 //			表示データリスト
-//			req.setAttribute("groupsList",a2_list );
+			req.setAttribute("groupsList",g_list );
 //			req.setAttribute("groupsList", g_list);
 			req.getRequestDispatcher("/admin/group_list.jsp").forward(req, resp);
 

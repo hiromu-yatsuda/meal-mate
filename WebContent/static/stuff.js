@@ -52,13 +52,14 @@ function addChildElement() {
 	parent.appendChild(copiedChild);
 	container.appendChild(parent);
 }
-
-const plusButton = document.querySelector("#addButton");
-plusButton.addEventListener("click", function () {
-	addChildElement();
+document.addEventListener('DOMContentLoaded', function() {
+    const plusButton = document.querySelector("#addButton");
+    if (plusButton) {
+        plusButton.addEventListener("click", function () {
+            addChildElement();
+        });
+    }
 });
-
-
 //	従業員-店舗情報変更
 //	写真をアップロード用
 function uploadPhoto() {

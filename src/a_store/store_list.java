@@ -18,19 +18,94 @@ public class store_list extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 //    	グループコードを取得
-    	String g_id = req.getParameter("g_id");
+    	String g_id = req.getParameter("groupCode");
 
+    	System.out.println("グループコード１");
+    	System.out.println(g_id);
+
+
+//    	現在のページの取得用
+    	int get_page = 1;
+
+//    	次のページ送信用
+    	int current_page = 1;
+
+    	if (req.getParameter("page") != null){
+
+
+//        	次のページ
+        	get_page = Integer.parseInt(req.getParameter("page"));
+
+
+                current_page = get_page;
+
+    	}
+
+    	System.out.println(current_page);
+
+
+
+//    	仮置き
     	g_id = "146";
     	System.out.println(g_id);
+
+
+
+
 
     	StoresDAO dao = new StoresDAO();
 
 
     	try {
 
-    		List<Stores> s_list = dao.searchBygId(g_id);
+
+//    		データの選別
+//    		取得件数
+    		int num_dao = 20;
+
+//    		どこから
+    		int start_dao = 0;
+
+
+
+    		start_dao = (current_page - 1) * num_dao;
+
+
+
+//    		20データずつのグループ一覧を取得
+    		List<Stores> s_list = dao.searchBygId_20(g_id, num_dao, start_dao);
+
+//    		全てのデータ（ページネーション用）
+    		List<Stores> s_list_all = dao.searchBygId(g_id);
+
+
+
     		System.out.println("daoの結果");
     		System.out.println(s_list);
+    		System.out.println(s_list_all);
+
+
+
+
+//			ページネーションの設定
+//			ページ数カウント
+			int s_list_page = 0;
+
+//			全データ数
+			int s_list_size = s_list_all.size();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     		req.getRequestDispatcher("/admin/group_list.jsp").forward(req, resp);
 

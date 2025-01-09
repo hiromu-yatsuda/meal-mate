@@ -13,25 +13,49 @@
 
         <h1>店舗一覧</h1>
 <form class="form-create">
-        <%-- グループ名 --%>
-        <h3>セブンイレブン</h3>
 
-        <table>
-            <tr>
-                <td>店舗名</td>
-                <td>電話番号</td>
-            </tr>
-            <tr>
-                <td>大宮店</td>
-                <td>0334579384</td>
-            </tr>
-            <tr>
-                <td>大宮西口店</td>
-                <td>03323479384</td>
-            </tr>
-        </table>
-</form>
-        <%-- ページネーションなし --%>
+<!--
 
+<table>
+<thead>
+<tr>
+<th>店舗名</th>
+<th>電話番号</th>
+</tr>
+</thead>
+
+<thead>
+<c:forEach var="store" items="${storesList}">
+<tr>
+<td>${store.name}</td>
+<td>${store.phonNum}</td>
+</tr>
+</c:forEach>
+</table>
+
+
+
+<div>
+    <c:if test="${current_page > 1}">
+        <form action="a_group_list" method="get" style="display:inline;">
+            <input type="hidden" name="page" value="${current_page - 1}" />
+            <button type="submit">前へ</button>
+        </form>
+    </c:if>
+    <c:forEach var="i" begin="1" end="${total_page}">
+        <form action="a_group_list" method="get" style="display:inline;">
+            <input type="hidden" name="page" value="${i}" />
+            <button type="submit">${i}</button>
+        </form>
+    </c:forEach>
+    <c:if test="${current_page < total_page}">
+        <form action="a_group_list" method="get" style="display:inline;">
+            <input type="hidden" name="page" value="${current_page + 1}" />
+            <button type="submit">次へ</button>
+        </form>
+    </c:if>
+</div>
+
+ -->
     </c:param>
 </c:import>

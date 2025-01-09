@@ -30,7 +30,7 @@
 <c:forEach var="group" items="${groupsList}">
 <tr>
 <td>
-	<form action="" method="get">
+	<form action="/meal-mate/admin/a_group_list/a_store_list" method="get">
 		<input type="hidden" name="groupCode" value="${group.groupCode}" />
         	<button type="submit" style="background:none;border:none;color:blue;text-decoration:underline;cursor:pointer;">
             	${group.groupCode}
@@ -48,34 +48,29 @@
 
 
 
-
-
-
-
- <%-- 例 --%>
- <a href="">前へ</a>
-  <a href="">1</a>
-   <a href="">2</a>
- <a href="">次へ</a>
- <%-- 例 --%>
-
-
-
-
 <%-- ページネーションの設定はサーブレットで行う --%>
 <%-- ページネーションリンク --%>
 
+
 <div>
-    <c:if test="${currentPage > 1}">
-        <a href="a_group_list?page=${currentPage - 1}">前へ</a>
+    <c:if test="${current_page > 1}">
+        <form action="a_group_list" method="get" style="display:inline;">
+            <input type="hidden" name="page" value="${current_page - 1}" />
+            <button type="submit">前へ</button>
+        </form>
     </c:if>
-    <c:forEach var="i" begin="1" end="${totalPages}">
-        <a href="a_group_list?page=${i}">${i}</a>
+    <c:forEach var="i" begin="1" end="${total_page}">
+        <form action="a_group_list" method="get" style="display:inline;">
+            <input type="hidden" name="page" value="${i}" />
+            <button type="submit">${i}</button>
+        </form>
     </c:forEach>
-    <c:if test="${currentPage < totalPages}">
-        <a href="a_group_list?page=${currentPage + 1}">次へ</a>
+    <c:if test="${current_page < total_page}">
+        <form action="a_group_list" method="get" style="display:inline;">
+            <input type="hidden" name="page" value="${current_page + 1}" />
+            <button type="submit">次へ</button>
+        </form>
     </c:if>
 </div>
-</form>
 		</c:param>
 </c:import>

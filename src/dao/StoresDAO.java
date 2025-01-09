@@ -59,6 +59,54 @@ public class StoresDAO extends DAO {
         return stores;
     }
 
+
+//  ページネーション用にlimit（取得件数） offset（どこから）を設定
+    public List<Stores> searchBygId_20(String gId, int num, int start) throws Exception {
+//      GroupsDAO gDao = new GroupsDAO();
+
+      List<Stores> stores = new ArrayList<Stores>();
+      Connection connection = getConnection();
+
+      PreparedStatement pStatement = connection.prepareStatement("select * from Stores where group_code = ? limit ? offset ?");
+
+      pStatement.setString(1, gId);
+      pStatement.setInt(2, num);
+      pStatement.setInt(3, start);
+
+      ResultSet rSet = pStatement.executeQuery();
+
+      while (rSet.next()) {
+          Stores store = new Stores();
+//          Groups group = gDao.search(rSet.getString("group_code"));
+
+          store.setStoreCode(rSet.getString("store_code"));
+          store.setName(rSet.getString("name"));
+//          store.setGroups(group);
+          store.setPhoneNum(rSet.getString("phone_num"));
+          store.setLatitude(rSet.getDouble("latitude"));
+          store.setLongitude(rSet.getDouble("longitude"));
+          store.setOpeningTime(rSet.getTime("opening_time"));
+          store.setClosingTime(rSet.getTime("closing_time"));
+          store.setAvg_amount_low(rSet.getInt("avg_amount_low"));
+          store.setAvg_amount_high(rSet.getInt("avg_amount_high"));
+          store.setFigure1(rSet.getString("figure1"));
+          store.setFigure1(rSet.getString("figure2"));
+          store.setFigure1(rSet.getString("figure3"));
+          // テーブルのカラムがis_actionになっている(is_activeの間違い?)
+          // rSet.getBoolean("is_action")の返り値がTRUEだとエラーの可能性
+          store.setActive(rSet.getBoolean("is_action"));
+
+          stores.add(store);
+      }
+
+      pStatement.close();
+      connection.close();
+
+      return stores;
+  }
+
+
+
     public Stores searchBysId(String sId) throws Exception {
         GroupsDAO gDao = new GroupsDAO();
 

@@ -28,8 +28,39 @@ public class GroupsDAO extends DAO {
     }
 
 
+
+    public List<Groups> all() throws Exception {
+        List<Groups> groups = new ArrayList<Groups>();
+
+        Connection connection = getConnection();
+
+        PreparedStatement pStatement = connection.prepareStatement("select * from groups_s ");
+
+
+
+
+        ResultSet rSet = pStatement.executeQuery();
+
+        while (rSet.next()) {
+            Groups group = new Groups();
+
+            group.setGroupCode(rSet.getString("group_code"));
+            group.setPhoneNum(rSet.getString("phone_num"));
+            group.setEmail(rSet.getString("email"));
+            group.setName(rSet.getString("name"));
+
+            groups.add(group);
+        }
+
+        pStatement.close();
+        connection.close();
+
+        return groups;
+    }
+
+
 //  ページネーション用にlimit（取得件数） offset（どこから）を設定
-    public List<Groups> all(int num, int start) throws Exception {
+    public List<Groups> all_20(int num, int start) throws Exception {
         List<Groups> groups = new ArrayList<Groups>();
 
         Connection connection = getConnection();
@@ -58,6 +89,8 @@ public class GroupsDAO extends DAO {
 
         return groups;
     }
+
+
 
 //    店舗登録用
 //    「グループID：グループ名」グループ名の昇順
