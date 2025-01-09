@@ -27,12 +27,18 @@ public class GroupsDAO extends DAO {
         return line;
     }
 
-    public List<Groups> all() throws Exception {
+
+//  ページネーション用にlimit（取得件数） offset（どこから）を設定
+    public List<Groups> all(int num, int start) throws Exception {
         List<Groups> groups = new ArrayList<Groups>();
 
         Connection connection = getConnection();
 
-        PreparedStatement pStatement = connection.prepareStatement("select * from groups_s");
+        PreparedStatement pStatement = connection.prepareStatement("select * from groups_s limit ? offset ?");
+
+        pStatement.setInt(1, num);
+        pStatement.setInt(2, start);
+
 
         ResultSet rSet = pStatement.executeQuery();
 
