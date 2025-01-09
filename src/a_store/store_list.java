@@ -46,7 +46,7 @@ public class store_list extends HttpServlet {
 
 
 //    	仮置き
-    	g_id = "146";
+    	g_id = "001";
     	System.out.println(g_id);
 
 
@@ -95,19 +95,50 @@ public class store_list extends HttpServlet {
 			int s_list_size = s_list_all.size();
 
 
+//			System.out.println("1");
 
 
+			int page_count = s_list_size / 20;
+			System.out.println(page_count);
+
+//			System.out.println("2");
 
 
+			int page_count_rem = s_list_size % 20;
+			System.out.println(page_count_rem);
+
+//			System.out.println("3");
+
+			if(page_count_rem > 0){
+				s_list_page = page_count + 1;
+
+//				System.out.println("4");
+			}else{
+				s_list_page = page_count;
+//				System.out.println("4.5");
+			}
 
 
+//			System.out.println("5");
+
+//			現在のページ
+			req.setAttribute("current_page", current_page);
+
+//			全ページ数
+			req.setAttribute("total_page", s_list_page);
 
 
+//			System.out.println("6");
+
+//			表示データリスト
+			req.setAttribute("storesList",s_list );
+//			req.setAttribute("groupsList", g_list);
 
 
+//			System.out.println("7");
 
 
-    		req.getRequestDispatcher("/admin/group_list.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/store_list.jsp").forward(req, resp);
 
     	} catch (Exception e) {
 			// TODO 自動生成された catch ブロック

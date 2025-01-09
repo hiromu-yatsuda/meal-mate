@@ -14,7 +14,7 @@
         <h1>店舗一覧</h1>
 <form class="form-create">
 
-<!--
+
 
 <table>
 <thead>
@@ -28,7 +28,7 @@
 <c:forEach var="store" items="${storesList}">
 <tr>
 <td>${store.name}</td>
-<td>${store.phonNum}</td>
+<td>${store.phoneNum}</td>
 </tr>
 </c:forEach>
 </table>
@@ -37,25 +37,28 @@
 
 <div>
     <c:if test="${current_page > 1}">
-        <form action="a_group_list" method="get" style="display:inline;">
+        <form action="/meal-mate/admin/a_group_list/a_store_list" method="get" style="display:inline;">
             <input type="hidden" name="page" value="${current_page - 1}" />
             <button type="submit">前へ</button>
         </form>
     </c:if>
     <c:forEach var="i" begin="1" end="${total_page}">
-        <form action="a_group_list" method="get" style="display:inline;">
+        <form action="/meal-mate/admin/a_group_list/a_store_list" method="get" style="display:inline;">
             <input type="hidden" name="page" value="${i}" />
             <button type="submit">${i}</button>
         </form>
     </c:forEach>
     <c:if test="${current_page < total_page}">
-        <form action="a_group_list" method="get" style="display:inline;">
+        <form action="/meal-mate/admin/a_group_list/a_store_list" method="get" style="display:inline;">
             <input type="hidden" name="page" value="${current_page + 1}" />
             <button type="submit">次へ</button>
         </form>
     </c:if>
 </div>
 
- -->
+
+
+
+ </form>
     </c:param>
 </c:import>

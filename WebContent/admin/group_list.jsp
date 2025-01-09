@@ -15,7 +15,7 @@
 <h1>グループ一覧</h1>
 
 
-<form class="form-create">
+
 <table>
 <thead>
 <tr>
@@ -29,17 +29,17 @@
 <thead>
 <c:forEach var="group" items="${groupsList}">
 <tr>
-<td>
-	<form action="/meal-mate/admin/a_group_list/a_store_list" method="get">
-		<input type="hidden" name="groupCode" value="${group.groupCode}" />
-        	<button type="submit" style="background:none;border:none;color:blue;text-decoration:underline;cursor:pointer;">
-            	${group.groupCode}
-    	</button>
-    </form>
-</td>
-<td>${group.phoneNum}</td>
-<td>${group.email}</td>
-<td>${group.name}</td>
+    <td>
+        <form action="/meal-mate/admin/a_group_list/a_store_list" method="get">
+            <input type="hidden" name="groupCode" value="${group.groupCode}" />
+            <button type="submit" style="background:none;border:none;color:blue;text-decoration:underline;cursor:pointer;">
+                ${group.groupCode}
+            </button>
+        </form>
+    </td>
+    <td>${group.phoneNum}</td>
+    <td>${group.email}</td>
+    <td>${group.name}</td>
 </tr>
 </c:forEach>
 </thead>
@@ -72,5 +72,6 @@
         </form>
     </c:if>
 </div>
+
 		</c:param>
 </c:import>
