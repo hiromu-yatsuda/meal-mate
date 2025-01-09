@@ -1,4 +1,5 @@
 //	住所を座標に
+/**
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('getCoordinatesButton2').addEventListener('click', function(event) {
     	console.log("daaaaaaaaaaaaa ");
@@ -38,17 +39,24 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 });
+*/
 
 //	従業員-商品登録
 //	「＋」ボタンクリック -> 入力項目追加
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('addButton').addEventListener('click', function() {
-        var form = document.getElementById('foods_reg');
-        var clone = form.cloneNode(true);
-        document.body.insertBefore(clone, document.getElementById('pro_plus'));
-    });
-});
+function addChildElement() {
+	const container = document.querySelector("#container");
+	const childElement = document.querySelector(".input-group");
+	const copiedChild = childElement.cloneNode(true);
+	const parent = document.createElement("div");
+	parent.setAttribute("class", "input-group");
+	parent.appendChild(copiedChild);
+	container.appendChild(parent);
+}
 
+const plusButton = document.querySelector("#addButton");
+plusButton.addEventListener("click", function () {
+	addChildElement();
+});
 
 
 //	従業員-店舗情報変更
