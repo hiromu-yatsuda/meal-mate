@@ -4,10 +4,14 @@
 <c:import url="/adminbase.jsp">
     <c:param name="title">管理 - グループ作成</c:param>
     <c:param name="body">
+<link rel="stylesheet" href="../static/admin.css">
+<header>
+        <%@ include file="../adminnav.jsp" %>
+    </header>
 
         <h1>グループ作成</h1>
 
-        <form action="/meal-mate/admin/a_create_group_1" method="post">
+        <form class="form-create" action="/meal-mate/admin/a_create_group_1" method="post">
             <div class="name">
                 <label>グループ名：</label>
                 <input type="text" name="name" id="name" placeholder="グループ名を入力してください" required>

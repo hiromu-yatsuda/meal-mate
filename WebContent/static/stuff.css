@@ -225,14 +225,14 @@ h2 {
     max-width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.store-change-form p, 
+.store-change-form p,
 .store-change-form label {
     font-size: 16px;
     margin-bottom: 8px;
     display: block;
 }
-.store-change-form input[type="text"], 
-.store-change-form input[type="time"], 
+.store-change-form input[type="text"],
+.store-change-form input[type="time"],
 .store-change-form input[type="file"] {
     width: calc(100% - 20px);
     padding: 5px;

@@ -4,8 +4,13 @@
 <c:import url="/adminbase.jsp">
 	<c:param name="title">管理 - ログイン</c:param>
 	<c:param name="body">
+<link rel="stylesheet" href="../static/admin.css">
+<header>
+        <%@ include file="../stuffnav.jsp" %>
+    </header>
 
-		<form action="/meal-mate/admin/rogin" method="post">
+<h1>ログイン</h1>
+		<form class="form-create" action="/meal-mate/admin/rogin" method="post">
 
 			<div class="id">
 				<label>ID：</label>

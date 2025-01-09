@@ -7,11 +7,15 @@
 	<c:param name="title">管理 - </c:param>
 	<c:param name="body">
 
+<link rel="stylesheet" href="../static/admin.css">
+<header>
+        <%@ include file="../adminnav.jsp" %>
+    </header>
 
 <h1>グループ一覧</h1>
 
 
-
+<form class="form-create">
 <table>
 <thead>
 <tr>
@@ -72,6 +76,6 @@
         <a href="a_group_list?page=${currentPage + 1}">次へ</a>
     </c:if>
 </div>
-
+</form>
 		</c:param>
 </c:import>
