@@ -216,8 +216,7 @@ h2 {
 }
 
 
-
-form {
+.store-change-form {
     margin: 20px auto;
     padding: 20px;
     background: #fff;
@@ -226,12 +225,15 @@ form {
     max-width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-form p, label {
+.store-change-form p, 
+.store-change-form label {
     font-size: 16px;
     margin-bottom: 8px;
     display: block;
 }
-input[type="text"], input[type="time"], input[type="file"] {
+.store-change-form input[type="text"], 
+.store-change-form input[type="time"], 
+.store-change-form input[type="file"] {
     width: calc(100% - 20px);
     padding: 5px;
     margin-bottom: 5px;
@@ -239,16 +241,16 @@ input[type="text"], input[type="time"], input[type="file"] {
     border-radius: 4px;
     font-size: 16px;
 }
-.time input {
+.store-change-form .time input {
     display: inline-block;
     width: 48%;
 }
-.time p {
+.store-change-form .time p {
     display: inline-block;
     width: 4%;
     text-align: center;
 }
-button {
+.store-change-form button {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -258,19 +260,20 @@ button {
     cursor: pointer;
     margin: 5px;
 }
-button:hover {
+.store-change-form button:hover {
     background-color: #0056b3;
 }
-#uploadedImages {
+.store-change-form #uploadedImages {
     margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
-#uploadedImages img {
+.store-change-form #uploadedImages img {
     width: 100px;
     height: auto;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
