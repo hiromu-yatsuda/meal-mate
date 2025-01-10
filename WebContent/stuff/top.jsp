@@ -27,16 +27,16 @@
 				</form>
 				<form action="/meal-mate/stuff/create_stuff_1" method="get">
 				    <!-- フォームの入力フィールド -->
-				    <button class="button-top" type="submit"id="food">店舗作成</button>
+				    <button class="button-top" type="submit"id="food">商品登録</button>
 				</form><form action="/meal-mate/stuff/create_stuff_1" method="get">
 				    <!-- フォームの入力フィールド -->
-				    <button class="button-top" type="submit"id="store">店舗作成</button>
+				    <button class="button-top" type="submit"id="store">店舗情報変更</button>
 				</form><form action="/meal-mate/stuff/create_stuff_1" method="get">
 				    <!-- フォームの入力フィールド -->
-				    <button class="button-top" type="submit"id="stuff">店舗作成</button>
+				    <button class="button-top" type="submit"id="stuff">従業員一覧</button>
 				</form><form action="/meal-mate/stuff/create_stuff_1" method="get">
 				    <!-- フォームの入力フィールド -->
-				    <button class="button-top" type="submit"id="stuff">店舗作成</button>
+				    <button class="button-top" type="submit"id="stuff">従業員作成</button>
 				</form>
             </c:param>
         </c:import>

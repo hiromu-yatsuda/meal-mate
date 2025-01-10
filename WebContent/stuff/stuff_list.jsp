@@ -12,7 +12,7 @@
     </header>
 
         <h1>従業員一覧</h1>
-        <form class="form-create" id="stuff_reg">
+        <div class="form-create" id="stuff_reg">
 
 
         <table>
@@ -45,7 +45,7 @@
             </table>
             <br/>
         </c:forEach>
-        </form>
+        </div>
 
     </c:param>
 </c:import>

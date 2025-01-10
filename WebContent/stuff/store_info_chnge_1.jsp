@@ -10,7 +10,7 @@
     </header>
     <h1>店舗情報変更</h1>
 
-    <form id="store-change-form" class="store-change-form">
+    <div id="store-change-form" class="store-change-form">
         <p>店舗名：</p>
         <p>山田うどん</p>
 
@@ -30,7 +30,7 @@
             <p>～</p>
             <input type="time" name="time2" id="time2">
         </div>
-    </form>
+    </div>
 
     <div class="file">
         <form id="upload-form" class="store-change-form" enctype="multipart/form-data">

@@ -10,7 +10,7 @@
         </header>
 
         <h1>商品登録確認</h1>
-        <form class="form-create" id="stuff_reg">
+        <div class="form-create" id="stuff_reg">
 
             <!-- 固定の商品情報 -->
             <table border="1">
@@ -82,7 +82,7 @@
                 <button type="button" id="cancel">キャンセル</button>
             </div>
 
-        </form>
+        </div>
 
     </c:param>
 </c:import>

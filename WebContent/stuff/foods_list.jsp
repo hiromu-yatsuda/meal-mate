@@ -12,7 +12,7 @@
     </header>
 
     <h1>商品一覧</h1>
-	<form class="form-create" id="stuff_reg">
+	<div class="form-create" id="stuff_reg">
 
 
 
@@ -72,6 +72,6 @@
             <br/>
         </c:forEach>
 
-	</form>
+	</div>
     </c:param>
 </c:import>
