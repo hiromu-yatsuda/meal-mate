@@ -28,7 +28,7 @@
                     <button class="button-top" type="submit" id="group">グループ作成</button>
                 </form>
 
-                <form action="/meal-mate/admin/store_list.jsp" method="get">
+                <form action="/meal-mate/admin/a_group_list" method="get">
                     <button class="button-top" type="submit" id="itiran">グループ・店舗一覧</button>
                 </form>
             </div>

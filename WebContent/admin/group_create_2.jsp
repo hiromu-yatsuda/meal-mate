@@ -11,7 +11,7 @@
 
         <h1>グループ作成確認</h1>
 
-		<form class="form-create">
+
         <table>
             <tr>
                 <td>グループ名</td>
@@ -32,7 +32,7 @@
         <div id="decision">
             <form action="/meal-mate/admin/a_create_group_1/regist" method="post">
                 <div id="confirmed">
-                    <button onclick="location.href=''"> 作成 </button>
+                    <button type="submit"> 作成 </button>
                 </div>
             </form>
 
@@ -40,7 +40,7 @@
                 <button type="button" id="cancel"> キャンセル </button>
             </div>
         </div>
-        </form>
+
 
     </c:param>
 </c:import>

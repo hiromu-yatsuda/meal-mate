@@ -45,9 +45,9 @@ public class store_list extends HttpServlet {
 
 
 
-//    	仮置き
-    	g_id = "001";
-    	System.out.println(g_id);
+////    	仮置き
+//    	g_id = "001";
+//    	System.out.println(g_id);
 
 
 
