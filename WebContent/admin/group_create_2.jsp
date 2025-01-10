@@ -11,6 +11,8 @@
 
         <h1>グループ作成確認</h1>
 
+<div class="form-create">
+
 
         <table>
             <tr>
@@ -40,7 +42,7 @@
                 <button type="button" id="cancel"> キャンセル </button>
             </div>
         </div>
-
+	</div>	
 
     </c:param>
 </c:import>

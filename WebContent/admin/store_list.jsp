@@ -12,7 +12,7 @@
     </header>
 
         <h1>店舗一覧</h1>
-<form class="form-create">
+<div class="form-create">
 
 
 
@@ -57,8 +57,6 @@
 </div>
 
 
-
-
- </form>
+ </div>
     </c:param>
 </c:import>

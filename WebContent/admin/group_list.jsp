@@ -14,7 +14,7 @@
 
 <h1>グループ一覧</h1>
 
-
+<div class="form-create">
 
 <table>
 <thead>
@@ -72,6 +72,6 @@
         </form>
     </c:if>
 </div>
-
+</div>
 		</c:param>
 </c:import>

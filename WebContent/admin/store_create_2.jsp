@@ -44,6 +44,6 @@
 		<button type="button" id="cancel"> キャンセル </button>
 	</div>
 </div>
-</form>
+</form>>
 	</c:param>
 </c:import>
