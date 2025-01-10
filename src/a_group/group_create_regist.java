@@ -48,12 +48,14 @@ System.out.print("登録コントローラまで");
 	    String g_name = (String) session.getAttribute("g_name");
 	    String g_tel = (String) session.getAttribute("g_tel");
 	    String g_mail = (String) session.getAttribute("g_mail");
+//	    String user_name = (String) session.getAttribute("u_name");
 
 
 	    System.out.print("セッション");
 	    System.out.print(g_name);
 	    System.out.print(g_tel);
 	    System.out.print(g_mail);
+//	    System.out.print(user_name);
 
 
 //	DAO

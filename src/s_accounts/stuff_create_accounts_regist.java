@@ -57,8 +57,14 @@ public class stuff_create_accounts_regist extends HttpServlet {
 		String g_id = (String) session.getAttribute("g_id");
 
 
+
+
+
 //		グループID（仮）
 		g_id = "001";
+
+
+
 
 		System.out.println("グループID");
 		System.out.println(g_id);

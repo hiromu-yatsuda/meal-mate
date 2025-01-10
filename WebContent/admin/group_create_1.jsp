@@ -12,6 +12,13 @@
         <h1>グループ作成</h1>
 
         <form class="form-create" action="/meal-mate/admin/a_create_group_1" method="post">
+
+            <div class="user_name">
+                <label>代表者名：</label>
+                <input type="text" name="user_name" id="user_name" placeholder="名前を入力してください" required>
+            </div>
+
+
             <div class="name">
                 <label>グループ名：</label>
                 <input type="text" name="name" id="name" placeholder="グループ名を入力してください" required>

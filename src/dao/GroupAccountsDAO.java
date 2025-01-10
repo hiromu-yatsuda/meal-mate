@@ -77,6 +77,51 @@ public class GroupAccountsDAO extends DAO {
     }
 
 
+
+//  従業員一覧画面用
+    public List<GroupAccounts> list_seachByGid(String group_id) throws Exception {
+        Connection connection = getConnection();
+        List<GroupAccounts> groupAccounts = new ArrayList<GroupAccounts>();
+//        GroupsDAO gDao = new GroupsDAO();
+
+        PreparedStatement pStatement = connection.prepareStatement("select * from group_accounts where GROUP_CODE  like ?");
+        pStatement.setString(1, group_id);
+
+        ResultSet rSet = pStatement.executeQuery();
+
+        while (rSet.next()) {
+            GroupAccounts groupAccount = new GroupAccounts();
+            groupAccount.setId(rSet.getString("id"));
+            groupAccount.setName(rSet.getString("name"));
+            groupAccount.setEmail(rSet.getString("email"));
+            groupAccount.setPassword(rSet.getString("password"));
+            groupAccount.setLastLogin(rSet.getDate("last_login"));
+            groupAccount.setPasswordUpdated(rSet.getDate("password_updated"));
+//            groupAccount.setGroups(gDao.search(rSet.getString("group_code")));
+//            setGroupCode
+
+            groupAccount.setGroupCode(rSet.getString("group_code"));
+            groupAccount.setAdmin(rSet.getBoolean("is_admin"));
+
+
+
+            groupAccounts.add(groupAccount);
+        }
+
+//        if (groupAccounts.isEmpty()) {
+//            System.out.println("No data found for email: " + email);
+//        }
+
+        pStatement.close();
+        connection.close();
+
+        return groupAccounts;
+    }
+
+
+
+
+
     public List<GroupAccounts> all() throws Exception {
         Connection connection = getConnection();
         List<GroupAccounts>groupAccounts = new ArrayList<GroupAccounts>();

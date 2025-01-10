@@ -36,6 +36,10 @@ public class group_create_in extends HttpServlet {
 	        HttpServletResponse resp
 	    ) throws ServletException, IOException {
 
+////		代表者名を取得
+//		String user_name = req.getParameter("user_name");
+
+
 //		グループ名を取得
 		String gru_name = req.getParameter("name");
 
@@ -52,12 +56,14 @@ public class group_create_in extends HttpServlet {
 		session.setAttribute("g_name", gru_name);
 		session.setAttribute("g_tel", gru_tel);
 		session.setAttribute("g_mail", gru_mail);
+//		session.setAttribute("u_name", user_name);
 
 
 //		確認画面表示用
 		req.setAttribute("name",gru_name);
 		req.setAttribute("tel",gru_tel);
 		req.setAttribute("mail",gru_mail);
+//		req.setAttribute("user_name",user_name);
 
 
 

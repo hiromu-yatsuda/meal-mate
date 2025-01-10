@@ -15,6 +15,9 @@
 
 
         <table>
+
+
+
             <tr>
                 <td>グループ名</td>
                 <td><%= request.getAttribute("name") %></td>
@@ -42,7 +45,7 @@
                 <button type="button" id="cancel"> キャンセル </button>
             </div>
         </div>
-	</div>	
+	</div>
 
     </c:param>
 </c:import>
