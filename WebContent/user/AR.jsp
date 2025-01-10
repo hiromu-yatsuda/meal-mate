@@ -15,17 +15,21 @@
 	src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
 <!-- Quagga.js ライブラリ -->
-<script
-	src="https://unpkg.com/@ericblade/quagga2@1.7.4/dist/quagga.min.js"></script>
+<script src="https://unpkg.com/@ericblade/quagga2@1.7.4/dist/quagga.min.js"></script>
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div>
 		<a>AR画面</a>
 	</div>
 	<!-- A-Frame の AR シーン -->
-	<a-scene embedded arjs="patternRatio: 0.90"> <a-marker
-		type="pattern" url="/meal-mate/img/marker-black.patt"> <a-text
-		id="barcode-text" position="-0.7 0 -1.7" rotation="-90 0 0"
+	<a-scene embedded arjs="patternRatio: 0.90">
+	<a-marker
+		id="marker" type="pattern" url="/meal-mate/img/marker-black.patt">
+		<a-text
+		id="barcode-text" position="-0.3 0 -1.7" rotation="-90 0 0"
 		color="#00FF00"></a-text></a-marker></a-scene>
 
 	<!-- Quagga.js のカメラストリーム表示用コンテナ -->
@@ -33,8 +37,27 @@
 
 	<script>
         	let intervalId;
-            // Quagga.js を使用してJANコードを読み取る
 
+        	function getFoods(barcode) {
+        		$.ajax({
+        			url: "/meal-mate/ajax-test",
+        			type: "GET",
+        			data: {
+        				"barcode": barcode
+        			},
+        			dataType: "json"
+        		}).done(function (response) {
+        			let foodText = "";
+        			console.log(response);
+        			for (let item of response.classes) {
+        				foodText += item + "\n";
+        			}
+        			// 恐らくitemは画像path
+        			barcodeText.setAttribute("value", foodText);
+        		})
+        	}
+
+            // Quagga.js を使用してJANコードを読み取る
                 Quagga.init(
                     {
                         inputStream: {
@@ -69,8 +92,9 @@
                     if (key == num) {
                       obj[num] += 1;
                       if (obj[num] >= 7) {
+                        // kakuteiは食材をAR表示出来たら必要ない
                         kakutei = num;
-                        barcodeText.setAttribute("value", barcode);
+                        getFoods(kakutei);
                         obj = {};
                       }
                       return;

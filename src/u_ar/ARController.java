@@ -1,4 +1,4 @@
-package s_foods;
+package u_ar;
 
 import java.io.PrintWriter;
 
@@ -8,15 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/main/all-class"})
-public class Ajax_test extends CommonServlet {
+@WebServlet(urlPatterns={"/ajax-test"})
+public class ARController extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        String schoolCd = req.getParameter("schoolCd");
-        int year = Integer.parseInt(req.getParameter("year"));
+        String barcode = req.getParameter("barcode");
 
-        String string = "{classes: [\"value\": \"select\", \"text\": \"select\"]}";
+        String string = "{\"classes\": [\"banana\", \"apple\", \"lemon\"]}";
 
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
