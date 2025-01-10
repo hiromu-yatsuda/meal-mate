@@ -12,9 +12,12 @@
     </header>
 
         <h1>店舗一覧</h1>
+
+
+
 <div class="form-create">
 
-
+<h3><%= request.getAttribute("g_id") %></h3>
 
 <table>
 <thead>

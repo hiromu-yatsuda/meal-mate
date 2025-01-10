@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Stores;
 import dao.StoresDAO;
@@ -17,11 +18,29 @@ public class store_list extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//    	グループコードを取得
+
+
+//    	セッションからグループコードを取得する用
+    	HttpSession session = req.getSession();
+    	String g_id2 = "";
+
+
+//
     	String g_id = req.getParameter("groupCode");
+
+
+
+
+//    	ページネーションからページ遷移した時
+    	if(g_id==null){
+    		g_id2 = (String) session.getAttribute("g_id");
+    		g_id = g_id2;
+    	}
+
 
     	System.out.println("グループコード１");
     	System.out.println(g_id);
+    	System.out.println(g_id2);
 
 
 //    	現在のページの取得用
@@ -134,6 +153,10 @@ public class store_list extends HttpServlet {
 			req.setAttribute("storesList",s_list );
 //			req.setAttribute("groupsList", g_list);
 
+//			グループコードをセッションに
+			session.setAttribute("g_id", g_id);
+			System.out.println("セッションg_id");
+			System.out.println( (String) session.getAttribute("g_id"));
 
 //			System.out.println("7");
 
