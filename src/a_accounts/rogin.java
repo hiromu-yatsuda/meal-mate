@@ -25,7 +25,6 @@ public class rogin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 //		idを取得
-
 //    	mnbv
     	String ac_id = req.getParameter("id");
 
@@ -75,7 +74,7 @@ public class rogin extends HttpServlet {
 
 
 
-		String se_name = (String) session.getAttribute("rog_name");
+		String se_name = (String) session.getAttribute("a_name");
 		System.out.println("セッション");
 		System.out.println(se_name);
 

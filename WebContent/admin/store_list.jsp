@@ -17,7 +17,7 @@
 
 <div class="form-create">
 
-<h3><%= request.getAttribute("g_id") %></h3>
+<h3>ID：${groupId}</h3>
 
 <table>
 <thead>

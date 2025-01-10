@@ -63,6 +63,9 @@ public class rogin extends HttpServlet {
 //			名前
 			String dao_name = "";
 
+//			店長権限
+			boolean dao_action = false;
+
 			// パスワードを取り出す
 		    for (GroupAccounts account : accounts_list_dao) {
 		    	dao_pass = account.getPassword();
@@ -73,6 +76,9 @@ public class rogin extends HttpServlet {
 
 		    	dao_name = account.getName();
 		        System.out.println("Name: " + dao_name);
+
+		        dao_action= account.isAdmin();
+		        System.out.println("Action: " + dao_action);
 		    }
 
 
@@ -110,9 +116,11 @@ public class rogin extends HttpServlet {
 //    		セッション確認
     		Object se_name = session.getAttribute("s_name");
     		String st_name = se_name.toString();
+    		System.out.println("セッション名前");
     		System.out.println(st_name);
     		Object se_g_id = session.getAttribute("s_g_id");
     		String st_g_id = se_g_id.toString();
+    		System.out.println("セッショングループID");
     		System.out.println(st_g_id);
 
 

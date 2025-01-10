@@ -155,8 +155,10 @@ public class store_list extends HttpServlet {
 
 //			グループコードをセッションに
 			session.setAttribute("g_id", g_id);
-			System.out.println("セッションg_id");
-			System.out.println( (String) session.getAttribute("g_id"));
+
+//			グループコード表示用
+			req.setAttribute("groupId",g_id );
+
 
 //			System.out.println("7");
 
