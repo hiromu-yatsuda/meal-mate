@@ -28,9 +28,8 @@
             </div>
 
             <button onclick="location.href=''">作成</button>
+            <button onclick="location.href=''"id="cancel">キャンセル</button>
+
         </form>
-
-        <button onclick="location.href=''">キャンセル</button>
-
     </c:param>
 </c:import>

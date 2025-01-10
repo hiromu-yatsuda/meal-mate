@@ -41,10 +41,9 @@
 				</select>
 			</div>
 
-			<button type="submit">登録</button>
 
 		<button onclick="location.href=''">登録</button>
-		<button onclick="location.href=''">キャンセル</button>
+		<button onclick="location.href=''"id="cancel">キャンセル</button>
 		</form>
 
 	</c:param>

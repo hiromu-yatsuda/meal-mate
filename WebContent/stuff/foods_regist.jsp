@@ -13,7 +13,7 @@
 <div id="form-in">
 	<div id="form-container">
     	<form id="foods_reg">
-        	<div id="container">
+        	<div id="cont5ainer">
 	        	<div class="input-group">
 		            <div class="form-name">
 		                <label>商品名</label>

@@ -6,7 +6,7 @@
 	<c:param name="body">
 <link rel="stylesheet" href="../static/admin.css">
 <header>
-        <%@ include file="../stuffnav.jsp" %>
+        <%@ include file="../adminnav.jsp" %>
     </header>
 
 <h1>ログイン</h1>
