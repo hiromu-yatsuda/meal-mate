@@ -26,17 +26,19 @@
 	</div>
 	<!-- A-Frame の AR シーン -->
 	<a-scene embedded arjs="patternRatio: 0.90">
-	<a-marker
-		id="marker" type="pattern" url="/meal-mate/img/marker-black.patt">
-		<a-text
-		id="barcode-text" position="-0.3 0 -1.7" rotation="-90 0 0"
-		color="#00FF00"></a-text></a-marker></a-scene>
+		<a-marker id="marker" type="pattern" url="/meal-mate/img/marker-black.patt">
+			<!-- <a-image id="image" position="-0.3 0 -1.7" rotation="-90 0 0"></a-image> -->
+		</a-marker>
+	</a-scene>
 
 	<!-- Quagga.js のカメラストリーム表示用コンテナ -->
-	<div id="scanner-container"></div>
+	<div id="scanner-container" style="display: none;"></div>
 
 	<script>
-        	let intervalId;
+        	const markerElm = document.querySelector("#marker");
+        	let imageSrc;
+        	let obj = {};
+            let barcode;
 
         	function getFoods(barcode) {
         		$.ajax({
@@ -48,14 +50,34 @@
         			dataType: "json"
         		}).done(function (response) {
         			let foodText = "";
-        			console.log(response);
         			for (let item of response.classes) {
         				foodText += item + "\n";
         			}
         			// 恐らくitemは画像path
-        			barcodeText.setAttribute("value", foodText);
+        			// daoから返される名称と画像の名前をそろえる
+        			markerElm.innerHTML = "";
+        			let imageElm = document.createElement("a-image");
+        			imageElm.setAttribute("position", "-0.3 0 -1.7");
+        			imageElm.setAttribute("rotation", rotation="-90 0 0");
+        			imageSrc = "/meal-mate/img/class.png";
+        			imageElm.setAttribute("src", imageSrc);
+        			markerElm.appendChild(imageElm);
         		})
         	}
+
+        	function checkBarcode(num) {
+                for (let key in obj) {
+                  if (key == num) {
+                    obj[num] += 1;
+                    if (obj[num] >= 7) {
+                      getFoods(num);
+                      obj = {};
+                    }
+                    return;
+                  }
+                }
+                obj[num] = 1;
+            }
 
             // Quagga.js を使用してJANコードを読み取る
                 Quagga.init(
@@ -83,27 +105,6 @@
 						Quagga.start();
                     }
                 );
-
-                let obj = {};
-                let kakutei;
-
-                function checkBarcode(num) {
-                  for (let key in obj) {
-                    if (key == num) {
-                      obj[num] += 1;
-                      if (obj[num] >= 7) {
-                        // kakuteiは食材をAR表示出来たら必要ない
-                        kakutei = num;
-                        getFoods(kakutei);
-                        obj = {};
-                      }
-                      return;
-                    }
-                  }
-                  obj[num] = 1;
-                }
-
-                let barcode;
 
                 // 読み取ったJANコードをa-textのvalueとして設定
                 const barcodeText = document.querySelector("#barcode-text");
