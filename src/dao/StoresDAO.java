@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import bean.Groups;
 import bean.Stores;
 
 public class StoresDAO extends DAO {
@@ -23,7 +22,7 @@ public class StoresDAO extends DAO {
         List<Stores> stores = new ArrayList<Stores>();
         Connection connection = getConnection();
 
-        PreparedStatement pStatement = connection.prepareStatement("select * from Stores where group_code = ?");
+        PreparedStatement pStatement = connection.prepareStatement("select * from Stores where group_code = ? order by name");
 
         pStatement.setString(1, gId);
 
@@ -36,6 +35,9 @@ public class StoresDAO extends DAO {
             store.setStoreCode(rSet.getString("store_code"));
             store.setName(rSet.getString("name"));
 //            store.setGroups(group);
+
+            store.setGroup_Code(rSet.getString("group_code"));
+
             store.setPhoneNum(rSet.getString("phone_num"));
             store.setLatitude(rSet.getDouble("latitude"));
             store.setLongitude(rSet.getDouble("longitude"));
@@ -107,23 +109,49 @@ public class StoresDAO extends DAO {
 
 
 
-    public Stores searchBysId(String sId) throws Exception {
-        GroupsDAO gDao = new GroupsDAO();
+    public List<Stores> searchBysId(String sId) throws Exception {
+//        GroupsDAO gDao = new GroupsDAO();
+
+    	System.out.println("111");
+
+        List<Stores> stores_list = new ArrayList<Stores>();
+
+
+        System.out.println("222");
 
         Connection connection = getConnection();
 
-        PreparedStatement pStatement = connection.prepareStatement("select * from Stores where store_code = ?");
+
+        System.out.println("333");
+
+
+        PreparedStatement pStatement = connection.prepareStatement("select * from Stores where store_code LIKE ?");
+
+
 
         pStatement.setString(1, sId);
 
         ResultSet rSet = pStatement.executeQuery();
 
+
+        while (rSet.next()) {
+
+
+
         Stores store = new Stores();
-        Groups group = gDao.search(rSet.getString("group_code"));
+//        Groups group = gDao.search(rSet.getString("group_code"));
+
+
+        System.out.println("結果");
+        System.out.println(store);
+
+
 
         store.setStoreCode(rSet.getString("store_code"));
         store.setName(rSet.getString("name"));
-        store.setGroups(group);
+//        store.setGroups(group);
+
+        store.setGroup_Code(rSet.getString("group_code"));
         store.setPhoneNum(rSet.getString("phone_num"));
         store.setLatitude(rSet.getDouble("latitude"));
         store.setLongitude(rSet.getDouble("longitude"));
@@ -138,10 +166,19 @@ public class StoresDAO extends DAO {
         // rSet.getBoolean("is_action")の返り値がTRUEだとエラーの可能性
         store.setActive(rSet.getBoolean("is_action"));
 
+
+        System.out.println("2");
+
+        stores_list.add(store);
+
+        System.out.println("3");
+
+        }
+
         pStatement.close();
         connection.close();
 
-        return store;
+        return stores_list;
     }
 
     public int delete(String sId) throws Exception {

@@ -17,7 +17,6 @@
 
 <div class="form-create">
 
-<h3>ID：${groupId}</h3>
 
 <table>
 <thead>
@@ -38,42 +37,61 @@
 <thead>
 <c:forEach var="store" items="${storesList}">
 <tr>
-<td><button type="submit" name="store_id">編集</button></td>
-<td>${store.name}店舗名</td>
-<td>${store.phoneNum}電話番号</td>
-<td>開店時間</td>
-<td>閉店時間</td>
-<td>平均時間１</td>
+
+
+<td><form action="/meal-mate/staff/store/change" method="get">
+<input type="hidden" id="group_id" name="group_id" value="${store.group_Code}">
+<input type="hidden" id="store_id" name="store_id" value="${store.storeCode}">
+<button type="submit" name="store_id">編集</button>
+</form>
+</td>
+
+
+<td>${store.name}</td>
+<td>${store.phoneNum}</td>
+<td>${store.openingTime}</td>
+<td>${store.closingTime}</td>
+<td>${store.avg_amount_low}</td>
 <td>～</td>
-<td>平均時間２</td>
-<td>写真枚数</td>
-<td>公開非公開</td>
+<td>${store.avg_amount_high}</td>
+<td><%
+                Object figure1 = pageContext.findAttribute("store").getClass().getMethod("getFigure1").invoke(pageContext.findAttribute("store"));
+				Object figure2 = pageContext.findAttribute("store").getClass().getMethod("getFigure2").invoke(pageContext.findAttribute("store"));
+				Object figure3 = pageContext.findAttribute("store").getClass().getMethod("getFigure3").invoke(pageContext.findAttribute("store"));
+
+				int all_fi = 0;
+				if (figure1 != null) {
+					all_fi = all_fi + 1 ;
+                    System.out.println("maaaaa");
+                }
+				if (figure2 != null) {
+					all_fi = all_fi + 1 ;
+					System.out.println("2maaaaa");
+                }
+				if (figure3 != null) {
+					all_fi = all_fi + 1 ;
+					System.out.println("3maaaaa");
+                }
+				out.println(all_fi + "枚登録済み");
+
+            %>
+</td>
+<td>
+<%	Object action = pageContext.findAttribute("store").getClass().getMethod("isActive").invoke(pageContext.findAttribute("store"));
+	boolean b_action = (Boolean) action;
+if(b_action==true){
+	out.println("公開");
+}else{
+	out.println("非公開");
+}
+
+%>
+</td>
 </tr>
 </c:forEach>
 </table>
 
 
-
-<div>
-    <c:if test="${current_page > 1}">
-        <form action="/meal-mate/admin/a_group_list/a_store_list" method="get" style="display:inline;">
-            <input type="hidden" name="page" value="${current_page - 1}" />
-            <button type="submit">前へ</button>
-        </form>
-    </c:if>
-    <c:forEach var="i" begin="1" end="${total_page}">
-        <form action="/meal-mate/admin/a_group_list/a_store_list" method="get" style="display:inline;">
-            <input type="hidden" name="page" value="${i}" />
-            <button type="submit">${i}</button>
-        </form>
-    </c:forEach>
-    <c:if test="${current_page < total_page}">
-        <form action="/meal-mate/admin/a_group_list/a_store_list" method="get" style="display:inline;">
-            <input type="hidden" name="page" value="${current_page + 1}" />
-            <button type="submit">次へ</button>
-        </form>
-    </c:if>
-</div>
 
 
  </div>

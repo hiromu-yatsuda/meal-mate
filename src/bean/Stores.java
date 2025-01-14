@@ -7,7 +7,12 @@ public class Stores implements Serializable {
     private String storeCode;
     private String name;
     private Groups groups;
+
+    private String group_Code;
+
     private String phoneNum;
+
+
     /**
      * 緯度
      */
@@ -109,5 +114,11 @@ public class Stores implements Serializable {
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
+	public String getGroup_Code() {
+		return group_Code;
+	}
+	public void setGroup_Code(String group_Code) {
+		this.group_Code = group_Code;
+	}
 
 }

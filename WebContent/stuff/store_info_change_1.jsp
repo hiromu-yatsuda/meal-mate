@@ -10,15 +10,40 @@
     </header>
     <h1>店舗情報変更</h1>
 
+
+<c:forEach var="store" items="${storesList}">
     <div id="store-change-form" class="store-change-form">
-        <p>店舗名：</p>
-        <p>山田うどん</p>
+        <p>店舗名</p>
+        <p>${store.name}</p>
 
 <form id="upload-form" class="store-change-form" enctype="multipart/form-data">
 
 
 		<label>公開ボタン</label>
+
+		<%
+		Object action1 = pageContext.findAttribute("store").getClass().getMethod("isActive").invoke(pageContext.findAttribute("store"));
+
+		System.out.println(action1);
+
+	    boolean isActive = false;
+	    if (action1 != null && action1 instanceof Boolean) {
+	        isActive = (Boolean) action1;
+	    }
+
+	    if (isActive) {
+	        System.out.println("公開");
+	        out.println("<input type='checkbox' name='action' id='action' checked>");
+	    } else {
+	    	System.out.println("非公開");
+	        out.println("<input type='checkbox' name='action' id='action'>");
+	    }
+
+		%>
+
+		<input type="checkbox" name="action" id="action" checked>
         <input type="checkbox" name="action" id="action" >
+
 
         <div class="tel">
             <label for="tel_num">電話番号：</label>
@@ -49,6 +74,8 @@
         </div>
     </div>
     </div>
+
+    </c:forEach>
 
 
     <div id="decision" class="button-group">
