@@ -4,14 +4,14 @@
 <%-- バーコード印刷用に、後ほど大幅修正あり --%>
 
 <c:import url="/adminbase.jsp">
-    <c:param name="title">管理 - 店舗一覧</c:param>
+    <c:param name="title">従業員 - 店舗情報変更 - 店舗選択</c:param>
     <c:param name="body">
 <link rel="stylesheet" href="../static/admin.css">
 <header>
         <%@ include file="../adminnav.jsp" %>
     </header>
 
-        <h1>店舗一覧</h1>
+        <h1>店舗選択</h1>
 
 
 
@@ -22,16 +22,32 @@
 <table>
 <thead>
 <tr>
+<th></th>
 <th>店舗名</th>
 <th>電話番号</th>
+<th>開店時間</th>
+<th>閉店時間</th>
+<th>平均金額（低）</th>
+<th>～</th>
+<th>平均金額（高）</th>
+<th>写真枚数</th>
+<th>公開 / 非公開</th>
 </tr>
 </thead>
 
 <thead>
 <c:forEach var="store" items="${storesList}">
 <tr>
-<td>${store.name}</td>
-<td>${store.phoneNum}</td>
+<td><button type="submit" name="store_id">編集</button></td>
+<td>${store.name}店舗名</td>
+<td>${store.phoneNum}電話番号</td>
+<td>開店時間</td>
+<td>閉店時間</td>
+<td>平均時間１</td>
+<td>～</td>
+<td>平均時間２</td>
+<td>写真枚数</td>
+<td>公開非公開</td>
 </tr>
 </c:forEach>
 </table>

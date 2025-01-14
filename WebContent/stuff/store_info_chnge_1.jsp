@@ -14,6 +14,12 @@
         <p>店舗名：</p>
         <p>山田うどん</p>
 
+<form id="upload-form" class="store-change-form" enctype="multipart/form-data">
+
+
+		<label>公開ボタン</label>
+        <input type="checkbox" name="action" id="action" >
+
         <div class="tel">
             <label for="tel_num">電話番号：</label>
             <input type="text" name="tel_num" id="tel_num" placeholder="電話番号を入力してください" required>
@@ -30,20 +36,26 @@
             <p>～</p>
             <input type="time" name="time2" id="time2">
         </div>
-    </div>
+
 
     <div class="file">
-        <form id="upload-form" class="store-change-form" enctype="multipart/form-data">
+
             <input type="file" id="file-input" name="file" accept="image/*" multiple>
-        </form>
+
         <div id="uploaded-images">
             <!-- 既存の画像を表示 -->
 
             <!-- データベースから画像を取得して表示するコードをここに追加 -->
         </div>
     </div>
+    </div>
+
+
     <div id="decision" class="button-group">
         <button type="button" onclick="uploadPhoto()">保存</button>
+
+        </form>
+
         <button type="button">戻る</button>
 	</div>
     </c:param>
