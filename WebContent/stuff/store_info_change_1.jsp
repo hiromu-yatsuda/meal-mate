@@ -11,7 +11,7 @@
     <h1>店舗情報変更</h1>
 
 
-<form action="/meal-mate/staff/store/change" method="post">
+<form action="/meal-mate/staff/store/change" method="post" enctype="multipart/form-data">
 
 <div id="upload-form" class="store-change-form" >
 
@@ -20,6 +20,8 @@
     <div id="store-change-form" class="store-change-form">
         <p>店舗名</p>
         <p>${store.name}</p>
+
+        <input type="hidden" value="${store.storeCode }" name="id">
 
 
 

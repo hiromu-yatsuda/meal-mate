@@ -205,6 +205,9 @@ public class StoresDAO extends DAO {
         pStatement.setString(6, fig2);
         pStatement.setString(7, fig3);
         pStatement.setBoolean(8, isActive);
+        pStatement.setString(9, sCode);
+
+
 
         int line = pStatement.executeUpdate();
 

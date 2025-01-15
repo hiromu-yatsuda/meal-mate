@@ -1,19 +1,25 @@
 package s_store;
 
+import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import bean.Stores;
 import dao.StoresDAO;
 
 @WebServlet(urlPatterns = { "/staff/store/change" })
+@MultipartConfig
 public class store_change_in extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -72,6 +78,12 @@ public class store_change_in extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+//		公開チェックボックスから取得
+		String s_id = req.getParameter("id");
+		System.out.println("第一回店舗ID");
+		System.out.println(s_id);
+
 //		公開チェックボックスから取得
 		String s_action = req.getParameter("action");
 		System.out.println(s_action);
@@ -86,6 +98,47 @@ public class store_change_in extends HttpServlet {
 
 		System.out.println("公開チェックボタン↓");
 		System.out.println(b_action);
+
+
+
+
+		// アップロードされたファイルそのものを取得
+				// 以後パートと呼ぶ
+				Part part = req.getPart("file");
+
+				// パートのファイル名を取得
+				String originalFileName = part.getSubmittedFileName();
+				// ファイル名から拡張子を取得
+				String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+
+
+				// 保存するファイル名を決定（今回は現在日時を経過ミリ秒換算したものとした）
+				String savedFileName = Long.toString(new Date().getTime()) + ext;
+
+				/*
+				 * あらかじめ「環境変数」にアップロードディレクトリの物理パスを設定し
+				 * 該当ディレクトリを作成しておくこと
+				 * 変数：UPLOAD_DIR
+				 * 値：C:/Users/admin/git/meal-mate/WebContent/img/shop
+				 */
+				// ファイルをアップロードするディレクトリの物理パスを指定
+				String uploadDir = System.getenv("UPLOAD_DIR");
+
+
+				// ファイル保存先のフルパスを設定
+				String filePath = uploadDir + "/" + savedFileName;
+
+				File save = new File(filePath);
+
+				// ファイル保存先の物理パスを取得
+				String savePath = save.getAbsolutePath();
+				System.out.println(savePath);
+
+				// ファイルを保存
+				part.write(savePath);
+
+
 
 
 
@@ -142,9 +195,27 @@ public class store_change_in extends HttpServlet {
 		System.out.println(c_time);
 
 
+		int a = 1;
+
+		int b = 2;
+
+		String aa = "1";
+		String aa2 = "1";
+		String aa3= "1";
+
+		Time pa = Time.valueOf(o_time + ":00");
+		Time pa2 = Time.valueOf(c_time+ ":00");
 
 		StoresDAO dao = new StoresDAO();
-//		int update_dao = dao.update();
+		String a11 = "000001";
+
+
+		try {
+			int update_dao = dao.update(a11,pa,pa2,a,b,aa,aa2,savedFileName,b_action);
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 
 
 
