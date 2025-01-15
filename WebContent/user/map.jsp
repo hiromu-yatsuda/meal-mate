@@ -1,23 +1,31 @@
 <%@page contentType="text/html; charset=UTF-8" language="java"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>${param.title}</title>
-<style>
-  a {
-    font-size: 7em; /* 文字を大きくする */
-    display: block; /* ブロック要素に変更 */
-    text-align: center; /* 中央揃え */
-    margin: 20px auto; /* 上下に余白を追加、横も中央に */
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>Lefletの基本|ちーむじー研究室</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
+  <script>
+    function init() {
+      var map = L.map('mapcontainer', { zoomControl: false });
+      var mpoint = [35.8627, 139.6072];
+      map.setView(mpoint, 15);
+      L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+        attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
+      }).addTo(map);
+      //ポップアップする文字（HTML可、ここでは画像を表示）
+      var sucontents = "埼玉大学です<br><img src='su.jpg' width='500' height='375'>"
+      //ポップアップオブジェクトを作成
+      var popup1 = L.popup({ maxWidth: 550 }).setContent(sucontents);
+      var popup2 = L.popup().setContent("桜区役所です");
+      //マーカーにポップアップを紐付けする。同時にbindTooltipでツールチップも追加
+      L.marker(mpoint, { draggable: true }).bindPopup(popup1).bindTooltip("埼玉大学").addTo(map);
+      L.marker([35.8561, 139.6098]).bindPopup(popup2).bindTooltip("桜区役所").addTo(map);
+    }
+  </script>
 </head>
-<body>
-<%@ include file="../userbase.jsp" %>
-<div>
-<a>マップ画面</a>
-</div>
+<body onload="init()">
+  <div id="mapcontainer" style="position:absolute;top:0;left:0;right:0;bottom:0;"></div>
 </body>
 </html>
