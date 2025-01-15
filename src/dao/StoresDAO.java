@@ -112,17 +112,14 @@ public class StoresDAO extends DAO {
     public List<Stores> searchBysId(String sId) throws Exception {
 //        GroupsDAO gDao = new GroupsDAO();
 
-    	System.out.println("111");
 
         List<Stores> stores_list = new ArrayList<Stores>();
 
 
-        System.out.println("222");
 
         Connection connection = getConnection();
 
 
-        System.out.println("333");
 
 
         PreparedStatement pStatement = connection.prepareStatement("select * from Stores where store_code LIKE ?");
@@ -167,11 +164,9 @@ public class StoresDAO extends DAO {
         store.setActive(rSet.getBoolean("is_action"));
 
 
-        System.out.println("2");
-
         stores_list.add(store);
 
-        System.out.println("3");
+
 
         }
 
