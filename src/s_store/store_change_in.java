@@ -32,10 +32,21 @@ public class store_change_in extends HttpServlet {
 
 		System.out.println(se_g_id);
 
+
+
+
+
+
 		// グループID仮置き
 		se_g_id = "001";
 		System.out.println("仮置き後");
 		System.out.println(se_g_id);
+
+
+
+
+
+
 
 		// jspからグループIDを取得
 		String jsp_gru_id = req.getParameter("group_id");
@@ -102,12 +113,34 @@ public class store_change_in extends HttpServlet {
 
 
 
+//		<<<<<	ファイル保存
+
+
+
+
 		// アップロードされたファイルそのものを取得
 				// 以後パートと呼ぶ
-				Part part = req.getPart("file");
+
+
+
+//		List<Part> parts = (List<Part>) req.getParts();
+//		System.out.println("fileのリストの表示");
+//		System.out.println(parts);
+
+
+				Part part = req.getPart("file1");
+				System.out.println("fileの表示");
+				System.out.println(part);
+
+
+
 
 				// パートのファイル名を取得
 				String originalFileName = part.getSubmittedFileName();
+
+
+
+
 				// ファイル名から拡張子を取得
 				String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
 
@@ -137,6 +170,10 @@ public class store_change_in extends HttpServlet {
 
 				// ファイルを保存
 				part.write(savePath);
+
+
+//				ファイル保存	>>>>>
+
 
 
 

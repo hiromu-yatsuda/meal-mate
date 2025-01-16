@@ -16,10 +16,21 @@
 <div id="upload-form" class="store-change-form" >
 
 
+
+
 <c:forEach var="store" items="${storesList}">
     <div id="store-change-form" class="store-change-form">
         <p>店舗名</p>
         <p>${store.name}</p>
+
+
+
+<p>${store.figure1}</p>
+<p>${store.figure3}</p>
+<img src="./../img/shop/${store.figure3}">
+
+
+<img class="" src="<%= request.getContextPath() %>/img/shop/${store.figure3}">
 
         <input type="hidden" value="${store.storeCode }" name="id">
 
@@ -73,17 +84,25 @@
 
 
 
-            <input type="file" id="file-input" name="file" accept="image/*" multiple>
 
 
+<label for="file1">メイン写真</label>
+ 	<input type="file" id="file-input1" name="file1" accept="image/*" multiple>
+ 	<div id="preview1"></div>
 
 
+ 	 	<input type="file" id="file-input2" name="file2" accept="image/*" multiple>
+ 	<div id="preview2"></div>
 
-        <div id="uploaded-images">
-            <!-- 既存の画像を表示 -->
+ 	 	<input type="file" id="file-input3" name="file3" accept="image/*" multiple>
+<p>aaaa</p>
 
-            <!-- データベースから画像を取得して表示するコードをここに追加 -->
-        </div>
+<p>
+ 	${store.figure3}
+ 	</p>
+ 	<div id="preview3"></div>
+
+
     </div>
     </div>
 
@@ -103,5 +122,75 @@
 	</form>
 
 
+
+<script>
+document.getElementById('file-input1').addEventListener('change', function(event) {
+    handleFileSelect(event, 'preview1', 'file-input1');
+});
+
+document.getElementById('file-input2').addEventListener('change', function(event) {
+    handleFileSelect(event, 'preview2', 'file-input2');
+});
+
+document.getElementById('file-input3').addEventListener('change', function(event) {
+    handleFileSelect(event, 'preview3', 'file-input3');
+});
+
+function handleFileSelect(event, previewId, inputId) {
+    const preview = document.getElementById(previewId);
+    const input = document.getElementById(inputId);
+    const files = Array.from(input.files);
+
+    if (files.length > 1) {
+        alert('それぞれ選択できるファイルは1枚です');
+        input.value = ''; // 入力をクリア
+        return;
+    }
+
+    preview.innerHTML = ''; // 既存のプレビューをクリア
+
+    files.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imgContainer = document.createElement('div');
+            imgContainer.style.display = 'inline-block';
+            imgContainer.style.position = 'relative';
+            imgContainer.style.margin = '10px';
+            imgContainer.style.textAlign = 'right'; // 右寄せにする
+
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.maxWidth = '100px';
+            img.style.display = 'block'; // ブロック要素にすることでボタンが下に配置される
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = '×';
+            deleteButton.style.backgroundColor = 'gray'; // 背景色を灰色に変更
+            deleteButton.style.color = 'white';
+            deleteButton.style.border = 'none';
+            deleteButton.style.cursor = 'pointer';
+            deleteButton.style.fontSize = '10px'; // フォントサイズを小さくする
+            deleteButton.style.padding = '2px 5px'; // パディングを小さくする
+            deleteButton.style.marginTop = '5px'; // 画像との間に余白を追加
+
+            deleteButton.addEventListener('click', function() {
+                imgContainer.remove();
+                input.value = ''; // 入力をクリア
+            });
+
+            imgContainer.appendChild(img);
+            imgContainer.appendChild(deleteButton);
+            preview.appendChild(imgContainer);
+        };
+        reader.readAsDataURL(file);
+    });
+}
+</script>
+
+
+
     </c:param>
+
+
+
 </c:import>
