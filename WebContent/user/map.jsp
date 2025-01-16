@@ -2,30 +2,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Lefletの基本|ちーむじー研究室</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+     integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+<link rel="stylesheet" href="/meal-mate/static/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
   <script>
-    function init() {
-      var map = L.map('mapcontainer', { zoomControl: false });
-      var mpoint = [35.8627, 139.6072];
-      map.setView(mpoint, 15);
-      L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
-        attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
-      }).addTo(map);
-      //ポップアップする文字（HTML可、ここでは画像を表示）
-      var sucontents = "埼玉大学です<br><img src='su.jpg' width='500' height='375'>"
-      //ポップアップオブジェクトを作成
-      var popup1 = L.popup({ maxWidth: 550 }).setContent(sucontents);
-      var popup2 = L.popup().setContent("桜区役所です");
-      //マーカーにポップアップを紐付けする。同時にbindTooltipでツールチップも追加
-      L.marker(mpoint, { draggable: true }).bindPopup(popup1).bindTooltip("埼玉大学").addTo(map);
-      L.marker([35.8561, 139.6098]).bindPopup(popup2).bindTooltip("桜区役所").addTo(map);
-    }
+
   </script>
 </head>
-<body onload="init()">
-  <div id="mapcontainer" style="position:absolute;top:0;left:0;right:0;bottom:0;"></div>
+<body>
+<div id="myMap"></div>
+
+<!-- 現在地ボタン -->
+<button id="locationButton">現在地に移動</button>
+
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+     integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+<script src="/meal-mate/static/leaflet.js"></script>
 </body>
 </html>
