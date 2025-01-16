@@ -1,3 +1,4 @@
+<!-- translation.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -6,7 +7,7 @@
 <%@ include file="./../userbase.jsp" %>
 <head>
     <meta charset="UTF-8">
-    <title>録音機能サンプル</title>
+    <title>録音機能サンプル (サーバーアップロード版)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,7 +16,6 @@
             margin: 0;
             padding: 0;
         }
-
         .container {
             min-height: 100vh;
             display: flex;
@@ -24,28 +24,16 @@
             background-color: white;
             padding: 20px;
         }
-
-        .header {
-            text-align: center;
-            background: #007BFF;
-            color: white;
-            padding: 15px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
         .translation-section {
             min-height: 100vh;
             padding: 15%;
         }
-
         .user-block {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-bottom: 15%;
         }
-
         .language-selection {
             display: flex;
             justify-content: space-between;
@@ -53,13 +41,11 @@
             width: 100%;
             margin-bottom: 10px;
         }
-
         .language-selection select {
             font-size: 1rem;
             padding: 5px;
             margin-right: 10px;
         }
-
         .language-selection .record-btn {
             background: #ffcc00;
             border: none;
@@ -69,66 +55,58 @@
             cursor: pointer;
             transition: background 0.3s ease;
         }
-
         .language-selection .record-btn:hover {
             background: #ff9900;
         }
-
         .output-text1, .output-text2 {
             font-size: 3rem; /* フォントサイズを大きくする */
-            text-align: center; /* 文字を中央揃え */
-            margin: 10px auto; /* 上下の空白を設定 */
+            text-align: center;
+            margin: 10px auto;
             width: 90%;
-            height: 170px; /* テキスト入力欄を大きくする */
+            height: 170px;
             border: 1px solid #ccc;
             padding: 10px;
             border-radius: 5px;
             background: #f9f9f9;
             display: flex;
-            align-items: center; /* 縦方向中央揃え */
-            justify-content: center; /* 横方向中央揃え */
+            align-items: center;
+            justify-content: center;
             overflow-y: auto;
         }
-
         .read-aloud-btn,
         .translate-btn {
             background: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
-            padding: 20px 40px; /* ボタンを画面に合わせて大きくする */
-            font-size: 1.6rem; /* ボタンのフォントサイズを調整 */
+            padding: 20px 40px;
+            font-size: 1.6rem;
             cursor: pointer;
             margin-top: 10px;
             transition: background 0.3s ease;
         }
-
         .read-aloud-btn:hover,
         .translate-btn:hover {
             background: #0056b3;
         }
-
         hr {
             border: 0.5px solid #ddd;
             width: 100%;
             margin: 20px auto;
         }
-
         @media (max-width: 480px) {
             .output-text1, .output-text2 {
                 font-size: 1rem;
                 padding: 8px;
                 height: 80px;
             }
-
             .record-btn {
                 padding: 8px;
                 font-size: 1rem;
             }
-
             .read-aloud-btn,
             .translate-btn {
-                padding: 10px 20px; /* モバイル向けにサイズ調整 */
+                padding: 10px 20px;
                 font-size: 1rem;
             }
         }
@@ -146,8 +124,7 @@
                         <option value="es">Spanish</option>
                         <option value="fr">French</option>
                     </select>
-                    <!-- ここで id を recordBtn1 に変更 -->
-                    <button class="record-btn" id="recordBtn1">🎤</button>
+                    <button class="record-btn" id="recordBtn1" disabled>準備中...</button>
                 </div>
                 <p class="output-text1">私は強い</p>
                 <button class="read-aloud-btn">🔊</button>
@@ -164,52 +141,44 @@
                         <option value="es">Spanish</option>
                         <option value="fr">French</option>
                     </select>
-                    <!-- ここで id を recordBtn2 に変更 -->
-                    <button class="record-btn" id="recordBtn2">🎤</button>
+                    <button class="record-btn" id="recordBtn2" disabled>準備中...</button>
                 </div>
                 <p class="output-text2">I'm strong.</p>
                 <button class="translate-btn">⇧</button>
             </div>
         </div>
+
+        <!-- アップロード結果メッセージ表示領域 -->
+        <div id="uploadMessage" style="text-align:center; color:blue; font-weight:bold;"></div>
     </div>
 
-    <!-- ここから録音機能のスクリプト -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // アップロード結果メッセージ表示用
+        const uploadMessageEl = document.getElementById('uploadMessage');
 
-        // -------------------------------
-        // （上段）録音機能に関する変数
-        // -------------------------------
-        let isRecording1 = false; // 録音中かどうか
-        let recorder1;           // MediaRecorder インスタンス
-        let audioData1 = [];     // 録音データ格納用
+        // -------- 上段録音 --------
+        let isRecording1 = false;
+        let recorder1;
+        let audioData1 = [];
         let audioExtension1 = '';
-
         const recordBtn1 = document.getElementById('recordBtn1');
 
-        // マイクへのアクセス（上段用）
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
                 recorder1 = new MediaRecorder(stream);
 
-                // 録音中にデータが取得されたとき
                 recorder1.addEventListener('dataavailable', e => {
                     audioData1.push(e.data);
                     audioExtension1 = getExtension(e.data.type);
                 });
 
-                // 録音停止したタイミング
+                // 録音停止 → Blob化 → サーバーへアップロード
                 recorder1.addEventListener('stop', () => {
-                    const audioBlob = new Blob(audioData1);
-                    const url = URL.createObjectURL(audioBlob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = Math.floor(Date.now() / 1000) + audioExtension1; // ファイル名をタイムスタンプに
-                    document.body.appendChild(a);
-                    a.click();
+                    const audioBlob = new Blob(audioData1, { type: `audio/${audioExtension1.replace('.', '')}` });
+                    uploadAudio(audioBlob, audioExtension1);
                 });
 
-                // マイクが使える場合はボタンを活性化
                 recordBtn1.disabled = false;
                 recordBtn1.textContent = '🎤';
             })
@@ -219,7 +188,6 @@
                 recordBtn1.textContent = 'マイク不可';
             });
 
-        // （上段）ボタン操作
         recordBtn1.addEventListener('click', () => {
             if (!recorder1) return;
 
@@ -229,6 +197,7 @@
                 recorder1.start();
                 isRecording1 = true;
                 recordBtn1.textContent = '録音中...';
+                uploadMessageEl.textContent = '';
             } else {
                 // 録音停止
                 recorder1.stop();
@@ -237,17 +206,14 @@
             }
         });
 
-        // -------------------------------
-        // （下段）録音機能に関する変数
-        // -------------------------------
+
+        // -------- 下段録音 --------
         let isRecording2 = false;
         let recorder2;
         let audioData2 = [];
         let audioExtension2 = '';
-
         const recordBtn2 = document.getElementById('recordBtn2');
 
-        // マイクへのアクセス（下段用）
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
                 recorder2 = new MediaRecorder(stream);
@@ -258,13 +224,8 @@
                 });
 
                 recorder2.addEventListener('stop', () => {
-                    const audioBlob = new Blob(audioData2);
-                    const url = URL.createObjectURL(audioBlob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = Math.floor(Date.now() / 1000) + audioExtension2;
-                    document.body.appendChild(a);
-                    a.click();
+                    const audioBlob = new Blob(audioData2, { type: `audio/${audioExtension2.replace('.', '')}` });
+                    uploadAudio(audioBlob, audioExtension2);
                 });
 
                 recordBtn2.disabled = false;
@@ -276,7 +237,6 @@
                 recordBtn2.textContent = 'マイク不可';
             });
 
-        // （下段）ボタン操作
         recordBtn2.addEventListener('click', () => {
             if (!recorder2) return;
 
@@ -285,6 +245,7 @@
                 recorder2.start();
                 isRecording2 = true;
                 recordBtn2.textContent = '録音中...';
+                uploadMessageEl.textContent = '';
             } else {
                 recorder2.stop();
                 isRecording2 = false;
@@ -292,9 +253,8 @@
             }
         });
 
-        // -------------------------------
-        // 音声ファイルの拡張子取得関数
-        // -------------------------------
+
+        // -------- 拡張子取得 --------
         function getExtension(audioType) {
             let extension = 'wav';
             const matches = audioType.match(/audio\/([^;]+)/);
@@ -304,6 +264,33 @@
             return '.' + extension;
         }
 
+        // -------- サーバーアップロード --------
+        function uploadAudio(blob, extension) {
+            // フォームデータを準備
+            const formData = new FormData();
+            formData.append('file', blob, 'recorded' + extension);
+
+            fetch('<%= request.getContextPath() %>/uploadTest', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('サーバーエラー');
+                }
+                return response.text();
+            })
+            .then(result => {
+                console.log('アップロード成功:', result);
+                uploadMessageEl.style.color = 'green';
+                uploadMessageEl.textContent = `音声アップロードが完了しました: ${result}`;
+            })
+            .catch(error => {
+                console.error('アップロード失敗:', error);
+                uploadMessageEl.style.color = 'red';
+                uploadMessageEl.textContent = 'アップロードに失敗しました。';
+            });
+        }
     });
     </script>
 </body>
