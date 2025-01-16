@@ -34,11 +34,21 @@ public class UploadTestServlet extends HttpServlet {
         }
 
         // 2. ファイル名を取得
-        String fileName = getFileName(filePart);
-        if (fileName == null || fileName.isEmpty()) {
-            fileName = "unknown.wav"; // 無い場合は仮のファイル名を付ける
+        String originalFileName = getFileName(filePart); // 例: "recorded.wav"
+        if (originalFileName == null || originalFileName.isEmpty()) {
+            originalFileName = "unknown.wav";
         }
-        System.out.println("fileName = " + fileName);
+
+
+     // ファイル名をユニークにする例：タイムスタンプ + 元の拡張子
+        String extension = "";
+        int dotPos = originalFileName.lastIndexOf('.');
+        if (dotPos >= 0) {
+            extension = originalFileName.substring(dotPos); // .wav 等
+        }
+        String uniqueFileName = System.currentTimeMillis() + extension;
+
+        System.out.println("fileName = " + originalFileName);
 
         // 3. 保存先のディレクトリを取得 (webapp/upload に保存する例)
         String uploadDir = getServletContext().getRealPath("/upload");
@@ -56,12 +66,12 @@ public class UploadTestServlet extends HttpServlet {
 
         // 4. ファイルを保存
         try (InputStream is = filePart.getInputStream()) {
-            Files.copy(is, Paths.get(uploadDir, fileName));
+            Files.copy(is, Paths.get(uploadDir, uniqueFileName));
         }
 
         // 5. 成功レスポンスを返す
         response.setContentType("text/plain; charset=UTF-8");
-        response.getWriter().println("File uploaded: " + fileName);
+        response.getWriter().println("File uploaded: " + uniqueFileName);
         System.out.println("=== UploadTestServlet.doPost end ===");
     }
 
