@@ -91,7 +91,7 @@ public class store_change_in extends HttpServlet {
 
 
 //		公開チェックボックスから取得
-		String s_id = req.getParameter("id");
+		String s_id = req.getParameter("store_id");
 		System.out.println("第一回店舗ID");
 		System.out.println(s_id);
 
@@ -128,15 +128,64 @@ public class store_change_in extends HttpServlet {
 //		System.out.println(parts);
 
 
-				Part part = req.getPart("file1");
-				System.out.println("fileの表示");
-				System.out.println(part);
+//				Part part = req.getPart("file1");
+//				System.out.println("fileの表示");
+//				System.out.println(part);
+
+
+
+
+			    // アップロードされたファイルを取得
+			    List<Part> parts = (List<Part>) req.getParts();
+			    System.out.println("fileのリストの表示");
+			    System.out.println(parts);
+
+
+
+				// 保存するファイル名を決定（今回は現在日時を経過ミリ秒換算したものとした）
+				String savedFileName="";
+
+
+
+
+//				DAOに保存するファイル名（最終）
+				String dao_savedFileName1=null;
+				String dao_savedFileName2=null;
+				String dao_savedFileName3=null;
+
+
+
+//				DAOに
+
+
+				// ファイルインデックスを管理する変数
+				int fileIndex = 0;
+
+				for (Part part : parts) {
+				    if (part.getName().equals("file1[]")) {
+				        // パートのファイル名を取得
+				        String originalFileName = part.getSubmittedFileName();
+				        if (originalFileName == null || originalFileName.isEmpty()) {
+				            continue;
+				        }
+
+
+
+
+
+//			    for (Part parttt : parts) {
+//			        if (part.getName().equals("file1[]")) {
+//			            // パートのファイル名を取得
+//			            String originalFileName = part.getSubmittedFileName();
+//			            if (originalFileName == null || originalFileName.isEmpty()) {
+//			                continue;
+//			            }
 
 
 
 
 				// パートのファイル名を取得
-				String originalFileName = part.getSubmittedFileName();
+//				String originalFileName = part.getSubmittedFileName();
 
 
 
@@ -147,7 +196,29 @@ public class store_change_in extends HttpServlet {
 
 
 				// 保存するファイル名を決定（今回は現在日時を経過ミリ秒換算したものとした）
-				String savedFileName = Long.toString(new Date().getTime()) + ext;
+				savedFileName = Long.toString(new Date().getTime()) + fileIndex + ext;
+
+
+				 System.out.println("iがなにか");
+				 System.out.println(fileIndex);
+
+
+			        if (fileIndex == 0) {
+			            dao_savedFileName1 = savedFileName;
+			        } else if (fileIndex == 1) {
+			            dao_savedFileName2 = savedFileName;
+			        } else if (fileIndex == 2) {
+			            dao_savedFileName3 = savedFileName;
+			        }
+
+
+
+
+
+
+
+
+
 
 				/*
 				 * あらかじめ「環境変数」にアップロードディレクトリの物理パスを設定し
@@ -170,6 +241,11 @@ public class store_change_in extends HttpServlet {
 
 				// ファイルを保存
 				part.write(savePath);
+
+
+
+		        fileIndex++; // ファイルインデックスをインクリメント
+			        }}
 
 
 //				ファイル保存	>>>>>
@@ -208,11 +284,14 @@ public class store_change_in extends HttpServlet {
 //		営業開始時間
 		String o_time = req.getParameter("time1");
 
+		Time t_o_time = null;
 
 		if(o_time==null || o_time.isEmpty() ){
 			System.out.println("営業終了時間空");
 			o_time = null;
 
+		}else{
+			t_o_time = Time.valueOf(o_time + ":00");
 		}
 		System.out.println(o_time);
 
@@ -221,6 +300,8 @@ public class store_change_in extends HttpServlet {
 
 //		営業終了時間
 		String c_time = req.getParameter("time2");
+
+		Time t_c_time = null;
 //		LocalTime l_o_time = LocalTime.parse(o_time);
 
 
@@ -228,27 +309,65 @@ public class store_change_in extends HttpServlet {
 		if(c_time==null || c_time.isEmpty() ){
 			System.out.println("営業終了時間空");
 			c_time =null;
+		}else{
+			t_c_time = Time.valueOf(c_time + ":00");
 		}
 		System.out.println(c_time);
 
 
-		int a = 1;
 
-		int b = 2;
 
-		String aa = "1";
-		String aa2 = "1";
-		String aa3= "1";
+//		平均利用額（上）
+		int dao_amount_high = 0;
+		String amount_high = req.getParameter("amount1");
 
-		Time pa = Time.valueOf(o_time + ":00");
-		Time pa2 = Time.valueOf(c_time+ ":00");
+		if(amount_high==null || amount_high.isEmpty() ){
+			System.out.println("平均利用額（上）空");
+
+		}else{
+			dao_amount_high = Integer.parseInt(amount_high);
+		}
+		System.out.println(dao_amount_high);
+
+
+
+//		平均利用額（下）
+		int dao_amount_low=0;
+		String amount_low = req.getParameter("amount2");
+
+		if(amount_low==null || amount_low.isEmpty() ){
+			System.out.println("平均利用額（上）空");
+
+		}else{
+			dao_amount_low = Integer.parseInt(amount_high);
+		}
+		System.out.println(dao_amount_low);
+
+
+
+
+
+
 
 		StoresDAO dao = new StoresDAO();
-		String a11 = "000001";
 
+
+		System.out.println("最終ファイル名");
+		System.out.println(savedFileName);
+
+		System.out.println("dao最終ファイル名");
+		System.out.println(dao_savedFileName1);
+		System.out.println(dao_savedFileName2);
+		System.out.println(dao_savedFileName3);
 
 		try {
-			int update_dao = dao.update(a11,pa,pa2,a,b,aa,aa2,savedFileName,b_action);
+			int update_dao = dao.update(s_id,t_o_time,t_c_time,dao_amount_high,dao_amount_low,dao_savedFileName1,dao_savedFileName2,dao_savedFileName3,b_action);
+
+			System.out.println("DAOの結果");
+			System.out.println(update_dao);
+
+
+
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

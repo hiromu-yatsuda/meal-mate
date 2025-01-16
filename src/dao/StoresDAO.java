@@ -13,8 +13,52 @@ import bean.Stores;
 public class StoresDAO extends DAO {
     public List<Stores> all() throws Exception {
 
-        return searchBygId("");
+    	List<Stores> stores = new ArrayList<Stores>();
+        Connection connection = getConnection();
+
+        PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM STORES ");
+
+
+
+        ResultSet rSet = pStatement.executeQuery();
+
+        while (rSet.next()) {
+            Stores store = new Stores();
+//            Groups group = gDao.search(rSet.getString("group_code"));
+
+            store.setStoreCode(rSet.getString("store_code"));
+            store.setName(rSet.getString("name"));
+//            store.setGroups(group);
+
+            store.setGroup_Code(rSet.getString("group_code"));
+
+            store.setPhoneNum(rSet.getString("phone_num"));
+            store.setLatitude(rSet.getDouble("latitude"));
+            store.setLongitude(rSet.getDouble("longitude"));
+            store.setOpeningTime(rSet.getTime("opening_time"));
+            store.setClosingTime(rSet.getTime("closing_time"));
+            store.setAvg_amount_low(rSet.getInt("avg_amount_low"));
+            store.setAvg_amount_high(rSet.getInt("avg_amount_high"));
+            store.setFigure1(rSet.getString("figure1"));
+            store.setFigure2(rSet.getString("figure2"));
+            store.setFigure3(rSet.getString("figure3"));
+            // テーブルのカラムがis_actionになっている(is_activeの間違い?)
+            // rSet.getBoolean("is_action")の返り値がTRUEだとエラーの可能性
+            store.setActive(rSet.getBoolean("is_action"));
+
+            stores.add(store);
+        }
+
+        pStatement.close();
+        connection.close();
+
+        return stores;
     }
+
+
+
+
+
 
     public List<Stores> searchBygId(String gId) throws Exception {
 //        GroupsDAO gDao = new GroupsDAO();
@@ -46,8 +90,8 @@ public class StoresDAO extends DAO {
             store.setAvg_amount_low(rSet.getInt("avg_amount_low"));
             store.setAvg_amount_high(rSet.getInt("avg_amount_high"));
             store.setFigure1(rSet.getString("figure1"));
-            store.setFigure1(rSet.getString("figure2"));
-            store.setFigure1(rSet.getString("figure3"));
+            store.setFigure2(rSet.getString("figure2"));
+            store.setFigure3(rSet.getString("figure3"));
             // テーブルのカラムがis_actionになっている(is_activeの間違い?)
             // rSet.getBoolean("is_action")の返り値がTRUEだとエラーの可能性
             store.setActive(rSet.getBoolean("is_action"));

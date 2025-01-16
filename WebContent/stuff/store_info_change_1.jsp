@@ -25,14 +25,10 @@
 
 
 
-<p>${store.figure1}</p>
-<p>${store.figure3}</p>
-<img src="./../img/shop/${store.figure3}">
 
 
-<img class="" src="<%= request.getContextPath() %>/img/shop/${store.figure3}">
 
-        <input type="hidden" value="${store.storeCode }" name="id">
+        <input type="text" value="${store.storeCode }" name="store_id">
 
 
 
@@ -79,34 +75,81 @@
         </div>
 
 
+
+        <div class="amount
+        ">
+            <label for="amount">平均利用額</label>
+            <input type="text" name="amount1" id="amount1">
+            <p>～</p>
+            <input type="text" name="amount2" id="amount2">
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="file">
 
-
-
-
-
-
 <label for="file1">メイン写真</label>
- 	<input type="file" id="file-input1" name="file1" accept="image/*" multiple>
+ 	<input type="file" id="file-input00" name="file1[]" accept="image/*" multiple>
+
+
+ 	<div id="file_figure">
  	<div id="preview1"></div>
 
+ 	<div id="figure_after">
+ 	<label>設定中</label>
 
- 	 	<input type="file" id="file-input2" name="file2" accept="image/*" multiple>
- 	<div id="preview2"></div>
 
- 	 	<input type="file" id="file-input3" name="file3" accept="image/*" multiple>
-<p>aaaa</p>
 
-<p>
- 	${store.figure3}
- 	</p>
- 	<div id="preview3"></div>
+ 	<%
+Object fogure1 = pageContext.findAttribute("store").getClass().getMethod("getFigure1").invoke(pageContext.findAttribute("store"));
+Object fogure2 = pageContext.findAttribute("store").getClass().getMethod("getFigure2").invoke(pageContext.findAttribute("store"));
+Object fogure3 = pageContext.findAttribute("store").getClass().getMethod("getFigure3").invoke(pageContext.findAttribute("store"));
 
+
+
+
+System.out.println("えりんぎ！！！！！！！！");
+System.out.println(fogure1);
+System.out.println(fogure2);
+System.out.println(fogure3);
+
+if (fogure1 != null) {
+    out.println("<img id='store_figure' src='" + request.getContextPath() + "/img/shop/" + fogure1 + "' style='max-width: 100px; display: block;'>");
+}
+
+if (fogure2 != null) {
+    out.println("<img id='store_figure' src='" + request.getContextPath() + "/img/shop/" + fogure2 + "' style='max-width: 100px; display: block;'>");
+}
+
+if (fogure3 != null) {
+    out.println("<img id='store_figure' src='" + request.getContextPath() + "/img/shop/" + fogure3 + "' style='max-width: 100px; display: block;'>");
+}
+
+
+%>
+
+
+
+</div>
+
+</div>
+</div>
+
+</c:forEach>
 
     </div>
-    </div>
 
-    </c:forEach>
+
+
 
 
     <div id="decision" class="button-group">
@@ -118,22 +161,19 @@
         <button type="button">戻る</button>
 	</div>
 
-	</div>
+
+
 	</form>
 
 
 
 <script>
-document.getElementById('file-input1').addEventListener('change', function(event) {
-    handleFileSelect(event, 'preview1', 'file-input1');
-});
 
-document.getElementById('file-input2').addEventListener('change', function(event) {
-    handleFileSelect(event, 'preview2', 'file-input2');
-});
 
-document.getElementById('file-input3').addEventListener('change', function(event) {
-    handleFileSelect(event, 'preview3', 'file-input3');
+let selectedFiles = [];
+
+document.getElementById('file-input00').addEventListener('change', function(event) {
+    handleFileSelect(event, 'preview1', 'file-input00');
 });
 
 function handleFileSelect(event, previewId, inputId) {
@@ -141,13 +181,14 @@ function handleFileSelect(event, previewId, inputId) {
     const input = document.getElementById(inputId);
     const files = Array.from(input.files);
 
-    if (files.length > 1) {
-        alert('それぞれ選択できるファイルは1枚です');
+    if (files.length > 3) {
+        alert('それぞれ選択できるファイルは3枚です');
         input.value = ''; // 入力をクリア
         return;
     }
 
     preview.innerHTML = ''; // 既存のプレビューをクリア
+    selectedFiles = files; // 選択されたファイルを保存
 
     files.forEach((file, index) => {
         const reader = new FileReader();
@@ -175,7 +216,8 @@ function handleFileSelect(event, previewId, inputId) {
 
             deleteButton.addEventListener('click', function() {
                 imgContainer.remove();
-                input.value = ''; // 入力をクリア
+                selectedFiles.splice(index, 1); // 選択されたファイルリストから削除
+                updateInputFiles(inputId); // input要素のファイルリストを更新
             });
 
             imgContainer.appendChild(img);
@@ -184,6 +226,17 @@ function handleFileSelect(event, previewId, inputId) {
         };
         reader.readAsDataURL(file);
     });
+}
+
+function updateInputFiles(inputId) {
+    const input = document.getElementById(inputId);
+    const dataTransfer = new DataTransfer();
+
+    selectedFiles.forEach(file => {
+        dataTransfer.items.add(file);
+    });
+
+    input.files = dataTransfer.files;
 }
 </script>
 
