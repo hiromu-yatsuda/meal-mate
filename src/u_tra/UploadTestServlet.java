@@ -1,20 +1,15 @@
 package u_tra;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 @WebServlet("/uploadTest")
-@MultipartConfig
 public class UploadTestServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -25,64 +20,53 @@ public class UploadTestServlet extends HttpServlet {
 
         System.out.println("=== UploadTestServlet.doPost start ===");
 
-        // 1. パラメータ確認
-        Part filePart = request.getPart("file"); // クライアント側で formData.append("file", ...) したキー
-        if (filePart == null) {
-            System.out.println("filePart is null. no file received");
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "File part not found");
-            return;
+        // 1. リクエストボディを読み込み (JSON想定)
+        //    (音声データではなくテキストのみ送られてくる)
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader br = request.getReader()) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
         }
+        String requestBody = sb.toString();
+        System.out.println("Received body: " + requestBody);
 
-        // 2. ファイル名を取得
-        String originalFileName = getFileName(filePart);
-        if (originalFileName == null || originalFileName.isEmpty()) {
-            originalFileName = "unknown.wav";
-        }
+        // 2. テキストを抽出 (JSONパースなどで取り出す)
+        //    ここでは超シンプルに "text" フィールドだけ取り出す例。
+        //    本格的には Jackson / org.json 等でパースしてください。
+        //    例: {"text":"認識された文章です","language":"ja"}
+        String text = parseTextFromJson(requestBody);
+        // → 下の parseTextFromJson() は簡易実装サンプル
 
+        System.out.println("Received text: " + text);
 
-     // ファイル名：タイムスタンプ + 元の拡張子
-        String extension = "";
-        int dotPos = originalFileName.lastIndexOf('.');
-        if (dotPos >= 0) {
-            extension = originalFileName.substring(dotPos);
-        }
-        String uniqueFileName = System.currentTimeMillis() + extension;
+        // 3. 受け取ったテキストを保存・翻訳などの処理をここで実行
+        //    例: AWS Translate を呼ぶ、DBに保存する、など
 
-        System.out.println("fileName = " + originalFileName);
-
-        // 3. 保存先のディレクトリを取得
-        String uploadDir = getServletContext().getRealPath("/upload");
-        System.out.println("uploadDir = " + uploadDir);
-
-        if (uploadDir == null) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "uploadDir is null");
-            return;
-        }
-
-        // ディレクトリがなければ作る
-        Files.createDirectories(Paths.get(uploadDir));
-
-        // 4. ファイルを保存
-        try (InputStream is = filePart.getInputStream()) {
-            Files.copy(is, Paths.get(uploadDir, uniqueFileName));
-        }
-
-        // 5. 成功レスポンスを返す
+        // 4. レスポンスを返す
         response.setContentType("text/plain; charset=UTF-8");
-        response.getWriter().println("File uploaded: " + uniqueFileName);
+        response.getWriter().println("Received text length=" + text.length());
         System.out.println("=== UploadTestServlet.doPost end ===");
     }
 
-    // Content-Dispositionからファイル名を抜くメソッド
-    private String getFileName(Part part) {
-        String cd = part.getHeader("Content-Disposition");
-        if (cd != null) {
-            for (String token : cd.split(";")) {
-                if (token.trim().startsWith("filename")) {
-                    return token.substring(token.indexOf('=') + 1).trim().replace("\"", "");
-                }
-            }
+    /**
+     * 超簡易的な JSON から "text" フィールドを探す処理 (実運用ではライブラリ使用推奨)
+     * 例: {"text":"こんにちは"}
+     */
+    private String parseTextFromJson(String json) {
+        // 本来は Jackson や org.json などを使うのが安全
+        // ここでは "text":"～" を抜き出すだけの簡易実装
+        String key = "\"text\":\"";
+        int start = json.indexOf(key);
+        if (start < 0) {
+            return "";
         }
-        return null;
+        start += key.length();
+        int end = json.indexOf("\"", start);
+        if (end < 0) {
+            return "";
+        }
+        return json.substring(start, end);
     }
 }
