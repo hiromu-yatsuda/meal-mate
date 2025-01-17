@@ -3,7 +3,7 @@
 <html lang="ja">
 <%@ include file="./../userbase.jsp" %>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
     <title>録音機能サンプル (ブラウザで音声→テキスト変換)</title>
     <style>
         body {
