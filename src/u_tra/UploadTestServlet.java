@@ -1,4 +1,4 @@
-package u_tra; // パッケージはプロジェクトに合わせて
+package u_tra;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +25,7 @@ public class UploadTestServlet extends HttpServlet {
 
         System.out.println("=== UploadTestServlet.doPost start ===");
 
-        // 1. まずはパラメータ確認
+        // 1. パラメータ確認
         Part filePart = request.getPart("file"); // クライアント側で formData.append("file", ...) したキー
         if (filePart == null) {
             System.out.println("filePart is null. no file received");
@@ -34,28 +34,26 @@ public class UploadTestServlet extends HttpServlet {
         }
 
         // 2. ファイル名を取得
-        String originalFileName = getFileName(filePart); // 例: "recorded.wav"
+        String originalFileName = getFileName(filePart);
         if (originalFileName == null || originalFileName.isEmpty()) {
             originalFileName = "unknown.wav";
         }
 
 
-     // ファイル名をユニークにする例：タイムスタンプ + 元の拡張子
+     // ファイル名：タイムスタンプ + 元の拡張子
         String extension = "";
         int dotPos = originalFileName.lastIndexOf('.');
         if (dotPos >= 0) {
-            extension = originalFileName.substring(dotPos); // .wav 等
+            extension = originalFileName.substring(dotPos);
         }
         String uniqueFileName = System.currentTimeMillis() + extension;
 
         System.out.println("fileName = " + originalFileName);
 
-        // 3. 保存先のディレクトリを取得 (webapp/upload に保存する例)
+        // 3. 保存先のディレクトリを取得
         String uploadDir = getServletContext().getRealPath("/upload");
         System.out.println("uploadDir = " + uploadDir);
 
-        // ※ getRealPath() が null の場合は Tomcat がWARを展開していない可能性あり
-        //   → とりあえず OS上のパスを直書きして確認してみるのも手。
         if (uploadDir == null) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "uploadDir is null");
             return;
