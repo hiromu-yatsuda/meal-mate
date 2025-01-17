@@ -42,6 +42,28 @@ public class FoodsDAO extends DAO {
 
 	}
 
+	public Foods getFoodsById(int id) throws Exception {
+	    Foods food = new Foods();
+	    Connection connection = getConnection();
+	    PreparedStatement pStatement = connection.prepareStatement("select * from foods where id = ?");
+
+	    pStatement.setInt(1, id);
+
+	    ResultSet rSet = pStatement.executeQuery();
+
+	    while (rSet.next()) {
+	        food.setId(rSet.getInt("food_id"));
+	        food.setFoodName(rSet.getString("name"));
+	        food.setIconR(rSet.getString("icon_r"));
+	        food.setIconG(rSet.getString("icon_g"));
+	    }
+
+	    pStatement.close();
+	    connection.close();
+
+	    return food;
+	}
+
 
 
 
