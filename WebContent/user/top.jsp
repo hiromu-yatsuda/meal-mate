@@ -18,8 +18,8 @@
         padding: 44.24% 0%;
     }
     .text_img {
-        width: 300px; /* 幅を指定 */
-        height: 300px; /* 高さを指定 */
+        width: 100px; /* 幅を指定 */
+        height: 100px; /* 高さを指定 */
         object-fit: contain; /* アスペクト比を保つ */
     }
     .apuri {

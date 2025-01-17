@@ -11,12 +11,12 @@
 
 button {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 70px 80px;    /* 現在地ボタンの大きさ */
+    top: 10px;
+    right: 10px;
+    padding: 15px 20px;    /* 現在地ボタンの大きさ */
     background-color: #fff;
     border: 2px solid #333;
-    font-size: 30px;
+    font-size: 10px;
     cursor: pointer;
     z-index: 1000;
     border-radius: 5px;
@@ -52,7 +52,7 @@ button:hover {
 
 /* 「現在地」テキストを大きくする */
 .leaflet-popup-content {
-    font-size: 70px; /* お好みのサイズに変更 */
+    font-size: 15px; /* お好みのサイズに変更 */
 }
 
 
