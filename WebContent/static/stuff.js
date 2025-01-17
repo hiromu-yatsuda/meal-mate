@@ -52,6 +52,7 @@ function addChildElement() {
 	parent.appendChild(copiedChild);
 	container.appendChild(parent);
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     const plusButton = document.querySelector("#addButton");
     if (plusButton) {
