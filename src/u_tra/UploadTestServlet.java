@@ -20,8 +20,7 @@ public class UploadTestServlet extends HttpServlet {
 
         System.out.println("=== UploadTestServlet.doPost start ===");
 
-        // 1. リクエストボディを読み込み (JSON想定)
-        //    (音声データではなくテキストのみ送られてくる)
+        // 1. リクエストボディ(JSON)を読み込む
         StringBuilder sb = new StringBuilder();
         try (BufferedReader br = request.getReader()) {
             String line;
@@ -32,31 +31,23 @@ public class UploadTestServlet extends HttpServlet {
         String requestBody = sb.toString();
         System.out.println("Received body: " + requestBody);
 
-        // 2. テキストを抽出 (JSONパースなどで取り出す)
-        //    ここでは超シンプルに "text" フィールドだけ取り出す例。
-        //    本格的には Jackson / org.json 等でパースしてください。
-        //    例: {"text":"認識された文章です","language":"ja"}
+        // 2. "text" フィールドを簡易的に抜き出し
         String text = parseTextFromJson(requestBody);
-        // → 下の parseTextFromJson() は簡易実装サンプル
-
         System.out.println("Received text: " + text);
 
-        // 3. 受け取ったテキストを保存・翻訳などの処理をここで実行
-        //    例: AWS Translate を呼ぶ、DBに保存する、など
+        // 3. ここで翻訳やDB保存など行う場合はご自由に
+        //    例: AWS Translateにかける、テーブルにINSERTする...
 
-        // 4. レスポンスを返す
+        // 4. レスポンス
         response.setContentType("text/plain; charset=UTF-8");
         response.getWriter().println("Received text length=" + text.length());
         System.out.println("=== UploadTestServlet.doPost end ===");
     }
 
     /**
-     * 超簡易的な JSON から "text" フィールドを探す処理 (実運用ではライブラリ使用推奨)
-     * 例: {"text":"こんにちは"}
+     * シンプルに "text":"..." を抜き出すだけ (本番はJackson等推奨)
      */
     private String parseTextFromJson(String json) {
-        // 本来は Jackson や org.json などを使うのが安全
-        // ここでは "text":"～" を抜き出すだけの簡易実装
         String key = "\"text\":\"";
         int start = json.indexOf(key);
         if (start < 0) {

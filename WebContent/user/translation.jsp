@@ -1,4 +1,3 @@
-<!-- translation.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ja">
@@ -143,7 +142,7 @@
             </div>
         </div>
 
-        <!-- アップロード結果メッセージ or 翻訳結果表示用 -->
+        <!-- 送信結果やステータスメッセージを表示するエリア -->
         <div id="uploadMessage" style="text-align:center; color:blue; font-weight:bold;"></div>
     </div>
 
@@ -154,13 +153,13 @@
         const uploadMessageEl = document.getElementById('uploadMessage');
 
         // --------------------------------------------------
-        // 1) 上段: Web Speech API を使って音声認識 → テキスト
+        // 上段: Web Speech API を使って音声認識 → テキスト
         // --------------------------------------------------
         let recognizing1 = false;
         let recognition1;
         const recordBtn1 = document.getElementById('recordBtn1');
 
-        // ブラウザの対応チェック (Chrome, Edge, Safariなど)
+        // ブラウザが SpeechRecognition に対応しているかチェック
         if ('webkitSpeechRecognition' in window) {
             recognition1 = new webkitSpeechRecognition();
         } else if ('SpeechRecognition' in window) {
@@ -168,27 +167,27 @@
         }
 
         if (recognition1) {
-            // 言語を選択したい場合は下記を動的に変更してもOK
-            recognition1.lang = 'ja-JP';
-            recognition1.interimResults = false;  // 確定結果のみ取得
+            // 選択された言語で音声認識したい場合は、recordBtn1クリック時に設定を切り替えてもOK
+            recognition1.lang = 'ja-JP';       // デフォルト:日本語
+            recognition1.interimResults = false;  // 確定結果のみ
 
             recognition1.onresult = (event) => {
                 const text = event.results[0][0].transcript;
                 console.log('上段の認識結果:', text);
-                // テキストを画面表示
                 outputText1.textContent = text;
-                // テキストをサーバーに送信 (必要なら)
+
+                // テキストをサーバーに送信
                 sendTextToServer(text, getSelectedLang('userLang1'));
             };
 
             recognition1.onerror = (e) => {
                 console.error('上段の認識エラー', e);
                 uploadMessageEl.style.color = 'red';
-                uploadMessageEl.textContent = '音声認識に失敗しました';
+                uploadMessageEl.textContent = '上段 音声認識に失敗しました';
             };
 
             recordBtn1.disabled = false;
-            recordBtn1.textContent = '🎤';
+            recordBtn1.textContent = '🎤'; // ボタンを有効化
 
             recordBtn1.addEventListener('click', () => {
                 if (!recognizing1) {
@@ -203,13 +202,12 @@
                 }
             });
         } else {
-            // Web Speech API未対応
             recordBtn1.disabled = true;
             recordBtn1.textContent = '未対応';
         }
 
         // --------------------------------------------------
-        // 2) 下段: Web Speech API を使って音声認識 → テキスト
+        // 下段: Web Speech API を使って音声認識 → テキスト
         // --------------------------------------------------
         let recognizing2 = false;
         let recognition2;
@@ -222,14 +220,14 @@
         }
 
         if (recognition2) {
-            // 言語: 例として英語
-            recognition2.lang = 'en-US';
+            recognition2.lang = 'en-US';  // デフォルト:英語
             recognition2.interimResults = false;
 
             recognition2.onresult = (event) => {
                 const text = event.results[0][0].transcript;
                 console.log('下段の認識結果:', text);
                 outputText2.textContent = text;
+
                 // テキストをサーバーに送信
                 sendTextToServer(text, getSelectedLang('userLang2'));
             };
@@ -237,7 +235,7 @@
             recognition2.onerror = (e) => {
                 console.error('下段の認識エラー', e);
                 uploadMessageEl.style.color = 'red';
-                uploadMessageEl.textContent = '音声認識に失敗しました';
+                uploadMessageEl.textContent = '下段 音声認識に失敗しました';
             };
 
             recordBtn2.disabled = false;
@@ -261,19 +259,18 @@
         }
 
         // --------------------------------------------------
-        // 3) ユーティリティ
+        // ユーティリティ
         // --------------------------------------------------
-        // 言語選択
+        // セレクトボックスで選択された言語コードを返す ('ja', 'en', etc.)
         function getSelectedLang(selectId) {
             const sel = document.getElementById(selectId);
-            return sel.value; // 'ja'/'en'/'es'/'fr' など
+            return sel.value;
         }
 
-        // サーバーにテキスト送信 (fetch + JSON例)
+        // テキストをサーバーに送信 (fetch + JSON)
         function sendTextToServer(text, lang) {
-            // 例: /uploadText にPOSTする
-            // 実際にはServletやAPIのURLに合わせて書き換えてください
-            fetch('<%= request.getContextPath() %>/uploadText', {
+            // "/uploadTest" は下記のサーブレット @WebServlet("/uploadTest") に対応
+            fetch('<%= request.getContextPath() %>/uploadTest', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
