@@ -82,7 +82,6 @@ detailContainer.style.borderRadius = '15px'; // 角を丸める
 detailContainer.id = 'detailContainer'; // id を設定して後から参照可能にする
 
 
-
 document.body.appendChild(detailContainer); // 作成した要素を HTML ドキュメントに追加
 
 // 詳細表示テキストのスタイルを大きくし、中央揃えに設定
