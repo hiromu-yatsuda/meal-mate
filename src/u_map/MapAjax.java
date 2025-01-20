@@ -21,9 +21,26 @@ public class MapAjax extends CommonServlet {
         StoresDAO sDao = new StoresDAO();
         List<Stores> stores = sDao.all();
 
-        String string = "{\"latitude\": [\"32.789884\", \"32.639884\", \"36.160657\"], \"longitude\": [\"130.987154\", \"131.087154\", \"139.244206\"], \"storeName\": [\"AAA\", \"BBB\", \"CCC\"]}";
+        StringBuilder json = new StringBuilder("{");
+        StringBuilder storeCode = new StringBuilder();
+        StringBuilder storeName = new StringBuilder();
+        StringBuilder groups = new StringBuilder();
+        StringBuilder groupCode = new StringBuilder();
+        StringBuilder phoneNum = new StringBuilder();
+        StringBuilder latitude = new StringBuilder();
+        StringBuilder longitude = new StringBuilder();
+        StringBuilder openingTime = new StringBuilder();
+        StringBuilder closingTime = new StringBuilder();
+        StringBuilder avgAmountLow = new StringBuilder();
+        StringBuilder avgAmountHigh = new StringBuilder();
+        StringBuilder figure1 = new StringBuilder();
+        StringBuilder figure2 = new StringBuilder();
+        StringBuilder figure3 = new StringBuilder();
+        StringBuilder isActive = new StringBuilder();
 
-        out.print(string);
+//        String string = "{\"latitude\": [\"32.789884\", \"32.639884\", \"36.160657\"], \"longitude\": [\"130.987154\", \"131.087154\", \"139.244206\"], \"storeName\": [\"AAA\", \"BBB\", \"CCC\"]}";
+
+//        out.print(string);
 
     }
 
