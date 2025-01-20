@@ -3,21 +3,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
-<title>${param.title}</title>
-<style>
-  a {
-    font-size: 7em; /* 文字を大きくする */
-    display: block; /* ブロック要素に変更 */
-    text-align: center; /* 中央揃え */
-    margin: 20px auto; /* 上下に余白を追加、横も中央に */
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食材登録</title>
+    <link rel="stylesheet" href="/meal-mate/static/register.css">
 </head>
 <body>
-<%@ include file="../userbase.jsp" %>
-<div>
-<a>食材登録画面</a>
-</div>
+    <header>
+        <%@ include file="../userbase.jsp" %>
+        <h2>食材登録</h2>
+        <div id="selected-icons">
+            <!-- 選択されたアイコンがここに表示されます -->
+        </div>
+        <button id="submit-button">送信</button>
+    </header>
+
+    <main>
+        <div id="categories">
+            <!-- カテゴリーのボタン -->
+            <button class="category" id="fruits" data-category="fruits">フルーツ</button>
+            <button class="category" id="vegetables" data-category="vegetables">野菜</button>
+            <button class="category" id="meats" data-category="meats">肉</button>
+            <button class="category" id="seafood" data-category="seafood">魚</button>
+            <button class="category" id="dairy" data-category="dairy">乳</button>
+            <button class="category" id="sonota" data-category="sonota">その他</button>
+            <button class="category" id="vigan" data-category="vigan">ヴィーガン・ヴェジタリアン</button>
+        </div>
+
+        <div id="icons">
+            <!-- アイコンリスト（カテゴリーに応じて動的に切り替え） -->
+        </div>
+
+    </main>
+
+    <script src="/meal-mate/static/register.js"></script>
 </body>
 </html>

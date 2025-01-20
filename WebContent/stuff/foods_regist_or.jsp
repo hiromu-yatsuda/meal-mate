@@ -20,10 +20,18 @@
 		</div>
 		<div class="option">
 			<h2>手入力</h2>
-			<a href="http://localhost:8080/MealMate/stuff/foods_regist.jsp">
-				<img class="text_imgcsvsenntaku" src="../img/手入力.jpg" alt="手入力">
-			</a>
+			<form class="manual_form" action="/meal-mate/stuff/foods/regist/or/manual" method="get">
+
+			<button class="manual" type="submit">
+			<img class="text_imgcsvsenntaku" src="../img/手入力.jpg" alt="手入力">
+			</button>
+			</form>
 		</div>
 	</div>
+
+
+
+
+
 	</c:param>
 </c:import>

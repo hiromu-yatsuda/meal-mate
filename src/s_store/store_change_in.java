@@ -28,7 +28,7 @@ public class store_change_in extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		String se_g_id = "";
-		se_g_id = (String) session.getAttribute("g_id");
+		se_g_id = (String) session.getAttribute("s_g_id");
 
 		System.out.println(se_g_id);
 
@@ -68,6 +68,25 @@ public class store_change_in extends HttpServlet {
 
 				System.out.println("daoの結果");
 				System.out.println(s_list);
+
+
+
+
+				for(Stores store : s_list){
+					Time o_time = store.getOpeningTime();
+					System.out.println("Time取り出した");
+					System.out.println(o_time);
+
+					Time c_time = store.getClosingTime();
+					System.out.println("Time取り出した");
+					System.out.println(c_time);
+
+				}
+
+
+
+
+
 
 				// 表示データリスト
 				req.setAttribute("storesList", s_list);
@@ -269,16 +288,16 @@ public class store_change_in extends HttpServlet {
 
 
 
-//		メールアドレスを取得
-		String mail = req.getParameter("mail");
-
-
-		if(mail==null || mail.isEmpty() ){
-			System.out.println("メールアドレス空");
-			mail = null;
-		}
-
-		System.out.println(mail);
+////		メールアドレスを取得
+//		String mail = req.getParameter("mail");
+//
+//
+//		if(mail==null || mail.isEmpty() ){
+//			System.out.println("メールアドレス空");
+//			mail = null;
+//		}
+//
+//		System.out.println(mail);
 
 
 //		営業開始時間

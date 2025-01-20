@@ -44,23 +44,49 @@ document.addEventListener('DOMContentLoaded', function() {
 //	従業員-商品登録
 //	「＋」ボタンクリック -> 入力項目追加
 function addChildElement() {
-	const container = document.querySelector("#container");
-	const childElement = document.querySelector(".input-group");
-	const copiedChild = childElement.cloneNode(true);
-	const parent = document.createElement("div");
-	parent.setAttribute("class", "input-group");
-	parent.appendChild(copiedChild);
-	container.appendChild(parent);
+const container = document.querySelector("#container");
+const childElement = document.querySelector(".input-group");
+const copiedChild = childElement.cloneNode(true);
+
+// 複製された要素の入力フィールドをクリア
+const inputs = copiedChild.querySelectorAll("input[type='text']");
+inputs.forEach(input => input.value = "");
+
+const checkboxes = copiedChild.querySelectorAll("input[type='checkbox']");
+checkboxes.forEach(checkbox => checkbox.checked = false);
+
+container.appendChild(copiedChild);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const plusButton = document.querySelector("#addButton");
-    if (plusButton) {
-        plusButton.addEventListener("click", function () {
-            addChildElement();
-        });
-    }
+const plusButton = document.querySelector("#addButton");
+if (plusButton) {
+    plusButton.addEventListener("click", function () {
+        addChildElement();
+    });
+}
 });
+
+
+let formIndex = 0;
+
+document.getElementById('addButton').addEventListener('click', function() {
+    formIndex++;
+    let newForm = document.querySelector('#form-container').cloneNode(true);
+    newForm.querySelectorAll('input').forEach(input => {
+        if (input.name.includes('rest_foods')) {
+            input.name = input.name.replace('rest_foods[]', 'rest_foods[' + formIndex + '][]');
+        } else {
+            input.name = input.name.replace('[]', '[' + formIndex + ']');
+        }
+    });
+    document.querySelector('#form-in').appendChild(newForm);
+});
+
+
+
+
+
 //	従業員-店舗情報変更
 //	写真をアップロード用
 function uploadPhoto() {

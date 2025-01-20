@@ -20,13 +20,20 @@
 				    <!-- フォームの入力フィールド -->
 				    <button class="button-top" type="submit"id="food">商品一覧</button>
 				</form>
-				<form action="/meal-mate/stuff/create_stuff_1" method="get">
+				<form action="/meal-mate/stuff/foods/regist/or" method="get">
 				    <!-- フォームの入力フィールド -->
 				    <button class="button-top" type="submit"id="food">商品登録</button>
-				</form><form action="/meal-mate/stuff/create_stuff_1" method="get">
+				</form>
+
+
+				<form action="/meal-mate/staff/store/change/store_select" method="get">
 				    <!-- フォームの入力フィールド -->
 				    <button class="button-top" type="submit"id="store">店舗情報変更</button>
-				</form><form action="/meal-mate/stuff/create_stuff_1" method="get">
+				</form>
+
+
+
+				<form action="/meal-mate/stuff/create_stuff_1" method="get">
 				    <!-- フォームの入力フィールド -->
 				    <button class="button-top" type="submit"id="stuff">従業員一覧</button>
 				</form><form action="/meal-mate/stuff/create_stuff_1" method="get">
