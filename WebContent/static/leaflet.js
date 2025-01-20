@@ -62,14 +62,14 @@ var customIconpin = L.icon({
     popupAnchor: [0, -70] // ポップアップが表示される位置（基準点からのオフセット）
 });
 
-// 詳細表示用の要素を作成
-// 画面下部に詳細情報を表示するためのコンテナを作成
+//詳細表示用の要素を作成
+//画面下部に詳細情報を表示するためのコンテナを作成
 var detailContainer = document.createElement('div');
 detailContainer.style.position = 'absolute'; // 画面に固定する
 detailContainer.style.bottom = '0'; // 下部に配置
 detailContainer.style.left = '0'; // 左端に配置
-detailContainer.style.width = '100%'; // 幅を画面全体に設定
 detailContainer.style.height = '50%'; // 高さを画面の半分に設定
+detailContainer.style.width = '96%'; // 幅を設定
 detailContainer.style.backgroundColor = 'white'; // 背景色を白に設定
 detailContainer.style.borderTop = '1px solid #ccc'; // 上部に薄い枠線を追加
 detailContainer.style.overflowY = 'auto'; // コンテンツが多い場合スクロール可能にする
@@ -77,12 +77,16 @@ detailContainer.style.padding = '20px'; // コンテンツ周りに余白を設�
 detailContainer.style.boxShadow = '0 -2px 5px rgba(0, 0, 0, 0.2)'; // 影を追加して浮き上がったような効果
 detailContainer.style.zIndex = '1000'; // 他の要素より前面に表示
 detailContainer.style.display = 'none'; // 初期状態では非表示
+detailContainer.style.margin = '2%'; // 外側の余白を設定
+detailContainer.style.borderRadius = '15px'; // 角を丸める
 detailContainer.id = 'detailContainer'; // id を設定して後から参照可能にする
+
+
 
 document.body.appendChild(detailContainer); // 作成した要素を HTML ドキュメントに追加
 
 // 詳細表示テキストのスタイルを大きくし、中央揃えに設定
-const detailTextStyle = 'font-size: 3em; line-height: 1.3em; text-align: center;'; // 中央揃えを追加
+const detailTextStyle = 'font-size: 1.5em; line-height: 1.3em; text-align: center;'; // 中央揃えを追加
 detailContainer.style.cssText += detailTextStyle; // 追加スタイルを適用
 
 // 詳細情報を表示する関数
@@ -101,12 +105,11 @@ function hideDetails() {
 function addMarker(lat, lng, message) {
     var marker = L.marker([lat, lng], { icon: customIconpin }).addTo(map); // マーカーを追加
     marker.on('click', function() { // マーカーがクリックされたときの動作
-        showDetails("<strong style" + detailTextStyle + "'></strong><br>" + message); // 詳細情報を表示
+        showDetails(message); // 詳細情報を表示
     });
 }
-
 // 例: 特定の座標にピンを立てる
-addMarker(32.789884, 130.987154, "<h2>ラーメン山口どっこいしょ</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
+addMarker(32.789884, 130.987154, "<a>ラーメン山口どっこいしょ</a><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
 addMarker(32.639884, 131.087154, "<h2>うどん屋モッコリ堂</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
 addMarker(36.160657, 139.244206, "<h2>八ツ田の家</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
 
