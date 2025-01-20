@@ -111,7 +111,7 @@ function addMarker(lat, lng, message) {
 $.ajax({
 	url: "/meal-mate/user/map/ajax",
 	type: "GET",
-	data: {"text": "test"},
+	data: {"text": "test1"},
 	dataType: "json"
 }).done(function (res) {
 	const keys = Object.keys(res);
