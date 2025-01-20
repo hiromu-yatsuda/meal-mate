@@ -38,9 +38,9 @@ public class MapAjax extends CommonServlet {
         StringBuilder figure3 = new StringBuilder();
         StringBuilder isActive = new StringBuilder();
 
-//        String string = "{\"latitude\": [\"32.789884\", \"32.639884\", \"36.160657\"], \"longitude\": [\"130.987154\", \"131.087154\", \"139.244206\"], \"storeName\": [\"AAA\", \"BBB\", \"CCC\"]}";
+        String string = "{\"latitude\": [\"32.789884\", \"32.639884\", \"36.160657\"], \"longitude\": [\"130.987154\", \"131.087154\", \"139.244206\"], \"storeName\": [\"AAA\", \"BBB\", \"CCC\"]}";
 
-//        out.print(string);
+        out.print(string);
 
     }
 

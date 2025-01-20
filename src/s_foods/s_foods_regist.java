@@ -143,8 +143,10 @@ public class s_foods_regist extends CommonServlet{
 //	    	食材「end」識別用
 	    	boolean food_end = true;
 
-	    	
+
 	    	String[] rest_foods_name = new String[0];
+
+
 
 
 //	    	データがある
@@ -159,9 +161,15 @@ public class s_foods_regist extends CommonServlet{
 		            while(food_end){
 		            	rest_foods_name = rest_foods_list.get(food_count);
 		            	food_count ++;
-		            	
+
 		            	for(String p : rest_foods_name){
-		            		
+		            		System.out.println(p);
+
+		            		String[] f_only_list = p.split(",");
+		            		System.out.println(f_only_list);
+		            		System.out.println(f_only_list[0]);
+		            		System.out.println(f_only_list[1]);
+
 		            	}
 
 
