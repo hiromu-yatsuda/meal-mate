@@ -114,20 +114,8 @@ public class s_foods_regist extends CommonServlet{
 	    }
 
 
-////	    食材名
-//	    String[] rest_foods_name = new String[0];
-//	    for (int i = 0; i < rest_foods_name_list.size(); i++) {
-//	    	rest_foods_name = rest_foods_name_list.get(i);
-//	        for (String rest_food_name : rest_foods_name) {
-//
-//	        	System.out.println("rest_foods: " + rest_food_name + " (Form Index: " + i + ")");
-//	        }
-//	    }
-
-
-
-
 	    System.out.println(rest_foods);
+	    System.out.println("ここから登録");
 
 
 //	    ここから登録準備～登録へ
@@ -136,6 +124,7 @@ public class s_foods_regist extends CommonServlet{
 	    if(y_or_n_janB==false){
 //		    ランダムJANコードが必要ない
 
+	    	System.out.println("1");
 
 //	    	食材リスト用カウント引数
 	    	int food_count = 0;
@@ -147,28 +136,52 @@ public class s_foods_regist extends CommonServlet{
 	    	String[] rest_foods_name = new String[0];
 
 
-
+	    	System.out.println("2");
 
 //	    	データがある
 		    if (pro_names != null && jancodes != null) {
+		    	System.out.println("3");
 		        for (int i = 0; i < pro_names.length; i++) {
 
+		        	System.out.println("4");
 
-		        	food_end = false;
+		        	food_end = true;
 		            System.out.println("商品名: " + pro_names[i] + " (Index: " + i + ")");
 		            System.out.println("JANコード: " + jancodes[i] + " (Index: " + i + ")");
 
-		            while(food_end){
+		            while(food_end == true){
+		            	System.out.println("5");
+
+		            	System.out.println("food_count22");
+		            	System.out.println(food_count);
 		            	rest_foods_name = rest_foods_list.get(food_count);
-		            	food_count ++;
+		            	food_count = food_count + 1;
+
+		            	System.out.println("rest_foods_name");
+		            	System.out.println(rest_foods_name);
+
+		            	System.out.println("food_count");
+		            	System.out.println(food_count);
 
 		            	for(String p : rest_foods_name){
 		            		System.out.println(p);
 
-		            		String[] f_only_list = p.split(",");
-		            		System.out.println(f_only_list);
-		            		System.out.println(f_only_list[0]);
-		            		System.out.println(f_only_list[1]);
+		            		System.out.println("6");
+		            		if(p.equals("end")){
+
+		            			food_end = false;
+		            			break;
+
+		            		}else{
+
+		            			System.out.println("7");
+			            		String[] f_only_list = p.split(",");
+			            		System.out.println(f_only_list);
+			            		System.out.println(f_only_list[0]);
+			            		System.out.println(f_only_list[1]);
+		            		}
+
+
 
 		            	}
 
