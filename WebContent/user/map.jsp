@@ -7,9 +7,7 @@
      integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
 <link rel="stylesheet" href="/meal-mate/static/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
-  <script>
-
-  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div id="myMap"></div>
