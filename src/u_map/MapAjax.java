@@ -21,41 +21,65 @@ public class MapAjax extends CommonServlet {
         StoresDAO sDao = new StoresDAO();
         List<Stores> stores = sDao.all();
 
-        StringBuilder json = new StringBuilder("{");
-        StringBuilder storeCode = new StringBuilder();
-        StringBuilder storeName = new StringBuilder();
-        StringBuilder groups = new StringBuilder();
-        StringBuilder groupCode = new StringBuilder();
-        StringBuilder phoneNum = new StringBuilder();
-        StringBuilder latitude = new StringBuilder();
-        StringBuilder longitude = new StringBuilder();
-        StringBuilder openingTime = new StringBuilder();
-        StringBuilder closingTime = new StringBuilder();
-        StringBuilder avgAmountLow = new StringBuilder();
-        StringBuilder avgAmountHigh = new StringBuilder();
-        StringBuilder figure1 = new StringBuilder();
-        StringBuilder figure2 = new StringBuilder();
-        StringBuilder figure3 = new StringBuilder();
-        StringBuilder isActive = new StringBuilder();
+        StringBuilder json = new StringBuilder();
+        StringBuilder storeCode = new StringBuilder("\"storeCode\": [");
+        StringBuilder storeName = new StringBuilder("\"storeName\": [");
+        StringBuilder groups = new StringBuilder("\"groups\": [");
+        StringBuilder groupCode = new StringBuilder("\"groupCode\": [");
+        StringBuilder phoneNum = new StringBuilder("\"phoneNum\": [");
+        StringBuilder latitude = new StringBuilder("\"latitude\": [");
+        StringBuilder longitude = new StringBuilder("\"longitude\": [");
+        StringBuilder openingTime = new StringBuilder("\"openingTime\": [");
+        StringBuilder closingTime = new StringBuilder("\"closingTime\": [");
+        StringBuilder avgAmountLow = new StringBuilder("\"avgAmountLow\": [");
+        StringBuilder avgAmountHigh = new StringBuilder("\"avgAmountHigh\": [");
+        StringBuilder figure1 = new StringBuilder("\"figure1\": [");
+        StringBuilder figure2 = new StringBuilder("\"figure2\": [");
+        StringBuilder figure3 = new StringBuilder("\"figure3\": [");
+        StringBuilder isActive = new StringBuilder("\"isActive\": [");
 
-//        String string = "{\"latitude\": [\"32.789884\", \"32.639884\", \"36.160657\"], \"longitude\": [\"130.987154\", \"131.087154\", \"139.244206\"], \"storeName\": [\"AAA\", \"BBB\", \"CCC\"]}";
+        for (Stores s: stores) {
+            storeCode.append("\"" + s.getStoreCode() + "\", ");
+            storeName.append("\"" + s.getName() + "\", ");
+            groups.append("\"" + s.getGroup_Code() + "\", ");
+            groupCode.append("\"" + s.getGroup_Code() + "\", ");
+            phoneNum.append("\"" + s.getPhoneNum() + "\", ");
+            latitude.append("\"" + s.getLatitude() + "\", ");
+            longitude.append("\"" + s.getLongitude() + "\", ");
+            openingTime.append("\"" + s.getOpeningTime() + "\", ");
+            closingTime.append("\"" + s.getClosingTime() + "\", ");
+            avgAmountLow.append("\"" + s.getAvg_amount_low() + "\", ");
+            avgAmountHigh.append("\"" + s.getAvg_amount_high() + "\", ");
+            figure1.append("\"" + s.getFigure1() + "\", ");
+            figure2.append("\"" + s.getFigure2() + "\", ");
+            figure3.append("\"" + s.getFigure3() + "\", ");
+            isActive.append("\"" + s.isActive() + "\", ");
+        }
 
-//        out.print(string);
+        json.append("{");
+        json.append(storeCode.delete(storeCode.length()-2, storeCode.length()) + "], ");
+        json.append(storeName.delete(storeName.length()-2, storeName.length()) + "], ");
+        json.append(groups.delete(groups.length()-2, groups.length()) + "], ");
+        json.append(groupCode.delete(groupCode.length()-2, groupCode.length()) + "], ");
+        json.append(phoneNum.delete(phoneNum.length()-2, phoneNum.length()) + "], ");
+        json.append(latitude.delete(latitude.length()-2, latitude.length()) + "], ");
+        json.append(longitude.delete(longitude.length()-2, longitude.length()) + "], ");
+        json.append(openingTime.delete(openingTime.length()-2, openingTime.length()) + "], ");
+        json.append(closingTime.delete(closingTime.length()-2, closingTime.length()) + "], ");
+        json.append(avgAmountLow.delete(avgAmountLow.length()-2, avgAmountLow.length()) + "], ");
+        json.append(avgAmountHigh.delete(avgAmountHigh.length()-2, avgAmountHigh.length()) + "], ");
+        json.append(figure1.delete(figure1.length()-2, figure1.length()) + "], ");
+        json.append(figure2.delete(figure2.length()-2, figure2.length()) + "], ");
+        json.append(figure3.delete(figure3.length()-2, figure3.length()) + "], ");
+        json.append(isActive.delete(isActive.length()-2, isActive.length()) + "]");
+        json.append("}");
+
+        out.print(json.toString());
 
     }
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-//        resp.setContentType("application/json");
-//        PrintWriter out = resp.getWriter();
-//        StoresDAO sDao = new StoresDAO();
-//        List<Stores> stores = sDao.all();
-//
-//        String string = "{\"storeName\": [\"AAA\", \"BBB\", \"CCC\"], latitude: [\"123\", \"456\", \"789\"], longitude: [\"123\", \"456\", \"789\"]}";
-//
-//        out.print(string.toString());
-//        System.out.println("called");
-
     }
 
 }
