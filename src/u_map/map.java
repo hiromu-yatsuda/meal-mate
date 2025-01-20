@@ -26,6 +26,18 @@ public class map extends HttpServlet {
 
 
 
+            for (Stores store : s_list) {
+                String groupCode = store.getName();
+                double a = store.getLatitude();
+
+                System.out.println(groupCode);
+                System.out.println(a);
+
+
+            }
+
+
+
 
 			// 表示データリストをjspに
 			req.setAttribute("storesList", s_list);

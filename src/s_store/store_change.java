@@ -22,7 +22,7 @@ public class store_change extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		String g_id = "";
-		g_id = (String) session.getAttribute("g_id");
+		g_id = (String) session.getAttribute("s_g_id");
 
 
 

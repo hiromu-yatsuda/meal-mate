@@ -79,7 +79,7 @@ public class store_create_in extends HttpServlet {
 //		for(String s:gru_id_name_List){
 //			System.out.println(s);
 //		}
-
+//
 //		System.out.println(gru_id_name_List);
 
 

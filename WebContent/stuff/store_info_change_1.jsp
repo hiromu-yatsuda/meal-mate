@@ -28,7 +28,7 @@
 
 
 
-        <input type="text" value="${store.storeCode }" name="store_id">
+        <input type="hidden" value="${store.storeCode }" name="store_id">
 
 
 
@@ -59,19 +59,16 @@
 
         <div class="tel">
             <label for="tel_num">電話番号：</label>
-            <input type="text" name="tel_num" id="tel_num" placeholder="電話番号を入力してください" >
+            <input type="text" value="${store.phoneNum}" name="tel_num" id="tel_num" placeholder="電話番号を入力してください" >
         </div>
 
-        <div class="mail">
-            <label for="mail">メールアドレス：</label>
-            <input type="text" name="mail" id="mail" placeholder="メールアドレスを入力してください" >
-        </div>
+
 
         <div class="time">
             <label for="time1">営業時間</label>
-            <input type="time" name="time1" id="time1">
+            <input type="time" value="${store.openingTime}" name="time1" id="time1">
             <p>～</p>
-            <input type="time" name="time2" id="time2">
+            <input type="time" value="${store.closingTime}" name="time2" id="time2">
         </div>
 
 
@@ -79,9 +76,9 @@
         <div class="amount
         ">
             <label for="amount">平均利用額</label>
-            <input type="text" name="amount1" id="amount1">
+            <input type="text" value="${store.avg_amount_low}" name="amount1" id="amount1">
             <p>～</p>
-            <input type="text" name="amount2" id="amount2">
+            <input type="text" value="${store.avg_amount_high}" name="amount2" id="amount2">
         </div>
 
 
