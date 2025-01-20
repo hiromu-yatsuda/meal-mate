@@ -25,7 +25,7 @@
     .apuri {
         display: flex; /* Flexboxを有効化 */
         flex-wrap: wrap; /* 改行を許可 */
-        gap: 50px 100px; /* 縦50px、横100pxに調整 */
+    	gap: 40px 60px;
         justify-content: center; /* 中央揃え */
         align-items: center; /* 垂直方向の調整 */
     }
