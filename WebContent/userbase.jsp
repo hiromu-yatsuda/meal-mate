@@ -12,28 +12,28 @@
         padding: 0;
         height: 100vh;
     }
-    
+
     .nav {
         border: solid 2px #d3d3d3;
         border-radius: 8px;
         background-color: #fff;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         justify-content: center;
-        padding: 20px;
+        padding: 1% 5%;
     }
-    
+
     .hako {
         display: flex;
         justify-content: space-around;
         align-items: center;
         width: 100%;
     }
-    
+
     .hako a {
-        font-size: 4.5rem; /* アイコンサイズ */
+        font-size: 1.3rem; /* アイコンサイズ */
         text-decoration: none;
         color: #333;
-        padding: 10px 20px;
+        padding: 5px 20px;
         border: 2px solid #d3d3d3; /* 枠線 */
         border-radius: 8px; /* 角を丸くする */
         background-color: #f9f9f9; /* 背景色 */
