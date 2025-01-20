@@ -108,10 +108,36 @@ function addMarker(lat, lng, message) {
         showDetails(message); // 詳細情報を表示
     });
 }
+$.ajax({
+	url: "/meal-mate/user/map/ajax",
+	type: "GET",
+	data: {"text": "test"},
+	dataType: "json"
+}).done(function (res) {
+	const keys = Object.keys(res);
+	const storeLength = res[keys[0]].length;
+//	console.log(res);
+
+	for (let i=0; i<storeLength; i++) {
+		let latitude;
+		let longitude;
+		let prop;
+		let array = [latitude, longitude, prop];
+
+		for (let j=0; j<keys.length; j++) {
+			array[j] = res[keys[j]][i];
+		}
+
+		console.log(array);
+
+		addMarker(parseFloat(array[0]), parseFloat(array[1]), "<h1>" + array[2] + "</h1>");
+	}
+})
+
 // 例: 特定の座標にピンを立てる
-addMarker(32.789884, 130.987154, "<h2>ラーメン山口どっこいしょ</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
-addMarker(32.639884, 131.087154, "<h2>うどん屋モッコリ堂</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
-addMarker(36.160657, 139.244206, "<h2>八ツ田の家</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
+//addMarker(32.789884, 130.987154, "<h2>ラーメン山口どっこいしょ</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
+//addMarker(32.639884, 131.087154, "<h2>うどん屋モッコリ堂</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
+//addMarker(36.160657, 139.244206, "<h2>八ツ田の家</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
 
 // 地図クリック時に詳細情報を非表示にする
 map.on('click', hideDetails);
