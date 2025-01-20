@@ -37,9 +37,10 @@
             </button>
         </form>
     </td>
+    <td>${group.name}</td>
     <td>${group.phoneNum}</td>
     <td>${group.email}</td>
-    <td>${group.name}</td>
+
 </tr>
 </c:forEach>
 </thead>

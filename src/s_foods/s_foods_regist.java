@@ -56,7 +56,7 @@ public class s_foods_regist extends CommonServlet{
 	    String gru_id = (String) session.getAttribute("s_g_id");
 	    gru_id = "001"; // グループIDの仮置き
 
-	    String y_or_n_jan = req.getParameter("not_jan[]");
+	    String y_or_n_jan = req.getParameter("not_jan");
 	    boolean y_or_n_janB = "on".equals(y_or_n_jan);
 
 	    // 商品名とJANコードを取得
@@ -70,6 +70,17 @@ public class s_foods_regist extends CommonServlet{
 	        if (rest_foods == null) break;
 	        rest_foods_list.add(rest_foods);
 	    }
+
+
+//	    // 食材名の取得
+//	    List<String[]> rest_foods_name_list = new ArrayList<>();
+//	    for (int i = 0; ; i++) {
+//	        String[] rest_foods_name = req.getParameterValues("rest_foods_id[" + i + "][]");
+//	        if (rest_foods_name == null) break;
+//	        rest_foods_name_list.add(rest_foods_name);
+//	    }
+
+
 
 	    System.out.println(jancodes);
 
@@ -89,15 +100,89 @@ public class s_foods_regist extends CommonServlet{
 
 	        System.out.println(rest_foods_list);
 	    }
+
+
+	    String[] rest_foods = new String[0];
+
+
 	    for (int i = 0; i < rest_foods_list.size(); i++) {
-	        String[] rest_foods = rest_foods_list.get(i);
+	        rest_foods = rest_foods_list.get(i);
 	        for (String rest_food : rest_foods) {
-	            System.out.println("rest_foods: " + rest_food + " (Form Index: " + i + ")");
+
+	        	System.out.println("rest_foods: " + rest_food + " (Form Index: " + i + ")");
 	        }
 	    }
 
-	    // ここでデータを処理するロジックを追加
-	    // 例えば、データベースに保存するなど
+
+////	    食材名
+//	    String[] rest_foods_name = new String[0];
+//	    for (int i = 0; i < rest_foods_name_list.size(); i++) {
+//	    	rest_foods_name = rest_foods_name_list.get(i);
+//	        for (String rest_food_name : rest_foods_name) {
+//
+//	        	System.out.println("rest_foods: " + rest_food_name + " (Form Index: " + i + ")");
+//	        }
+//	    }
+
+
+
+
+	    System.out.println(rest_foods);
+
+
+//	    ここから登録準備～登録へ
+
+//	    JANコードが存在するかどうか
+	    if(y_or_n_janB==false){
+//		    ランダムJANコードが必要ない
+
+
+//	    	食材リスト用カウント引数
+	    	int food_count = 0;
+
+//	    	食材「end」識別用
+	    	boolean food_end = true;
+
+	    	
+	    	String[] rest_foods_name = new String[0];
+
+
+//	    	データがある
+		    if (pro_names != null && jancodes != null) {
+		        for (int i = 0; i < pro_names.length; i++) {
+
+
+		        	food_end = false;
+		            System.out.println("商品名: " + pro_names[i] + " (Index: " + i + ")");
+		            System.out.println("JANコード: " + jancodes[i] + " (Index: " + i + ")");
+
+		            while(food_end){
+		            	rest_foods_name = rest_foods_list.get(food_count);
+		            	food_count ++;
+		            	
+		            	for(String p : rest_foods_name){
+		            		
+		            	}
+
+
+
+		            }
+
+
+
+		        }
+		    }
+
+
+
+
+
+	    }else{
+//	    	ランダムJANコードが必要
+
+	    }
+
+
 	}
 }
 

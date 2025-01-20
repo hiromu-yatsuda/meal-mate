@@ -9,7 +9,54 @@
     <%@ include file="../stuffnav.jsp" %>
 </header>
 
+<script>
 
+
+//従業員-商品登録
+//「＋」ボタンクリック -> 入力項目追加
+function addChildElement() {
+const container = document.querySelector("#container");
+const childElement = document.querySelector(".input-group");
+const copiedChild = childElement.cloneNode(true);
+
+//複製された要素の入力フィールドをクリア
+const inputs = copiedChild.querySelectorAll("input[type='text']");
+inputs.forEach(input => input.value = "");
+
+const checkboxes = copiedChild.querySelectorAll("input[type='checkbox']");
+checkboxes.forEach(checkbox => checkbox.checked = false);
+
+container.appendChild(copiedChild);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+const plusButton = document.querySelector("#addButton");
+if (plusButton) {
+plusButton.addEventListener("click", function () {
+    addChildElement();
+});
+}
+});
+
+
+let formIndex = 0;
+
+document.getElementById('addButton').addEventListener('click', function() {
+formIndex++;
+let newForm = document.querySelector('#form-container').cloneNode(true);
+newForm.querySelectorAll('input').forEach(input => {
+    if (input.name.includes('rest_foods')) {
+        input.name = input.name.replace('rest_foods[]', 'rest_foods[' + formIndex + '][]');
+    } else {
+        input.name = input.name.replace('[]', '[' + formIndex + ']');
+    }
+});
+document.querySelector('#form-in').appendChild(newForm);
+});
+
+
+
+</script>
 
 
 
@@ -44,7 +91,7 @@
         <tr>
     </c:if>
     <td>
-        <input type="checkbox" name="rest_foods[0][]" value="${foods.id}">
+        <input type="checkbox" name="rest_foods[0][]" value="${foods.id},${foods.foodName}">
         <input type="hidden" value="${foods.id}" name="rest_foods_id[]">${foods.foodName}
     </td>
     <c:if test="${status.index % 5 == 4 || status.last}">
