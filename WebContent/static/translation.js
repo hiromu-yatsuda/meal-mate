@@ -4,9 +4,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const outputText2 = document.getElementById('outputText2');
     const uploadMessageEl = document.getElementById('uploadMessage');
 
-    // AWS Translate 用の言語コードに変換する関数
+    // 詳細な言語コードマッピングを使用した関数
     function convertToAWSLang(langCode) {
-        return langCode.split('-')[0];
+        const mapping = {
+            "ja-JP": "ja",
+            "en-US": "en",
+            "en-GB": "en",
+            "es-ES": "es",
+            "es-MX": "es",
+            "fr-FR": "fr",
+            "de-DE": "de",
+            "zh-CN": "zh",
+            "ko-KR": "ko",
+            "it-IT": "it",
+            "ru-RU": "ru",
+            "pt-PT": "pt",
+            "pt-BR": "pt",
+            "ar-SA": "ar"
+            // 必要に応じて他のマッピングを追加
+        };
+        // マッピングが存在しない場合は、単純に最初の部分を返す
+        return mapping[langCode] || langCode.split('-')[0];
     }
 
     function getSourceSelectedLang(selectId) {
@@ -20,13 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function sendTextToServer(text, source_lang, target_lang) {
+        const awsSourceLang = convertToAWSLang(source_lang);
         const awsTargetLang = convertToAWSLang(target_lang);
+
         fetch(contextPath + '/uploadTest', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 text: text,
-                source_lang: source_lang,
+                source_lang: awsSourceLang,
                 target_lang: awsTargetLang
             })
         })
@@ -81,9 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         recordBtn1.addEventListener('click', () => {
             if (!recognizing1) {
+                // 録音開始前に選択された言語を取得し、認識オブジェクトに設定
+                recognition1.lang = getSourceSelectedLang('userLang1');
                 recognition1.start();
                 recognizing1 = true;
-                recordBtn1.textContent = '録音停止';
+                recordBtn1.textContent = 'STOP';
                 uploadMessageEl.textContent = '';
             } else {
                 recognition1.stop();
@@ -91,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 recordBtn1.textContent = '🎤';
             }
         });
+
     } else {
         recordBtn1.disabled = true;
         recordBtn1.textContent = '未対応';
@@ -129,9 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         recordBtn2.addEventListener('click', () => {
             if (!recognizing2) {
+                recognition2.lang = getSourceSelectedLang('userLang2');
                 recognition2.start();
                 recognizing2 = true;
-                recordBtn2.textContent = '録音停止';
+                recordBtn2.textContent = 'STOP';
                 uploadMessageEl.textContent = '';
             } else {
                 recognition2.stop();
@@ -139,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 recordBtn2.textContent = '🎤';
             }
         });
+
     } else {
         recordBtn2.disabled = true;
         recordBtn2.textContent = '未対応';
@@ -147,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sendFixedDataBtn').addEventListener('click', () => {
         const fixedText = "こんばんは";
         const fixedSourceLang = "ja";
-        const fixedTargetLang = "en"; // 例として英語を設定
+        const fixedTargetLang = "en";
         sendTextToServer(fixedText, fixedSourceLang, fixedTargetLang);
     });
 
