@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognition1.lang = getSourceSelectedLang('userLang1');
                 recognition1.start();
                 recognizing1 = true;
-                recordBtn1.textContent = 'STOP';
+                recordBtn1.textContent = 'OFF';
                 uploadMessageEl.textContent = '';
             } else {
                 recognition1.stop();
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognition2.lang = getSourceSelectedLang('userLang2');
                 recognition2.start();
                 recognizing2 = true;
-                recordBtn2.textContent = 'STOP';
+                recordBtn2.textContent = 'OFF';
                 uploadMessageEl.textContent = '';
             } else {
                 recognition2.stop();

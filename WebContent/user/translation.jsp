@@ -41,7 +41,7 @@
         .language-selection select {
             font-size: 1rem;
             padding: 5px;
-            margin-right: 10px;
+            margin-right: 10xp;
         }
         .language-selection .record-btn {
             background: #ffcc00;
@@ -126,7 +126,7 @@
                         <option value="ru-RU">Русский (RU)</option>
                         <option value="pt-PT">Português (PT)</option>
                         <option value="pt-BR">Português (BR)</option>
-                        <option value="ar-SA">(المملكة العربية السعودية)</option>
+                        <option value="ar-SA">المملكة العربية السعودية</option>
                     </select>
                     <button class="record-btn" id="recordBtn1" disabled>準備中...</button>
                 </div>
@@ -153,7 +153,7 @@
                         <option value="ru-RU">Русский (RU)</option>
                         <option value="pt-PT">Português (PT)</option>
                         <option value="pt-BR">Português (BR)</option>
-                        <option value="ar-SA">(المملكة العربية السعودية)</option>
+                        <option value="ar-SA">المملكة العربية السعودية</option>
                     </select>
                     <button class="record-btn" id="recordBtn2" disabled>準備中...</button>
                 </div>
