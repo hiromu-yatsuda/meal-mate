@@ -76,13 +76,15 @@
 
 
 
-<form action=""></form>
+<form action="/meal-mate/stuff/foods/regist/comp" method="post">
 
             <!-- ボタン -->
             <div id="decision" class="button-group">
-                <button type="button" id="confirmed">作成</button>
+                <button type="submit" id="confirmed">作成</button>
                 <button type="button" id="cancel">キャンセル</button>
             </div>
+
+</form>
 
         </div>
 
