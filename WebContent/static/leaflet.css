@@ -60,3 +60,12 @@ button:hover {
 #detailContainer strong {
     font-size: 50px; /* 見出しのサイズを変更 */
 }
+
+
+
+.heading-2 {
+    padding:0 .4em .2em;
+    border-bottom: 3px solid #e16b6b;
+    background-color: #ffffff;
+    color: #333333;
+}

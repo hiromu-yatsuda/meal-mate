@@ -23,16 +23,25 @@ public class MapAjax extends CommonServlet {
 
         StringBuilder json = new StringBuilder();
         StringBuilder storeCode = new StringBuilder("\"storeCode\": [");
+        // 店舗名
         StringBuilder storeName = new StringBuilder("\"storeName\": [");
         StringBuilder groups = new StringBuilder("\"groups\": [");
         StringBuilder groupCode = new StringBuilder("\"groupCode\": [");
+        // 電話番号
         StringBuilder phoneNum = new StringBuilder("\"phoneNum\": [");
+        // 緯度
         StringBuilder latitude = new StringBuilder("\"latitude\": [");
+        // 経度
         StringBuilder longitude = new StringBuilder("\"longitude\": [");
+        // 営業開始時刻
         StringBuilder openingTime = new StringBuilder("\"openingTime\": [");
+        // 営業終了時刻
         StringBuilder closingTime = new StringBuilder("\"closingTime\": [");
+        // 平均使用金額(低)
         StringBuilder avgAmountLow = new StringBuilder("\"avgAmountLow\": [");
+        // 平均使用金額(高)
         StringBuilder avgAmountHigh = new StringBuilder("\"avgAmountHigh\": [");
+        // 画像
         StringBuilder figure1 = new StringBuilder("\"figure1\": [");
         StringBuilder figure2 = new StringBuilder("\"figure2\": [");
         StringBuilder figure3 = new StringBuilder("\"figure3\": [");
