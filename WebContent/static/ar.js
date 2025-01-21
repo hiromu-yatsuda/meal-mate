@@ -1,10 +1,11 @@
 let obj = {};
 let time = 0;
-const timeAllowed = 20;
+const timeAllowed = 60;
 let res;
 let imageArray = [];
 let prevBarcode = "";
 const frameRate = 10;
+let i = 0;
 
 // Quagga
 Quagga.init(
@@ -125,8 +126,6 @@ Quagga.onDetected(async (result) => {
     console.log(barcode);
     await checkBarcode(barcode);
 });
-
-let i = 0;
 
 Quagga.onProcessed((result) => {
     const ctx = Quagga.canvas.ctx.overlay;
