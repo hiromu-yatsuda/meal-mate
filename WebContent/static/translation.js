@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         recordBtn1.addEventListener('click', () => {
             if (!recognizing1) {
-                // 録音開始前に選択された言語を取得し、認識オブジェクトに設定
+                // 録音開始前に選択されている言語を取得し、音声認識に設定
                 recognition1.lang = getSourceSelectedLang('userLang1');
                 recognition1.start();
                 recognizing1 = true;
