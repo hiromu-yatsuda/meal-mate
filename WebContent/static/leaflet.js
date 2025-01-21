@@ -85,7 +85,7 @@ detailContainer.id = 'detailContainer'; // id を設定して後から参照可�
 document.body.appendChild(detailContainer); // 作成した要素を HTML ドキュメントに追加
 
 // 詳細表示テキストのスタイルを大きくし、中央揃えに設定
-const detailTextStyle = 'font-size: 1.5em; line-height: 1.3em; text-align: center;'; // 中央揃えを追加
+const detailTextStyle = 'font-size: 0.7em; line-height: 1.3em; text-align: center;'; // 中央揃えを追加
 detailContainer.style.cssText += detailTextStyle; // 追加スタイルを適用
 
 // 詳細情報を表示する関数
@@ -117,7 +117,13 @@ $.ajax({
 	console.log("件数: " + storeLength)
 
 	for (let i=0; i<storeLength; i++) {
-		addMarker(res["latitude"][i], res["longitude"][i], "<h1>" + res["storeName"][i] + "</h1>");
+//		addMarker(res["latitude"][i], res["longitude"][i], "<h1>店舗名" + res["storeName"][i] + "</h1><br><h2>営業時間: " + res[]);
+		addMarker(res["latitude"][i], res["longitude"][i],
+		`<h1 class="heading-2"><img src='../img/omise.png'> ${ res["storeName"][i] }</h1>
+		<br><h2><img src='../img/zikan.png'> ${res["openingTime"][i] } ～ ${res["closingTime"][i] }</h2>
+		<br><h2><img src='../img/okane.png'> ${res["avgAmountLow"][i] } ～ ${res["avgAmountHigh"][i] }円</h2>
+		<br><h2><img src='../img/dennwa.png'> ${res["phoneNum"][i] }</h2>
+		<br><h2>${res["figure1"][i] }${res["figure2"][i] }${res["figure3"][i] }`);
 	}
 
 	console.log("passed");

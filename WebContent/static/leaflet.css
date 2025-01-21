@@ -60,3 +60,67 @@ button:hover {
 #detailContainer strong {
     font-size: 50px; /* 見出しのサイズを変更 */
 }
+
+
+
+.heading-2 {
+    padding:0 .4em .2em;
+    border-bottom: 3px solid #e16b6b;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+
+.hako {
+    position: fixed;
+    top: 20px; /* 上端からの距離を 20px に設定（隙間を作る） */
+    left: 50%; /* 中央に配置 */
+    transform: translateX(-50%); /* 中央揃え */
+    z-index: 1000; /* 他の要素より前面に表示 */
+}
+
+.hako a {
+    font-size: 1.3rem; /* アイコンサイズ */
+    text-decoration: none;
+    color: #333; /* アイコンの色 */
+    padding: 10px 20px; /* アイコンの内側余白 */
+    border: 2px solid #d3d3d3; /* 枠線 */
+    border-radius: 8px; /* 角を丸くする */
+    background-color: #f9f9f9; /* 背景色 */
+    transition: transform 0.3s, color 0.3s, background-color 0.3s; /* アニメーション */
+}
+
+.hako a:hover {
+    transform: scale(1.2); /* ホバー時に拡大 */
+    color: #007bff; /* ホバー時の色 */
+    background-color: #e0e0e0; /* ホバー時の背景色 */
+    border-color: #007bff; /* ホバー時の枠線色 */
+}
+
+
+#locationButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px; /* アイコンの周囲余白 */
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 50%; /* 円形にする */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 50px; /* ボタンのサイズ */
+    height: 50px; /* ボタンのサイズ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#locationButton:hover {
+    background-color: #f0f0f0;
+}
+
+#locationIcon {
+    width: 24px; /* アイコンの幅 */
+    height: 24px; /* アイコンの高さ */
+}

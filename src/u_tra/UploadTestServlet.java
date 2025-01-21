@@ -1,3 +1,5 @@
+// UploadTestServlet.java
+
 package u_tra;
 
 import java.io.BufferedReader;
@@ -29,35 +31,13 @@ public class UploadTestServlet extends HttpServlet {
             }
         }
         String requestBody = sb.toString();
-        System.out.println("Received body: " + requestBody);
+        System.out.println("body: " + requestBody);
 
-        // 2. "text" フィールドを簡易的に抜き出し
-        String text = parseTextFromJson(requestBody);
-        System.out.println("Received text: " + text);
 
-        // 3. ここで翻訳やDB保存など行う場合はご自由に
-        //    例: AWS Translateにかける、テーブルにINSERTする...
-
-        // 4. レスポンス
+        // 2. レスポンス
         response.setContentType("text/plain; charset=UTF-8");
-        response.getWriter().println("Received text length=" + text.length());
         System.out.println("=== UploadTestServlet.doPost end ===");
     }
 
-    /**
-     * シンプルに "text":"..." を抜き出すだけ (本番はJackson等推奨)
-     */
-    private String parseTextFromJson(String json) {
-        String key = "\"text\":\"";
-        int start = json.indexOf(key);
-        if (start < 0) {
-            return "";
-        }
-        start += key.length();
-        int end = json.indexOf("\"", start);
-        if (end < 0) {
-            return "";
-        }
-        return json.substring(start, end);
-    }
+
 }
