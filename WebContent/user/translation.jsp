@@ -130,7 +130,7 @@
                     </select>
                     <button class="record-btn" id="recordBtn1" disabled>準備中...</button>
                 </div>
-                <p class="output-text1" id="outputText1">私は強い</p>
+                <p class="output-text1" id="outputText1"></p>
                 <button class="read-aloud-btn">🔊</button>
             </div>
 
@@ -157,7 +157,7 @@
                     </select>
                     <button class="record-btn" id="recordBtn2" disabled>準備中...</button>
                 </div>
-                <p class="output-text2" id="outputText2">I'm strong.</p>
+                <p class="output-text2" id="outputText2"></p>
                 <button class="translate-btn">⇧</button>
                 <button id="sendFixedDataBtn">テスト用データを送信</button>
             </div>
