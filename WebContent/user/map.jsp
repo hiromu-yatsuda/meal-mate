@@ -12,8 +12,16 @@
 <body>
 <div id="myMap"></div>
 
+
+<!-- ホーム画面に戻るボタン -->
+<div class="hako">
+    <a href="http://localhost:8080/meal-mate/user/top.jsp" id="homeButton">🏠</a>
+</div>
 <!-- 現在地ボタン -->
-<button id="locationButton">現在地に移動</button>
+<button id="locationButton">
+    <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="現在地に移動" id="locationIcon">
+</button>
+
 
 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
      integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
