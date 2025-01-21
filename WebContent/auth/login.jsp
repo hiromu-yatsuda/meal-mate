@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
 <title>ログイン</title>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Kosugi');
@@ -33,9 +34,7 @@ body {
     text-align: center; /* テキスト中央揃え */
     margin-bottom: 20px; /* 下部のマージン */
     background-color: #f1f1f1; /* ヘッダー背景色 */
-    padding: 10px; /* ヘッダー内側のスペース */
     border-bottom: 1px solid #ddd; /* 下線の追加 */
-    font-size: 80px; /* フォントサイズを設定 */
 
 }
 
@@ -44,11 +43,10 @@ body {
 .login-container input[type="password"] {
     display: block;
     width: 100%;
-    padding: 25px; /* 内側のスペースを設定 */
     margin-bottom: 10px;
     border: 1px solid #ddd;
     box-sizing: border-box;
-    font-size: 50px; /* 文字サイズを20pxに設定 */
+    font-size: 30px; /* 文字サイズを20pxに設定 */
 }
 
 
@@ -57,7 +55,6 @@ body {
     display: flex; /* 子要素を横並びに配置 */
     align-items: center; /* 子要素を縦中央揃え */
     margin-bottom: 10px; /* 下部のマージン */
-    font-size: 2.2em;
     font-family: 'Kosugi', sans-serif;
     font-weight: bold;
 }
@@ -70,13 +67,12 @@ body {
 /* サブミットボタンのスタイル */
 .login-container input[type="submit"] {
     width: 100%;
-    padding: 10px;
     background-color: #3399FF;
     border: none;
     color: #fff;
     cursor: pointer;
-    font-size: 3.5em;
-    margin: 100px 0px 0px 0px;
+    font-size: 2em;
+    margin: 40px 0px 0px 0px;
     border: 8px double #0090bb;
 }
 
