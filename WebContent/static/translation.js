@@ -57,14 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.text();
         })
         .then(result => {
-            console.log('テキスト送信成功:', result);
+            console.log('テキスト送信成功');
             uploadMessageEl.style.color = 'green';
-            uploadMessageEl.textContent = 'テキストを送信しました: ' + result;
+            uploadMessageEl.textContent = 'テキストを送信しました';
         })
         .catch(error => {
             console.error('テキスト送信失敗:', error);
             uploadMessageEl.style.color = 'red';
-            uploadMessageEl.textContent = 'テキスト送信に失敗しました。';
+            uploadMessageEl.textContent = 'テキスト送信に失敗しました';
         });
     }
 

@@ -31,7 +31,7 @@ public class UploadTestServlet extends HttpServlet {
             }
         }
         String requestBody = sb.toString();
-        System.out.println("Received body: " + requestBody);
+        System.out.println("body: " + requestBody);
 
 
         // 2. レスポンス

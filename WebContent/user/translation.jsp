@@ -159,7 +159,7 @@
                 </div>
                 <p class="output-text2" id="outputText2">I'm strong.</p>
                 <button class="translate-btn">⇧</button>
-                <button id="sendFixedDataBtn">固定データを送信</button>
+                <button id="sendFixedDataBtn">テスト用データを送信</button>
             </div>
         </div>
 
