@@ -98,7 +98,7 @@ document.querySelector('#form-in').appendChild(newForm);
         </tr>
     </c:if>
 </c:forEach>
-<input type="hidden" value="end" name="rest_foods[0][]">
+<input type="hidden" value="end,end" name="rest_foods[0][]">
                     </table>
                 </div>
             </div>

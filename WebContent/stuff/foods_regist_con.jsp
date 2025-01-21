@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="/stuffbase.jsp">
@@ -13,68 +14,69 @@
         <div class="form-create" id="stuff_reg">
 
             <!-- 固定の商品情報 -->
-            <table border="1">
-                <tr>
-                    <td>商品名</td>
-                    <td>もちもちもっくん</td>
-                </tr>
-                <tr>
-                    <td>JANコード</td>
-                    <td>292929292</td>
-                </tr>
-                <tr>
-                    <td>原材料</td>
-                    <td>豚</td>
-                    <td>ウシ</td>
-                    <td>パンダ</td>
-                </tr>
-            </table>
 
-            <br/>
 
-            <table border="1">
-                <tr>
-                    <td>商品名</td>
-                    <td>もちもちもっくん</td>
-                </tr>
-                <tr>
-                    <td>JANコード</td>
-                    <td>292929292</td>
-                </tr>
-                <tr>
-                    <td>原材料</td>
-                    <td>豚</td>
-                    <td>ウシ</td>
-                    <td>パンダ</td>
-                </tr>
-            </table>
-
-            <br/>
 
             <!-- 動的な商品情報 -->
-            <c:forEach var="proData" items="${jancode}">
-                <table border="1">
-                    <tr>
-                        <td>商品名</td>
-                        <td>${proName_List}</td>
-                    </tr>
-                    <tr>
-                        <td>JANコード</td>
-                        <td>${jancode}</td>
-                    </tr>
-                    <tr>
-                        <td>原材料</td>
-                        <td>
-                            <c:forEach var="item" items="${foods}">
-                                ${item}<br/>
-                            </c:forEach>
-                        </td>
-                    </tr>
-                </table>
-                <br/>
-            </c:forEach>
+
+                <%
+                ArrayList<ArrayList<String>> nextFullList = (ArrayList<ArrayList<String>>) request.getAttribute("next_full_list");
+
+
+				int pro_food_count = 0;
+
+                for (ArrayList<String> mini_nextFullList : nextFullList) {
+                    out.println("<table border='1'>");
+
+                    for (int i = mini_nextFullList.size() - 1; i >= 0; --i) {
+                        int ii = mini_nextFullList.size() - 1;
+
+                        if (i == ii) {
+                            out.println("<tr>");
+                            out.println("<td>JANコード</td>");
+                            out.println("<td>" + mini_nextFullList.get(i) + "</td>");
+                            out.println("</tr>");
+                        } else if (i == ii - 1) {
+                            out.println("<tr>");
+                            out.println("<td>商品名</td>");
+                            out.println("<td>" + mini_nextFullList.get(i) + "</td>");
+                            out.println("</tr>");
+                            out.println("<tr>");
+                            out.println("<td>原材料</td>");
+                        } else if (i == 0) {
+                            out.println("<td>" + mini_nextFullList.get(i) + "</td>");
+                            out.println("</tr>");
+                        } else {
+
+                        	if(pro_food_count==5){
+
+                        		out.println("<td>" + mini_nextFullList.get(i) + "</td>");
+                        		out.println("</tr>");
+                        		out.println("<tr>");
+
+                        		out.println("<td></td>");
+
+                        		pro_food_count=0;
+                        	}else{
+
+
+                            out.println("<td>" + mini_nextFullList.get(i) + "</td>");
+                            pro_food_count++;
+                        	}
+                        }
+                    }
+
+                    out.println("</table>");
+                    out.println("<br/>");
+                }
+                %>
+
 
             <p>上記の商品を登録しますか？</p>
+
+
+
+<form action=""></form>
 
             <!-- ボタン -->
             <div id="decision" class="button-group">
