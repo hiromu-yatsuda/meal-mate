@@ -11,8 +11,8 @@ const iconData = {
     ],
         vegetables: [
         { name: "matsutake", src: "icons/matsutake.png",id:"" }, // 松茸アイコン
-        { name: "goma", src: "icons/goma.png",id:"" }, // ごまアイコン
-        { name: "yamaimo", src: "icons/yamaimo.png",id:"" } // 山芋アイコン
+        { name: "sesame", src: "icons/goma.png",id:"" }, // ごまアイコン
+        { name: "yam", src: "icons/yamaimo.png",id:"" } // 山芋アイコン
     ],
     meats: [
         { name: "chicken", src: "icons/chicken.png",id:"" }, // 鶏肉アイコン
@@ -20,39 +20,39 @@ const iconData = {
         { name: "pork", src: "icons/pork.png",id:"" } // 豚肉アイコン
     ],
     seafood: [
-        { name: "saba", src: "icons/saba.png",id:"" }, // 鯖アイコン
-        { name: "kani", src: "icons/kani.png",id:"" }, // カニアイコン
-        { name: "ebi", src: "icons/ebi.png",id:"" }, // エビアイコン
-        { name: "awabi", src: "icons/awabi.png",id:"" },// アワビアイコン
-        { name: "ikura", src: "icons/ikura.png",id:"" }, // いくらアイコン
-        { name: "sake", src: "icons/sake.png",id:"" }, // 鮭アイコン
-        { name: "ika", src: "icons/ika.png",id:"" } // イカアイコン
+        { name: "mackerel", src: "icons/saba.png",id:"" }, // 鯖アイコン
+        { name: "crab", src: "icons/kani.png",id:"" }, // カニアイコン
+        { name: "shrimp", src: "icons/ebi.png",id:"" }, // エビアイコン
+        { name: "abalone", src: "icons/awabi.png",id:"" },// アワビアイコン
+        { name: "salmon roe", src: "icons/ikura.png",id:"" }, // いくらアイコン
+        { name: "salmon", src: "icons/sake.png",id:"" }, // 鮭アイコン
+        { name: "squid", src: "icons/ika.png",id:"" } // イカアイコン
     ],
 
     dairy: [
         { name: "milk", src: "icons/milk.png",id:"" }, // 牛乳アイコン
         { name: "egg", src: "icons/egg.png",id:"" }, // 卵アイコン
-        { name: "komugiko", src: "icons/komugiko.png",id:"" } // 小麦粉アイコン
+        { name: "flour", src: "icons/komugiko.png",id:"" } // 小麦粉アイコン
     ],
     sonota: [
-        { name: "kurumi", src: "icons/kurumi.png",id:"" }, // くるみアイコン
+        { name: "walnut", src: "icons/kurumi.png",id:"" }, // くるみアイコン
         { name: "soba", src: "icons/soba.png",id:"" }, // 蕎麦アイコン
-        { name: "pinattsu", src: "icons/pinattsu.png",id:"" }, // ピーナッツアイコン
-        { name: "kashunattsu", src: "icons/kashunattsu.png",id:"" }, // カシューナッツアイコン
-        { name: "daizu", src: "icons/daizu.png",id:"" }, // 大豆アイコン
+        { name: "peanuts", src: "icons/pinattsu.png",id:"" }, // ピーナッツアイコン
+        { name: "cashew nuts", src: "icons/kashunattsu.png",id:"" }, // カシューナッツアイコン
+        { name: "soy", src: "icons/daizu.png",id:"" }, // 大豆アイコン
         { name: "gelatine", src: "icons/gelatine.png",id:"" } // ゼラチンアイコン
     ],
     vigan: [
         { name: "chicken", src: "icons/chicken.png",id:"" }, // 鶏肉アイコン
         { name: "beef", src: "icons/beef.png",id:"" }, // 牛肉アイコン
         { name: "pork", src: "icons/pork.png",id:"" }, // 豚肉アイコン
-        { name: "saba", src: "icons/saba.png",id:"" }, // 鯖アイコン
-        { name: "kani", src: "icons/kani.png",id:"" }, // カニアイコン
-        { name: "ebi", src: "icons/ebi.png",id:"" }, // エビアイコン
-        { name: "awabi", src: "icons/awabi.png",id:"" },// アワビアイコン
-        { name: "ikura", src: "icons/ikura.png",id:"" }, // いくらアイコン
-        { name: "sake", src: "icons/sake.png",id:"" }, // 鮭アイコン
-        { name: "ika", src: "icons/ika.png",id:"" }, // イカアイコン
+        { name: "mackerel", src: "icons/saba.png",id:"" }, // 鯖アイコン
+        { name: "crab", src: "icons/kani.png",id:"" }, // カニアイコン
+        { name: "shrimp", src: "icons/ebi.png",id:"" }, // エビアイコン
+        { name: "abalone", src: "icons/awabi.png",id:"" },// アワビアイコン
+        { name: "salmon roe", src: "icons/ikura.png",id:"" }, // いくらアイコン
+        { name: "salmon", src: "icons/sake.png",id:"" }, // 鮭アイコン
+        { name: "squid", src: "icons/ika.png",id:"" }, // イカアイコン
         { name: "milk", src: "icons/milk.png",id:"" }, // 牛乳アイコン
         { name: "egg", src: "icons/egg.png",id:"" }, // 卵アイコン
         { name: "gelatine", src: "icons/gelatine.png",id:"" } // ゼラチンアイコン
