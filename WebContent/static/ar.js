@@ -1,6 +1,6 @@
 let obj = {};
 let time = 0;
-const timeAllowed = 60;
+const timeAllowed = 20;
 let res;
 let imageArray = [];
 let prevBarcode = "";
