@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const outputText2 = document.getElementById('outputText2');
 
     if (testBtn) {
-        console.log("Test button found:", testBtn);
         testBtn.addEventListener('click', () => {
             console.log("翻訳結果表示テストボタンがクリックされました");
             outputText1.textContent = "テスト結果1";
@@ -69,13 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(result => {
             console.log('テキスト送信成功');
-            uploadMessageEl.style.color = 'green';
-            uploadMessageEl.textContent = 'テキストを送信しました';
+            console.log(result)
+            const obj = JSON.parse(result); // =>JSONをJavaScriptのオブジェクトに変換
+            console.log(obj.translatedText)
+            console.log(obj.outputMp3)
+            console.log(obj.message)
         })
         .catch(error => {
             console.error('テキスト送信失敗:', error);
-            uploadMessageEl.style.color = 'red';
-            uploadMessageEl.textContent = 'テキスト送信に失敗しました';
+
         });
     }
 
