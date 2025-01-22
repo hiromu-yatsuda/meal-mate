@@ -1,8 +1,19 @@
 // translation.js
 document.addEventListener('DOMContentLoaded', () => {
+    const testBtn = document.getElementById('testDisplayBtn');
     const outputText1 = document.getElementById('outputText1');
     const outputText2 = document.getElementById('outputText2');
-    const uploadMessageEl = document.getElementById('uploadMessage');
+
+    if (testBtn) {
+        console.log("Test button found:", testBtn);
+        testBtn.addEventListener('click', () => {
+            console.log("翻訳結果表示テストボタンがクリックされました");
+            outputText1.textContent = "テスト結果1";
+            outputText2.textContent = "テスト結果2";
+        });
+    } else {
+        console.error("testDisplayBtn が見つかりません");
+    }
 
     // 詳細な言語コードマッピングを使用した関数
     function convertToAWSLang(langCode) {

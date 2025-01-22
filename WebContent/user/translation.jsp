@@ -160,6 +160,7 @@
                 <p class="output-text2" id="outputText2"></p>
                 <button class="translate-btn">⇧</button>
                 <button id="sendFixedDataBtn">テスト用データを送信</button>
+                <button id="testDisplayBtn">翻訳結果表示テスト</button>
             </div>
         </div>
 

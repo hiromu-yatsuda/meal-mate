@@ -22,7 +22,7 @@ public class UploadTestServlet extends HttpServlet {
 
         System.out.println("=== UploadTestServlet.doPost start ===");
 
-        // 1. リクエストボディ(JSON)を読み込む
+        // リクエストボディ(JSON)を読み込む
         StringBuilder sb = new StringBuilder();
         try (BufferedReader br = request.getReader()) {
             String line;
@@ -33,11 +33,16 @@ public class UploadTestServlet extends HttpServlet {
         String requestBody = sb.toString();
         System.out.println("body: " + requestBody);
 
+        // 簡易的なJSONレスポンスの例
+        String jsonResponse = "{"
+                + "\"translatedText\":\"これはテスト翻訳結果です\","
+                + "\"outputMp3\":\"dummy.mp3\","
+                + "\"message\":\"正常に処理されました\""
+                + "}";
 
-        // 2. レスポンス
-        response.setContentType("text/plain; charset=UTF-8");
+        response.setContentType("application/json; charset=UTF-8");
+        response.getWriter().write(jsonResponse);
+
         System.out.println("=== UploadTestServlet.doPost end ===");
     }
-
-
 }
