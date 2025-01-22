@@ -43,8 +43,6 @@ function getFoods(barcode) {
 			dataType: "json"
 		}).done(function (res) {
 			loadFoods(res["paths"]);
-			// 恐らくitemは画像path
-			// daoから返される名称と画像の名前をそろえる
 		}).fail(function (res) {
 			console.log(res);
 		})
@@ -103,7 +101,6 @@ function drawText() {
     const rect = calcRect(res.box);
 
     // 食べられない食材が入っている場合、表示上限は暫定9件(後で調整)
-    // 多分下のコメントアウトのコードで上手くいく
     const width = 100;
     const height = 100;
     const numTimes = 9;

@@ -15,7 +15,7 @@ public class ARController extends CommonServlet {
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
-//        int barcode = Integer.parseInt(req.getParameter("barcode"));
+        String barcode = req.getParameter("barcode");
 
 //        HttpSession session = req.getSession();
 //        // ユーザIDを取得し、登録されている制限食材を取得

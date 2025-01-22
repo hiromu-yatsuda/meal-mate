@@ -9,14 +9,14 @@ import java.util.List;
 import bean.Foods;
 
 public class ProductFoods extends DAO {
-    public List<Foods> searchFoodsByJanCode(int janCode) throws Exception {
+    public List<Foods> searchFoodsByJanCode(String janCode) throws Exception {
         List<Foods> foods = new ArrayList<Foods>();
         FoodsDAO fDao = new FoodsDAO();
 
         Connection connection = getConnection();
         PreparedStatement pStatement = connection.prepareStatement("select foods_id from product_foods where foods_id = ?");
 
-        pStatement.setInt(1, janCode);
+        pStatement.setString(1, janCode);
 
         ResultSet rSet = pStatement.executeQuery();
 
