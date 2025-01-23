@@ -131,7 +131,8 @@
                     <button class="record-btn" id="recordBtn1" disabled>準備中...</button>
                 </div>
                 <p class="output-text1" id="outputText1"></p>
-                <button class="read-aloud-btn">🔊</button>
+                <button class="translate-btn" id="translateBtn1">⇧</button>
+                <button class="read-aloud-btn" id="readaloudBtn1">🔊</button>
             </div>
 
             <hr>
@@ -158,9 +159,9 @@
                     <button class="record-btn" id="recordBtn2" disabled>準備中...</button>
                 </div>
                 <p class="output-text2" id="outputText2"></p>
-                <button class="translate-btn">⇧</button>
+                <button class="translate-btn" id="translateBtn1">⇧</button>
+                <button class="read-aloud-btn" id="readaloudBtn2">🔊</button>
                 <button id="sendFixedDataBtn">テスト用データを送信</button>
-                <button id="testDisplayBtn">翻訳結果表示テスト</button>
             </div>
         </div>
 
