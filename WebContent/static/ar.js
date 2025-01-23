@@ -92,11 +92,11 @@ async function checkBarcode(num) {
 }
 
 function calcRect(box) {
-    const xDistance = 100;
+    const xDistance = -100;
     const x1 = box[1][0];
     const x2 = box[2][0];
     const x = (x1 + x2) / 2 + xDistance;
-    const yDistance = -100;
+    const yDistance = -50;
     const y1 = box[1][1];
     const y = y1 + yDistance;
 
@@ -120,8 +120,8 @@ function drawText() {
     const rect = calcRect(res.box);
 
     // 食べられない食材が入っている場合、表示上限は暫定9件(後で調整)
-    const width = 100;
-    const height = 100;
+    const width = 70;
+    const height = 70;
     const numTimes = 9;
     const kaisuu = numTimes > imageArray.length? imageArray.length: numTimes;
     let count = 0;
