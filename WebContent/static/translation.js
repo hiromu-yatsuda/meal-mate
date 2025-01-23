@@ -1,17 +1,19 @@
 // translation.js
 document.addEventListener('DOMContentLoaded', () => {
-    const testBtn = document.getElementById('testDisplayBtn');
+    const translateBtn = document.getElementById('translateBtn');
     const outputText1 = document.getElementById('outputText1');
     const outputText2 = document.getElementById('outputText2');
 
-    if (testBtn) {
-        testBtn.addEventListener('click', () => {
+    if (translateBtn) {
+        translateBtn.addEventListener('click', () => {
             console.log("翻訳結果表示テストボタンがクリックされました");
             outputText1.textContent = "テスト結果1";
             outputText2.textContent = "テスト結果2";
+            console.log(outputText1.textContent);
+            console.log(outputText2.textContent);
         });
     } else {
-        console.error("testDisplayBtn が見つかりません");
+        console.error("translateBtn が見つかりません");
     }
 
     // 詳細な言語コードマッピングを使用した関数
@@ -118,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognition1.start();
                 recognizing1 = true;
                 recordBtn1.textContent = 'OFF';
-                uploadMessageEl.textContent = '';
             } else {
                 recognition1.stop();
                 recognizing1 = false;
@@ -168,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognition2.start();
                 recognizing2 = true;
                 recordBtn2.textContent = 'OFF';
-                uploadMessageEl.textContent = '';
             } else {
                 recognition2.stop();
                 recognizing2 = false;
