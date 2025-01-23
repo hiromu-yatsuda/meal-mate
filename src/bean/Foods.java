@@ -5,8 +5,7 @@ import java.io.Serializable;
 public class Foods implements Serializable {
     private int id;
     private String foodName;
-    private String iconR;
-    private String iconG;
+    private String icon;
     private Categories categories;
 
     public int getId() {
@@ -21,18 +20,13 @@ public class Foods implements Serializable {
     public void setFoodName(String foodName) {
         this.foodName = foodName;
     }
-    public String getIconR() {
-        return iconR;
+    public String getIcon() {
+        return icon;
     }
-    public void setIconR(String iconR) {
-        this.iconR = iconR;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
-    public String getIconG() {
-        return iconG;
-    }
-    public void setIconG(String iconG) {
-        this.iconG = iconG;
-    }
+
     public Categories getCategories() {
         return categories;
     }
