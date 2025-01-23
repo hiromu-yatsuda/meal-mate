@@ -55,8 +55,7 @@ public class FoodsDAO extends DAO {
 	    if (rSet.next()) {
 	        food.setId(rSet.getInt("id"));
 	        food.setFoodName(rSet.getString("name"));
-	        food.setIconR(rSet.getString("icon_r"));
-	        food.setIconG(rSet.getString("icon_g"));
+	        food.setIcon(rSet.getString("icon_"));
 	    }
 
 	    pStatement.close();
@@ -84,8 +83,7 @@ public class FoodsDAO extends DAO {
             Foods food = new Foods();
             food.setId(rSet.getInt("id"));
             food.setFoodName(rSet.getString("name"));
-            food.setIconR(rSet.getString("icon_r"));
-            food.setIconG(rSet.getString("icon_g"));
+            food.setIcon(rSet.getString("icon"));
             foods.add(food);
         }
 
