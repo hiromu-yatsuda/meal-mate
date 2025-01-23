@@ -19,34 +19,25 @@ public class ARController extends CommonServlet {
         System.out.println("servlet");
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
-        String barcode = req.getParameter("barcode");
+//        String barcode = req.getParameter("barcode");
 
 //        HttpSession session = req.getSession();
         // ユーザIDを取得し、登録されている制限食材を取得
         // ユーザのログイン機能ができていないためコメントアウト
 //        String userId = (String)session.getAttribute("u_id");
-        String userId = "000001";
-        List<Foods> foods = (new FoodsDAO()).getFoods(barcode, userId);
 
-//        System.out.println("restFoods: " + restFoods.get(0).getFoodName());
-//        System.out.println("productFoods: " + productFoods.get(0).getFoodName());
-//        System.out.println("set1: " + set1);
+        // テスト用の固定値
+        String userId = "000001";
+        String barcode = "4901777316539";
+
+        List<Foods> foods = (new FoodsDAO()).getFoods(barcode, userId);
+        System.out.println();
 
         // 登録した食材がなかった場合の処理も考える
-//        if (set1.isEmpty()) {
-//            out.println("empty");
-//        } else {
-//            StringBuilder sBuilder = new StringBuilder();
-//            sBuilder.append("{\"classes\": [");
-//            for (Foods item: set1) {
-//                sBuilder.append("\"" + item + "\", ");
-//            }
-//            sBuilder.delete(sBuilder.length() - 2, sBuilder.length());
-//            sBuilder.append("]}");
-//
-//
-//            out.print(sBuilder.toString());
-//        }
+        if (!foods.isEmpty()) {
+            StringBuilder sBuilder = new StringBuilder();
+
+        }
 
         String string = "{\"paths\": [\"AR.png\", \"class.png\", \"csv.jpg\", \"gennzaiti.png\"]}";
 
