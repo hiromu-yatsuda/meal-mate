@@ -1,20 +1,10 @@
 // translation.js
 document.addEventListener('DOMContentLoaded', () => {
-    const translateBtn = document.getElementById('translateBtn');
+    const translateBtn1 = document.getElementById('translateBtn1');
+    const translateBtn2 = document.getElementById('translateBtn2');
     const outputText1 = document.getElementById('outputText1');
     const outputText2 = document.getElementById('outputText2');
 
-    if (translateBtn) {
-        translateBtn.addEventListener('click', () => {
-            console.log("翻訳結果表示テストボタンがクリックされました");
-            outputText1.textContent = "テスト結果1";
-            outputText2.textContent = "テスト結果2";
-            console.log(outputText1.textContent);
-            console.log(outputText2.textContent);
-        });
-    } else {
-        console.error("translateBtn が見つかりません");
-    }
 
     // 詳細な言語コードマッピングを使用した関数
     function convertToAWSLang(langCode) {
@@ -101,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const text = event.results[0][0].transcript;
             console.log('上段の認識結果:', text);
             outputText1.textContent = text;
-            sendTextToServer(text, getSourceSelectedLang('userLang1'), getTargetSelectedLang('userLang2'));
+
         };
 
         recognition1.onerror = (e) => {
@@ -151,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const text = event.results[0][0].transcript;
             console.log('下段の認識結果:', text);
             outputText2.textContent = text;
-            sendTextToServer(text, getSourceSelectedLang('userLang2'), getTargetSelectedLang('userLang1'));
+
         };
 
         recognition2.onerror = (e) => {
@@ -185,7 +175,48 @@ document.addEventListener('DOMContentLoaded', () => {
         const fixedText = "こんばんは";
         const fixedSourceLang = "ja";
         const fixedTargetLang = "en";
-        sendTextToServer(fixedText, fixedSourceLang, fixedTargetLang);
+        outputText1.textContent = fixedText;
+        outputText2.textContent = fixedText;
     });
+
+    // 翻訳ボタン1（上段）の設定
+    if (translateBtn1) {
+        translateBtn1.addEventListener('click', () => {
+            const text = outputText1.textContent;
+            const sourceLang = getSourceSelectedLang('userLang1');
+            const targetLang = getTargetSelectedLang('userLang2');
+            if (text) {
+                sendTextToServer(text, sourceLang, targetLang, (data) => {
+                    if (data && data.translatedText) {
+                        outputText1.textContent = data.translatedText;
+                        console.log('上段の翻訳結果:', data.translatedText);
+                    }
+                });
+            } else {
+                console.warn("上段に翻訳するテキストがありません");
+            }
+        });
+    }
+
+
+
+    // 翻訳ボタン2（下段）の設定
+    if (translateBtn2) {
+        translateBtn2.addEventListener('click', () => {
+            const text = outputText2.textContent;
+            const sourceLang = getSourceSelectedLang('userLang2');
+            const targetLang = getTargetSelectedLang('userLang1'); // 同じ言語に翻訳する場合
+            if (text) {
+                sendTextToServer(text, sourceLang, targetLang, (data) => {
+                    if (data && data.translatedText) {
+                        outputText2.textContent = data.translatedText;
+                        console.log('下段の翻訳結果:', data.translatedText);
+                    }
+                });
+            } else {
+                console.warn("下段に翻訳するテキストがありません");
+            }
+        });
+    }
 
 });

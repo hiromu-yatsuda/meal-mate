@@ -70,20 +70,42 @@
             justify-content: center;
             overflow-y: auto;
         }
-        .read-aloud-btn, .translate-btn {
-            background: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 20px 40px;
-            font-size: 1.6rem;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s ease;
+		/* ボタンを横並びにし、同じサイズに統一 */
+		.button-group {
+		    display: flex;
+		    gap: 10px; /* ボタン間のスペース */
+		    margin-top: 10px; /* 上の要素との間隔 */
+		    width: 100%; /* ボタングループの幅を親要素に合わせる */
+		}
+
+		/* 既存のボタンスタイル */
+		.read-aloud-btn, .translate-btn {
+		    background: #007BFF;
+		    color: white;
+		    border: none;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease; /* トランジションを追加 */
+		}
+
+		/* ホバー時のスタイル */
+		.read-aloud-btn:hover, .translate-btn:hover {
+		    background: #0056b3; /* 背景色を変更 */
+		    color: #ffffff; /* テキスト色を変更 */
+		    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* シャドウを追加 */
+		    transform: scale(1.05); /* ボタンを5%拡大 */
+		}
+
+		.button-group .translate-btn,
+		.button-group .read-aloud-btn {
+			background: #007BFF;
+		    flex: 1; /* ボタンを均等に拡張 */
+		    padding: 15px 0; /* 上下のパディングを調整 */
+		    font-size: 1.6rem; /* フォントサイズを統一 */
+		    border-radius: 5px; /* 角を丸くする */
+		}
         }
-        .read-aloud-btn:hover, .translate-btn:hover {
-            background: #0056b3;
-        }
+
         hr {
             border: 0.5px solid #ddd;
             width: 100%;
@@ -99,10 +121,7 @@
                 padding: 8px;
                 font-size: 1rem;
             }
-            .read-aloud-btn, .translate-btn {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
+
         }
     </style>
 </head>
@@ -131,8 +150,10 @@
                     <button class="record-btn" id="recordBtn1" disabled>準備中...</button>
                 </div>
                 <p class="output-text1" id="outputText1"></p>
-                <button class="translate-btn" id="translateBtn1">⇧</button>
-                <button class="read-aloud-btn" id="readaloudBtn1">🔊</button>
+                <div class="button-group">
+                	<button class="translate-btn" id="translateBtn1">⇧</button>
+                	<button class="read-aloud-btn" id="readaloudBtn1">🔊</button>
+                </div>
             </div>
 
             <hr>
@@ -159,8 +180,10 @@
                     <button class="record-btn" id="recordBtn2" disabled>準備中...</button>
                 </div>
                 <p class="output-text2" id="outputText2"></p>
-                <button class="translate-btn" id="translateBtn1">⇧</button>
-                <button class="read-aloud-btn" id="readaloudBtn2">🔊</button>
+                <div class="button-group">
+                	<button class="translate-btn" id="translateBtn2">⇧</button>
+                	<button class="read-aloud-btn" id="readaloudBtn2">🔊</button>
+                </div>
                 <button id="sendFixedDataBtn">テスト用データを送信</button>
             </div>
         </div>
