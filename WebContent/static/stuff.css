@@ -88,10 +88,12 @@ h1 {
     margin: 20px 0 0 0; /* 上下の余白を調整 */
 }
 
-
-
-
-
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
 
 /* フォームスタイル */

@@ -10,8 +10,8 @@
     </header>
 
         <h1>グループ作成が完了しました</h1>
-
-        <a href="a_top.jsp">Topへ</a>
-
+		<div class="center">
+        	<a href="a_top.jsp">Topへ</a>
+		</div>
     </c:param>
 </c:import>

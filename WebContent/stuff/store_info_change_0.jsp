@@ -6,7 +6,7 @@
 <c:import url="/adminbase.jsp">
     <c:param name="title">従業員 - 店舗情報変更 - 店舗選択</c:param>
     <c:param name="body">
-<link rel="stylesheet" href="../static/admin.css">
+<link rel="stylesheet" href="../static/stuff.css">
 <header>
         <%@ include file="../adminnav.jsp" %>
     </header>

@@ -1,6 +1,6 @@
 /* 背景のスタイル設定（画面全体にグラデーション背景を適用） */
 body {
-    background: linear-gradient(135deg, #345e5d, #3b7d7b);
+    background: #3b7d7b ;
 }
 
 /* メインコンテンツのスタイル（中央揃えと背景設定を行う） */
@@ -9,7 +9,6 @@ main {
     margin: 0; /* 外側の余白をなしに設定 */
     padding: 0; /* 内側の余白をなしに設定 */
     font-family: 'Poppins', sans-serif; /* Google Fontsから洗練されたフォントを使用 */
-    background: linear-gradient(135deg, #2c3e50, #34495e); /* グラデーション背景 */
     align-items: center; /* 垂直方向で中央揃え */
     justify-content: center; /* 水平方向で中央揃え */
     height: 55vh; /* 画面高さの55%を占める */
@@ -27,6 +26,12 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* ぼんやりとした影を追加 */
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
 /* アイコン全体のスタイル設定 */
 .button-top {
