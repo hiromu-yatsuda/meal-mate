@@ -205,12 +205,14 @@ document.addEventListener('DOMContentLoaded', () => {
         translateBtn2.addEventListener('click', () => {
             const text = outputText2.textContent;
             const sourceLang = getSourceSelectedLang('userLang2');
-            const targetLang = getTargetSelectedLang('userLang1'); // 同じ言語に翻訳する場合
+            const targetLang = getTargetSelectedLang('userLang1');
             if (text) {
                 sendTextToServer(text, sourceLang, targetLang, (data) => {
                     if (data && data.translatedText) {
                         outputText2.textContent = data.translatedText;
                         console.log('下段の翻訳結果:', data.translatedText);
+                    } else {
+                    	console.warn("下段に翻訳するテキストがありません");
                     }
                 });
             } else {
