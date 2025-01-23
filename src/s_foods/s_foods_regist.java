@@ -113,7 +113,7 @@ public class s_foods_regist extends CommonServlet{
 //	    ここから登録準備～登録へ
 
 //	    JANコードが存在するかどうか
-	    if(y_or_n_janB==false){
+//	    if(y_or_n_janB==false){
 //		    ランダムJANコードが必要ない
 
 	    	System.out.println("1");
@@ -289,6 +289,10 @@ public class s_foods_regist extends CommonServlet{
 //			表示データリスト
 //			画面表示用
 			req.setAttribute("next_full_list",next_full_list );
+			req.setAttribute("y_or_n_janB",y_or_n_janB );
+			req.setAttribute("gru_id",gru_id );
+
+
 
 //			データ送信、登録用
 			req.setAttribute("re_next_full_list",re_next_full_list );
@@ -297,7 +301,7 @@ public class s_foods_regist extends CommonServlet{
 
 
 
-	    } //JANが存在するかIFの
+//	    } //JANが存在するかIFの
 
 
 

@@ -63,7 +63,7 @@ document.querySelector('#form-in').appendChild(newForm);
 
 <div id="form-in">
     <form action="/meal-mate/stuff/foods/regist/or/manual" method="post">
-        <p>※JANコードが存在しない場合は「✓」をいれてください</p>
+        <p>※JANコードが存在しない場合は「✓」をいれ、JANコード入力欄には「00」と入力してください。</p>
         <input type="checkbox" name="not_jan">
         <div id="form-container">
             <div id="container">
@@ -80,11 +80,6 @@ document.querySelector('#form-in').appendChild(newForm);
 
                     <table>
 
-                    	<tr>
-                    		<td><input type="checkbox" name="not_foods[]"><strong>該当なし</strong></td>
-
-
-                    	</tr>
 
 <c:forEach var="foods" items="${foodsList}" varStatus="status">
     <c:if test="${status.index % 5 == 0}">
@@ -98,8 +93,11 @@ document.querySelector('#form-in').appendChild(newForm);
         </tr>
     </c:if>
 </c:forEach>
-<input type="hidden" value="end,end" name="rest_foods[0][]">
+
                     </table>
+
+
+                    <input type="hidden" value="end,end" name="rest_foods[0][]">
                 </div>
             </div>
         </div>
