@@ -30,7 +30,7 @@ public abstract class CommonServlet  extends HttpServlet {
 			e.printStackTrace(out);
 
 			// 本番用エラー表示
-			// e.printStackTrace();
+			 e.printStackTrace();
 			// resp.sendRedirect("/shop/error");
 		}
 	}

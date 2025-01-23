@@ -14,15 +14,19 @@ public class ProductFoods extends DAO {
         FoodsDAO fDao = new FoodsDAO();
 
         Connection connection = getConnection();
-        PreparedStatement pStatement = connection.prepareStatement("select foods_id from product_foods where foods_id = ?");
+        PreparedStatement pStatement = connection.prepareStatement("select * from product_foods pf join foods f on pf.foods_id = f.id where product_id = ?");
 
         pStatement.setString(1, janCode);
 
         ResultSet rSet = pStatement.executeQuery();
 
         while (rSet.next()) {
-            int foodId = rSet.getInt("food_id");
-            Foods food = fDao.getFoodsById(foodId);
+            int foodId = rSet.getInt("foods_id");
+            Foods food = new Foods();
+            food.setId(rSet.getInt("id"));
+            food.setFoodName(rSet.getString("name"));
+            food.setIconR(rSet.getString("icon_r"));
+            food.setIconG(rSet.getString("icon_g"));
             foods.add(food);
         }
 

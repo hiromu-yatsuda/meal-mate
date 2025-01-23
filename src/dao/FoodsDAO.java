@@ -42,6 +42,7 @@ public class FoodsDAO extends DAO {
 
 	}
 
+	// idが見当たらない場合も考える
 	public Foods getFoodsById(int id) throws Exception {
 	    Foods food = new Foods();
 	    Connection connection = getConnection();
@@ -51,8 +52,8 @@ public class FoodsDAO extends DAO {
 
 	    ResultSet rSet = pStatement.executeQuery();
 
-	    while (rSet.next()) {
-	        food.setId(rSet.getInt("food_id"));
+	    if (rSet.next()) {
+	        food.setId(rSet.getInt("id"));
 	        food.setFoodName(rSet.getString("name"));
 	        food.setIconR(rSet.getString("icon_r"));
 	        food.setIconG(rSet.getString("icon_g"));
@@ -64,6 +65,35 @@ public class FoodsDAO extends DAO {
 	    return food;
 	}
 
+	public List<Foods> getFoods(String barcode, String userId) throws Exception {
+	    List<Foods> foods = new ArrayList<>();
+	    Connection connection = getConnection();
+
+	    PreparedStatement pStatement = connection.prepareStatement("select * from rest_foods rf join product_foods pf on rf.foods_id = pf.foods_id"
+                + " join foods f on rf.foods_id = f.id where rf.user_account_id = ? and pf.product_id = ?");
+
+	    pStatement.setString(1, userId);
+	    pStatement.setString(2, barcode);
+
+//
+
+	    ResultSet rSet = pStatement.executeQuery();
+
+	    while (rSet.next()) {
+            int foodId = rSet.getInt("foods_id");
+            Foods food = new Foods();
+            food.setId(rSet.getInt("id"));
+            food.setFoodName(rSet.getString("name"));
+            food.setIconR(rSet.getString("icon_r"));
+            food.setIconG(rSet.getString("icon_g"));
+            foods.add(food);
+        }
+
+        pStatement.close();
+        connection.close();
+
+        return foods;
+	}
 
 
 

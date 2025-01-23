@@ -11,7 +11,8 @@
 </style>
 </head>
 <body>
-<div id="my_quagga"></div>
+<div id="my_quagga" style="position: relative; width: 100%; min-height: 100vh;"></div>
+<div id="console"></div>
 <script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="//unpkg.com/@ericblade/quagga2@1.7.4/dist/quagga.min.js"></script>
 <script src="//cdn.jsdelivr.net/gh/mtaketani113/jquery-barcode@master/jquery-barcode.js"></script>

@@ -7,6 +7,10 @@ let prevBarcode = "";
 const frameRate = 10;
 let i = 0;
 
+// デバッグ用(後で消す)
+const consoleElm = document.querySelector("#console");
+let consoleItems = [];
+
 // Quagga
 Quagga.init(
     {
@@ -30,12 +34,23 @@ Quagga.init(
     }
 );
 
+function consoleLog(text) {
+	console.log(text + "\n");
+	consoleElm.innerHTML = "";
+	consoleItems = [text, ...consoleItems];
+	consoleItems.forEach((e) => {
+		consoleElm.innerHTML += "<p>" + e + "</p><br>";
+	});
+}
+
 function getFoods(barcode) {
+	consoleLog("called getFoods");
 	if (prevBarcode != barcode) {
+		consoleLog("ajax-start");
 		prevBarcode = barcode;
 		imageArray = [];
 		$.ajax({
-			url: "/meal-mate/ajax-test",
+			url: "https://192.168.137.1:8443/meal-mate/ajax-test",
 			type: "GET",
 			data: {
 				"barcode": barcode
@@ -43,8 +58,12 @@ function getFoods(barcode) {
 			dataType: "json"
 		}).done(function (res) {
 			loadFoods(res["paths"]);
+			consoleLog("done");
 		}).fail(function (res) {
-			console.log(res);
+//			console.log(res);
+			consoleLog(res);
+		}).always(function (res) {
+			consoleLog("always");
 		})
 	}
 }
@@ -73,7 +92,7 @@ async function checkBarcode(num) {
 }
 
 function calcRect(box) {
-    const xDistance = -100;
+    const xDistance = 100;
     const x1 = box[1][0];
     const x2 = box[2][0];
     const x = (x1 + x2) / 2 + xDistance;
@@ -114,13 +133,16 @@ function drawText() {
     		}
     	}
     }
+//    ctx.fillText("test", rect[0], rect[1]);
+    consoleLog("test");
 }
 
+// 1フレーム(20fps)毎に検出
 Quagga.onDetected(async (result) => {
     res = result;
 	time = timeAllowed;
     const barcode = result.codeResult.code;
-    console.log(barcode);
+//    console.log(barcode);
     await checkBarcode(barcode);
 });
 
