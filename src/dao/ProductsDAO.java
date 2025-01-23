@@ -12,7 +12,7 @@ public class ProductsDAO extends DAO {
     public int insert(String janCode, String pName) throws Exception {
         Connection connection = getConnection();
 
-        PreparedStatement pStatement = connection.prepareStatement("insert into products (?, ?, false)");
+        PreparedStatement pStatement = connection.prepareStatement("insert into products values (?, ?, false)");
 
        pStatement.setString(1, janCode);
        pStatement.setString(2, pName);
@@ -34,7 +34,7 @@ public class ProductsDAO extends DAO {
 
         Connection connection = getConnection();
 
-        PreparedStatement pStatement = connection.prepareStatement("select * from products where '%?%'");
+        PreparedStatement pStatement = connection.prepareStatement("select * from products where JAN_CODE like '%?%'");
 
         ResultSet rSet = pStatement.executeQuery();
 

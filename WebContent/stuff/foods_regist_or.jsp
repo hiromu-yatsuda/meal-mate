@@ -23,7 +23,7 @@
 			<form class="manual_form" action="/meal-mate/stuff/foods/regist/or/manual" method="get">
 
 			<button class="manual" type="submit">
-			<img class="text_imgcsvsenntaku" src="../img/手入力.jpg" alt="手入力">
+			<img class="text_imgcsvsenntaku" src="${pageContext.request.contextPath}/img/手入力.jpg" alt="手入力">
 			</button>
 			</form>
 		</div>

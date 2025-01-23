@@ -46,9 +46,10 @@
                         } else if (i == 0) {
                             out.println("<td>" + mini_nextFullList.get(i) + "</td>");
                             out.println("</tr>");
+                            pro_food_count = 0;
                         } else {
 
-                        	if(pro_food_count==5){
+                        	if(pro_food_count==4){
 
                         		out.println("<td>" + mini_nextFullList.get(i) + "</td>");
                         		out.println("</tr>");
@@ -77,6 +78,11 @@
 
 
 <form action="/meal-mate/stuff/foods/regist/comp" method="post">
+
+
+<input type="hidden" value="${ re_next_full_list}" name="re_next_full_list">
+<input type="hidden" value="${ y_or_n_janB}" name="y_or_n_janB">
+<input type="hidden" value="${ gru_id}" name="gru_id">
 
             <!-- ボタン -->
             <div id="decision" class="button-group">
