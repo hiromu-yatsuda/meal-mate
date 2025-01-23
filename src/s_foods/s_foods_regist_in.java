@@ -108,18 +108,31 @@ public class s_foods_regist_in extends CommonServlet{
 	    	System.out.println("商品名");
 	    	System.out.println("あああ" + lis_solo[lis_solo.length - 2].trim() + "あああ");
 
-	    	for(int i2 =lis_solo.length - 3 ; i2>=0 ; i2--){
 
 
 
-	    		System.out.println("あああ" + lis_solo[i2].trim() + "あああ");
-////	    	1,JANコードの重複チェック
 
-//	    		dao
-	    		ProductsDAO p_dao = new ProductsDAO();
+////    	1,JANコードの重複チェック
+
+//    		dao
+    		ProductsDAO p_dao = new ProductsDAO();
 //
-//	    		JANコードで検索語のデータ
-	    		List<Products> pro_list = p_dao.search(jancode_1);
+//    		JANコードで検索後のデータ
+    		List<Products> pro_list = p_dao.search(jancode_1);
+
+
+
+
+
+//    		System.out.println("確認");
+//    		for(int i2 =lis_solo.length - 3 ; i2>=0 ; i2--){
+//
+//	    		System.out.println("あああ" + lis_solo[i2].trim() + "あああ");
+//    		}
+
+
+
+
 
 
 //	    		既にこの商品は登録されている
@@ -133,11 +146,16 @@ public class s_foods_regist_in extends CommonServlet{
 	    			System.out.println("既にこの商品は登録されています");
 	    			System.out.println(common_update);
 
+
 	    		}else{
+
+
 
 //    		重複していなかったら
 //    		1,PRODUCTSのJANコード,NAMEに追加。is_commonはfalse
 //    		2,PRODUCT_FOODS のPRODUCT_ID  	FOODS_ID （1対1、制限食材分）に追加
+
+
 
 //	    			PRODUCTSに商品を登録
 	    			int insert_dao = p_dao.insert(jancode_1,pro_name_1);
@@ -145,7 +163,14 @@ public class s_foods_regist_in extends CommonServlet{
 	    			System.out.println("登録完了");
 
 
+	    			for(int i2 =lis_solo.length - 3 ; i2>=0 ; i2--){
 
+	    	    		System.out.println("あああ" + lis_solo[i2].trim() + "あああ");
+
+	    	    		int pro_food_dao = p_dao.insert(jancode_1,lis_solo[i2].trim());
+
+	    	    		System.out.println("pro_food_daoの登録完了");
+	    	    		System.out.println(pro_food_dao);
 
 
 	    		}
@@ -154,6 +179,7 @@ public class s_foods_regist_in extends CommonServlet{
 
 
 
+	    	}
 
 
 //	    		共通
@@ -162,19 +188,7 @@ public class s_foods_regist_in extends CommonServlet{
 
 
 
-
-
-
-	    	}
-
-
-
-
-
 	    }
-
-
-
 
 
 

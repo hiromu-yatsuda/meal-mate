@@ -25,8 +25,8 @@ public class ProductFoods extends DAO {
             Foods food = new Foods();
             food.setId(rSet.getInt("id"));
             food.setFoodName(rSet.getString("name"));
-            food.setIconR(rSet.getString("icon_r"));
-            food.setIconG(rSet.getString("icon_g"));
+            food.setIcon(rSet.getString("icon"));
+
             foods.add(food);
         }
 
@@ -35,32 +35,41 @@ public class ProductFoods extends DAO {
 
         return foods;
     }
-//    	public int insert(String janCode,String foodsId)throws Exception {
-//            Connection connection = getConnection();
-//
-//            PreparedStatement max_pStatement = connection.prepareStatement("SELECT MAX(ID) FROM PRODUCT_FOODS");
-//
-//            ResultSet resultSet = max_pStatement.executeQuery();
-//
-//         // 結果セットから値を取得してint型に変換
-//         int int_max_pStatement = 0;
-//         if (resultSet.next()) {
-//             int_max_pStatement = resultSet.getInt(1);
-//         }
-//
-//      // 取得した値の確認
-//         System.out.println("最大のID: " + int_max_pStatement);
-//
-//
-//            PreparedStatement pStatement = connection.prepareStatement("insert into PRODUCT_FOODS values (?, ?,?)");
-//
-//
-//            pStatement.setInt(1, int_max_pStatement);
-//            pStatement.setString(2, janCode);
-//            pStatement.setString(3, foodsId);
-//
-//
-//    	}
+
+
+
+    	public int insert(String janCode,String foodsId)throws Exception {
+            Connection connection = getConnection();
+
+            PreparedStatement max_pStatement = connection.prepareStatement("SELECT MAX(ID) FROM PRODUCT_FOODS");
+
+            ResultSet resultSet = max_pStatement.executeQuery();
+
+         // 結果セットから値を取得してint型に変換
+         int int_max_pStatement = 0;
+         if (resultSet.next()) {
+             int_max_pStatement = resultSet.getInt(1);
+         }
+
+      // 取得した値の確認
+         System.out.println("最大のID: " + int_max_pStatement);
+
+
+            PreparedStatement pStatement = connection.prepareStatement("insert into PRODUCT_FOODS values (?, ?,?)");
+
+
+            pStatement.setInt(1, int_max_pStatement);
+            pStatement.setString(2, janCode);
+            pStatement.setString(3, foodsId);
+
+            int line = pStatement.executeUpdate();
+
+            pStatement.close();
+            connection.close();
+
+            return line;
+
+    	}
 
 
 
