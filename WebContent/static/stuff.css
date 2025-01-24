@@ -88,11 +88,22 @@ h1 {
     margin: 20px 0 0 0; /* 上下の余白を調整 */
 }
 
+p {
+	color: white; /* テキストカラーを白に設定 */
+}
+
+label {
+	color: white; /* テキストカラーを白に設定 */
+}
+
+/* 「トップへ戻る」ボタン  */
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: #000080;
+	text-decoration:underline;
 }
 
 

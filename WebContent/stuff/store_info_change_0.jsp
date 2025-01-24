@@ -8,6 +8,7 @@
     <c:param name="body">
 <link rel="stylesheet" href="../static/stuff.css">
 <header>
+		<%@ include file="../stuffnav.jsp" %>
         <%@ include file="../stuffbase.jsp" %>
     </header>
 
