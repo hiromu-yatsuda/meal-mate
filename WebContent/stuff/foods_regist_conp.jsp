@@ -13,6 +13,6 @@
 
 <div class="center">
         	<a href="top.jsp">Topへ</a>
-
+</div>
 	</c:param>
 </c:import>

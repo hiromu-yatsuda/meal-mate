@@ -8,7 +8,7 @@
     <c:param name="body">
 <link rel="stylesheet" href="../static/stuff.css">
 <header>
-        <%@ include file="../adminnav.jsp" %>
+        <%@ include file="../stuffbase.jsp" %>
     </header>
 
         <h1>店舗選択</h1>
