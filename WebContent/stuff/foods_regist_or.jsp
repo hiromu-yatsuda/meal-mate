@@ -14,9 +14,12 @@
 	<div class="csvsenntaku">
 		<div class="option">
 			<h2>CSV入力</h2>
-			<a href="http://localhost:8080/MealMate/stuff/foods_regist_csv.jsp">
-				<img class="text_imgcsvsenntaku" src="../img/csv.jpg" alt="CSV入力">
-			</a>
+
+				<form class="auto_form" action="/meal-mate/stuff/foods/regist/csv" method="get">
+					<button class="auto" type="submit">
+						<img class="text_imgcsvsenntaku" src="${pageContext.request.contextPath}/img/csv.jpg" alt="CSV入力">
+					</button>
+				</form>
 		</div>
 		<div class="option">
 			<h2>手入力</h2>

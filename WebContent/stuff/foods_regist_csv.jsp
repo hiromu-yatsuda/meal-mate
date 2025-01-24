@@ -6,7 +6,7 @@
 	    <c:param name="title">従業員 - 商品登録_CSV</c:param>
 	    <c:param name="body">
 
-	
+
 	        <header>
 	            <%@ include file="../stuffnav.jsp" %>
 	        </header>
@@ -16,10 +16,12 @@
 		            <button type="button" id="appu" onclick="location.href=''">CSVファイルをアップロード</button><br>
 		            <button type="button" id="sousin" onclick="location.href=''">送信</button>
 		        </div>
-		
+
 		        <div id="download">
-		            <button onclick="location.href=''">テンプレートダウンロード</button>
-		
+
+
+					<a href="${pageContext.request.contextPath}/img/files/csvテンプレート.txt" download="テンプレート.txt">テンプレートダウンロード</a>
+
 		            <p>例</p>
 		            <p>"aa" , "momo" , "mimi"</p>
 		            <p>"パンツ鍋" , "" , "〇"</p>

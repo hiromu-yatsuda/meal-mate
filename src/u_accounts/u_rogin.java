@@ -89,6 +89,7 @@ public class u_rogin extends HttpServlet {
 		    if(isPasswordCorrect==false){
 
 		    	System.out.println("ログイン失敗");
+
 //				ログインページへ
 				req.getRequestDispatcher("/user/u_rogin.jsp").forward(req, resp);
 
@@ -96,7 +97,16 @@ public class u_rogin extends HttpServlet {
 
 
 		    }else{
+//		    	ログイン成功
+//				セッションへ
+//				HttpSession session = req.getSession();
 
+//				IDをセッションへ
+				req.setAttribute("user_id",dao_id );
+
+
+//				top画面へ
+				req.getRequestDispatcher("/stuff/top.jsp").forward(req, resp);
 
 
 		    }
