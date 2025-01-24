@@ -31,6 +31,8 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: #00F;
+	text-decoration:underline;
 }
 
 /* アイコン全体のスタイル設定 */
