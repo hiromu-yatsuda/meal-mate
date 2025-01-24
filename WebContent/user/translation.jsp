@@ -57,7 +57,6 @@
         }
         .output-text1, .output-text2 {
             font-size: 3rem;
-            text-align: center;
             margin: 10px auto;
             width: 90%;
             height: 170px;
@@ -149,7 +148,7 @@
                     </select>
                     <button class="record-btn" id="recordBtn1" disabled>準備中...</button>
                 </div>
-                <p class="output-text1" id="outputText1"></p>
+                <textarea class="output-text1" id="outputText1"></textarea>
                 <div class="button-group">
                 	<button class="translate-btn" id="translateBtn1">⇧</button>
                 	<button class="read-aloud-btn" id="readaloudBtn1">🔊</button>
@@ -179,7 +178,7 @@
                     </select>
                     <button class="record-btn" id="recordBtn2" disabled>準備中...</button>
                 </div>
-                <p class="output-text2" id="outputText2"></p>
+                <textarea class="output-text2" id="outputText2"></textarea>
                 <div class="button-group">
                 	<button class="translate-btn" id="translateBtn2">⇧</button>
                 	<button class="read-aloud-btn" id="readaloudBtn2">🔊</button>

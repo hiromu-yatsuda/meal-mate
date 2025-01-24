@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const translateBtn2 = document.getElementById('translateBtn2');
     const outputText1 = document.getElementById('outputText1');
     const outputText2 = document.getElementById('outputText2');
+    const readaloudBtn1 = document.getElementById('readaloudBtn1');
+    const readaloudBtn2 = document.getElementById('readaloudBtn2');
 
+	// 音声ファイル用の変数
+	let audio;
 
     // 詳細な言語コードマッピングを使用した関数
     function convertToAWSLang(langCode) {
@@ -29,20 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return mapping[langCode] || langCode.split('-')[0];
     }
 
-    function getSourceSelectedLang(selectId) {
+    function getSelectedLang(selectId) {
         const sel = document.getElementById(selectId);
         return sel.value;
     }
 
-    function getTargetSelectedLang(selectId) {
-        const sel = document.getElementById(selectId);
-        return sel.value;
-    }
-
-    function sendTextToServer(text, source_lang, target_lang) {
+    // 引数　翻訳前の文, 翻訳前の言語コード, 翻訳後の言語コード, 翻訳後に行う関数
+    function sendTextToServer(text, source_lang, target_lang, func) {
         const awsSourceLang = convertToAWSLang(source_lang);
         const awsTargetLang = convertToAWSLang(target_lang);
 
+        // 送信を行う
         fetch(contextPath + '/uploadTest', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -58,13 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return response.text();
         })
+        // 送信後に行われる関数
+        // 引数　受信したJSON文字列
         .then(result => {
             console.log('テキスト送信成功');
             console.log(result)
+//          JSON.parse(result)関数を実行する
+//			引数　Json文字列
+//			obj	受信したオブジェクト
             const obj = JSON.parse(result); // =>JSONをJavaScriptのオブジェクトに変換
             console.log(obj.translatedText)
             console.log(obj.outputMp3)
             console.log(obj.message)
+            // 翻訳後に行う関数を実行
+            // 引数　translatedTextというデータを持っているオブジェクト＝受信したデータ
+            func(obj)
         })
         .catch(error => {
             console.error('テキスト送信失敗:', error);
@@ -84,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (recognition1) {
-        recognition1.lang = getSourceSelectedLang('userLang1');
+        recognition1.lang = getSelectedLang('userLang1');
         recognition1.interimResults = false;
 
         recognition1.onresult = (event) => {
@@ -134,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (recognition2) {
-        recognition2.lang = getSourceSelectedLang('userLang2');
+        recognition2.lang = getSelectedLang('userLang2');
         recognition2.interimResults = false;
 
         recognition2.onresult = (event) => {
@@ -155,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         recordBtn2.addEventListener('click', () => {
             if (!recognizing2) {
-                recognition2.lang = getSourceSelectedLang('userLang2');
+                recognition2.lang = getSelectedLang('userLang2');
                 recognition2.start();
                 recognizing2 = true;
                 recordBtn2.textContent = 'OFF';
@@ -175,21 +184,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const fixedText = "こんばんは";
         const fixedSourceLang = "ja";
         const fixedTargetLang = "en";
-        outputText1.textContent = fixedText;
-        outputText2.textContent = fixedText;
+        outputText1.value = fixedText;
+        console.log('上段の認識結果:', fixedText);
     });
 
     // 翻訳ボタン1（上段）の設定
     if (translateBtn1) {
         translateBtn1.addEventListener('click', () => {
-            const text = outputText1.textContent;
-            const sourceLang = getSourceSelectedLang('userLang1');
-            const targetLang = getTargetSelectedLang('userLang2');
+            const text = outputText1.value;
+            const sourceLang = getSelectedLang('userLang1');
+            const targetLang = getSelectedLang('userLang2');
             if (text) {
+            	// sendTextToServer関数を実行する
+            	// 41行目に定義されている
+            	// 引数　翻訳前の文, 翻訳前の言語コード, 翻訳後の言語コード, 翻訳後に行う関数
+            	//　　　　　　　　　　　　　　　　　　　　　　　　　　　　　引数data　translatedTextというデータを持っているオブジェクト＝受信したデータ
                 sendTextToServer(text, sourceLang, targetLang, (data) => {
                     if (data && data.translatedText) {
-                        outputText1.textContent = data.translatedText;
+                        outputText2.value = data.translatedText;
                         console.log('上段の翻訳結果:', data.translatedText);
+                        // インスタンスを作成して音声ファイルを読み込み
+                        audio = new Audio(data.outputMp3);
                     }
                 });
             } else {
@@ -204,12 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (translateBtn2) {
         translateBtn2.addEventListener('click', () => {
             const text = outputText2.textContent;
-            const sourceLang = getSourceSelectedLang('userLang2');
-            const targetLang = getTargetSelectedLang('userLang1');
+            const sourceLang = getSelectedLang('userLang2');
+            const targetLang = getSelectedLang('userLang1');
             if (text) {
                 sendTextToServer(text, sourceLang, targetLang, (data) => {
                     if (data && data.translatedText) {
-                        outputText2.textContent = data.translatedText;
+                        outputText1.value = data.translatedText;
                         console.log('下段の翻訳結果:', data.translatedText);
                     } else {
                     	console.warn("下段に翻訳するテキストがありません");
@@ -219,6 +234,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn("下段に翻訳するテキストがありません");
             }
         });
+    }
+
+    if (readaloudBtn1) {
+
+    	readaloudBtn1.addEventListener('click', () => {
+
+    		// 音声ファイルを再生
+    		audio.play();
+    	})
     }
 
 });
