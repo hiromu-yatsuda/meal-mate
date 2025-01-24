@@ -1,14 +1,11 @@
 package u_ar;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Foods;
-import dao.FoodsDAO;
 import tool.CommonServlet;
 
 @WebServlet(urlPatterns={"/ajax-test"})
@@ -30,14 +27,14 @@ public class ARController extends CommonServlet {
         String userId = "000001";
         String barcode = "4901777316539";
 
-        List<Foods> foods = (new FoodsDAO()).getFoods(barcode, userId);
-        System.out.println();
+//        List<Foods> foods = (new FoodsDAO()).getFoods(barcode, userId);
+//        System.out.println();
 
         // 登録した食材がなかった場合の処理も考える
-        if (!foods.isEmpty()) {
-            StringBuilder sBuilder = new StringBuilder();
-
-        }
+//        if (!foods.isEmpty()) {
+//            StringBuilder sBuilder = new StringBuilder();
+//
+//        }
 
         String string = "{\"paths\": [\"AR.png\", \"class.png\", \"csv.jpg\", \"gennzaiti.png\"]}";
 
