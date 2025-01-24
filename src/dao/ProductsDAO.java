@@ -34,7 +34,9 @@ public class ProductsDAO extends DAO {
 
         Connection connection = getConnection();
 
-        PreparedStatement pStatement = connection.prepareStatement("select * from products where JAN_CODE like '%?%'");
+        PreparedStatement pStatement = connection.prepareStatement("select * from products where JAN_CODE = ?");
+        pStatement.setString(1, janCode);
+
 
         ResultSet rSet = pStatement.executeQuery();
 

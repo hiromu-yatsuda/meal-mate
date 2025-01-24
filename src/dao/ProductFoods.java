@@ -55,6 +55,11 @@ public class ProductFoods extends DAO {
          System.out.println("最大のID: " + int_max_pStatement);
 
 
+         // 取得した値の確認
+         System.out.println("最大のID+1: " + int_max_pStatement);
+
+         int_max_pStatement = int_max_pStatement + 1;
+
             PreparedStatement pStatement = connection.prepareStatement("insert into PRODUCT_FOODS values (?, ?,?)");
 
 

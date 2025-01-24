@@ -3,8 +3,11 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.Languages;
+import bean.MemberAccounts;
 
 public class MemberAccountsDAO extends DAO {
     /**
@@ -31,6 +34,38 @@ public class MemberAccountsDAO extends DAO {
 
         return isExist;
     }
+
+
+    public List<MemberAccounts> list_searchByEmail(String email) throws Exception {
+        Connection connection = getConnection();
+
+        List<MemberAccounts> accounts_list = new ArrayList<MemberAccounts>();
+
+        PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM MEMBER_ACCOUNTS where email = ? ");
+
+
+        ResultSet rSet = pStatement.executeQuery();
+
+
+        while (rSet.next()) {
+
+        	MemberAccounts account = new MemberAccounts();
+
+        	account.setId(rSet.getString("id"));
+        	account.setName(rSet.getString("name"));
+        	account.setPassword(rSet.getString("password"));
+
+        	accounts_list.add(account);
+        }
+
+        pStatement.close();
+        connection.close();
+
+        return accounts_list;
+
+
+    }
+
 
     public Languages searchLanguageByMemberId(String mId) throws Exception {
         Connection connection = getConnection();

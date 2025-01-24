@@ -6,7 +6,7 @@
         <%@ include file="../stuffnav.jsp" %>
     </header>
 	<c:import url="/stuffbase.jsp">
-	    <c:param name="title">従業員 - ログイン</c:param>
+	    <c:param name="title">従業員 - TOP</c:param>
 	    <c:param name="body">
 
 

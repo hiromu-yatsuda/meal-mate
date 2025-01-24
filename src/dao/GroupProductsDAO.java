@@ -50,12 +50,17 @@ public class GroupProductsDAO extends DAO {
 
     public boolean insert(String janCode, String gId) throws Exception {
         Connection connection = getConnection();
-        PreparedStatement pStatement = connection.prepareStatement("insert into group_products values (?, ?, ?");
+
         PreparedStatement nextIdPs = connection.prepareStatement("select id from group_products order by id desc limit 1");
         int nextId = 1;
 
-        ResultSet rSet = nextIdPs.executeQuery();
 
+
+
+        PreparedStatement pStatement = connection.prepareStatement("insert into group_products values (?, ?, ?)");
+
+
+        ResultSet rSet = nextIdPs.executeQuery();
         if (rSet.next()) {
             nextId = rSet.getInt("id") + 1;
         }
@@ -72,6 +77,39 @@ public class GroupProductsDAO extends DAO {
 
         return line > 0 ? true: false;
     }
+
+    public boolean searchByJ_G(String janCode, String gId) throws Exception {
+        Connection connection = getConnection();
+
+        boolean torf = false;
+
+        PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM GROUP_PRODUCTS where JAN_CODE = ? AND GROUP_ID = ? ");
+
+        pStatement.setString(1, janCode);
+        pStatement.setString(2, gId);
+
+
+
+        ResultSet rSet = pStatement.executeQuery();
+
+
+
+        if (rSet == null || !rSet.next()) {
+            torf = true; // データが見つからない場合
+        } else {
+            torf = false; // データが見つかった場合
+        }
+
+        rSet.close();
+        pStatement.close();
+        connection.close();
+
+        return torf;
+    }
+
+
+
+
 }
 
 

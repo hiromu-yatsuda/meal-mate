@@ -50,7 +50,7 @@ function getFoods(barcode) {
 		prevBarcode = barcode;
 		imageArray = [];
 		$.ajax({
-			url: "/meal-mate/ajax-test",
+			url: "https://192.168.137.1:8443/meal-mate/ajax-test",
 			type: "GET",
 			data: {
 				"barcode": barcode

@@ -1,12 +1,16 @@
 package s_foods;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Products;
+import dao.GroupProductsDAO;
+import dao.ProductFoods;
 import dao.ProductsDAO;
 import tool.CommonServlet;
 
@@ -29,10 +33,14 @@ public class s_foods_regist_in extends CommonServlet{
 
 //	    JANコード必要or不必要
 	    String y_or_n_jan = req.getParameter("y_or_n_janB");
+	    boolean b_y_or_n_jan = false;
+
 
 //	    グループID
 	    String gru_id = req.getParameter("gru_id");
 
+//	    仮置き
+	    gru_id = "101";
 
     	System.out.println("しょっぱな");
     	System.out.println(a2);
@@ -93,11 +101,80 @@ public class s_foods_regist_in extends CommonServlet{
 	    	System.out.println("lis_solo");
 	    	System.out.println(lis_solo);
 
+	    //  ランダムJANコード重複チェック用
+	        Boolean dup = false;
+
+//	        ランダムJANコード
+	    	String random_jan=null;
+
+//	    	ランダムJANコード生成用
+	    	List<String> jan_list = new ArrayList<String>();
+
+
+//    		dao
+    		ProductsDAO p_dao = new ProductsDAO();
+
+
+	    	b_y_or_n_jan = "true".equals(y_or_n_jan);
+	    	System.out.println("JANコードの自動生成どうする");
+	    	System.out.println(b_y_or_n_jan);
+
+	    	if(b_y_or_n_jan==true){
+
+
+	    		while(dup == false){
+//	    			グループID用ランダム（13桁）
+	    	        Random random = new Random();
+	    	        int min = 0;
+	    	        int max = 9;
+
+
+//	    	        13桁の配列を生成
+	    	 		for(int i=0; i < 13; i++){
+
+//	    	        minからmaxまでの範囲の乱数を生成
+	    	        int id_1 = random.nextInt((max - min) + 1) + min;
+
+//	    			intからStringへ
+	    	        String s_id_1 = Integer.toString(id_1);
+
+	    	        jan_list.add(s_id_1);
+	    	 		}
+
+
+//					配列から文字列に
+	    	        random_jan = String.join("",jan_list);
+	    	        System.out.println(random_jan);
+
+	    	        //
+//	        		JANコードで検索後のデータ
+	        		List<Products> pro_list1 = p_dao.search(random_jan);
+
+
+//		    		既にこの商品は登録されていない
+		    		if(pro_list1 == null || pro_list1.isEmpty()){
+		    			dup = true;
+		    		}
+
+		    	}
+
+
+
+
+
+	    	}
+
+
 
 
 
 //	    	単体JANコード
 	    	String jancode_1 = lis_solo[lis_solo.length - 1].trim();
+
+	    	if(random_jan!=null){
+	    		jancode_1 = random_jan;
+	    	}
+
 
 //	    	単体商品名
 	    	String pro_name_1 = lis_solo[lis_solo.length - 2].trim();
@@ -114,14 +191,20 @@ public class s_foods_regist_in extends CommonServlet{
 
 ////    	1,JANコードの重複チェック
 
-//    		dao
-    		ProductsDAO p_dao = new ProductsDAO();
+
+
+
+//    		商品の制限食材を登録用dao
+    		ProductFoods p_f_dao = new ProductFoods();
+
+
 //
 //    		JANコードで検索後のデータ
     		List<Products> pro_list = p_dao.search(jancode_1);
 
 
-
+    		System.out.println("dao後のデータ");
+    		System.out.println(pro_list);
 
 
 //    		System.out.println("確認");
@@ -135,21 +218,12 @@ public class s_foods_regist_in extends CommonServlet{
 
 
 
-//	    		既にこの商品は登録されている
-	    		if(pro_list!=null){
-
-//		    重複していたら、
-//		    1,PRODUCTS のis_commonをtrueにする
-
-//	    			PRODUCTS のis_commonをtrueに
-	    			int common_update = p_dao.updateStatusToTrue(jancode_1);
-	    			System.out.println("既にこの商品は登録されています");
-	    			System.out.println(common_update);
+//	    		既にこの商品は登録されていない
+	    		if(pro_list == null || pro_list.isEmpty()){
 
 
-	    		}else{
 
-
+//	    			84639493
 
 //    		重複していなかったら
 //    		1,PRODUCTSのJANコード,NAMEに追加。is_commonはfalse
@@ -167,7 +241,11 @@ public class s_foods_regist_in extends CommonServlet{
 
 	    	    		System.out.println("あああ" + lis_solo[i2].trim() + "あああ");
 
-	    	    		int pro_food_dao = p_dao.insert(jancode_1,lis_solo[i2].trim());
+
+
+
+
+	    	    		int pro_food_dao = p_f_dao.insert(jancode_1,lis_solo[i2].trim());
 
 	    	    		System.out.println("pro_food_daoの登録完了");
 	    	    		System.out.println(pro_food_dao);
@@ -177,9 +255,22 @@ public class s_foods_regist_in extends CommonServlet{
 
 
 
+	    	}else{
+
+
+//			    重複していたら、
+//			    1,PRODUCTS のis_commonをtrueにする
+
+//		    			PRODUCTS のis_commonをtrueに
+		    			int common_update = p_dao.updateStatusToTrue(jancode_1);
+		    			System.out.println("既にこの商品は登録されています");
+		    			System.out.println(common_update);
 
 
 	    	}
+
+
+
 
 
 //	    		共通
@@ -188,171 +279,37 @@ public class s_foods_regist_in extends CommonServlet{
 
 
 
+//	    		グループID：gru_id
+//	    		JANコード：jancode_1
+
+	    		GroupProductsDAO pg_dao = new GroupProductsDAO();
+
+
+//	    		既にグループに登録されているかどうか
+//	    		True：まだされていない	False：登録済み
+	    		boolean group_pro_torf = pg_dao.searchByJ_G(jancode_1,gru_id);
+
+
+	    		if(group_pro_torf){
+
+//		    		GroupProductsに挿入dao
+		    		boolean group_pro_dao = pg_dao.insert(jancode_1,gru_id);
+
+		    		System.out.println("group_pro_daoの登録完了");
+		    		System.out.println(group_pro_dao);
+	    		}
+
+
+	    		System.out.println("一通りの処理終了");
+
+
 	    }
 
 
 
-//	    System.out.println(b1);
+	    req.getRequestDispatcher("/stuff/foods_regist_comp.jsp").forward(req, resp);
 
-
-
-
-
-
-
-
-//	    ArrayList next_full_list2 = (ArrayList) m;
-//	    ArrayList<ArrayList<String>> next_full_list = (ArrayList<ArrayList<String>>) m;
-//	    System.out.println(next_full_list.get(0));
-
-//	    System.out.println(next_full_list2);
-
-
-
-//	    String a8 =(String)req.getAttribute("re_next_full_list");
-//	    System.out.println(a8);
-
-//
-//
-//	    if (next_full_list != null) {
-//            for (ArrayList<String> subList : next_full_list) {
-//            	System.out.println(subList);
-//
-//            	for (String item : subList) {
-//                    System.out.println(item);
-//                }
-//            }
-//        }
-
-//	    String[] aa = a2.split("], [");
-//	    String[] aa = a2.split("");
-//	    System.out.println("本命１");
-//	    System.out.println(aa);
-
-
-
-//	    List<String[]> pp = new ArrayList<>();
-//	    String[] pp = req.getParameterValues("re_next_full_list[]");
-//
-////	    		req.getParameterValues("re_next_full_list[][]");
-//
-//
-//	    System.out.println("うわあああ");
-//    	System.out.println(pp);
-//
-//
-//
-//    	if(pp!=null){
-//
-//    	}
-//
-//
-//
-//
-//    	String[] p3;
-//
-//    	if(pp!=null){
-//    		for(String a : pp){
-//
-//
-//
-//
-//
-//    				System.out.println("ぎいやあああ");
-////					力技タイム
-//
-//
-//    				a = a.replace(",", "v(o_o)v");
-//    				a = a.replace("],", ",");
-//    				System.out.println("aaaaaaaaaaaaa");
-//    				System.out.println(a);
-//
-//    				int n = a.length() - 2;
-//
-//
-//    				String ppp = a.substring(2, n);
-//    				System.out.println(ppp);
-//
-//
-//
-//    				String[] p1 = ppp.split(",");
-//    				System.out.println(p1);
-//
-//    				for(String p2:p1){
-//
-//    					System.out.println("p2はじめ");
-//    					System.out.println(p2);
-//
-//    					p2 = p2.replace( "v(o_o)v",",");
-//
-//    					 p3 = p2.split(",");
-//
-//    					System.out.println("p22222    p3");
-//    					System.out.println(p2);
-//    					System.out.println("p2    p3333");
-//    					System.out.println(p3);
-//
-//
-//    				}
-//
-//
-//
-//
-//    			System.out.println("いうわあああ");
-//    	    	System.out.println(a);
-//    		}
-//    	}
-//
-//
-//
-////    	for(String[] p5:p3){
-////
-////    	}
-//
-//
-
-//      jspへ持って行って申し分ない整っているリスト用
-//      ArrayList<ArrayList<String>> ii = new ArrayList<ArrayList <String>>();
-//	    ii = a2;
-
-
-
-//if(regist_list!=null){
-//
-//
-//    for(ArrayList<String> mini_regist_list:regist_list){
-//    	System.out.println("[１段階]ここやで");
-//    	System.out.println(mini_regist_list);
-//    }
-}
-
-
-
-
-
-//	    List<String[]> aa = new ArrayList<>();
-//	    for(int i=0 ; ; i++){
-//	    	String[] aaa =req.getParameterValues("re_next_full_list[" + i + "][]");
-//
-//
-//	        if (aaa == null) break;
-//	        aa.add(aaa);
-//	    	System.out.println("これ「aa」");
-//	    	System.out.println(aaa);
-//
-//
-//	    }
-
-
-
-//    	System.out.println("新ページregist_list");
-//    	System.out.println(aa);
-
-//
-//for(String a : regist_list){
-//	System.out.println("データ：" + a);
-//
-//}
+	}
 
 
 
