@@ -208,13 +208,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // 翻訳ボタン2（下段）の設定
-    if (translateBtn2) {
-        translateBtn2.addEventListener('click', () => {
-            const text = outputText2.textContent;
+ // 翻訳ボタン1（上段）の設定
+    if (translateBtn1) {
+        translateBtn1.addEventListener('click', () => {
+            const text = outputText2.value;
             const sourceLang = getSelectedLang('userLang2');
             const targetLang = getSelectedLang('userLang1');
             if (text) {
-            	sendTextToServer(text, sourceLang, targetLang, (data) => {
+            	// sendTextToServer関数を実行する
+            	// 41行目に定義されている
+            	// 引数　翻訳前の文, 翻訳前の言語コード, 翻訳後の言語コード, 翻訳後に行う関数
+            	//　　　　　　　　　　　　　　　　　　　　　　　　　　　　　引数data　translatedTextというデータを持っているオブジェクト＝受信したデータ
+                sendTextToServer(text, sourceLang, targetLang, (data) => {
                     if (data && data.translatedText) {
                         outputText1.value = data.translatedText;
                         console.log('下段の翻訳結果:', data.translatedText);
@@ -225,8 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 console.warn("下段に翻訳するテキストがありません");
             }
-        });
-    }
+        });    }
 
     if (readaloudBtn1) {
 
