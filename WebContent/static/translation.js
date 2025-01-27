@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 翻訳ボタン2（下段）の設定
  // 翻訳ボタン1（上段）の設定
-    if (translateBtn1) {
-        translateBtn1.addEventListener('click', () => {
+    if (translateBtn2) {
+        translateBtn2.addEventListener('click', () => {
             const text = outputText2.value;
             const sourceLang = getSelectedLang('userLang2');
             const targetLang = getSelectedLang('userLang1');
