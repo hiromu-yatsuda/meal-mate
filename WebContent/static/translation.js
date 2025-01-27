@@ -1,16 +1,26 @@
 // translation.js
-document.addEventListener('DOMContentLoaded', () => {
-    const translateBtn1 = document.getElementById('translateBtn1');
-    const translateBtn2 = document.getElementById('translateBtn2');
-    const outputText1 = document.getElementById('outputText1');
-    const outputText2 = document.getElementById('outputText2');
-    const readaloudBtn1 = document.getElementById('readaloudBtn1');
-    const readaloudBtn2 = document.getElementById('readaloudBtn2');
 
-	// 音声ファイル用の変数
+// DOM（Document Object Model）が完全に読み込まれた後に実行されるイベントリスナー
+document.addEventListener('DOMContentLoaded', () => {
+	// 翻訳ボタンや出力テキストエリア、読み上げボタンなどの要素を取得
+    const translateBtn1 = document.getElementById('translateBtn1'); // 上段の翻訳ボタン
+    const translateBtn2 = document.getElementById('translateBtn2'); // 下段の翻訳ボタン
+    const outputText1 = document.getElementById('outputText1');     // 上段の出力テキストエリア
+    const outputText2 = document.getElementById('outputText2');     // 下段の出力テキストエリア
+    const readaloudBtn1 = document.getElementById('readaloudBtn1'); // 上段の読み上げボタン
+    const readaloudBtn2 = document.getElementById('readaloudBtn2'); // 下段の読み上げボタン
+
+	// 音声ファイルを再生するための変数
 	let audio;
 
     // 詳細な言語コードマッピングを使用した関数
+
+    /**
+     * AWS（Amazon Web Services）で使用する言語コードに変換する関数
+     * @param {string} langCode - 元の言語コード（例: "en-US"）
+     * @returns {string} AWS対応の言語コード（例: "en"）
+     */
+
     function convertToAWSLang(langCode) {
         const mapping = {
             "ja-JP": "ja",
@@ -33,159 +43,189 @@ document.addEventListener('DOMContentLoaded', () => {
         return mapping[langCode] || langCode.split('-')[0];
     }
 
+    /**
+     * 指定されたセレクトボックスから選択された言語コードを取得する関数
+     * @param {string} selectId - セレクトボックスのID
+     * @returns {string} 選択された言語コード
+     */
     function getSelectedLang(selectId) {
         const sel = document.getElementById(selectId);
         return sel.value;
     }
 
+    // テキストをサーバーに送信して翻訳を行う関数
     // 引数　翻訳前の文, 翻訳前の言語コード, 翻訳後の言語コード, 翻訳後に行う関数
     function sendTextToServer(text, source_lang, target_lang, func) {
+    	// AWS用に言語コードを変換
         const awsSourceLang = convertToAWSLang(source_lang);
         const awsTargetLang = convertToAWSLang(target_lang);
 
-        // 送信を行う
-        fetch(contextPath + '/uploadTest', {
+        // フェッチAPIを使用してサーバーにPOSTリクエストを送信
+        fetch(contextPath + '/uploadTest', { // 'contextPath' はアプリケーションのベースURL
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' }, // JSON形式でデータを送信
             body: JSON.stringify({
                 text: text,
                 source_lang: awsSourceLang,
                 target_lang: awsTargetLang
             })
         })
+
+        // レスポンスがOKでない場合の処理
         .then(response => {
             if (!response.ok) {
                 throw new Error('サーバーエラー');
             }
             return response.text();
         })
+
         // 送信後に行われる関数
         // 引数　受信したJSON文字列
         .then(result => {
+        	// 送信が成功した場合の処理
             console.log('テキスト送信成功');
             console.log(result)
-//          JSON.parse(result)関数を実行する
-//			引数　Json文字列
-//			obj	受信したオブジェクト
+            // JSON.parse(result)関数を実行する
+            // 引数　Json文字列
+            // obj　受信したオブジェクト
             const obj = JSON.parse(result); // =>JSONをJavaScriptのオブジェクトに変換
-            console.log(obj.translatedText)
-            console.log(obj.outputMp3)
-            console.log(obj.message)
+            console.log(obj.translatedText) // 翻訳されたテキスト
+            console.log(obj.outputMp3)		// 音声ファイルのURL
+            console.log(obj.message)		// メッセージ
             // 翻訳後に行う関数を実行
             // 引数　translatedTextというデータを持っているオブジェクト＝受信したデータ
             func(obj)
         })
-        .catch(error => {
-            console.error('テキスト送信失敗:', error);
 
+        .catch(error => {
+        	// エラーが発生した場合の処理
+            console.error('テキスト送信失敗:', error);
         });
     }
 
-    // 上段の音声認識設定
-    let recognizing1 = false;
-    let recognition1;
-    const recordBtn1 = document.getElementById('recordBtn1');
+    // 上段（対話相手）の音声認識設定
+    let recognizing1 = false;	// 音声認識が現在行われているかどうかのフラグ
+    let recognition1;			// 音声認識オブジェクト
+    const recordBtn1 = document.getElementById('recordBtn1'); // 上段の録音ボタン
 
+    // ブラウザがwebkitSpeechRecognitionをサポートしているか確認
     if ('webkitSpeechRecognition' in window) {
-        recognition1 = new webkitSpeechRecognition();
+        recognition1 = new webkitSpeechRecognition(); // webkitベースのブラウザ用
     } else if ('SpeechRecognition' in window) {
-        recognition1 = new SpeechRecognition();
+        recognition1 = new SpeechRecognition(); // その他のブラウザ用
     }
 
     if (recognition1) {
-        recognition1.lang = getSelectedLang('userLang1');
-        recognition1.interimResults = false;
+    	// 音声認識の初期設定
+        recognition1.lang = getSelectedLang('userLang1');	// 初期言語設定
+        recognition1.interimResults = false;				// 中間結果を取得しない
 
+        // 音声認識結果が得られたときのイベントハンドラー
         recognition1.onresult = (event) => {
-            const text = event.results[0][0].transcript;
+            const text = event.results[0][0].transcript; // 認識されたテキスト
             console.log('上段の認識結果:', text);
-            outputText1.textContent = text;
-
+            outputText1.textContent = text; // 上段のテキストエリアに翻訳結果を表示
         };
 
+        // 音声認識中にエラーが発生したときのイベントハンドラー
         recognition1.onerror = (e) => {
             console.error('上段の認識エラー', e);
             uploadMessageEl.style.color = 'red';
             uploadMessageEl.textContent = '上段 音声認識に失敗しました';
         };
 
+        // 録音ボタンを有効化し、アイコンを設定
         recordBtn1.disabled = false;
         recordBtn1.textContent = '🎤';
 
+        // 録音ボタンがクリックされたときのイベントリスナー
         recordBtn1.addEventListener('click', () => {
             if (!recognizing1) {
+            	// 録音開始する場合
                 // 録音開始前に選択されている言語を取得し、音声認識に設定
                 recognition1.lang = getSourceSelectedLang('userLang1');
-                recognition1.start();
-                recognizing1 = true;
-                recordBtn1.textContent = 'OFF';
+                recognition1.start();	// 音声認識を開始
+                recognizing1 = true;	// フラグを更新
+                recordBtn1.textContent = 'OFF'; // ボタンのテキストを変更（録音終了ボタンに）
             } else {
-                recognition1.stop();
-                recognizing1 = false;
-                recordBtn1.textContent = '🎤';
+            	// 録音停止する場合
+                recognition1.stop();	// 音声認識を停止
+                recognizing1 = false;	// フラグを更新
+                recordBtn1.textContent = '🎤'; // ボタンのテキストを元に戻す（録音ボタンに）
             }
         });
 
     } else {
-        recordBtn1.disabled = true;
-        recordBtn1.textContent = '未対応';
+    	// 音声認識がサポートされていない場合の処理
+        recordBtn1.disabled = true;			// 録音ボタンを無効化
+        recordBtn1.textContent = '未対応';	// ボタンに「未対応」と表示
     }
 
-    // 下段の音声認識設定
-    let recognizing2 = false;
-    let recognition2;
-    const recordBtn2 = document.getElementById('recordBtn2');
+    // 下段（外国人利用者）の音声認識設定
+    let recognizing2 = false;	// 音声認識が現在行われているかどうかのフラグ
+    let recognition2;			// 音声認識オブジェクト
+    const recordBtn2 = document.getElementById('recordBtn2'); // 下段の録音ボタン
 
+    // ブラウザがWebkitSpeechRecognitionをサポートしているか確認
     if ('webkitSpeechRecognition' in window) {
-        recognition2 = new webkitSpeechRecognition();
+        recognition2 = new webkitSpeechRecognition(); // Webkitベースのブラウザ用
     } else if ('SpeechRecognition' in window) {
-        recognition2 = new SpeechRecognition();
+        recognition2 = new SpeechRecognition(); // その他のブラウザ用
     }
 
     if (recognition2) {
-        recognition2.lang = getSelectedLang('userLang2');
-        recognition2.interimResults = false;
+    	// 音声認識の初期設定
+        recognition2.lang = getSelectedLang('userLang2');	// 初期言語設定
+        recognition2.interimResults = false;				// 中間結果を表示しない
 
+        // 音声認識結果が得られたときのイベントハンドラー
         recognition2.onresult = (event) => {
-            const text = event.results[0][0].transcript;
+            const text = event.results[0][0].transcript; // 認識されたテキスト
             console.log('下段の認識結果:', text);
-            outputText2.textContent = text;
-
+            outputText2.textContent = text; // 下段のテキストエリアに翻訳結果を表示
         };
 
+        // 音声認識中にエラーが発生したときのイベントハンドラー
         recognition2.onerror = (e) => {
             console.error('下段の認識エラー', e);
             uploadMessageEl.style.color = 'red';
             uploadMessageEl.textContent = '下段 音声認識に失敗しました';
         };
 
+        // 録音ボタンを有効化し、アイコンを設定
         recordBtn2.disabled = false;
         recordBtn2.textContent = '🎤';
 
+        // 録音ボタンがクリックされたときのイベントリスナー
         recordBtn2.addEventListener('click', () => {
             if (!recognizing2) {
+            	// 録音開始する場合
+            	// 録音開始前に選択されている言語を取得し、音声認識に設定
                 recognition2.lang = getSelectedLang('userLang2');
-                recognition2.start();
-                recognizing2 = true;
-                recordBtn2.textContent = 'OFF';
+                recognition2.start();	// 音声認識を開始
+                recognizing2 = true;	// フラグを更新
+                recordBtn2.textContent = 'OFF'; // ボタンのテキストを変更（録音終了ボタンに）
             } else {
-                recognition2.stop();
-                recognizing2 = false;
-                recordBtn2.textContent = '🎤';
+            	// 録音停止する場合
+                recognition2.stop();	// 音声認識を停止
+                recognizing2 = false;	// フラグを更新
+                recordBtn2.textContent = '🎤'; // ボタンのテキストを元に戻す（録音ボタンに）
             }
         });
 
     } else {
-        recordBtn2.disabled = true;
-        recordBtn2.textContent = '未対応';
+    	// 音声認識がサポートされていない場合の処理
+        recordBtn2.disabled = true;			// 録音ボタンを無効化
+        recordBtn2.textContent = '未対応';	// ボタンに「未対応」と表示
     }
 
-    // 翻訳ボタン1（上段）の設定
+    // 対話相手の翻訳ボタン1（上段）の設定
+    // 上段のテキストを翻訳して下段に表示
     if (translateBtn1) {
         translateBtn1.addEventListener('click', () => {
-            const text = outputText1.value;
-            const sourceLang = getSelectedLang('userLang1');
-            const targetLang = getSelectedLang('userLang2');
+            const text = outputText1.value; // 上段のテキストエリアからテキストを取得
+            const sourceLang = getSelectedLang('userLang1'); // 翻訳元の言語コードを取得
+            const targetLang = getSelectedLang('userLang2'); // 翻訳後の言語コードを取得
             if (text) {
             	// sendTextToServer関数を実行する
             	// 41行目に定義されている
@@ -194,22 +234,21 @@ document.addEventListener('DOMContentLoaded', () => {
             	//															データを持っているオブジェクト＝受信したデータ
                 sendTextToServer(text, sourceLang, targetLang, (data) => {
                     if (data && data.translatedText) {
-                        outputText2.value = data.translatedText;
+                        outputText2.value = data.translatedText;// 下段のテキストエリアに翻訳結果を表示
                         console.log('上段の翻訳結果:', data.translatedText);
                         // インスタンスを作成して音声ファイルを読み込み
                         audio = new Audio(data.outputMp3);
                     }
                 });
             } else {
+            	// テキストが存在しない場合
                 console.warn("上段に翻訳するテキストがありません");
             }
         });
     }
 
-
-
-    // 翻訳ボタン2（下段）の設定
- // 翻訳ボタン1（上段）の設定
+    // 外国人利用者の翻訳ボタン2（下段）の設定
+    // 下段のテキストを翻訳して上段に表示
     if (translateBtn2) {
         translateBtn2.addEventListener('click', () => {
             const text = outputText2.value;
@@ -223,33 +262,40 @@ document.addEventListener('DOMContentLoaded', () => {
             	//															データを持っているオブジェクト＝受信したデータ
                 sendTextToServer(text, sourceLang, targetLang, (data) => {
                     if (data && data.translatedText) {
-                        outputText1.value = data.translatedText;
+                        outputText1.value = data.translatedText; //上段のテキストエリアに翻訳結果を表示
                         console.log('下段の翻訳結果:', data.translatedText);
                         // インスタンスを作成して音声ファイルを読み込み
                         audio = new Audio(data.outputMp3);
                     }
                 });
             } else {
+            	// テキストが存在しない場合
                 console.warn("下段に翻訳するテキストがありません");
             }
-        });    }
+        });
+    }
 
+    /**
+     * 読み上げボタン1（上段）のクリックイベント設定
+     * 上段の翻訳結果を音声で再生する
+     */
     if (readaloudBtn1) {
-
-    	readaloudBtn1.addEventListener('click', () => {
-
-    		// 音声ファイルを再生
-    		audio.play();
-    	})
+        readaloudBtn1.addEventListener('click', () => {
+            if (audio) {           // audioオブジェクトが存在する場合
+                audio.play();      // 音声ファイルを再生
+            } else {
+                console.warn("再生する音声がありません"); // 音声ファイルがない場合
+            }
+        });
     }
 
     if (readaloudBtn2) {
-
-    	readaloudBtn2.addEventListener('click', () => {
-
-    		// 音声ファイルを再生
-    		audio.play();
-    	})
+        readaloudBtn2.addEventListener('click', () => {
+            if (audio) {           // audioオブジェクトが存在する場合
+                audio.play();      // 音声ファイルを再生
+            } else {
+                console.warn("再生する音声がありません"); // 音声ファイルがない場合
+            }
+        });
     }
-
 });
