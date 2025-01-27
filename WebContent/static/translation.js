@@ -214,8 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const sourceLang = getSelectedLang('userLang2');
             const targetLang = getSelectedLang('userLang1');
             if (text) {
-                sendTextToServer(text, sourceLang, targetLang, (data) => {
-                	if (data && data.translatedText) {
+            	sendTextToServer(text, sourceLang, targetLang, (data) => {
+                    if (data && data.translatedText) {
                         outputText1.value = data.translatedText;
                         console.log('下段の翻訳結果:', data.translatedText);
                         // インスタンスを作成して音声ファイルを読み込み
