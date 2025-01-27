@@ -180,14 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         recordBtn2.textContent = '未対応';
     }
 
-    document.getElementById('sendFixedDataBtn').addEventListener('click', () => {
-        const fixedText = "こんばんは";
-        const fixedSourceLang = "ja";
-        const fixedTargetLang = "en";
-        outputText1.value = fixedText;
-        console.log('上段の認識結果:', fixedText);
-    });
-
     // 翻訳ボタン1（上段）の設定
     if (translateBtn1) {
         translateBtn1.addEventListener('click', () => {
@@ -223,11 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetLang = getSelectedLang('userLang1');
             if (text) {
                 sendTextToServer(text, sourceLang, targetLang, (data) => {
-                    if (data && data.translatedText) {
+                	if (data && data.translatedText) {
                         outputText1.value = data.translatedText;
                         console.log('下段の翻訳結果:', data.translatedText);
-                    } else {
-                    	console.warn("下段に翻訳するテキストがありません");
+                        // インスタンスを作成して音声ファイルを読み込み
+                        audio = new Audio(data.outputMp3);
                     }
                 });
             } else {

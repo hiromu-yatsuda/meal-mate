@@ -183,7 +183,6 @@
                 	<button class="translate-btn" id="translateBtn2">⇧</button>
                 	<button class="read-aloud-btn" id="readaloudBtn2">🔊</button>
                 </div>
-                <button id="sendFixedDataBtn">テスト用データを送信</button>
             </div>
         </div>
 
