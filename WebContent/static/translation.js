@@ -190,7 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
             	// sendTextToServer関数を実行する
             	// 41行目に定義されている
             	// 引数　翻訳前の文, 翻訳前の言語コード, 翻訳後の言語コード, 翻訳後に行う関数
-            	//　　　　　　　　　　　　　　　　　　　　　　　　　　　　　引数data　translatedTextというデータを持っているオブジェクト＝受信したデータ
+            	//															引数data　translatedTextという
+            	//															データを持っているオブジェクト＝受信したデータ
                 sendTextToServer(text, sourceLang, targetLang, (data) => {
                     if (data && data.translatedText) {
                         outputText2.value = data.translatedText;
@@ -218,7 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
             	// sendTextToServer関数を実行する
             	// 41行目に定義されている
             	// 引数　翻訳前の文, 翻訳前の言語コード, 翻訳後の言語コード, 翻訳後に行う関数
-            	//　　　　　　　　　　　　　　　　　　　　　　　　　　　　　引数data　translatedTextというデータを持っているオブジェクト＝受信したデータ
+            	//															引数data　translatedTextという
+            	//															データを持っているオブジェクト＝受信したデータ
                 sendTextToServer(text, sourceLang, targetLang, (data) => {
                     if (data && data.translatedText) {
                         outputText1.value = data.translatedText;
@@ -235,6 +237,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (readaloudBtn1) {
 
     	readaloudBtn1.addEventListener('click', () => {
+
+    		// 音声ファイルを再生
+    		audio.play();
+    	})
+    }
+
+    if (readaloudBtn2) {
+
+    	readaloudBtn2.addEventListener('click', () => {
 
     		// 音声ファイルを再生
     		audio.play();
