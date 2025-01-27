@@ -132,18 +132,15 @@
                 <div class="language-selection">
                     <select id="userLang1" name="userLang1">
                         <option value="ja-JP">日本語</option>
-                        <option value="en-US">English (US)</option>
-                        <option value="en-GB">English (UK)</option>
-                        <option value="es-ES">Español (ES)</option>
-                        <option value="es-MX">Español (MX)</option>
-                        <option value="fr-FR">Français (FR)</option>
-                        <option value="de-DE">Deutsch (DE)</option>
+                        <option value="en-US">English</option>
+                        <option value="es-ES">Español</option>
+                        <option value="fr-FR">Français</option>
+                        <option value="de-DE">Deutsch</option>
                         <option value="zh-CN">中文</option>
-                        <option value="ko-KR">한국어 (대한민국)</option>
-                        <option value="it-IT">Italiano (IT)</option>
-                        <option value="ru-RU">Русский (RU)</option>
-                        <option value="pt-PT">Português (PT)</option>
-                        <option value="pt-BR">Português (BR)</option>
+                        <option value="ko-KR">한국어</option>
+                        <option value="it-IT">Italiano</option>
+                        <option value="ru-RU">Русский</option>
+                        <option value="pt-PT">Português</option>
                         <option value="ar-SA">المملكة العربية السعودية</option>
                     </select>
                     <button class="record-btn" id="recordBtn1" disabled>準備中...</button>
@@ -162,18 +159,15 @@
                 <div class="language-selection">
                     <select id="userLang2" name="userLang2">
                         <option value="ja-JP">日本語</option>
-                        <option value="en-US">English (US)</option>
-                        <option value="en-GB">English (UK)</option>
-                        <option value="es-ES">Español (ES)</option>
-                        <option value="es-MX">Español (MX)</option>
-                        <option value="fr-FR">Français (FR)</option>
-                        <option value="de-DE">Deutsch (DE)</option>
+                        <option value="en-US">English</option>
+                        <option value="es-ES">Español</option>
+                        <option value="fr-FR">Français</option>
+                        <option value="de-DE">Deutsch</option>
                         <option value="zh-CN">中文</option>
-                        <option value="ko-KR">한국어 (대한민국)</option>
-                        <option value="it-IT">Italiano (IT)</option>
-                        <option value="ru-RU">Русский (RU)</option>
-                        <option value="pt-PT">Português (PT)</option>
-                        <option value="pt-BR">Português (BR)</option>
+                        <option value="ko-KR">한국어</option>
+                        <option value="it-IT">Italiano</option>
+                        <option value="ru-RU">Русский</option>
+                        <option value="pt-PT">Português</option>
                         <option value="ar-SA">المملكة العربية السعودية</option>
                     </select>
                     <button class="record-btn" id="recordBtn2" disabled>準備中...</button>

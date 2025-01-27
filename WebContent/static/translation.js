@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	let audio;
 
     // 詳細な言語コードマッピングを使用した関数
-
     /**
      * AWS（Amazon Web Services）で使用する言語コードに変換する関数
      * @param {string} langCode - 元の言語コード（例: "en-US"）
@@ -25,9 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mapping = {
             "ja-JP": "ja",
             "en-US": "en",
-            "en-GB": "en",
             "es-ES": "es",
-            "es-MX": "es",
             "fr-FR": "fr",
             "de-DE": "de",
             "zh-CN": "zh",
@@ -35,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "it-IT": "it",
             "ru-RU": "ru",
             "pt-PT": "pt",
-            "pt-BR": "pt",
             "ar-SA": "ar"
             // 必要に応じて他のマッピングを追加
         };
@@ -92,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(obj.translatedText) // 翻訳されたテキスト
             console.log(obj.outputMp3)		// 音声ファイルのURL
             console.log(obj.message)		// メッセージ
+
             // 翻訳後に行う関数を実行
             // 引数　translatedTextというデータを持っているオブジェクト＝受信したデータ
             func(obj)
@@ -283,8 +280,9 @@ document.addEventListener('DOMContentLoaded', () => {
         readaloudBtn1.addEventListener('click', () => {
             if (audio) {           // audioオブジェクトが存在する場合
                 audio.play();      // 音声ファイルを再生
+                console.log('音声ファイルを再生しました:', audio.src);
             } else {
-                console.warn("再生する音声がありません"); // 音声ファイルがない場合
+                console.warn("再生する音声ファイルがありません"); // 音声ファイルがない場合
             }
         });
     }
@@ -293,8 +291,9 @@ document.addEventListener('DOMContentLoaded', () => {
         readaloudBtn2.addEventListener('click', () => {
             if (audio) {           // audioオブジェクトが存在する場合
                 audio.play();      // 音声ファイルを再生
+                console.log('音声ファイルを再生しました:', audio.src);
             } else {
-                console.warn("再生する音声がありません"); // 音声ファイルがない場合
+                console.warn("再生する音声ファイルがありません"); // 音声ファイルがない場合
             }
         });
     }
