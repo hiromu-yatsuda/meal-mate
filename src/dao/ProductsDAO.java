@@ -75,38 +75,48 @@ public class ProductsDAO extends DAO {
     // 複数件登録はこちら↓↓↓
     public int insertProducts(List<JsonProduct> products) throws Exception {
         int line = 0;
+        int nextId = 1;
         Connection connection = getConnection();
-
-        PreparedStatement pStatement = connection.prepareStatement("insert into products values (?, ?, ?)");
+        PreparedStatement getNextIdStatement = connection.prepareStatement("select max(id) as nextId from product_foods");
+        PreparedStatement pStatement1 = connection.prepareStatement("insert into products values (?, ?, ?)");
+        PreparedStatement pStatement2 = connection.prepareStatement("insert into product_foods values (?, ?, ?)");
 
         try {
-            connection.setAutoCommit(false);
+           ResultSet nextIdResult = getNextIdStatement.executeQuery();
+           if (nextIdResult.next()) {
+               nextId = nextIdResult.getInt("nextId") + 1;
+           }
+
+           connection.setAutoCommit(false);
 
             for (JsonProduct p: products) {
-                pStatement.setString(1, p.getJan());
-                pStatement.setString(2, p.getName());
-                pStatement.setBoolean(3, p.isJan());
-                pStatement.addBatch();
+                System.out.println(p.getJan());
+                pStatement1.setString(1, p.getJan());
+                pStatement1.setString(2, p.getName());
+                pStatement1.setBoolean(3, p.isJan());
+                pStatement1.addBatch();
+                for (String s: p.getCheckedItemsId()) {
+                    pStatement2.setInt(1, nextId);
+                    pStatement2.setString(2, p.getJan());
+                    pStatement2.setString(3, s);
+                    pStatement2.addBatch();
+                    nextId++;
+                }
             }
 
-            line = pStatement.executeBatch().length;
+            line = pStatement1.executeBatch().length;
+            line += pStatement2.executeBatch().length;
 
-            boolean isOk = (new ProductFoods()).insertProductsFoods(products);
-
-            if (isOk) {
-                connection.commit();
-                System.out.println("products commit");
-            } else {
-                connection.rollback();
-                System.out.println("products rollback");
-            }
+            connection.commit();
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
             connection.rollback();
-            System.out.println("products: 登録失敗");
+            line = 0;
         }
 
-        pStatement.close();
+        pStatement2.close();
+        pStatement1.close();
+        getNextIdStatement.close();
         connection.close();
 
         return line;

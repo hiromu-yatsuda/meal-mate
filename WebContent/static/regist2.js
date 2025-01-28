@@ -187,7 +187,7 @@ function addInputField() {
     console.log(elm);
 
 	elm.addEventListener("keyup", (e) => {
-		if (numList.includes(e.key) && elm.value < 9999999999999) {
+		if (numList.includes(e.key) && elm.value <= 999999999999) {
 			elm.value += e.key;
 		}
 	});

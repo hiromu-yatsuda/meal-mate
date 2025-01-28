@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import bean.Foods;
 import bean.JsonProduct;
 import dao.FoodsDAO;
+import dao.ProductsDAO;
 import tool.CommonServlet;
 
 @WebServlet(urlPatterns={"/getAllFoods"})
@@ -58,8 +59,7 @@ public class SFoodsRegist extends CommonServlet {
         ObjectMapper objectMapper = new ObjectMapper();
         List<JsonProduct> products = objectMapper.readValue(sBuilder.toString(), objectMapper.getTypeFactory().constructCollectionType(List.class, JsonProduct.class));
 
-//        int l1 = (new ProductsDAO()).insertProducts(products);
-//        System.out.println("l1: " + l1);
+        int lines = (new ProductsDAO()).insertProducts(products);
     }
 
 }

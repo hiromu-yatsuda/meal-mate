@@ -36,7 +36,6 @@ public class GetCombFoods extends CommonServlet {
         jsonBuilder.delete(jsonBuilder.length() - 2, jsonBuilder.length());
         jsonBuilder.append("]");
 
-        System.out.println(jsonBuilder);
         out.print(jsonBuilder);
     }
 

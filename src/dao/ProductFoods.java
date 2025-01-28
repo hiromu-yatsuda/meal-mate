@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Foods;
-import bean.JsonProduct;
 
 public class ProductFoods extends DAO {
     public List<Foods> searchFoodsByJanCode(String janCode) throws Exception {
@@ -76,53 +75,4 @@ public class ProductFoods extends DAO {
                 return line;
 
     	}
-
-    	// 複数件登録する際はこちら↓↓↓
-    	public boolean insertProductsFoods(List<JsonProduct> products) throws Exception {
-    	    boolean isOk = false;
-    	    int line = 0;
-    	    int nextId = 1;
-    	    Connection connection = getConnection();
-    	    PreparedStatement nextIdStatement = connection.prepareStatement("select max(id) as maxId from product_foods");
-            ResultSet nextIdResult = nextIdStatement.executeQuery();
-
-            if (nextIdResult.next()) {
-                nextId = nextIdResult.getInt("maxId") + 1;
-            }
-
-            PreparedStatement pStatement = connection.prepareStatement("insert into product_foods values (?, ?, ?)");
-
-            try {
-                connection.setAutoCommit(false);
-
-                for (JsonProduct p: products) {
-                    for (String s: p.getCheckedItemsId()) {
-                        pStatement.setInt(1, nextId);
-                        pStatement.setString(2, p.getJan());
-                        pStatement.setString(3, s);
-                        pStatement.addBatch();
-                        nextId++;
-                    }
-                }
-
-                line = pStatement.executeBatch().length;
-
-                connection.commit();
-                isOk = true;
-                System.out.println("product_foods commit");
-            } catch (Exception e) {
-                e.printStackTrace();
-                connection.rollback();
-                System.out.println("product_foods: 登録失敗");
-            }
-
-            nextIdStatement.close();
-            pStatement.close();
-            connection.close();
-
-    	    return isOk;
-    	}
-
-
-
 }
