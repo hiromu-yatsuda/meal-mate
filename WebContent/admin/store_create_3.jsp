@@ -11,7 +11,7 @@
 
         <h1>店舗作成が完了しました</h1>
         <div class="center">
-        	<a href="a_top.jsp">Topへ</a>
+        	<a href="http://localhost:8080/meal-mate/admin/a_top.jsp">Topへ</a>
 		</div>
     </c:param>
 </c:import>
