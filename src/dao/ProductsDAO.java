@@ -75,16 +75,25 @@ public class ProductsDAO extends DAO {
     // 複数件登録はこちら↓↓↓
     public int insertProducts(List<JsonProduct> products) throws Exception {
         int line = 0;
-        int nextId = 1;
+        int nextId1 = 1;
+        int nextId2 = 1;
         Connection connection = getConnection();
-        PreparedStatement getNextIdStatement = connection.prepareStatement("select max(id) as nextId from product_foods");
+        PreparedStatement getNextIdStatement = connection.prepareStatement("select max(id) as nextId from ?");
         PreparedStatement pStatement1 = connection.prepareStatement("insert into products values (?, ?, ?)");
         PreparedStatement pStatement2 = connection.prepareStatement("insert into product_foods values (?, ?, ?)");
+        PreparedStatement pStatement3 = connection.prepareStatement("insert into group_products values (?, ?, ?)");
 
         try {
+           getNextIdStatement.setString(1, "product_foods");
            ResultSet nextIdResult = getNextIdStatement.executeQuery();
            if (nextIdResult.next()) {
-               nextId = nextIdResult.getInt("nextId") + 1;
+               nextId1 = nextIdResult.getInt("nextId") + 1;
+           }
+
+           getNextIdStatement.setString(1, "group_products");
+           ResultSet nextGPIdResult = getNextIdStatement.executeQuery();
+           if (nextGPIdResult.next()) {
+               nextId2 = nextGPIdResult.getInt("nextId");
            }
 
            connection.setAutoCommit(false);
@@ -93,14 +102,18 @@ public class ProductsDAO extends DAO {
                 System.out.println(p.getJan());
                 pStatement1.setString(1, p.getJan());
                 pStatement1.setString(2, p.getName());
-                pStatement1.setBoolean(3, p.isJan());
+                pStatement1.setBoolean(3, false);
                 pStatement1.addBatch();
+                pStatement3.setInt(1, nextId2);
+                pStatement3.setString(2, p.getJan());
+                // ここにgroup_idをセット
+//                pStatement3.setString(3, );
                 for (String s: p.getCheckedItemsId()) {
-                    pStatement2.setInt(1, nextId);
+                    pStatement2.setInt(1, nextId1);
                     pStatement2.setString(2, p.getJan());
                     pStatement2.setString(3, s);
                     pStatement2.addBatch();
-                    nextId++;
+                    nextId1++;
                 }
             }
 
