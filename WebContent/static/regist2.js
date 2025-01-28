@@ -3,7 +3,9 @@ const container = document.querySelector("#container");
 const plusButton = document.querySelector("#plusButton");
 const decisionButton = document.querySelector("#decisionButton");
 const cancelButtno = document.querySelector("#cancelButton");
-let foodId;
+const numList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+let num;
+let foodsId;
 let foodName;
 let combFoods;
 let productId = 1;
@@ -17,7 +19,7 @@ function getFoodsData() {
 		type: "GET",
 		dataType: "json"
 	}).done(function (res) {
-		foodId = res["id"];
+		foodsId = res["id"];
 		foodName = res["name"];
 
 		// getCombFoodsData()が完了してからaddInputField()をする
@@ -88,10 +90,13 @@ function addInputField() {
     // JANコード:
     janLabel.textContent = "JANコード:";
 
-    // <input type="number" placeholder="JANコード" id="jan">
+    // <input type="number" placeholder="JANコード" class="janCode" id="jan" minlength="13" maxlength="13">
     jan.type = "number";
     jan.placeholder = "JANコード";
-    jan.id = "jan";
+    jan.id = `jan${productId}`;
+    jan.classList.add("janCode");
+    jan.setAttribute("readonly", true);
+    jan.required = true;
 
     productElm.appendChild(br0);
     productElm.appendChild(isJan);
@@ -117,10 +122,11 @@ function addInputField() {
             	let label = document.createElement("label");
 
             	// プロパティの設定
-            	// <input type="checkbox" id=`${foodName[count] + productId}` class=`${foodName[count]}`>
+            	// <input type="checkbox" id=`${foodName[count] + productId}` class=`${foodName[count]}` data-food-id=`${foodsId[count]}`>
             	checkbox.type = "checkbox";
             	checkbox.id = foodName[count] + productId;
             	checkbox.classList.add(foodName[count]);
+            	checkbox.setAttribute("data-food-id", foodsId[count]);
 
             	// <label for=`${foodName[count] + productId}`>foodName[count]</label>
             	label.setAttribute("for", checkbox.id);
@@ -176,6 +182,20 @@ function addInputField() {
     productElm.appendChild(combTable);
     container.appendChild(productElm);
     productId++;
+
+    const elm = (n = document.querySelectorAll(".janCode"))[n.length - 1];
+    console.log(elm);
+
+	elm.addEventListener("keyup", (e) => {
+		if (numList.includes(e.key) && elm.value < 9999999999999) {
+			elm.value += e.key;
+		}
+	});
+	elm.addEventListener("keydown", (e) => {
+		if (e.key == "Backspace") {
+			elm.value = elm.value.slice(0, -1);
+		}
+	});
 }
 
 // 入力された情報をjson形式で取得
@@ -186,24 +206,24 @@ function collectProductData() {
 	productElms.forEach((e) => {
 		const productData = {};
 
-		const isJan = document.querySelector("#isJan").checked;
-		const name = document.querySelector("#name").value;
-		const jan = document.querySelector("#jan").value;
+		const isJan = e.querySelector("#isJan").checked;
+		const name = e.querySelector("#name").value;
+		const jan = e.querySelector('[id^="jan"]').value;
 
 		productData.isJan = isJan;
 		productData.name = name;
 		productData.jan = jan;
 
-		const checkedItems = [];
-		const itemCheckboxes = e.querySelectorAll('input[type="checkbox"]:not(#isJan):not(.comb)');
+		const checkedItemsId = [];
+		const itemCheckboxes = e.querySelectorAll('input[type="checkbox"]:not(#isJan):not([id^="comb"])');
 
-		itemCheckboxes.forEach((items) => {
-			if (items.checked) {
-				checkedItems.push(items.className);
+		itemCheckboxes.forEach((item) => {
+			if (item.checked) {
+				checkedItemsId.push(item.dataset.foodId);
 			}
 		});
 
-		productData.checkedItems = checkedItems;
+		productData.checkedItemsId = checkedItemsId;
 
 		products.push(productData);
 	});
@@ -213,7 +233,6 @@ function collectProductData() {
 
 function sendData() {
 	const data = collectProductData();
-	console.log("called");
 	console.log(JSON.stringify(data));
 
 	fetch("/meal-mate/getAllFoods", {

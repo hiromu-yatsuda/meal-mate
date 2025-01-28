@@ -58,13 +58,8 @@ public class SFoodsRegist extends CommonServlet {
         ObjectMapper objectMapper = new ObjectMapper();
         List<JsonProduct> products = objectMapper.readValue(sBuilder.toString(), objectMapper.getTypeFactory().constructCollectionType(List.class, JsonProduct.class));
 
-        for (JsonProduct item: products) {
-            System.out.println("item!");
-            System.out.println(item.getName());
-            for (String s: item.getCheckedItems()) {
-                System.out.println(s);
-            }
-        }
+//        int l1 = (new ProductsDAO()).insertProducts(products);
+//        System.out.println("l1: " + l1);
     }
 
 }
