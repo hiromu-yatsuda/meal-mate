@@ -23,7 +23,7 @@
         }
         .translation-section {
             min-height: 100vh;
-            padding: 15%;
+            padding: 10%;
         }
         .user-block {
             display: flex;
