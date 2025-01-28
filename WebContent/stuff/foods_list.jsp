@@ -19,36 +19,35 @@
         <table>
             <tr>
                 <td>商品名</td>
-                <td>もちもちもっくん</td>
-            </tr>
-            <tr>
                 <td>JANコード</td>
-                <td>292929292</td>
+                <td>制限食材</td>
+
             </tr>
             <tr>
-                <td>原材料</td>
+                <td>Mr.Beanチョコ</td>
+                <td>292929292</td>
                 <td>豚</td>
                 <td>ウシ</td>
                 <td>パンダ</td>
             </tr>
+                        <tr>
+                <td>Mr.Beanチョコっと</td>
+                <td>292929292</td>
+                <td>豚</td>
+                <td>ウシ</td>
+                <td>パンダ</td>
+                <td>パンダ</td>
+                <td>パンダ</td>
+            </tr>
+                        <tr>
+                <td>Mr.Beanチョコポ</td>
+                <td>292929292</td>
+
+            </tr>
+
         </table>
 
-        <table>
-            <tr>
-                <td>商品名</td>
-                <td>もちもちもっくん</td>
-            </tr>
-            <tr>
-                <td>JANコード</td>
-                <td>292929292</td>
-            </tr>
-            <tr>
-                <td>原材料</td>
-                <td>豚</td>
-                <td>ウシ</td>
-                <td>パンダ</td>
-            </tr>
-        </table>
+
 
         <c:forEach var="proData" items="${jancode}">
             <table border="1">

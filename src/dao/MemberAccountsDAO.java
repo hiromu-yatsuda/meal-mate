@@ -43,6 +43,7 @@ public class MemberAccountsDAO extends DAO {
 
         PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM MEMBER_ACCOUNTS where email = ? ");
 
+        pStatement.setString(1, email);
 
         ResultSet rSet = pStatement.executeQuery();
 
@@ -67,6 +68,10 @@ public class MemberAccountsDAO extends DAO {
     }
 
 
+
+
+
+
     public Languages searchLanguageByMemberId(String mId) throws Exception {
         Connection connection = getConnection();
         PreparedStatement pStatement = connection.prepareStatement("select l.id as id, l.name as lang_name, l.code as lang_code from member_accounts m join languages l on m.language_id = l.id where m.id = '?';");
@@ -88,6 +93,23 @@ public class MemberAccountsDAO extends DAO {
         connection.close();
 
         return language;
+    }
+
+
+    public boolean up_last_log(String email) throws Exception {
+        Connection connection = getConnection();
+
+        PreparedStatement pStatement = connection.prepareStatement("update MEMBER_ACCOUNTS set LAST_LOGIN  = now() where EMAIL  = ? ");
+
+        pStatement.setString(1, email);
+
+        int line = pStatement.executeUpdate();
+
+        pStatement.close();
+        connection.close();
+
+        return line > 0 ? true: false;
+
     }
 
 

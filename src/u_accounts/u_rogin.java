@@ -101,12 +101,21 @@ public class u_rogin extends HttpServlet {
 //				セッションへ
 //				HttpSession session = req.getSession();
 
+
+		    	boolean up_success = a_dao.up_last_log(u_mail);
+		    	System.out.println("Last_loginを更新");
+		    	System.out.println(up_success);
+
+
+
+
+
 //				IDをセッションへ
 				req.setAttribute("user_id",dao_id );
 
 
 //				top画面へ
-				req.getRequestDispatcher("/stuff/top.jsp").forward(req, resp);
+				req.getRequestDispatcher("/user/top.jsp").forward(req, resp);
 
 
 		    }

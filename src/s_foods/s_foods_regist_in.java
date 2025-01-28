@@ -307,7 +307,7 @@ public class s_foods_regist_in extends CommonServlet{
 
 
 
-	    req.getRequestDispatcher("/stuff/foods_regist_comp.jsp").forward(req, resp);
+	    req.getRequestDispatcher("/stuff/foods_regist_conp.jsp").forward(req, resp);
 
 	}
 
