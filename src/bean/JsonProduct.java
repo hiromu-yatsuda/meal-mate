@@ -6,7 +6,7 @@ public class JsonProduct implements Serializable {
     private boolean isJan;
     private String name;
     private String jan;
-    private String[] checkedItems;
+    private String[] checkedItemsId;
     public boolean isJan() {
         return isJan;
     }
@@ -25,11 +25,11 @@ public class JsonProduct implements Serializable {
     public void setJan(String jan) {
         this.jan = jan;
     }
-    public String[] getCheckedItems() {
-        return checkedItems;
+    public String[] getCheckedItemsId() {
+        return checkedItemsId;
     }
-    public void setCheckedItems(String[] checkedItems) {
-        this.checkedItems = checkedItems;
+    public void setCheckedItems(String[] checkedItemsId) {
+        this.checkedItemsId = checkedItemsId;
     }
 
 
