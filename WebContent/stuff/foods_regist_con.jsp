@@ -80,7 +80,7 @@
 <form action="/meal-mate/stuff/foods/regist/comp" method="post">
 
 
-<input type="hidden" value="${ re_next_full_list}" name="re_next_full_list">
+<input type="text" value="${ re_next_full_list}" name="re_next_full_list">
 <input type="hidden" value="${ y_or_n_janB}" name="y_or_n_janB">
 <input type="hidden" value="${ gru_id}" name="gru_id">
 
