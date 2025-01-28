@@ -61,7 +61,7 @@ public class stuff_create_accounts_regist extends HttpServlet {
 
 
 //		グループID（仮）
-		g_id = "001";
+		g_id = "101";
 
 
 

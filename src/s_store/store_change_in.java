@@ -38,7 +38,7 @@ public class store_change_in extends HttpServlet {
 
 
 		// グループID仮置き
-		se_g_id = "001";
+		se_g_id = "101";
 		System.out.println("仮置き後");
 		System.out.println(se_g_id);
 

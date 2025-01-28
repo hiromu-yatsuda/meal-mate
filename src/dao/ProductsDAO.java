@@ -73,7 +73,7 @@ public class ProductsDAO extends DAO {
     }
 
     // 複数件登録はこちら↓↓↓
-    public int insertProducts(List<JsonProduct> products) throws Exception {
+    public int insertProducts(List<JsonProduct> products, String g_id) throws Exception {
         int line = 0;
         int nextId1 = 1;
         int nextId2 = 1;
@@ -96,6 +96,10 @@ public class ProductsDAO extends DAO {
                nextId2 = nextGPIdResult.getInt("nextId");
            }
 
+
+
+
+
            connection.setAutoCommit(false);
 
             for (JsonProduct p: products) {
@@ -107,7 +111,7 @@ public class ProductsDAO extends DAO {
                 pStatement3.setInt(1, nextId2);
                 pStatement3.setString(2, p.getJan());
                 // ここにgroup_idをセット
-//                pStatement3.setString(3, );
+                pStatement3.setString(3, g_id);
                 for (String s: p.getCheckedItemsId()) {
                     pStatement2.setInt(1, nextId1);
                     pStatement2.setString(2, p.getJan());
@@ -127,6 +131,7 @@ public class ProductsDAO extends DAO {
             line = 0;
         }
 
+        pStatement3.close();
         pStatement2.close();
         pStatement1.close();
         getNextIdStatement.close();
