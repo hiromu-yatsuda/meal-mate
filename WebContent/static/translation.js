@@ -118,14 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
         recognition1.lang = getSelectedLang('userLang1');	// 初期言語設定
         recognition1.interimResults = false;				// 中間結果を取得しない
 
-        // 音声認識結果が得られたときのイベントハンドラー
+        // 音声認識結果が得られたときの処理
         recognition1.onresult = (event) => {
             const text = event.results[0][0].transcript; // 認識されたテキスト
             console.log('上段の認識結果:', text);
             outputText1.textContent = text; // 上段のテキストエリアに翻訳結果を表示
         };
 
-        // 音声認識中にエラーが発生したときのイベントハンドラー
+        // 音声認識中にエラーが発生したときの処理
         recognition1.onerror = (e) => {
             console.error('上段の認識エラー', e);
             uploadMessageEl.style.color = 'red';
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recordBtn1.disabled = false;
         recordBtn1.textContent = '🎤';
 
-        // 録音ボタンがクリックされたときのイベントリスナー
+        // 録音ボタンがクリックされたときの処理
         recordBtn1.addEventListener('click', () => {
             if (!recognizing1) {
             	// 録音開始する場合
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             outputText2.textContent = text; // 下段のテキストエリアに翻訳結果を表示
         };
 
-        // 音声認識中にエラーが発生したときのイベントハンドラー
+        // 音声認識中にエラーが発生したときの処理
         recognition2.onerror = (e) => {
             console.error('下段の認識エラー', e);
             uploadMessageEl.style.color = 'red';
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recordBtn2.disabled = false;
         recordBtn2.textContent = '🎤';
 
-        // 録音ボタンがクリックされたときのイベントリスナー
+        // 録音ボタンがクリックされたときの処理
         recordBtn2.addEventListener('click', () => {
             if (!recognizing2) {
             	// 録音開始する場合
@@ -287,6 +287,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /**
+     * 読み上げボタン1（上段）のクリックイベント設定
+     * 上段の翻訳結果を音声で再生する
+     */
     if (readaloudBtn2) {
         readaloudBtn2.addEventListener('click', () => {
             if (audio) {           // audioオブジェクトが存在する場合
