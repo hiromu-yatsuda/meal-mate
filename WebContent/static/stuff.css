@@ -88,13 +88,7 @@ h1 {
     margin: 20px 0 0 0; /* 上下の余白を調整 */
 }
 
-p {
-	color: white; /* テキストカラーを白に設定 */
-}
 
-label {
-	color: white; /* テキストカラーを白に設定 */
-}
 
 /* 「トップへ戻る」ボタン  */
 .center {
@@ -102,7 +96,7 @@ label {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #000080;
+    color: #FFFFFF;
 	text-decoration:underline;
 }
 
@@ -377,4 +371,10 @@ button#appu {
 
 button#sousin {
 	margin: 0px 0px 0px 130px;
+}
+
+/* 商品食材登録（手入力） */
+
+td {
+	color: white;	/* テキストカラーを白に設定 */
 }

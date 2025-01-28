@@ -10,22 +10,30 @@
 	        <header>
 	            <%@ include file="../stuffnav.jsp" %>
 	        </header>
+
 	        <h1>CSV入力</h1>
 			<div class="form-csv">
 		        <div id="csv_read">
-		            <button type="button" id="appu" onclick="location.href=''">CSVファイルをアップロード</button><br>
-		            <button type="button" id="sousin" onclick="location.href=''">送信</button>
+
+		        <form action="/meal-mate/stuff/foods/regist/csv" method="post" enctype="multipart/form-data">
+		            <button type="button" id="appu" onclick="location.href=''">CSVファイルをアップロード</button>
+		            <input type="file" name="file" accept=".txt" /><br>
+
+		            <button type="submit" id="sousin" onclick="location.href=''">送信</button>
+		        </form>
 		        </div>
 
 		        <div id="download">
 
 
-					<a href="${pageContext.request.contextPath}/img/files/csvテンプレート.txt" download="テンプレート.txt">テンプレートダウンロード</a>
+					<a href="${pageContext.request.contextPath}/img/files/テンプレート.txt" download="テンプレート.txt" charset="UTF-8">テンプレートダウンロード(txt)</a>
 
-		            <p>例</p>
-		            <p>"aa" , "momo" , "mimi"</p>
-		            <p>"パンツ鍋" , "" , "〇"</p>
-		            <p>"ミミズ" , "〇" , "〇"</p>
+
+
+		            <h5>例</h5>
+		            <h5>JANコード,商品名,えび,かに,くるみ,小麦,そば</h5>
+		            <h5>8493494,キムチ鍋,〇,,,〇,</h5>
+		            <h5>63830384,ハンバーグ,〇,〇,,〇,</h5>
 		        </div>
 			</div>
 	    </c:param>
