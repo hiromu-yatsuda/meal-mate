@@ -28,7 +28,7 @@ public class store_change extends HttpServlet {
 
 
 //		グループID仮置き
-		g_id = "001";
+		g_id = "100";
 
 
 

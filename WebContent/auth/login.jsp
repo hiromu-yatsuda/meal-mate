@@ -104,7 +104,7 @@ body {
         <input type="password" id="password" name="password" size="20" maxlength="20" required><br><br>
 
         <!-- サインインページへのリンク -->
-        <label><a href="signin.jsp">Click Here for Signin</a></label>
+        <label><a href="../user/create_user_1.jsp">sign up here</a></label>
 
         <!-- サブミットボタン -->
         <input type="submit" name="login" value="Login">
