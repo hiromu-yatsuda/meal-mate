@@ -16,7 +16,6 @@
 	    padding: 0;
 	    overflow: hidden; /* スクロールを防止 */
 	}
-
 	/* メインコンテナのスタイル */
 	.container {
 	    height: 100vh; /* ビューポートの高さを100%に設定 */
@@ -27,7 +26,6 @@
 	    padding: 15px; /* 全体のパディングを微調整 */
 	    box-sizing: border-box;
 	}
-
 	/* 翻訳セクション */
 	.translation-section {
 	    display: flex;
@@ -38,7 +36,6 @@
 	    height: 100%; /* セクションをビューポート全体に */
 	    box-sizing: border-box;
 	}
-
 	/* 上段と下段の共通スタイル */
 	.user-block1 {
 	    display: flex;
@@ -47,7 +44,6 @@
 	    gap: 15px; /* 要素間のスペースを広げる */
 	    transform: rotate(180deg); /* 上下左右を反転 */
 	}
-
 	/* 上段と下段の共通スタイル */
 	.user-block2 {
 	    display: flex;
@@ -55,7 +51,6 @@
 	    align-items: center;
 	    gap: 15px; /* 要素間のスペースを広げる */
 	}
-
 	/* 言語選択と録音ボタン */
 	.language-selection {
 	    display: flex;
@@ -64,14 +59,12 @@
 	    width: 100%;
 	    gap: 10px; /* ボタンとセレクトボックス間を調整 */
 	}
-
 	.language-selection select {
 	    font-size: 1rem; /* フォントサイズを調整 */
 	    padding: 10px; /* パディングを拡大 */
 	    border: 1px solid #ccc;
 	    border-radius: 5px;
 	}
-
 	/* 録音ボタン */
 	.language-selection .record-btn {
 	    background: #ffcc00;
@@ -81,17 +74,12 @@
 	    /* 幅と高さを固定 */
 	    width: 50px;
 	    height: 50px;
-
 	    /* テキストをボタン中央に揃える */
 	    display: inline-flex;       /* flexを使うことで縦横中央揃えが簡単 */
 	    align-items: center;
 	    justify-content: center;
-
 	    cursor: pointer;
-	    /* 必要に応じて調整 */
 	}
-
-
 	/* テキストエリア */
 	.output-text1, .output-text2 {
 	    font-size: 1.3rem; /* フォントサイズを適度に拡大 */
@@ -107,7 +95,6 @@
 	    align-items: center;
 	    justify-content: center;
 	}
-
 	/* ボタンのスタイル */
 	.translate-btn, .read-aloud-btn {
 	    background: #007BFF;
@@ -121,12 +108,10 @@
 	    height: 50px; /* 高さを調整 */
 	    text-align: center;
 	}
-
 	.translate-btn:hover, .read-aloud-btn:hover {
 	    background: #0056b3;
 	    transform: scale(1.05);
 	}
-
 	/* ボタン間のスペース */
 	.button-group {
 	    display: flex;
@@ -134,32 +119,27 @@
 	    gap: 15px; /* ボタン間の間隔を適度に調整 */
 	    width: 100%;
 	}
-
 	/* 区切り線 */
 	hr {
 	    border: 0.5px solid #ddd;
 	    width: 90%;
 	    margin: 15px auto; /* 上下マージンを調整 */
 	}
-
 	/* モバイル対応 */
 	@media (max-width: 480px) {
 	    .output-text1, .output-text2 {
 	        font-size: 1.1rem; /* フォントサイズを調整 */
 	        height: 100px; /* 高さを少し縮小 */
 	    }
-
 	    .translate-btn, .read-aloud-btn {
 	        font-size: 1rem; /* ボタンのフォントサイズを調整 */
 	        padding: 10px 15px; /* パディングを縮小 */
 	    }
-
 	    .language-selection select {
 	        font-size: 0.9rem; /* ドロップダウンのフォントサイズを縮小 */
 	        padding: 8px; /* 内側のスペースを縮小 */
 	    }
 	}
-
     </style>
 </head>
 <body>
