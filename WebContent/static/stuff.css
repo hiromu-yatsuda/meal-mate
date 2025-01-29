@@ -91,12 +91,12 @@ h1 {
 
 
 /* 「トップへ戻る」ボタン  */
-.center {
+.center a{
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
+    color: #0066FF;
 	text-decoration:underline;
 }
 

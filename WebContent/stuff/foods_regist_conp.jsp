@@ -12,7 +12,7 @@
 <h1>商品登録が完了しました</h1>
 
 <div class="center">
-        	<a href="top.jsp">Topへ</a>
+    <a href="top.jsp" class="center">Topへ</a>
 </div>
 	</c:param>
 </c:import>

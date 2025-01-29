@@ -14,8 +14,9 @@
 <h1>変更内容を保存しました</h1>
 
 <div class="center">
-        	<a href="top.jsp">Topへ</a>
+    <a href="top.jsp" class="center">Topへ</a>
 </div>
+
 
 	</c:param>
 </c:import>
