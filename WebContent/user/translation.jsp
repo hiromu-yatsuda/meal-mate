@@ -34,7 +34,7 @@
 	    flex-direction: column;
 	    justify-content: center;
 	    align-items: center;
-	    gap: 25px; /* セクション間のスペースを調整 */
+	    gap: 15px; /* セクション間のスペースを調整 */
 	    height: 100%; /* セクションをビューポート全体に */
 	    box-sizing: border-box;
 	}
