@@ -78,22 +78,21 @@ public class ProductsDAO extends DAO {
         int nextId1 = 1;
         int nextId2 = 1;
         Connection connection = getConnection();
-        PreparedStatement getNextIdStatement = connection.prepareStatement("select max(id) as nextId from ?");
+        PreparedStatement getNextIdStatement1 = connection.prepareStatement("select max(id) as nextId from product_foods");
+        PreparedStatement getNextIdStatement2 = connection.prepareStatement("select max(id) as nextId from group_products");
         PreparedStatement pStatement1 = connection.prepareStatement("insert into products values (?, ?, ?)");
         PreparedStatement pStatement2 = connection.prepareStatement("insert into product_foods values (?, ?, ?)");
         PreparedStatement pStatement3 = connection.prepareStatement("insert into group_products values (?, ?, ?)");
 
         try {
-           getNextIdStatement.setString(1, "product_foods");
-           ResultSet nextIdResult = getNextIdStatement.executeQuery();
+           ResultSet nextIdResult = getNextIdStatement1.executeQuery();
            if (nextIdResult.next()) {
                nextId1 = nextIdResult.getInt("nextId") + 1;
            }
 
-           getNextIdStatement.setString(1, "group_products");
-           ResultSet nextGPIdResult = getNextIdStatement.executeQuery();
+           ResultSet nextGPIdResult = getNextIdStatement2.executeQuery();
            if (nextGPIdResult.next()) {
-               nextId2 = nextGPIdResult.getInt("nextId");
+               nextId2 = nextGPIdResult.getInt("nextId") + 1;
            }
 
 
@@ -112,6 +111,8 @@ public class ProductsDAO extends DAO {
                 pStatement3.setString(2, p.getJan());
                 // ここにgroup_idをセット
                 pStatement3.setString(3, g_id);
+                pStatement3.addBatch();
+                nextId2++;
                 for (String s: p.getCheckedItemsId()) {
                     pStatement2.setInt(1, nextId1);
                     pStatement2.setString(2, p.getJan());
@@ -123,8 +124,10 @@ public class ProductsDAO extends DAO {
 
             line = pStatement1.executeBatch().length;
             line += pStatement2.executeBatch().length;
+            line += pStatement3.executeBatch().length;
 
             connection.commit();
+            System.out.println("commit");
         } catch (Exception e) {
             e.printStackTrace();
             connection.rollback();
@@ -134,7 +137,8 @@ public class ProductsDAO extends DAO {
         pStatement3.close();
         pStatement2.close();
         pStatement1.close();
-        getNextIdStatement.close();
+        getNextIdStatement2.close();
+        getNextIdStatement2.close();
         connection.close();
 
         return line;
