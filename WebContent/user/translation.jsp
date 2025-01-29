@@ -78,14 +78,24 @@
 	    border: none;
 	    font-size: 1.1rem;
 	    border-radius: 50%;
-	    padding: 12px; /* パディングを調整 */
+	    /* 幅と高さを固定 */
+	    width: 50px;
+	    height: 50px;
+
+	    /* テキストをボタン中央に揃える */
+	    display: inline-flex;       /* flexを使うことで縦横中央揃えが簡単 */
+	    align-items: center;
+	    justify-content: center;
+
 	    cursor: pointer;
+	    /* 必要に応じて調整 */
 	}
+
 
 	/* テキストエリア */
 	.output-text1, .output-text2 {
 	    font-size: 1.3rem; /* フォントサイズを適度に拡大 */
-	    width: 90%; /* 幅を親要素に合わせる */
+	    width: 100%; /* 幅を親要素に合わせる */
 	    max-width: 500px; /* 最大幅を調整 */
 	    height: 120px; /* 高さを適度に拡大 */
 	    border: 1px solid #ccc;
