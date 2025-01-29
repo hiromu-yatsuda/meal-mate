@@ -85,7 +85,7 @@ document.querySelector('#form-in').appendChild(newForm);
     <c:if test="${status.index % 5 == 0}">
         <tr>
     </c:if>
-    <td>
+    <td class="foods-td">
         <input type="checkbox" name="rest_foods[0][]" value="${foods.id},${foods.foodName}">
         <input type="hidden" value="${foods.id}" name="rest_foods_id[]">${foods.foodName}
     </td>

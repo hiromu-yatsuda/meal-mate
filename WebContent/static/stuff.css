@@ -373,8 +373,11 @@ button#sousin {
 	margin: 0px 0px 0px 130px;
 }
 
-/* 商品食材登録（手入力） */
 
 td {
-	color: white;	/* テキストカラーを白に設定 */
+	color: black;	/* foods_regist.jspのテーブルデータ */
+}
+
+.foods-td {
+    color: white; /* foods_regist2.jsp のテーブルデータ */
 }

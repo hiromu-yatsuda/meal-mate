@@ -12,7 +12,7 @@
 
 <h1>従業員作成が完了しました</h1>
 <div class="center">
-        	<a href="top.jsp">Topへ</a>
+        	<a href="http://localhost:8080/meal-mate/stuff/top.jsp">Topへ</a>
 		</div>
 
 	</c:param>
