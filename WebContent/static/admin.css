@@ -60,7 +60,6 @@ h1 {
     text-align: center; /* テキストを中央揃え */
     font-family: 'Arial', sans-serif; /* フォントを設定（必要に応じて変更） */
     font-size: 2.5rem; /* タイトルっぽい大きさを設定 */
-    font-weight: bold; /* 太字で強調 */
     letter-spacing: 0.1em; /* 文字間隔を広げることで高級感を追加 */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* おしゃれな影を追加 */
     margin: 20px 0 0 0; /* 上下の余白を調整 */
@@ -95,7 +94,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh; /* 縦中央揃えのために高さを設定 */
+    height: 55vh; /* 縦中央揃えのために高さを設定 */
 }
 
 .form-container {

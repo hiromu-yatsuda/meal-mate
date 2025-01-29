@@ -5,7 +5,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>TOP</title>
+    <title>管理者-TOP</title>
     <!-- CSSをリンク -->
     <link rel="stylesheet" href="../static/admin.css">
 </head>
@@ -16,7 +16,7 @@
 <header>
         <%@ include file="../adminnav.jsp" %>
     </header>
-        <h1>TOP</h1>
+        <h1>管理者 - TOP</h1>
 
  <div class="button-container">
             <div class="form-container">
