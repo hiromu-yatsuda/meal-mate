@@ -8,6 +8,7 @@ import java.util.List;
 
 import bean.JsonProduct;
 import bean.Products;
+import bean.ProductsList;
 
 public class ProductsDAO extends DAO {
     public int insert(String janCode, String pName) throws Exception {
@@ -143,6 +144,52 @@ public class ProductsDAO extends DAO {
 
         return line;
     }
+
+
+
+
+
+    public List<ProductsList> searchGroupId(String g_id)throws Exception {
+        List<ProductsList> pro_list = new ArrayList<ProductsList>();
+
+
+        Connection connection = getConnection();
+        PreparedStatement pStatement = connection.prepareStatement("SELECT "
+        		+ "PRODUCTS.name AS pro_name, "
+        		+ "PRODUCTS.JAN_CODE, "
+        		+ "GROUP_CONCAT(PRODUCT_FOODS.FOODS_ID ORDER BY PRODUCT_FOODS.FOODS_ID ASC) AS FOODS_IDS, "
+        		+ "GROUP_CONCAT(FOODS.NAME ORDER BY FOODS.NAME ASC) AS FOOD_NAMES "
+        		+ "FROM PRODUCTS "
+        		+ "INNER JOIN GROUP_PRODUCTS ON PRODUCTS.JAN_CODE = GROUP_PRODUCTS.JAN_CODE "
+        		+ "INNER JOIN PRODUCT_FOODS ON GROUP_PRODUCTS.JAN_CODE = PRODUCT_FOODS.PRODUCT_ID "
+        		+ "INNER JOIN FOODS ON PRODUCT_FOODS.FOODS_ID = FOODS.ID "
+        		+ "WHERE GROUP_PRODUCTS.GROUP_ID = ? "
+        		+ "GROUP BY PRODUCTS.name, PRODUCTS.JAN_CODE "
+        		+ "ORDER BY PRODUCTS.name ASC, PRODUCTS.JAN_CODE ASC;");
+
+        pStatement.setString(1, g_id);
+        ResultSet rSet = pStatement.executeQuery();
+
+        while (rSet.next()) {
+
+        	ProductsList pro = new ProductsList();
+        	pro.setPro_name(rSet.getString("pro_name"));
+        	pro.setJancode(rSet.getString("jan_code"));
+        	pro.setFoods_id(rSet.getString("foods_ids"));
+        	pro.setFoods_name(rSet.getString("food_names"));
+
+        	pro_list.add(pro);
+        }
+
+        pStatement.close();
+        connection.close();
+
+        return pro_list;
+
+
+    }
+
+
 }
 
 

@@ -16,7 +16,7 @@
 
 
 
-				<form action="/meal-mate/stuff/create_stuff_1" method="get">
+				<form action="/meal-mate/stuff/foods/list" method="get">
 				    <!-- フォームの入力フィールド -->
 				    <button class="button-top" type="submit"id="food">商品一覧</button>
 				</form>

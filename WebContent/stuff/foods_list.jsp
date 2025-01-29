@@ -16,60 +16,29 @@
 
 
 
-        <table>
-            <tr>
-                <td>商品名</td>
-                <td>JANコード</td>
-                <td>制限食材</td>
 
-            </tr>
-            <tr>
-                <td>Mr.Beanチョコ</td>
-                <td>292929292</td>
-                <td>豚</td>
-                <td>ウシ</td>
-                <td>パンダ</td>
-            </tr>
-                        <tr>
-                <td>Mr.Beanチョコっと</td>
-                <td>292929292</td>
-                <td>豚</td>
-                <td>ウシ</td>
-                <td>パンダ</td>
-                <td>パンダ</td>
-                <td>パンダ</td>
-            </tr>
-                        <tr>
-                <td>Mr.Beanチョコポ</td>
-                <td>292929292</td>
+<table class="pro_list">
+<thead>
+<tr>
+<th>JANコード</th>
+<th>商品名</th>
+<th>使用食材</th>
+</tr>
+</thead>
+        <c:forEach var="product" items="${product_list}">
+<thead>
+<tr>
 
-            </tr>
+<td>${product.jancode }</td>
+<td>${product.pro_name }</td>
+<td>${product.foods_name }</td>
 
-        </table>
-
-
-
-        <c:forEach var="proData" items="${jancode}">
-            <table border="1">
-                <tr>
-                    <td>商品名</td>
-                    <td>${proName_List}</td>
-                </tr>
-                <tr>
-                    <td>JANコード</td>
-                    <td>${jancode}</td>
-                </tr>
-                <tr>
-                    <td>原材料</td>
-                    <td>
-                        <c:forEach var="item" items="${foods}">
-                            ${item}<br/>
-                        </c:forEach>
-                    </td>
-                </tr>
-            </table>
-            <br/>
+</tr>
+</thead>
         </c:forEach>
+</table>
+
+
 
 	</div>
     </c:param>
