@@ -65,6 +65,7 @@ public class SFoodsRegist extends CommonServlet {
 //		セッションからグループIDを取得
 		HttpSession session = req.getSession();
 
+//		グループIDの引数
 		String g_id = "";
 		g_id = (String) session.getAttribute("s_g_id");
 
