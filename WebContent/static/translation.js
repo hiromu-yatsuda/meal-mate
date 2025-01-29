@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recognition1.onresult = (event) => {
             const text = event.results[0][0].transcript; // 認識されたテキスト
             console.log('上段の認識結果:', text);
-            outputText1.textContent = text; // 上段のテキストエリアに翻訳結果を表示
+            outputText1.value = text; // 上段のテキストエリアに認識結果を表示
         };
 
         // 音声認識中にエラーが発生したときの処理
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recognition2.onresult = (event) => {
             const text = event.results[0][0].transcript; // 認識されたテキスト
             console.log('下段の認識結果:', text);
-            outputText2.textContent = text; // 下段のテキストエリアに翻訳結果を表示
+            outputText2.value = text; // 下段のテキストエリアに認識結果を表示
         };
 
         // 音声認識中にエラーが発生したときの処理
