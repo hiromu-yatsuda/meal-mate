@@ -80,6 +80,11 @@
 	    justify-content: center;
 	    cursor: pointer;
 	}
+	.record-btn.recording {
+		background: #ff9900;
+	    transform: scale(1.05);
+	}
+
 	/* テキストエリア */
 	.output-text1, .output-text2 {
 	    font-size: 1.3rem; /* フォントサイズを適度に拡大 */
@@ -108,7 +113,7 @@
 	    height: 50px; /* 高さを調整 */
 	    text-align: center;
 	}
-	.translate-btn:hover, .read-aloud-btn:hover {
+	.translate-btn:active, .read-aloud-btn:active {
 	    background: #0056b3;
 	    transform: scale(1.05);
 	}

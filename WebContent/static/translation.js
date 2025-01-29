@@ -144,19 +144,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognition1.lang = getSelectedLang('userLang1');
                 recognition1.start();	// 音声認識を開始
                 recognizing1 = true;	// フラグを更新
-                recordBtn1.textContent = 'OFF'; // ボタンのテキストを変更（録音終了ボタンに）
+                recordBtn1.textContent = 'STOP'; // ボタンのテキストを変更（録音終了ボタンに）
+                // CSS用にクラスを付与
+                recordBtn1.classList.add('recording');
             } else {
             	// 録音停止する場合
                 recognition1.stop();	// 音声認識を停止
                 recognizing1 = false;	// フラグを更新
                 recordBtn1.textContent = '🎤'; // ボタンのテキストを元に戻す（録音ボタンに）
+                // CSS用に付与したクラスを削除
+                recordBtn1.classList.remove('recording');
             }
         });
 
     } else {
     	// 音声認識がサポートされていない場合の処理
         recordBtn1.disabled = true;			// 録音ボタンを無効化
-        recordBtn1.textContent = '未対応';	// ボタンに「未対応」と表示
+        recordBtn1.textContent = 'OFF';	// ボタンに「OFF」と表示
     }
 
     // 下段（外国人利用者）の音声認識設定
@@ -175,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recognition2.lang = getSelectedLang('userLang2');	// 初期言語設定
         recognition2.interimResults = false;				// 中間結果を表示しない
 
-        // 音声認識結果が得られたときのイベントハンドラー
+        // 音声認識結果が得られたときの処理
         recognition2.onresult = (event) => {
             const text = event.results[0][0].transcript; // 認識されたテキスト
             console.log('下段の認識結果:', text);
@@ -201,19 +205,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognition2.lang = getSelectedLang('userLang2');
                 recognition2.start();	// 音声認識を開始
                 recognizing2 = true;	// フラグを更新
-                recordBtn2.textContent = 'OFF'; // ボタンのテキストを変更（録音終了ボタンに）
+                recordBtn2.textContent = 'STOP'; // ボタンのテキストを変更（録音終了ボタンに）
+                // CSS用にクラスを付与
+                recordBtn1.classList.add('recording');
             } else {
             	// 録音停止する場合
                 recognition2.stop();	// 音声認識を停止
                 recognizing2 = false;	// フラグを更新
                 recordBtn2.textContent = '🎤'; // ボタンのテキストを元に戻す（録音ボタンに）
+                // CSS用に付与したクラスを削除
+                recordBtn1.classList.remove('recording');
             }
         });
 
     } else {
     	// 音声認識がサポートされていない場合の処理
         recordBtn2.disabled = true;			// 録音ボタンを無効化
-        recordBtn2.textContent = '未対応';	// ボタンに「未対応」と表示
+        recordBtn2.textContent = 'OFF';	// ボタンに「未対応」と表示
     }
 
     // 対話相手の翻訳ボタン1（上段）の設定
