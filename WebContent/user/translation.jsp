@@ -69,11 +69,11 @@
 	.language-selection .record-btn {
 	    background: #ffcc00;
 	    border: none;
-	    font-size: 1.1rem;
+	    font-size: 1.0rem;
 	    border-radius: 50%;
 	    /* 幅と高さを固定 */
-	    width: 50px;
-	    height: 50px;
+	    width: 45px;
+	    height: 45px;
 	    /* テキストをボタン中央に揃える */
 	    display: inline-flex;       /* flexを使うことで縦横中央揃えが簡単 */
 	    align-items: center;
