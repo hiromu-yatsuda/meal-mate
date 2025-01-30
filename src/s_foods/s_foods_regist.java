@@ -42,7 +42,7 @@ public class s_foods_regist extends CommonServlet{
 		req.setAttribute("foodsList", foods_list_dao);
 
 
-		req.getRequestDispatcher("/stuff/foods_regist.jsp").forward(req, resp);
+		req.getRequestDispatcher("/stuff/foods_regist2.jsp").forward(req, resp);
 
 
 
