@@ -157,7 +157,7 @@
 	.read-aloud-btn {
 	    position: absolute;
 	    bottom: 1px;       /* テキストエリア下端との隙間 */
-	    right: 1px;        /* テキストエリア右端との隙間 */
+	    left: 1px;        /* テキストエリア右端との隙間 */
 	    background: none;
 	    border: none;
 	    font-size: 1.1rem;
