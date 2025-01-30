@@ -69,7 +69,7 @@
 	.language-selection .record-btn {
 	    background: #ffcc00;
 	    border: none;
-	    font-size: 1.0rem;
+	    font-size: 1rem;
 	    border-radius: 50%;
 	    /* 幅と高さを固定 */
 	    width: 45px;
