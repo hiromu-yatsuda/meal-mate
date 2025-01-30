@@ -241,10 +241,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (data && data.translatedText) {
                         outputText2.value = data.translatedText;// 下段のテキストエリアに翻訳結果を表示
                         console.log('上段の翻訳結果:', data.translatedText);
-                        // インスタンスを作成して音声ファイルを読み込み
-                        //  = new Audio(data.outputMp3);
 
                         if (data.outputMp3) {
+                        	// インスタンスを作成して音声ファイルを読み込み
                             audio = new Audio(data.outputMp3);
                             // ボタン表示
                             readaloudBtn2.style.display = 'inline-block';
@@ -283,10 +282,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (data && data.translatedText) {
                         outputText1.value = data.translatedText; //上段のテキストエリアに翻訳結果を表示
                         console.log('下段の翻訳結果:', data.translatedText);
-                        // インスタンスを作成して音声ファイルを読み込み
-                        // audio = new Audio(data.outputMp3);
 
                         if (data.outputMp3) {
+                        	// インスタンスを作成して音声ファイルを読み込み
                             audio = new Audio(data.outputMp3);
                             // ボタン表示
                             readaloudBtn1.style.display = 'inline-block';

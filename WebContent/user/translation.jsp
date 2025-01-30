@@ -108,7 +108,7 @@
 	    font-size: 1.2rem; /* フォントサイズを調整 */
 	    padding: 12px 20px; /* パディングを調整 */
 	    cursor: pointer;
-	    width: 140px; /* 幅を拡大 */
+	    width: 130px; /* 幅を拡大 */
 	    height: 50px; /* 高さを調整 */
 	    text-align: center;
 	}
@@ -150,16 +150,15 @@
 	/* テキストエリアと読み上げボタンを重ねるためのラッパ */
 	.textarea-container {
 	    position: relative; /* 子要素を絶対配置しやすくする */
-	    margin: 0 10px; /* 左右に10pxの隙間だけ確保する例 */
+	    margin: 0 10px; /* 左右に10pxの隙間だけ確保 */
 	    width: 100%;
-	    /* 必要に応じて高さ調整。自動で高さ伸縮なら不要 */
 	}
 	/* 読み上げボタンをテキストエリアの右下に重ねる */
 	.read-aloud-btn {
 	    position: absolute;
-	    bottom: 2px;       /* テキストエリア下端との隙間 */
-	    right: 2px;        /* テキストエリア右端との隙間 */
-	    background: none;  /* ボタン背景を透過にしてアイコンのみでもOK */
+	    bottom: 1px;       /* テキストエリア下端との隙間 */
+	    right: 1px;        /* テキストエリア右端との隙間 */
+	    background: none;
 	    border: none;
 	    font-size: 1.1rem;
 	    cursor: pointer;
@@ -167,9 +166,8 @@
 	    width: 35px;
 	    height: 35px;
 	    text-align: center;
-	    line-height: *; /* アイコンを縦中央にしたければ */
+	    line-height: 15px;
 	}
-	/* マウスダウンやホバー時の色変化はお好みで */
 	.read-aloud-btn:hover {
 	    background: rgba(0,0,0,0.1);
 	    border-radius: 50%;

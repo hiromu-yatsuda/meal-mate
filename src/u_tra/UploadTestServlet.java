@@ -36,7 +36,7 @@ public class UploadTestServlet extends HttpServlet {
         // 簡易的なJSONレスポンスの例
         String jsonResponse = "{"
                 + "\"translatedText\":\""+requestBody.replace("\"", "")+"\","
-                + "\"outputMp3\":\"http://localhost:8080/meal-mate/mp3/dummy.mp3\","
+                + "\"outputMp3\":\"http://localhost:8080/meal-mate/mp3/strong.mp3\","
                 + "\"message\":\"正常に処理されました\""
                 + "}";
 
