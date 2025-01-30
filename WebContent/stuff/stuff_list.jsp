@@ -15,37 +15,30 @@
         <div class="form-create" id="stuff_reg">
 
 
-        <table>
-            <tr>
-                <td>名前</td>
-                <td>メールアドレス</td>
-            </tr>
-            <tr>
-                <td>笹木ささみ</td>
-                <td>fdghio@ad.asdg</td>
-                <td><button id="">削除</button></td>
-            </tr>
-            <tr>
-                <td>笹木ささぴ</td>
-                <td>fdghio@ad.asdg</td>
-                <td><button id="">削除</button></td>
-            </tr>
-        </table>
+<table class="staff_list">
+<thead>
+<tr>
+<th>氏名</th>
+<th>メールアドレス</th>
+<th>最終ログイン日</th>
+<th>店長権限</th>
+</tr>
+</thead>
 
-        <c:forEach var="proData" items="${stuff_list}">
-            <table border="1">
-                <tr>
-                    <td>名前</td>
-                    <td>${name}</td>
-                </tr>
-                <tr>
-                    <td>メールアドレス</td>
-                    <td>${mail}</td>
-                </tr>
-            </table>
-            <br/>
-        </c:forEach>
-        </div>
+<c:forEach var="staff" items="${staff_list}">
+<thead>
+<tr>
+<td>${staff.name }</td>
+<td>${staff.email }</td>
+<td>${staff.last_login }</td>
+<td>${staff.is_admin }</td>
+</tr>
+</thead>
+</c:forEach>
+</table>
+
+</div>
+
 
     </c:param>
 </c:import>

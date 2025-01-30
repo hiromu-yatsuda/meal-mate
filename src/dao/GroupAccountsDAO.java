@@ -95,13 +95,13 @@ public class GroupAccountsDAO extends DAO {
             groupAccount.setName(rSet.getString("name"));
             groupAccount.setEmail(rSet.getString("email"));
             groupAccount.setPassword(rSet.getString("password"));
-            groupAccount.setLastLogin(rSet.getDate("last_login"));
+            groupAccount.setLast_login(rSet.getDate("last_login"));
             groupAccount.setPasswordUpdated(rSet.getDate("password_updated"));
 //            groupAccount.setGroups(gDao.search(rSet.getString("group_code")));
 //            setGroupCode
 
             groupAccount.setGroupCode(rSet.getString("group_code"));
-            groupAccount.setAdmin(rSet.getBoolean("is_admin"));
+            groupAccount.setIs_admin(rSet.getBoolean("is_admin"));
 
 
 

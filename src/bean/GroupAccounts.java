@@ -14,6 +14,10 @@ public class GroupAccounts implements Serializable {
     private boolean isAdmin;
     private String groupCode;
 
+//    従業員一覧用
+    private Date last_login;
+    private boolean is_admin;
+
     public String getId() {
         return id;
     }
@@ -41,8 +45,8 @@ public class GroupAccounts implements Serializable {
     public Date getLastLogin() {
         return lastLogin;
     }
-    public void setLastLogin(Date lastLogin) {
-        this.lastLogin = lastLogin;
+    public void setLastLogin(Date last_login) {
+        this.lastLogin = last_login;
     }
     public Date getPasswordUpdated() {
         return passwordUpdated;
@@ -67,6 +71,18 @@ public class GroupAccounts implements Serializable {
 	}
 	public void setGroupCode(String groupCode) {
 		this.groupCode = groupCode;
+	}
+	public Date getLast_login() {
+		return last_login;
+	}
+	public void setLast_login(Date last_login) {
+		this.last_login = last_login;
+	}
+	public boolean isIs_admin() {
+		return is_admin;
+	}
+	public void setIs_admin(boolean is_admin) {
+		this.is_admin = is_admin;
 	}
 
 }

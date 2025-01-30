@@ -45,15 +45,21 @@ public class stuff_list extends HttpServlet {
 		    	System.out.println(mail);
 
 			    System.out.println("最終ログイン");
-		    	Date log = a.getLastLogin();
+		    	Date log = a.getLast_login();
 		    	System.out.println(log);
 
 			    System.out.println("店長");
-		    	boolean ad = a.isAdmin();
+		    	boolean ad = a.isIs_admin();
 		    	System.out.println(ad);
 
 
 			}
+
+
+		    req.setAttribute("staff_list",staff_accounts_all);
+
+			req.getRequestDispatcher("/stuff/stuff_list.jsp").forward(req, resp);
+
 
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
