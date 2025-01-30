@@ -1,6 +1,7 @@
 package s_accounts;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ public class stuff_list extends HttpServlet {
 //    	セッションからグループコードを取得する
     	HttpSession session = req.getSession();
     	String g_id = (String) session.getAttribute("g_id");
-
+    	g_id = "101";
 
 //		DAOGroup
 		GroupAccountsDAO dao = new GroupAccountsDAO();
@@ -33,6 +34,26 @@ public class stuff_list extends HttpServlet {
 			System.out.println(staff_accounts_all);
 
 
+			for(GroupAccounts a :  staff_accounts_all){
+
+			    System.out.println("名前");
+		    	String name = a.getName();
+		    	System.out.println(name);
+
+			    System.out.println("メアド");
+		    	String mail = a.getEmail();
+		    	System.out.println(mail);
+
+			    System.out.println("最終ログイン");
+		    	Date log = a.getLastLogin();
+		    	System.out.println(log);
+
+			    System.out.println("店長");
+		    	boolean ad = a.isAdmin();
+		    	System.out.println(ad);
+
+
+			}
 
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
