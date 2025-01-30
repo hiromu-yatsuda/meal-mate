@@ -87,21 +87,20 @@
 
 	/* テキストエリア */
 	.output-text1, .output-text2 {
-	    font-size: 1.3rem; /* フォントサイズを適度に拡大 */
-	    width: 100%; /* 幅を親要素に合わせる */
-	    max-width: 500px; /* 最大幅を調整 */
-	    height: 120px; /* 高さを適度に拡大 */
+	    font-size: 1.3rem;
+	    width: 100%;
+	    height: 120px;
 	    border: 1px solid #ccc;
 	    border-radius: 5px;
-	    padding: 8px; /* 内側のスペースを調整 */
+	    padding: 8px;
 	    background: #f9f9f9;
 	    box-sizing: border-box;
-	    display: flex;
-	    align-items: center;
-	    justify-content: center;
+	    resize: none; /* 必要ならリサイズ禁止 */
+	    /* display: block; にしておくと文字入力しやすい */
+	    display: block;
 	}
 	/* ボタンのスタイル */
-	.translate-btn, .read-aloud-btn {
+	.translate-btn {
 	    background: #007BFF;
 	    color: white;
 	    border: none;
@@ -113,7 +112,7 @@
 	    height: 50px; /* 高さを調整 */
 	    text-align: center;
 	}
-	.translate-btn:active, .read-aloud-btn:active {
+	.translate-btn:active {
 	    background: #0056b3;
 	    transform: scale(1.05);
 	}
@@ -128,15 +127,15 @@
 	hr {
 	    border: 0.5px solid #ddd;
 	    width: 90%;
-	    margin: 15px auto; /* 上下マージンを調整 */
+	    margin: 10px auto; /* 上下マージンを調整 */
 	}
 	/* モバイル対応 */
 	@media (max-width: 480px) {
 	    .output-text1, .output-text2 {
 	        font-size: 1.1rem; /* フォントサイズを調整 */
-	        height: 100px; /* 高さを少し縮小 */
+	        height: 115px; /* 高さを少し縮小 */
 	    }
-	    .translate-btn, .read-aloud-btn {
+	    .translate-btn {
 	        font-size: 1rem; /* ボタンのフォントサイズを調整 */
 	        padding: 10px 15px; /* パディングを縮小 */
 	    }
@@ -144,6 +143,39 @@
 	        font-size: 0.9rem; /* ドロップダウンのフォントサイズを縮小 */
 	        padding: 8px; /* 内側のスペースを縮小 */
 	    }
+	}
+
+
+
+	/* テキストエリアと読み上げボタンを重ねるためのラッパ */
+	.textarea-container {
+	    position: relative; /* 子要素を絶対配置しやすくする */
+	    margin: 0 10px; /* 左右に10pxの隙間だけ確保する例 */
+	    width: 100%;
+	    /* 必要に応じて高さ調整。自動で高さ伸縮なら不要 */
+	}
+	/* 読み上げボタンをテキストエリアの右下に重ねる */
+	.read-aloud-btn {
+	    position: absolute;
+	    bottom: 2px;       /* テキストエリア下端との隙間 */
+	    right: 2px;        /* テキストエリア右端との隙間 */
+	    background: none;  /* ボタン背景を透過にしてアイコンのみでもOK */
+	    border: none;
+	    font-size: 1.1rem;
+	    cursor: pointer;
+	    /* ボタンが小さいので、スマホ操作のためにヒット領域を広げたいなら padding 追加 */
+	    width: 35px;
+	    height: 35px;
+	    text-align: center;
+	    line-height: *; /* アイコンを縦中央にしたければ */
+	}
+	/* マウスダウンやホバー時の色変化はお好みで */
+	.read-aloud-btn:hover {
+	    background: rgba(0,0,0,0.1);
+	    border-radius: 50%;
+	}
+	.read-aloud-btn:active {
+	    background: rgba(0,0,0,0.2);
 	}
     </style>
 </head>
@@ -156,9 +188,12 @@
 
                 <div class="button-group">
                 	<button class="translate-btn" id="translateBtn1">⇧</button>
-                	<button class="read-aloud-btn" id="readaloudBtn1">🔊</button>
+
                 </div>
-                <textarea class="output-text1" id="outputText1"></textarea>
+                <div class="textarea-container">
+                	<textarea class="output-text1" id="outputText1"></textarea>
+                	<button class="read-aloud-btn" id="readaloudBtn1" style="display:none;">🔊</button>
+               	</div>
                 <div class="language-selection">
                     <select id="userLang1" name="userLang1">
                         <option value="ja-JP">日本語</option>
@@ -185,9 +220,12 @@
 
                 <div class="button-group">
                 	<button class="translate-btn" id="translateBtn2">⇧</button>
-                	<button class="read-aloud-btn" id="readaloudBtn2">🔊</button>
+
                 </div>
-                <textarea class="output-text2" id="outputText2"></textarea>
+                <div class="textarea-container">
+                	<textarea class="output-text2" id="outputText2"></textarea>
+                	<button class="read-aloud-btn" id="readaloudBtn2" style="display:none;">🔊</button>
+                </div>
                 <div class="language-selection">
                     <select id="userLang2" name="userLang2">
                         <option value="ja-JP">日本語</option>

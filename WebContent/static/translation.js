@@ -242,7 +242,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         outputText2.value = data.translatedText;// 下段のテキストエリアに翻訳結果を表示
                         console.log('上段の翻訳結果:', data.translatedText);
                         // インスタンスを作成して音声ファイルを読み込み
-                        audio = new Audio(data.outputMp3);
+                        //  = new Audio(data.outputMp3);
+
+                        if (data.outputMp3) {
+                            audio = new Audio(data.outputMp3);
+                            // ボタン表示
+                            readaloudBtn2.style.display = 'inline-block';
+                        } else {
+                            audio = null;
+                            // ボタン非表示
+                            readaloudBtn2.style.display = 'none';
+                        }
+                    } else {
+                    	outputText2.value = '';
+                        audio = null;
+                        readaloudBtn2.style.display = 'none';
                     }
                 });
             } else {
@@ -270,7 +284,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         outputText1.value = data.translatedText; //上段のテキストエリアに翻訳結果を表示
                         console.log('下段の翻訳結果:', data.translatedText);
                         // インスタンスを作成して音声ファイルを読み込み
-                        audio = new Audio(data.outputMp3);
+                        // audio = new Audio(data.outputMp3);
+
+                        if (data.outputMp3) {
+                            audio = new Audio(data.outputMp3);
+                            // ボタン表示
+                            readaloudBtn1.style.display = 'inline-block';
+                        } else {
+                            audio = null;
+                            // ボタン非表示
+                            readaloudBtn1.style.display = 'none';
+                        }
+                    } else {
+                    	outputText1.value = '';
+                        audio = null;
+                        readaloudBtn1.style.display = 'none';
                     }
                 });
             } else {
