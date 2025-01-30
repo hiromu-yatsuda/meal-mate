@@ -73,7 +73,7 @@
 					all_fi = all_fi + 1 ;
 					System.out.println("3maaaaa");
                 }
-				out.println(all_fi + "枚登録済み");
+				out.println(all_fi + "枚");
 
             %>
 </td>

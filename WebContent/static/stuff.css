@@ -402,3 +402,9 @@ td {
 	width: 200px; /* stuff_list.jsp のテーブル */
 	color: #000055;
 }
+
+#button-a {
+    text-align: center; /* ボタン全体を中央寄せ */
+    margin-top: 20px; /* 上部の余白 */
+}
+
