@@ -64,9 +64,12 @@ function addInputField() {
     let br0 = document.createElement("br");
     let isJan = document.createElement("input");
     let br1 = document.createElement("br");
+    let nameNullWarn = document.createElement("div");
     let nameLabel = document.createElement("label");
     let name = document.createElement("input");
     let br2 = document.createElement("br");
+    let janNullWarn = document.createElement("div");
+    let janLengthWarn = document.createElement("div");
     let janLabel = document.createElement("label");
     let jan = document.createElement("input");
     let br3 = document.createElement("br");
@@ -79,6 +82,12 @@ function addInputField() {
     isJan.type = "checkbox";
     isJan.id = "isJan";
 
+    // 名前が未入力の場合のエラーコメント
+    nameNullWarn.textContent = "※この項目は必須です";
+    nameNullWarn.id = "NameNull";
+    nameNullWarn.style.color = "red";
+    nameNullWarn.hidden = true;
+
     // 商品名:
     nameLabel.textContent = "商品名:";
 
@@ -86,6 +95,19 @@ function addInputField() {
     name.type = "text";
     name.placeholder = "商品名";
     name.id = "name";
+    name.required = true;
+
+    // Janコードが未入力の場合のエラーコメント
+    janNullWarn.textContent = "※この項目は必須です";
+    janNullWarn.id = "JanNull";
+    janNullWarn.style.color = "red";
+    janNullWarn.hidden = true;
+
+    // Janコードが13桁でない場合のエラーコメント
+    janLengthWarn.textContent = "※13桁の数字を入力してください";
+    janLengthWarn.id = "notThirteen";
+    janLengthWarn.style.color = "red";
+    janLengthWarn.hidden = true;
 
     // JANコード:
     janLabel.textContent = "JANコード:";
@@ -101,9 +123,12 @@ function addInputField() {
     productElm.appendChild(br0);
     productElm.appendChild(isJan);
     productElm.appendChild(br1);
+    productElm.appendChild(nameNullWarn);
     productElm.appendChild(nameLabel);
     productElm.appendChild(name);
     productElm.appendChild(br2);
+    productElm.appendChild(janNullWarn);
+    productElm.appendChild(janLengthWarn);
     productElm.appendChild(janLabel);
     productElm.appendChild(jan);
     productElm.appendChild(br3);
@@ -202,13 +227,37 @@ function addInputField() {
 function collectProductData() {
 	const products = [];
 	const productElms = document.querySelectorAll('[id^="product"]');
+	let isOk = true;
 
 	productElms.forEach((e) => {
 		const productData = {};
+		const nameNullWarn = e.querySelector("#NameNull");
+		const janNullWarn = e.querySelector("#JanNull");
+		const janLengthWarn = e.querySelector("#notThirteen");
 
 		const isJan = e.querySelector("#isJan").checked;
 		const name = e.querySelector("#name").value;
 		const jan = e.querySelector('[id^="jan"]').value;
+
+		if (name === "") {
+			nameNullWarn.hidden = false;
+			isOk = false;
+		} else {
+			nameNullWarn.hidden = true;
+		}
+
+		if (jan === "" || jan === undefined) {
+			janNullWarn.hidden = false;
+			isOk = false;
+		} else {
+			janNullWarn.hidden = true;
+			if (jan.length != 13) {
+				janLengthWarn.hidden = false;
+				isOk = false;
+			} else {
+				janLengthWarn.hidden = true;
+			}
+		}
 
 		productData.isJan = isJan;
 		productData.name = name;
@@ -228,11 +277,18 @@ function collectProductData() {
 		products.push(productData);
 	});
 
+	if (!isOk) {
+		return false;
+	}
+
 	return products;
 }
 
 function sendData() {
 	const data = collectProductData();
+	if (!data) {
+		return;
+	}
 	console.log(JSON.stringify(data));
 
 	fetch("/meal-mate/getAllFoods", {
