@@ -111,6 +111,17 @@ h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* フォームスタイル store_info_change_0.jsp */
+.form-create-a {
+    max-width: 1150px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #000055;
+}
+
 .input-group {
     display: flex;
     flex-direction: column;
@@ -380,4 +391,14 @@ td {
 
 .foods-td {
     color: white; /* foods_regist2.jsp のテーブルデータ */
+}
+
+.pro_list th {
+    width: 180px; /* foods_list.jsp のテーブル */
+    color: #000055;
+}
+
+.staff_list th{
+	width: 200px; /* stuff_list.jsp のテーブル */
+	color: #000055;
 }
