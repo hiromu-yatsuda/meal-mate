@@ -4,13 +4,17 @@ package s_foods;
 
 
 
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import bean.JsonProduct;
+import dao.ProductsDAO;
 import tool.CommonServlet;
 
 //アノテーションurl　リクエストされたら実行
@@ -20,58 +24,51 @@ public class s_foods_regist extends CommonServlet{
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	    HttpSession session = req.getSession();
+        resp.setContentType("applicatoin/json");
 
-
-	    // ここでcancelボタンが押された時のsessionの削除を書く
-	    // if (sessionの内容["items"] != null)的な感じ
-	    // できればsessionの内容を確認
-
-//		DAO
-//		FoodsDAO f_dao = new FoodsDAO();
-
-//		食材一覧を取得
-//		List<Foods> foods_list_dao = f_dao.all();
-
-//		System.out.println("DAOの結果");
-//		System.out.println(foods_list_dao);
-
-//		req.setAttribute("foodsList", foods_list_dao);
-
+	    try {
+	        if (session.getAttribute("json") != null) {
+	            session.removeAttribute("json");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 
 		req.getRequestDispatcher("/stuff/foods_regist2.jsp").forward(req, resp);
-
-
-
 	}
 
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 	    HttpSession session = req.getSession();
-	    resp.setContentType("applicatoin/json");
-	    PrintWriter out = resp.getWriter();
+	    resp.setContentType("application/json");
+	    List<JsonProduct> products = null;
+	    String json = "";
 
-	    String gru_id = (String) session.getAttribute("s_g_id");
-	    gru_id = "001"; // グループIDの仮置き
+	    try {
+	        json = session.getAttribute("json").toString();
+	        session.removeAttribute("json");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 
-	    StringBuilder sBuilder = new StringBuilder();
-        String line;
+	    System.out.println(json);
 
-        while ((line = req.getReader().readLine()) != null) {
-            sBuilder.append(line);
-        }
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    try {
+	        products = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, JsonProduct.class));
+//	        System.out.println(products);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 
-        System.out.println(sBuilder);
+	    String g_id = (String) session.getAttribute("s_g_id");
+        g_id = "100"; // グループIDの仮置き
 
-        System.out.println("じゅんちょー");
-
-        try {
-            session.setAttribute("json", sBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("じゅんちょーちょー");
+	    if (products != null) {
+	        int line = (new ProductsDAO()).insertProducts(products, g_id);
+	    }
 	}
 }
 

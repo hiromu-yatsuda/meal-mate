@@ -13,18 +13,11 @@
             <%@ include file="../stuffnav.jsp" %>
         </header>
 
-<!--
 <%
        	Object jsonArray = session.getAttribute("json");
-
-       	if (jsonArray != null) {
-       	    session.removeAttribute("json");
-       	} else {
-       	    jsonArray = "no data";
-       	}
 %>
-<div id="hidden" data-json='<%= jsonArray %>' hidden></div>
--->
+
+<div id="hidden" data-json='<%= jsonArray %>' hidden=true></div>
 
 
         <h1>商品登録確認</h1>

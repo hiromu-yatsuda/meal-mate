@@ -96,10 +96,6 @@ public class ProductsDAO extends DAO {
                nextId2 = nextGPIdResult.getInt("nextId") + 1;
            }
 
-
-
-
-
            connection.setAutoCommit(false);
 
             for (JsonProduct p: products) {
@@ -110,7 +106,6 @@ public class ProductsDAO extends DAO {
                 pStatement1.addBatch();
                 pStatement3.setInt(1, nextId2);
                 pStatement3.setString(2, p.getJan());
-                // ここにgroup_idをセット
                 pStatement3.setString(3, g_id);
                 pStatement3.addBatch();
                 nextId2++;

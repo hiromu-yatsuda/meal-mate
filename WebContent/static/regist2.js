@@ -140,6 +140,7 @@ function addInputField() {
     productElm.appendChild(br3);
 
     let table = document.createElement("table");
+    table.id = "foods";
 
     while (count < foodName.length) {
         let tr = document.createElement("tr");
@@ -215,7 +216,6 @@ function addInputField() {
     productId++;
 
     const elm = (n = document.querySelectorAll(".janCode"))[n.length - 1];
-    console.log(elm);
 
 	elm.addEventListener("keyup", (e) => {
 		if (numList.includes(e.key) && elm.value <= 999999999999) {
@@ -240,10 +240,14 @@ function collectProductData() {
 		const nameNullWarn = e.querySelector("#NameNull");
 		const janNullWarn = e.querySelector("#JanNull");
 		const janLengthWarn = e.querySelector("#notThirteen");
+		const foodsBox = e.querySelectorAll('#foods input[type="checkbox"]');
 
 		const isJan = e.querySelector("#isJan").checked;
 		const name = e.querySelector("#name").value;
 		const jan = e.querySelector('[id^="jan"]').value;
+		const foods = Array.from(foodsBox)
+						.filter(i => i.checked)
+						.map(j => j.className);
 
 		if (name === "") {
 			nameNullWarn.hidden = false;
@@ -268,6 +272,7 @@ function collectProductData() {
 		productData.isJan = isJan;
 		productData.name = name;
 		productData.jan = jan;
+		productData.foodName = foods;
 
 		const checkedItemsId = [];
 		const itemCheckboxes = e.querySelectorAll('input[type="checkbox"]:not(#isJan):not([id^="comb"])');
@@ -295,9 +300,8 @@ function sendData() {
 	if (!data) {
 		return;
 	}
-	console.log(JSON.stringify(data));
 
-	fetch("/meal-mate/stuff/foods/regist/or/manual", {
+	fetch("/meal-mate/stuff/regist_confirm", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -305,7 +309,7 @@ function sendData() {
 		body: JSON.stringify(data)
 	}).then(res => res.text())
 	.then(data => {
-		console.log(data);
+//		console.log(data);
 		window.location.href = "/meal-mate/stuff/foods_regist_con.jsp";
 	})
 }
