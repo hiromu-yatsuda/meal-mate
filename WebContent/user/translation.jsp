@@ -222,6 +222,8 @@
                         <option value="ru-RU">Русский</option>
                         <option value="pt-PT">Português</option>
                         <option value="ar-SA">المملكة العربية السعودية</option>
+                        <!-- ベトナム語を追加 -->
+                        <option value="vi-VN">Tiếng Việt</option>
                     </select>
                     <button class="record-btn1" id="recordBtn1" disabled>準備中...</button>
                 </div>
@@ -254,6 +256,8 @@
                         <option value="ru-RU">Русский</option>
                         <option value="pt-PT">Português</option>
                         <option value="ar-SA">المملكة العربية السعودية</option>
+                        <!-- ベトナム語を追加 -->
+                        <option value="vi-VN">Tiếng Việt</option>
                     </select>
                     <button class="record-btn2" id="recordBtn2" disabled>準備中...</button>
                 </div>

@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "it-IT": "it",
             "ru-RU": "ru",
             "pt-PT": "pt",
-            "ar-SA": "ar"
+            "ar-SA": "ar",
+            "vi-VN": "vi" // ベトナム語を追加
             // 必要に応じて他のマッピングを追加
         };
         // マッピングが存在しない場合は、単純に最初の部分を返す
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const awsTargetLang = convertToAWSLang(target_lang);
 
         // フェッチAPIを使用してサーバーにPOSTリクエストを送信
-        fetch(contextPath + '/uploadTest', { // 'contextPath' はアプリケーションのベースURL
+        fetch('https://1cvx7hjm1f.execute-api.us-east-1.amazonaws.com/dev/translate', { // 'contextPath' はアプリケーションのベースURL
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }, // JSON形式でデータを送信
             body: JSON.stringify({
