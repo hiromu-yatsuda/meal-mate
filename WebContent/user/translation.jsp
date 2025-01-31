@@ -14,7 +14,6 @@
 	    color: #333;
 	    margin: 0;
 	    padding: 0;
-	    overflow: hidden; /* スクロールを防止 */
 	}
 	/* メインコンテナのスタイル */
 	.container {
