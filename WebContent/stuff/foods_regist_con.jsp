@@ -19,7 +19,6 @@
 
 <div id="hidden" data-json='<%= jsonArray %>' hidden=true></div>
 
-
         <h1>商品登録確認</h1>
         <div id="container"></div>
         <div id="buttons">
