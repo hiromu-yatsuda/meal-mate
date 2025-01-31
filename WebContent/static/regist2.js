@@ -97,6 +97,9 @@ function addInputField() {
     name.id = "name";
     name.required = true;
 
+    // 後で消す
+    name.value = "testname";
+
     // Janコードが未入力の場合のエラーコメント
     janNullWarn.textContent = "※この項目は必須です";
     janNullWarn.id = "JanNull";
@@ -119,6 +122,9 @@ function addInputField() {
     jan.classList.add("janCode");
     jan.setAttribute("readonly", true);
     jan.required = true;
+
+    // 後で消す
+    jan.value = 1111111111111;
 
     productElm.appendChild(br0);
     productElm.appendChild(isJan);
@@ -291,12 +297,16 @@ function sendData() {
 	}
 	console.log(JSON.stringify(data));
 
-	fetch("/meal-mate/getAllFoods", {
+	fetch("/meal-mate/stuff/foods/regist/or/manual", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(data)
+	}).then(res => res.text())
+	.then(data => {
+		console.log(data);
+		window.location.href = "/meal-mate/stuff/foods_regist_con.jsp";
 	})
 }
 

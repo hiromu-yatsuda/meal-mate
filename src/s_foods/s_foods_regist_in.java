@@ -155,19 +155,8 @@ public class s_foods_regist_in extends CommonServlet{
 		    		if(pro_list1 == null || pro_list1.isEmpty()){
 		    			dup = true;
 		    		}
-
 		    	}
-
-
-
-
-
 	    	}
-
-
-
-
-
 //	    	単体JANコード
 	    	String jancode_1 = lis_solo[lis_solo.length - 1].trim();
 
@@ -212,18 +201,8 @@ public class s_foods_regist_in extends CommonServlet{
 //
 //	    		System.out.println("あああ" + lis_solo[i2].trim() + "あああ");
 //    		}
-
-
-
-
-
-
 //	    		既にこの商品は登録されていない
 	    		if(pro_list == null || pro_list.isEmpty()){
-
-
-
-//	    			84639493
 
 //    		重複していなかったら
 //    		1,PRODUCTSのJANコード,NAMEに追加。is_commonはfalse
