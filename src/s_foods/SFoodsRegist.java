@@ -6,14 +6,9 @@ import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import bean.Foods;
-import bean.JsonProduct;
 import dao.FoodsDAO;
-import dao.ProductsDAO;
 import tool.CommonServlet;
 
 @WebServlet(urlPatterns={"/getAllFoods"})
@@ -48,32 +43,6 @@ public class SFoodsRegist extends CommonServlet {
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        StringBuilder sBuilder = new StringBuilder();
-        String line;
-
-        while ((line = req.getReader().readLine()) != null) {
-            sBuilder.append(line);
-        }
-
-        System.out.println(sBuilder);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<JsonProduct> products = objectMapper.readValue(sBuilder.toString(), objectMapper.getTypeFactory().constructCollectionType(List.class, JsonProduct.class));
-
-
-//      group_productに登録
-//		セッションからグループIDを取得
-		HttpSession session = req.getSession();
-
-//		グループIDの引数
-		String g_id = "";
-		g_id = (String) session.getAttribute("s_g_id");
-
-//		グループID仮置き
-		g_id = "101";
-
-
-        int lines = (new ProductsDAO()).insertProducts(products,g_id);
     }
 
 }
