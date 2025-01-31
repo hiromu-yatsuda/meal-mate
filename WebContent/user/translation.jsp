@@ -65,8 +65,8 @@
 	    border: 1px solid #ccc;
 	    border-radius: 5px;
 	}
-	/* 録音ボタン */
-	.language-selection .record-btn {
+	/* 上段の録音ボタン */
+	.language-selection .record-btn1 {
 	    background: #ffcc00;
 	    border: none;
 	    font-size: 1rem;
@@ -80,11 +80,28 @@
 	    justify-content: center;
 	    cursor: pointer;
 	}
-	.record-btn.recording {
+	.record-btn1.recording {
 		background: #ff9900;
 	    transform: scale(1.05);
 	}
-
+	/* 下段の録音ボタン */
+	.language-selection .record-btn2 {
+	    background: #ffcc00;
+	    border: none;
+	    font-size: 1rem;
+	    border-radius: 50%;
+	    /* 幅と高さを固定 */
+	    width: 45px;
+	    height: 45px;
+	    /* テキストをボタン中央に揃える */
+	    display: inline-flex;       /* flexを使うことで縦横中央揃えが簡単 */
+	    align-items: center;
+	    justify-content: center;
+	    cursor: pointer;
+	}
+	.record-btn2.recording {
+		background: #ff9900;
+	}
 	/* テキストエリア */
 	.output-text1, .output-text2 {
 	    font-size: 1.3rem;
@@ -206,7 +223,7 @@
                         <option value="pt-PT">Português</option>
                         <option value="ar-SA">المملكة العربية السعودية</option>
                     </select>
-                    <button class="record-btn" id="recordBtn1" disabled>準備中...</button>
+                    <button class="record-btn1" id="recordBtn1" disabled>準備中...</button>
                 </div>
             </div>
 
@@ -238,7 +255,7 @@
                         <option value="pt-PT">Português</option>
                         <option value="ar-SA">المملكة العربية السعودية</option>
                     </select>
-                    <button class="record-btn" id="recordBtn2" disabled>準備中...</button>
+                    <button class="record-btn2" id="recordBtn2" disabled>準備中...</button>
                 </div>
             </div>
         </div>

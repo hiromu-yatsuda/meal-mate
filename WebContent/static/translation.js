@@ -207,14 +207,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognizing2 = true;	// フラグを更新
                 recordBtn2.textContent = 'STOP'; // ボタンのテキストを変更（録音終了ボタンに）
                 // CSS用にクラスを付与
-                recordBtn1.classList.add('recording');
+                recordBtn2.classList.add('recording');
             } else {
             	// 録音停止する場合
                 recognition2.stop();	// 音声認識を停止
                 recognizing2 = false;	// フラグを更新
                 recordBtn2.textContent = '🎤'; // ボタンのテキストを元に戻す（録音ボタンに）
                 // CSS用に付与したクラスを削除
-                recordBtn1.classList.remove('recording');
+                recordBtn2.classList.remove('recording');
             }
         });
 
