@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const obj = JSON.parse(result); // =>JSONをJavaScriptのオブジェクトに変換
             console.log(obj.translatedText) // 翻訳されたテキスト
             console.log(obj.outputMp3)		// 音声ファイルのURL
-            console.log(obj.message)		// メッセージ
 
             // 翻訳後に行う関数を実行
             // 引数　translatedTextというデータを持っているオブジェクト＝受信したデータ
