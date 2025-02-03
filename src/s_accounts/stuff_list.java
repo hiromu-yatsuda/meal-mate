@@ -21,12 +21,22 @@ public class stuff_list extends HttpServlet {
 
 //    	セッションからグループコードを取得する
     	HttpSession session = req.getSession();
-    	String g_id = (String) session.getAttribute("g_id");
-    	g_id = "101";
+    	String g_id = (String) session.getAttribute("s_g_id");
+
 
 //		DAOGroup
 		GroupAccountsDAO dao = new GroupAccountsDAO();
+		// セッションからグループIDを取得
 
+//店長権限がない場合飛ばされる
+boolean s_action = (boolean)session.getAttribute("s_action");
+
+
+
+if(s_action == false){
+
+	req.getRequestDispatcher("/stuff/not_manager.jsp").forward(req, resp);
+}else{
 
 
 		try {
@@ -67,7 +77,7 @@ public class stuff_list extends HttpServlet {
 			System.out.println("データ取得DAOでエラー");
 		}
 
-
+}
 
     }
 

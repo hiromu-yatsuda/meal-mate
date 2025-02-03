@@ -14,18 +14,13 @@
     <header>
         <%@ include file="../stuffnav.jsp" %>
     </header>
-    <c:import url="/stuffbase.jsp">
+    <c:import url="/adminbase.jsp">
         <c:param name="title">従業員登録</c:param>
         <c:param name="body">
             <h1>従業員作成</h1>
 
-            <form class="form-create" id="stuff_reg" action="/meal-mate/stuff/create_stuff_1" method="post">
-
-<p>${error}</p>
-
+            <form class="form-create" id="stuff_reg" action="/meal-mate/admin/stuff/create_stuff_1" method="post">
                 <div class="input-group">
-
-
                     <div class="form-create-group">
                         <label for="s_name">名前</label>
                         <input class="input-create" type="text" name="s_name" id="s_name" placeholder="名前を入力してください" required>
@@ -42,12 +37,24 @@
                             <input type="checkbox" name="manager_permission" id="manager_permission" style="margin-left: 10px;">
                         </label>
                     </div>
+
+
+			<div class="groupList">
+				<label for="guroups_list">グループ</label>
+				<select id="groups_list" name="groups_list">
+					<c:forEach var="group" items="${groupsList}">
+						<option value="${group.groupCode}">${group.groupCode}：${group.name}</option>
+					</c:forEach>
+				</select>
+			</div>
+
+
                 </div>
                 <div id="decision" class="button-group">
                 <button type="submit">作成</button>
             </form>
 
-                <button  onclick="history.back()">キャンセル</button>
+                <button type="button" id="cancel">キャンセル</button>
             </div>
         </c:param>
     </c:import>

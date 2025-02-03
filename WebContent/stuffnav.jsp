@@ -71,7 +71,7 @@
         <!-- ログインページへのリンク -->
         <a href="http://localhost:8080/meal-mate/stuff/s_rogin.jsp">Login</a>
         <!-- ホームページへのリンク -->
-        <a href="http://localhost:8080/meal-mate/stuff/top.jsp">🏠</a>
+        <a href="/meal-mate/staff/top">🏠</a>
     </div>
 </div>
 

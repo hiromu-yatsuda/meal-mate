@@ -12,6 +12,9 @@
 		<h1>店舗登録</h1>
 
 		<form class="form-create" action="/meal-mate/admin/a_create_store_1" method="post">
+
+			<p>${error}</p>
+
 			<div class="name">
 				<label>店舗名：</label>
 				<input type="text" name="name" id="name" placeholder="店舗名を入力してください" required>
@@ -30,6 +33,7 @@
 			<div class="address">
 				<label>住所：</label>
 				<input type="text" name="address" id="address" placeholder="住所を入力してください" required>
+				<p>※郵便番号は入力しないでください</p>
 			</div>
 
 			<div class="groupList">

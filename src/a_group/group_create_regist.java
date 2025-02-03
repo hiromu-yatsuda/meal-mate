@@ -131,6 +131,11 @@ System.out.print("登録コントローラまで");
 
     }catch (Exception e){
     	 System.out.println("エラーおきてるで");
+
+    	 String error = ("正しい情報を入力してください");
+			req.setAttribute("error",error );
+    	 req.getRequestDispatcher("/admin/group_create_1.jsp")
+ 		.forward(req, resp);
     }
 
 ////    System.out.println("id：" + dup);

@@ -66,9 +66,9 @@
 
         <div class="time">
             <label for="time1">営業時間</label>
-            <input type="time" value="${store.openingTime}" name="time1" id="time1">
+            <input type="time" value="${store.openingTime}" name="time1" id="time1" required>
             <p>～</p>
-            <input type="time" value="${store.closingTime}" name="time2" id="time2">
+            <input type="time" value="${store.closingTime}" name="time2" id="time2" required>
         </div>
 
 
@@ -102,8 +102,10 @@
  	<div id="preview1"></div>
 
  	<div id="figure_after">
- 	<label>設定中</label>
+ 	<label>変更前</label>
 
+
+<div id="photo_store123">
 
 
  	<%
@@ -134,6 +136,7 @@ if (fogure3 != null) {
 
 %>
 
+</div>
 
 
 </div>
@@ -155,7 +158,7 @@ if (fogure3 != null) {
 
 
 
-        <button type="button">戻る</button>
+        <button onclick="history.back()">戻る</button>
 	</div>
 
 

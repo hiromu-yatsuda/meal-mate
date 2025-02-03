@@ -1,4 +1,4 @@
-package s_accounts;
+package a_accounts;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,9 +16,11 @@ import javax.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
 
 import bean.GroupAccounts;
+import bean.Groups;
 import dao.GroupAccountsDAO;
+import dao.GroupsDAO;
 
-@WebServlet(urlPatterns={"/stuff/create_stuff_1"})
+@WebServlet(urlPatterns={"/admin/stuff/create_stuff_1"})
 public class stuff_create_accounts_regist extends HttpServlet {
 	@Override
 
@@ -28,24 +30,27 @@ public class stuff_create_accounts_regist extends HttpServlet {
 			HttpServletResponse resp
 		) throws ServletException, IOException {
 
-		// セッションからグループIDを取得
-				HttpSession session = req.getSession();
-//		店長権限がない場合飛ばされる
-		boolean s_action = (boolean)session.getAttribute("s_action");
+		GroupsDAO dao = new GroupsDAO();
+        List<Groups> groupsList = null;
+        try {
+
+
+//        	グループID、グループ名取得する
+            groupsList = dao.id_name();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println(groupsList);
+
+        req.setAttribute("groupsList", groupsList);
 
 
 
-		if(s_action == false){
-
-			req.getRequestDispatcher("/stuff/not_manager.jsp").forward(req, resp);
-		}else{
-
-
-		req.getRequestDispatcher("create_stuff_1.jsp")
+		req.getRequestDispatcher("/admin/s_create_stuff_1.jsp")
 		.forward(req, resp);
-
-		}
-		}
+	}
 
 	@Override
 	protected void doPost(
@@ -66,9 +71,11 @@ public class stuff_create_accounts_regist extends HttpServlet {
 
 //		ログインしているアカウントのセッションからグループIDを取得
 		HttpSession session = req.getSession();
-		String g_id = (String) session.getAttribute("s_g_id");
+//		String g_id = (String) session.getAttribute("g_id");
 
 
+//		グループID
+		String g_id = req.getParameter("groups_list");
 
 
 
@@ -102,11 +109,7 @@ public class stuff_create_accounts_regist extends HttpServlet {
 			if(mail_dup==true){
 
 				System.out.println("メールアドレスが重複していた");
-
-				String error = ("このメールアドレスは既に登録されています");
-				req.setAttribute("error",error );
-
-				req.getRequestDispatcher("create_stuff_1.jsp")
+				req.getRequestDispatcher("/admin/s_create_stuff_1.jsp")
 				.forward(req, resp);
 
 			} else {
@@ -255,10 +258,6 @@ public class stuff_create_accounts_regist extends HttpServlet {
 					// TODO 自動生成された catch ブロック
 					e.printStackTrace();
 					System.out.println("DAO登録エラー");
-					System.out.println("メールアドレスの重複チェックDAOエラー");
-
-					String error = ("このメールアドレスは既に登録されています");
-					req.setAttribute("error",error );
 				}
 
 
@@ -272,20 +271,12 @@ public class stuff_create_accounts_regist extends HttpServlet {
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
-
 			System.out.println("メールアドレスの重複チェックDAOエラー");
-
-			String error = ("このメールアドレスは既に登録されています");
-			req.setAttribute("error",error );
-
-
-			req.getRequestDispatcher("/stuff/create_stuff.jsp").forward(req, resp);
-
 		}
 
 
         // 次の登録完了サーブレットにリダイレクト
-        resp.sendRedirect(req.getContextPath() + "/stuff/create_stuff_1/comp");
+        resp.sendRedirect(req.getContextPath() + "/admin/stuff/create_stuff_1/comp");
 //		req.getRequestDispatcher("a_top.jsp").forward(req, resp);
 
 

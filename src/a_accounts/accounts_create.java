@@ -107,12 +107,15 @@ public class accounts_create extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 
 			e.printStackTrace();
+			String error = ("このIDは既に使用されています");
+			req.setAttribute("error",error );
 			System.out.println("daoでエラー");
+			req.getRequestDispatcher("/admin/a_accounts_create.jsp").forward(req, resp);
 		}
 
 
 
-		req.getRequestDispatcher("a_top.jsp").forward(req, resp);
+		req.getRequestDispatcher("a_rogin.jsp").forward(req, resp);
 
 
     }

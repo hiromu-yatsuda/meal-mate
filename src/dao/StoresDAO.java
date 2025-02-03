@@ -201,8 +201,8 @@ public class StoresDAO extends DAO {
         store.setAvg_amount_low(rSet.getInt("avg_amount_low"));
         store.setAvg_amount_high(rSet.getInt("avg_amount_high"));
         store.setFigure1(rSet.getString("figure1"));
-        store.setFigure1(rSet.getString("figure2"));
-        store.setFigure1(rSet.getString("figure3"));
+        store.setFigure2(rSet.getString("figure2"));
+        store.setFigure3(rSet.getString("figure3"));
         // テーブルのカラムがis_actionになっている(is_activeの間違い?)
         // rSet.getBoolean("is_action")の返り値がTRUEだとエラーの可能性
         store.setActive(rSet.getBoolean("is_action"));
@@ -260,6 +260,37 @@ public class StoresDAO extends DAO {
 
         return line;
     }
+
+
+
+
+    public int noPhoto_update(String sCode, Time opTime, Time clTime, int low, int high,  boolean isActive) throws Exception {
+        Connection connection = getConnection();
+
+        // is_actionをis_activeに直す場合、ここのis_actionも直す
+        PreparedStatement pStatement = connection.prepareStatement("update stores set opening_time = ?, closing_time = ?, avg_amount_low = ?, avg_amount_high = ?, is_action = ? where store_code = ?");
+
+        pStatement.setTime(1, opTime);
+        pStatement.setTime(2, clTime);
+        pStatement.setInt(3, low);
+        pStatement.setInt(4, high);
+
+        pStatement.setBoolean(5, isActive);
+        pStatement.setString(6, sCode);
+
+
+
+        int line = pStatement.executeUpdate();
+
+        pStatement.close();
+        connection.close();
+
+        return line;
+    }
+
+
+
+
 
     public int insert(String name, String phoneNum, String gId, Double latitude, Double longitude ) throws Exception {
         Connection connection = getConnection();

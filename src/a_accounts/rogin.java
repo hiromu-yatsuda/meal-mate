@@ -18,6 +18,10 @@ public class rogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+
+    	req.getRequestDispatcher("a_rogin.jsp").forward(req, resp);
+
     }
 
 
@@ -57,7 +61,15 @@ public class rogin extends HttpServlet {
         	if(isPasswordCorrect==true){
 
 //        		ログイン成功→アカウント名セッションへ
-        		session.setAttribute("a_name", ac_id);
+        		session.setAttribute("a_id", ac_id);
+
+
+        	}else{
+
+
+        		String error_message = ("IDもしくはパスワードが間違っています。");
+        		req.setAttribute("error_message",error_message );
+        		req.getRequestDispatcher("a_rogin.jsp").forward(req, resp);
 
         	}
 
@@ -66,7 +78,11 @@ public class rogin extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			System.out.println("daoでエラー");
-		}
+    		String error_message = ("IDもしくはパスワードが間違っています。");
+    		req.setAttribute("error_message",error_message );
+    		req.getRequestDispatcher("a_rogin.jsp").forward(req, resp);
+
+        }
 
 
 
@@ -74,7 +90,7 @@ public class rogin extends HttpServlet {
 
 
 
-		String se_name = (String) session.getAttribute("a_name");
+		String se_name = (String) session.getAttribute("a_id");
 		System.out.println("セッション");
 		System.out.println(se_name);
 

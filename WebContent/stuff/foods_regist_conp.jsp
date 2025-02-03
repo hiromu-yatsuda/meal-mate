@@ -12,7 +12,9 @@
 <h1>商品登録が完了しました</h1>
 
 <div class="center">
-    <a href="http://localhost:8080/meal-mate/stuff/top.jsp" class="center">Topへ</a>
+    <form action="/meal-mate/staff/top" method="get">
+        	<button type="submit">Topへ</button>
+        	</form>
 </div>
 	</c:param>
 </c:import>

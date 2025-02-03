@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Groups;
 import dao.GroupsDAO;
@@ -33,7 +34,11 @@ public class store_create_in extends HttpServlet {
 
 
         System.out.println(groupsList);
+//        store_create_error
+        HttpSession session = req.getSession();
+        String store_create_error = (String) session.getAttribute("store_create_error");
 
+        req.setAttribute("error", store_create_error);
         req.setAttribute("groupsList", groupsList);
         req.getRequestDispatcher("store_create_1.jsp").forward(req, resp);
     }
@@ -65,22 +70,7 @@ public class store_create_in extends HttpServlet {
 //		確認画面表示用(グループ)
 		String gru_st = gru_id + "：" + gru_name;
 
-//		System.out.println(sto_name);
-//		System.out.println(sto_tel);
-//		System.out.println(sto_mail);
-//		System.out.println(sto_address);
-//		System.out.println(gru_id_name);
-//
-//		System.out.println(gru_id);
-//		System.out.println(gru_name);
-//
-//		System.out.println(gru_st);
 
-//		for(String s:gru_id_name_List){
-//			System.out.println(s);
-//		}
-//
-//		System.out.println(gru_id_name_List);
 
 
 //		確認画面表示用

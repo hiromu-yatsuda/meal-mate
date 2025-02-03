@@ -12,6 +12,8 @@
 <h1>ログイン</h1>
 		<form class="form-create" action="/meal-mate/admin/rogin" method="post">
 
+		<p>${error_message}</p>
+
 			<div class="id">
 				<label>ID：</label>
     			<input type="text" name="id" id="id" placeholder="IDを入力してください"  required>

@@ -22,7 +22,7 @@ public class u_rogin extends HttpServlet {
 
 
 
-    	req.getRequestDispatcher("/user/u_rogin.jsp").forward(req, resp);
+    	req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -30,12 +30,12 @@ public class u_rogin extends HttpServlet {
 
 
     	//メールアドレスを取得
-    	String u_mail = req.getParameter("email");
+    	String u_mail = req.getParameter("id");
 
 
 
     	//パスワードを取得
-    	String u_pass = req.getParameter("pass");
+    	String u_pass = req.getParameter("password");
 
 
     	System.out.println("メールアドレス");
@@ -64,16 +64,20 @@ public class u_rogin extends HttpServlet {
 //			pass
 			String dao_pass = "";
 
+			String dao_lan_id = "";
+
 
 			for(MemberAccounts account : acc_list){
 
 				dao_id = account.getId();
 				dao_name = account.getName();
 				dao_pass = account.getPassword();
+				dao_lan_id = account.getLanguage_id();
 
 				System.out.println("ID:" + dao_id);
 				System.out.println("NAME:" + dao_name);
 				System.out.println("PASS:" + dao_pass);
+				System.out.println("LAN_ID:" + dao_lan_id);
 			}
 
 
@@ -91,7 +95,7 @@ public class u_rogin extends HttpServlet {
 		    	System.out.println("ログイン失敗");
 
 //				ログインページへ
-				req.getRequestDispatcher("/user/u_rogin.jsp").forward(req, resp);
+				req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
 
 
 
@@ -113,6 +117,9 @@ public class u_rogin extends HttpServlet {
 //				IDをセッションへ
 				req.setAttribute("user_id",dao_id );
 
+//				言語ID
+				req.setAttribute("language_id",dao_lan_id );
+
 
 //				top画面へ
 				req.getRequestDispatcher("/user/top.jsp").forward(req, resp);
@@ -127,7 +134,14 @@ public class u_rogin extends HttpServlet {
 			e.printStackTrace();
 
 	    	System.out.println("email検索DAOでエラー");
-		}
+
+			String error = ("メールアドレスまたはパスワードが間違っています");
+			req.setAttribute("error",error );
+			// このページのリロード
+		    resp.sendRedirect(req.getContextPath() + "/user/create_user_1");
+
+
+    	}
 
 
 

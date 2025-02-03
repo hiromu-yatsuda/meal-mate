@@ -11,6 +11,7 @@ public class MemberAccounts implements Serializable {
     private Date lastLogin;
     private Date passwordUpdated;
     private Languages languages;
+    private String language_id;
 
     public String getId() {
         return id;
@@ -54,5 +55,11 @@ public class MemberAccounts implements Serializable {
     public void setLanguages(Languages languages) {
         this.languages = languages;
     }
+	public String getLanguage_id() {
+		return language_id;
+	}
+	public void setLanguage_id(String language_id) {
+		this.language_id = language_id;
+	}
 
 }

@@ -13,6 +13,8 @@
 
         <form class="form-create" action="/meal-mate/admin/create_accounts_1" method="post">
 
+			<p>${error}</p>
+
             <div class="id">
                 <label>ID：</label>
                 <input type="text" name="id" id="id" placeholder="IDを入力してください" required>

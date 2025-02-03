@@ -77,10 +77,7 @@ public class group_list extends HttpServlet {
 //			List<String> a2_list = new ArrayList<>();
 //			List<Groups> aa = new ArrayList<Groups>();
 
-//			for(int i = 0; i<=g_list.size(); i++){
-////				aa.add(g_list[i]);
-//
-//			}
+
 
 
 //			ページネーションの設定
@@ -106,20 +103,6 @@ public class group_list extends HttpServlet {
 
 
 
-//
-//
-////			表示するデータを選別
-//
-//////	    	次のページ送信用
-////	    	int current_page = 1;
-//
-////			List<String> g_list_dis=new ArrayList<>();;
-//			List<Groups> g_list_dis;
-//
-//
-//
-////			g_list_dis.add(g_list.subList(0,5));
-
 
 
 
@@ -131,6 +114,7 @@ public class group_list extends HttpServlet {
 			req.setAttribute("total_page", g_list_page);
 
 //			表示データリスト
+
 			req.setAttribute("groupsList",g_list );
 //			req.setAttribute("groupsList", g_list);
 			req.getRequestDispatcher("/admin/group_list.jsp").forward(req, resp);

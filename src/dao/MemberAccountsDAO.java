@@ -55,6 +55,7 @@ public class MemberAccountsDAO extends DAO {
         	account.setId(rSet.getString("id"));
         	account.setName(rSet.getString("name"));
         	account.setPassword(rSet.getString("password"));
+        	account.setLanguage_id(rSet.getString("language_id"));
 
         	accounts_list.add(account);
         }

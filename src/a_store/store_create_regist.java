@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -130,7 +131,7 @@ public class store_create_regist extends HttpServlet {
               StoresDAO dao = new StoresDAO();
 
 
-              try {
+//              try {
 
 
 				int sto_reg_dao = dao.insert(sto_name, sto_tel, sto_gru_id, latitude, longitude);
@@ -139,22 +140,37 @@ public class store_create_regist extends HttpServlet {
 				req.getRequestDispatcher("/admin/store_create_3.jsp").forward(req, resp);
 
 
-              } catch (Exception e) {
+//              } catch (Exception e) {
+//
+//
+//            	  System.out.println("DAOでエラー起きとるで");
+//
+//				// TODO 自動生成された catch ブロック
+//				e.printStackTrace();
+//			}
+				HttpSession session = req.getSession();
+
+		       	 String error_message = null;
+
+		  		session.setAttribute("store_create_error", error_message);
 
 
-            	  System.out.println("DAOでエラー起きとるで");
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
+				req.getRequestDispatcher("/admin/store_create_3.jsp").forward(req, resp);
 
-
-
-
-
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("何だこのエラー");
+
+            System.out.println("DAOと何だこのエラー");
+            HttpSession session = req.getSession();
+       	 String error_message = ("正しい情報を入力してください");
+
+ 		session.setAttribute("store_create_error", error_message);
+
+            // 初期サーブレットにリダイレクト
+//            resp.sendRedirect(req.getContextPath() + "/admin/a_create_store_1");
+//   			req.getRequestDispatcher("/admin/a_create_store_1").forward(req, resp);
+   	        // エラーページへのリダイレクト
+   	        resp.sendRedirect(req.getContextPath() + "/admin/a_create_store_1");
 
         }
 
@@ -162,7 +178,7 @@ public class store_create_regist extends HttpServlet {
 
 
 
-		req.getRequestDispatcher("/admin/store_create_3.jsp").forward(req, resp);
+
 
     }
 }

@@ -10,4 +10,63 @@
 	<param-value>C:/work/pleiades/workspace/meal-mate/WebContent</param-value>
 </context-param>
 
+
+<!--
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/admin/top</url-pattern>
+    	<url-pattern>/admin/a_create_group_1</url-pattern>
+    	<url-pattern>/admin/a_create_group_1/regist/comp</url-pattern>
+    	<url-pattern>/admin/a_create_group_1/regist</url-pattern>
+    	<url-pattern>/admin/a_group_list</url-pattern>
+    	<url-pattern>/admin/a_create_store_1</url-pattern>
+    	<url-pattern>/admin/a_create_store_1/regist</url-pattern>
+    	<url-pattern>/admin/a_group_list/a_store_list</url-pattern>
+    	<url-pattern>/admin/a_create_store_1</url-pattern>
+
+
+
+    </filter-mapping>
+
+
+
+
+	<filter>
+    <filter-name>AuthFilter2</filter-name>
+    <filter-class>filter.AuthFilter2</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>AuthFilter2</filter-name>
+	    <url-pattern>/staff/top</url-pattern>
+	    <url-pattern>/stuff/foods/list</url-pattern>
+
+	    <url-pattern>/staff/staff_list</url-pattern>
+	    <url-pattern>/staff/store/change/store_select</url-pattern>
+	    <url-pattern>/staff/store/change</url-pattern>
+	    <url-pattern>/stuff/create_stuff_1</url-pattern>
+	    <url-pattern>/stuff/create_stuff_1/comp</url-pattern>
+
+
+	</filter-mapping>
+
+		<filter>
+    <filter-name>AuthFilter3</filter-name>
+    <filter-class>filter.AuthFilter3</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>AuthFilter3</filter-name>
+	    <url-pattern>/user/top.jsp</url-pattern>
+
+
+
+	</filter-mapping>
+
+
+ -->
+
+
 </web-app>

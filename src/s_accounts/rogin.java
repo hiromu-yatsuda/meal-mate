@@ -49,6 +49,8 @@ public class rogin extends HttpServlet {
 			if(accounts_list_dao == null || accounts_list_dao.isEmpty()){
 
 				System.out.println("ログイン失敗");
+				String error = ("メールアドレスまたはパスワードが間違っています");
+				req.setAttribute("error",error );
 //				ログインページへ
 				req.getRequestDispatcher("/stuff/s_rogin.jsp").forward(req, resp);
 			}
@@ -94,7 +96,11 @@ public class rogin extends HttpServlet {
 
 
 		    	System.out.println("ログイン失敗");
-//				ログインページへ
+
+				String error = ("メールアドレスまたはパスワードが間違っています");
+				req.setAttribute("error",error );
+
+		    	//				ログインページへ
 				req.getRequestDispatcher("/stuff/s_rogin.jsp").forward(req, resp);
 
 		    }else{
@@ -111,6 +117,10 @@ public class rogin extends HttpServlet {
 
 //		    グループID
     		session.setAttribute("s_g_id", dao_g_id);
+
+//    		店長権限
+    		session.setAttribute("s_action", dao_action);
+//    		dao_action
 
 
 //    		セッション確認
@@ -135,6 +145,14 @@ public class rogin extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			System.out.println("DAOでエラーが発生している");
+
+			String error = ("メールアドレスまたはパスワードが間違っています");
+			req.setAttribute("error",error );
+
+	    	//				ログインページへ
+			req.getRequestDispatcher("/stuff/s_rogin.jsp").forward(req, resp);
+
+
 		}
 
 

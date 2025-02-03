@@ -17,7 +17,9 @@
 	<h1>sign up</h1>
 
 <body>
+<p>${error}</p>
 <form class="form-create" action="/meal-mate/user/create_user_1" method="post">
+
 				<div class="name">
 				<label>NAME：</label>
     			<input type="text" name="name" id="name" placeholder="John Smith"  required>

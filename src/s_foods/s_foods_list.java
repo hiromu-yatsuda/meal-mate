@@ -24,7 +24,6 @@ public class s_foods_list extends CommonServlet{
 
 
 	    String gru_id = (String) session.getAttribute("s_g_id");
-	    gru_id = "101"; // グループIDの仮置き
 
 
 //	    食材名

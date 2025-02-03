@@ -32,15 +32,23 @@ public class store_change_in extends HttpServlet {
 
 		System.out.println(se_g_id);
 
+//		店長権限がない場合飛ばされる
+		boolean s_action = (boolean)session.getAttribute("s_action");
+
+
+
+		if(s_action == false){
+
+			req.getRequestDispatcher("/stuff/not_manager.jsp").forward(req, resp);
+		}
 
 
 
 
-
-		// グループID仮置き
-		se_g_id = "101";
-		System.out.println("仮置き後");
-		System.out.println(se_g_id);
+//		// グループID仮置き
+//		se_g_id = "101";
+//		System.out.println("仮置き後");
+//		System.out.println(se_g_id);
 
 
 
@@ -50,6 +58,8 @@ public class store_change_in extends HttpServlet {
 
 		// jspからグループIDを取得
 		String jsp_gru_id = req.getParameter("group_id");
+
+		System.out.println("グループID");
 		System.out.println(jsp_gru_id);
 
 		// jspから店舗IDを取得
@@ -57,7 +67,7 @@ public class store_change_in extends HttpServlet {
 		System.out.println("店舗ID");
 		System.out.println(jsp_store_id);
 
-		if (se_g_id.equals(jsp_gru_id)) {
+//		if (se_g_id.equals(jsp_gru_id)) {
 
 			StoresDAO dao = new StoresDAO();
 
@@ -73,6 +83,19 @@ public class store_change_in extends HttpServlet {
 
 
 				for(Stores store : s_list){
+
+					String s1 = store.getFigure1();
+					System.out.println("写真１取り出した");
+					System.out.println(s1);
+
+					String s2 = store.getFigure2();
+					System.out.println("写真2取り出した");
+					System.out.println(s2);
+
+					String s3 = store.getFigure3();
+					System.out.println("写真3取り出した");
+					System.out.println(s3);
+
 					Time o_time = store.getOpeningTime();
 					System.out.println("Time取り出した");
 					System.out.println(o_time);
@@ -99,9 +122,9 @@ public class store_change_in extends HttpServlet {
 				System.out.println("店舗情報取得DAOでエラー");
 			}
 
-		} else {
+//		} else {
 			System.out.println("URLからの偽造確認");
-		}
+//		}
 
 	}
 
@@ -305,13 +328,24 @@ public class store_change_in extends HttpServlet {
 
 		Time t_o_time = null;
 
-		if(o_time==null || o_time.isEmpty() ){
-			System.out.println("営業終了時間空");
-			o_time = null;
+
+		if(o_time.equals("00:00:00")){
+			t_o_time = Time.valueOf(o_time);
 
 		}else{
-			t_o_time = Time.valueOf(o_time + ":00");
+
+			if(o_time==null || o_time.isEmpty() ){
+				System.out.println("営業終了時間空");
+				o_time = null;
+
+			}else{
+				t_o_time = Time.valueOf(o_time + ":00");
+			}
+
 		}
+
+
+
 		System.out.println(o_time);
 
 
@@ -323,6 +357,16 @@ public class store_change_in extends HttpServlet {
 		Time t_c_time = null;
 //		LocalTime l_o_time = LocalTime.parse(o_time);
 
+		if(c_time.equals("00:00:00")){
+
+
+			t_c_time= Time.valueOf(c_time);
+
+
+		}else{
+
+
+
 
 
 		if(c_time==null || c_time.isEmpty() ){
@@ -330,6 +374,8 @@ public class store_change_in extends HttpServlet {
 			c_time =null;
 		}else{
 			t_c_time = Time.valueOf(c_time + ":00");
+		}
+
 		}
 		System.out.println(c_time);
 
@@ -380,10 +426,26 @@ public class store_change_in extends HttpServlet {
 		System.out.println(dao_savedFileName3);
 
 		try {
-			int update_dao = dao.update(s_id,t_o_time,t_c_time,dao_amount_high,dao_amount_low,dao_savedFileName1,dao_savedFileName2,dao_savedFileName3,b_action);
 
-			System.out.println("DAOの結果");
-			System.out.println(update_dao);
+			if(dao_savedFileName1==null && dao_savedFileName2 == null && dao_savedFileName3 == null ){
+
+				int noPhoto_update_dao = dao.noPhoto_update(s_id,t_o_time,t_c_time,dao_amount_high,dao_amount_low,b_action);
+
+				System.out.println("noP_DAOの結果");
+				System.out.println(noPhoto_update_dao);
+
+			}else{
+
+				int update_dao = dao.update(s_id,t_o_time,t_c_time,dao_amount_high,dao_amount_low,dao_savedFileName1,dao_savedFileName2,dao_savedFileName3,b_action);
+
+				System.out.println("DAOの結果");
+				System.out.println(update_dao);
+
+
+			}
+
+
+
 
 
 

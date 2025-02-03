@@ -93,6 +93,9 @@ public class user_create_accounts_regist extends HttpServlet {
 
 //			email重複している
 			if(b_dup_email==true){
+
+				String error = ("メールアドレスまたはパスワードが間違っています");
+				req.setAttribute("error",error );
 				// このページのリロード
 			    resp.sendRedirect(req.getContextPath() + "/user/create_user_1");
 
@@ -157,8 +160,9 @@ public class user_create_accounts_regist extends HttpServlet {
 			System.out.println(b_insert);
 
 
-			 // このページのリロード
-		    resp.sendRedirect(req.getContextPath() + "/user/create_user_1");
+			 // ログインページ
+			req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
+
 
 
 
@@ -166,7 +170,13 @@ public class user_create_accounts_regist extends HttpServlet {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 				System.out.println("登録DAOでエラー");
-			}
+
+				String error = ("メールアドレスまたはパスワードが間違っています");
+				req.setAttribute("error",error );
+				// このページのリロード
+			    resp.sendRedirect(req.getContextPath() + "/user/create_user_1");
+
+		    }
 
 
 
@@ -177,6 +187,11 @@ public class user_create_accounts_regist extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			System.out.println("email重複判定用DAOでエラー");
+
+			String error = ("メールアドレスまたはパスワードが間違っています");
+			req.setAttribute("error",error );
+			// このページのリロード
+		    resp.sendRedirect(req.getContextPath() + "/user/create_user_1");
 		}
 
 

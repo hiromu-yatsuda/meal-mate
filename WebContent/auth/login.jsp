@@ -94,7 +94,9 @@ body {
     <!-- ログインフォームのタイトル -->
     <h1>Login</h1>
     <!-- フォームの開始 -->
-    <form action="${pageContext.request.contextPath}/login" method="post">
+    <form action="/meal-mate/user/rogin" method="post">
+
+        <p>${error}</p>
         <!-- E-mailの入力フィールド -->
         <label for="id">E-mail</label>
         <input type="text" id="id" name="id" size="20" maxlength="20" required><br><br>
@@ -104,7 +106,7 @@ body {
         <input type="password" id="password" name="password" size="20" maxlength="20" required><br><br>
 
         <!-- サインインページへのリンク -->
-        <label><a href="../user/create_user_1.jsp">sign up here</a></label>
+        <label><a href="/meal-mate/user/create_user_1">sign up here</a></label>
 
         <!-- サブミットボタン -->
         <input type="submit" name="login" value="Login">

@@ -25,10 +25,19 @@ public class store_change extends HttpServlet {
 		g_id = (String) session.getAttribute("s_g_id");
 
 
+//		店長権限がない場合飛ばされる
+		boolean s_action = (boolean)session.getAttribute("s_action");
 
 
-//		グループID仮置き
-		g_id = "100";
+
+		if(s_action == false){
+
+			req.getRequestDispatcher("/stuff/not_manager.jsp").forward(req, resp);
+		}
+
+//
+////		グループID仮置き
+//		g_id = "100";
 
 
 
