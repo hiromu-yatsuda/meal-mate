@@ -220,7 +220,7 @@
                         <option value="it-IT">Italiano</option>
                         <option value="ru-RU">Русский</option>
                         <option value="pt-PT">Português</option>
-                        <option value="ar-SA">المملكة العربية السعودية</option>
+                        <option value="ar-SA">المملكة العربية السعودية</option>X
                         <!-- ベトナム語を追加 -->
                         <option value="vi-VN">Tiếng Việt</option>
                     </select>

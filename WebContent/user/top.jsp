@@ -37,8 +37,7 @@
 
 <form action="/meal-mate/user/create_user_1" method="get">
     <!-- フォームの入力フィールド -->
-    <button type="submit">
-Account Create</button>
+
 </form>
 
 
