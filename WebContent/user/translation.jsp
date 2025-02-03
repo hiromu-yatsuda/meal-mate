@@ -1,12 +1,19 @@
 <!-- translation.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // セッションに「language_id」が登録されているか確認する
+    String userLang = (String) session.getAttribute("language_id");
+    if (userLang == null || userLang.trim().isEmpty()) {
+        userLang = "en-US"; // セッションに値がなければデフォルトとして日本語を設定
+    }
+%>
 <!DOCTYPE html>
 <html lang="ja">
 <%@ include file="./../userbase.jsp" %>
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
-    <title>翻訳 (ブラウザで音声→テキスト変換)</title>
-    <style>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+<title>翻訳 (ブラウザで音声→テキスト変換)</title>
+<style>
 	/* 全体の基本設定 */
 	body {
 	    font-family: Arial, sans-serif;
@@ -162,7 +169,6 @@
 	}
 
 
-
 	/* テキストエリアと読み上げボタンを重ねるためのラッパ */
 	.textarea-container {
 	    position: relative; /* 子要素を絶対配置しやすくする */
@@ -191,84 +197,82 @@
 	.read-aloud-btn:active {
 	    background: rgba(0,0,0,0.2);
 	}
-    </style>
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="translation-section">
-            <!-- 上段 -->
-            <div class="user-block1">
+<div class="container">
+<div class="translation-section">
+<!-- 上段 -->
+<div class="user-block1">
 
 
                 <div class="button-group">
-                	<button class="translate-btn" id="translateBtn1">⇧</button>
+<button class="translate-btn" id="translateBtn1">⇧</button>
 
                 </div>
-                <div class="textarea-container">
-                	<textarea class="output-text1" id="outputText1"></textarea>
-                	<button class="read-aloud-btn" id="readaloudBtn1" style="display:none;">🔊</button>
-               	</div>
-                <div class="language-selection">
-                    <select id="userLang1" name="userLang1">
-                        <option value="ja-JP">日本語</option>
-                        <option value="en-US">English</option>
-                        <option value="es-ES">Español</option>
-                        <option value="fr-FR">Français</option>
-                        <option value="de-DE">Deutsch</option>
-                        <option value="zh-CN">中文</option>
-                        <option value="ko-KR">한국어</option>
-                        <option value="it-IT">Italiano</option>
-                        <option value="ru-RU">Русский</option>
-                        <option value="pt-PT">Português</option>
-                        <option value="ar-SA">المملكة العربية السعودية</option>X
-                        <!-- ベトナム語を追加 -->
-                        <option value="vi-VN">Tiếng Việt</option>
-                    </select>
-                    <button class="record-btn1" id="recordBtn1" disabled>準備中...</button>
-                </div>
-            </div>
+<div class="textarea-container">
+<textarea class="output-text1" id="outputText1"></textarea>
+<button class="read-aloud-btn" id="readaloudBtn1" style="display:none;">🔊</button>
+</div>
+<div class="language-selection">
+<select id="userLang1" name="userLang1">
+<option value="ja-JP" selected>日本語</option>
+<option value="en-US">English</option>
+<option value="es-ES">Español</option>
+<option value="fr-FR">Français</option>
+<option value="de-DE">Deutsch</option>
+<option value="zh-CN">中文</option>
+<option value="ko-KR">한국어</option>
+<option value="it-IT">Italiano</option>
+<option value="ru-RU">Русский</option>
+<option value="pt-PT">Português</option>
+<option value="ar-SA">المملكة العربية السعودية</option>
+<option value="vi-VN">Tiếng Việt</option>
+</select>
+<button class="record-btn1" id="recordBtn1" disabled>準備中...</button>
+</div>
+</div>
 
             <hr>
 
             <!-- 下段 -->
-            <div class="user-block2">
+<div class="user-block2">
 
 
                 <div class="button-group">
-                	<button class="translate-btn" id="translateBtn2">⇧</button>
+<button class="translate-btn" id="translateBtn2">⇧</button>
 
                 </div>
-                <div class="textarea-container">
-                	<textarea class="output-text2" id="outputText2"></textarea>
-                	<button class="read-aloud-btn" id="readaloudBtn2" style="display:none;">🔊</button>
-                </div>
-                <div class="language-selection">
-                    <select id="userLang2" name="userLang2">
-                        <option value="ja-JP">日本語</option>
-                        <option value="en-US">English</option>
-                        <option value="es-ES">Español</option>
-                        <option value="fr-FR">Français</option>
-                        <option value="de-DE">Deutsch</option>
-                        <option value="zh-CN">中文</option>
-                        <option value="ko-KR">한국어</option>
-                        <option value="it-IT">Italiano</option>
-                        <option value="ru-RU">Русский</option>
-                        <option value="pt-PT">Português</option>
-                        <option value="ar-SA">المملكة العربية السعودية</option>
-                        <!-- ベトナム語を追加 -->
-                        <option value="vi-VN">Tiếng Việt</option>
-                    </select>
-                    <button class="record-btn2" id="recordBtn2" disabled>準備中...</button>
-                </div>
-            </div>
-        </div>
+<div class="textarea-container">
+<textarea class="output-text2" id="outputText2"></textarea>
+<button class="read-aloud-btn" id="readaloudBtn2" style="display:none;">🔊</button>
+</div>
+<div class="language-selection">
+<select id="userLang2" name="userLang2">
+<option value="ja-JP" <%= "ja-JP".equals(userLang) ? "selected" : "" %>>日本語</option>
+<option value="en-US" <%= "en-US".equals(userLang) ? "selected" : "" %>>English</option>
+<option value="es-ES" <%= "es-ES".equals(userLang) ? "selected" : "" %>>Español</option>
+<option value="fr-FR" <%= "fr-FR".equals(userLang) ? "selected" : "" %>>Français</option>
+<option value="de-DE" <%= "de-DE".equals(userLang) ? "selected" : "" %>>Deutsch</option>
+<option value="zh-CN" <%= "zh-CN".equals(userLang) ? "selected" : "" %>>中文</option>
+<option value="ko-KR" <%= "ko-KR".equals(userLang) ? "selected" : "" %>>한국어</option>
+<option value="it-IT" <%= "it-IT".equals(userLang) ? "selected" : "" %>>Italiano</option>
+<option value="ru-RU" <%= "ru-RU".equals(userLang) ? "selected" : "" %>>Русский</option>
+<option value="pt-PT" <%= "pt-PT".equals(userLang) ? "selected" : "" %>>Português</option>
+<option value="ar-SA" <%= "ar-SA".equals(userLang) ? "selected" : "" %>>المملكة العربية السعودية</option>
+<option value="vi-VN" <%= "vi-VN".equals(userLang) ? "selected" : "" %>>Tiếng Việt</option>
+</select>
+<button class="record-btn2" id="recordBtn2" disabled>準備中...</button>
+</div>
+</div>
+</div>
 
         <div id="uploadMessage" style="text-align:center; color:blue; font-weight:bold;"></div>
-    </div>
+</div>
 
 	<script>
     	var contextPath = '<%= request.getContextPath() %>';
-	</script>
-    <script src="/meal-mate/static/translation.js"></script>
+</script>
+<script src="/meal-mate/static/translation.js"></script>
 </body>
 </html>
