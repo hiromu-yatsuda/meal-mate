@@ -1,10 +1,52 @@
 <!-- translation.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-    // セッションに「language_id」が登録されているか確認する
-    String userLang = (String) session.getAttribute("language_id");
-    if (userLang == null || userLang.trim().isEmpty()) {
-        userLang = "en-US"; // セッションに値がなければデフォルトとして英語を設定
+    // セッションから数値の言語IDを取得
+    String langId = (String) session.getAttribute("language_id");
+    // デフォルトは英語
+    String userLangCode = "en-US";
+    if (langId != null) {
+        switch (langId) {
+            case "1":
+                userLangCode = "ja-JP";
+                break;
+            case "2":
+                userLangCode = "en-US";
+                break;
+            case "3":
+                userLangCode = "es-ES";
+                break;
+            case "4":
+                userLangCode = "fr-FR";
+                break;
+            case "5":
+                userLangCode = "de-DE";
+                break;
+            case "6":
+                userLangCode = "zh-CN";
+                break;
+            case "7":
+                userLangCode = "ko-KR";
+                break;
+            case "8":
+                userLangCode = "it-IT";
+                break;
+            case "9":
+                userLangCode = "pt-PT";
+                break;
+            case "10":
+                userLangCode = "ru-RU";
+                break;
+            case "11":
+                userLangCode = "ar-SA";
+                break;
+            case "12":
+                userLangCode = "vi-VN";
+                break;
+            default:
+                userLangCode = "en-US";
+                break;
+        }
     }
 %>
 <!DOCTYPE html>
@@ -241,18 +283,18 @@
 					</div>
 					<div class="language-selection">
 						<select id="userLang2" name="userLang2">
-							<option value="ja-JP" <%= "ja-JP".equals(userLang) ? "selected" : "" %>>日本語</option>
-							<option value="en-US" <%= "en-US".equals(userLang) ? "selected" : "" %>>English</option>
-							<option value="es-ES" <%= "es-ES".equals(userLang) ? "selected" : "" %>>Español</option>
-							<option value="fr-FR" <%= "fr-FR".equals(userLang) ? "selected" : "" %>>Français</option>
-							<option value="de-DE" <%= "de-DE".equals(userLang) ? "selected" : "" %>>Deutsch</option>
-							<option value="zh-CN" <%= "zh-CN".equals(userLang) ? "selected" : "" %>>中文</option>
-							<option value="ko-KR" <%= "ko-KR".equals(userLang) ? "selected" : "" %>>한국어</option>
-							<option value="it-IT" <%= "it-IT".equals(userLang) ? "selected" : "" %>>Italiano</option>
-							<option value="ru-RU" <%= "ru-RU".equals(userLang) ? "selected" : "" %>>Русский</option>
-							<option value="pt-PT" <%= "pt-PT".equals(userLang) ? "selected" : "" %>>Português</option>
-							<option value="ar-SA" <%= "ar-SA".equals(userLang) ? "selected" : "" %>>المملكة العربية السعودية</option>
-							<option value="vi-VN" <%= "vi-VN".equals(userLang) ? "selected" : "" %>>Tiếng Việt</option>
+							<option value="ja-JP" <%= "ja-JP".equals(userLangCode) ? "selected" : "" %>>日本語</option>
+							<option value="en-US" <%= "en-US".equals(userLangCode) ? "selected" : "" %>>English</option>
+							<option value="es-ES" <%= "es-ES".equals(userLangCode) ? "selected" : "" %>>Español</option>
+							<option value="fr-FR" <%= "fr-FR".equals(userLangCode) ? "selected" : "" %>>Français</option>
+							<option value="de-DE" <%= "de-DE".equals(userLangCode) ? "selected" : "" %>>Deutsch</option>
+							<option value="zh-CN" <%= "zh-CN".equals(userLangCode) ? "selected" : "" %>>中文</option>
+							<option value="ko-KR" <%= "ko-KR".equals(userLangCode) ? "selected" : "" %>>한국어</option>
+							<option value="it-IT" <%= "it-IT".equals(userLangCode) ? "selected" : "" %>>Italiano</option>
+							<option value="ru-RU" <%= "ru-RU".equals(userLangCode) ? "selected" : "" %>>Русский</option>
+							<option value="pt-PT" <%= "pt-PT".equals(userLangCode) ? "selected" : "" %>>Português</option>
+							<option value="ar-SA" <%= "ar-SA".equals(userLangCode) ? "selected" : "" %>>المملكة العربية السعودية</option>
+							<option value="vi-VN" <%= "vi-VN".equals(userLangCode) ? "selected" : "" %>>Tiếng Việt</option>
 						</select>
 						<button class="record-btn2" id="recordBtn2" disabled>準備中...</button>
 					</div>

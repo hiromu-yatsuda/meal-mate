@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -103,7 +104,7 @@ public class u_rogin extends HttpServlet {
 		    }else{
 //		    	ログイン成功
 //				セッションへ
-//				HttpSession session = req.getSession();
+				HttpSession session = req.getSession();
 
 
 		    	boolean up_success = a_dao.up_last_log(u_mail);
@@ -118,7 +119,7 @@ public class u_rogin extends HttpServlet {
 				req.setAttribute("user_id",dao_id );
 
 //				言語ID
-				req.setAttribute("language_id",dao_lan_id );
+				session.setAttribute("language_id",dao_lan_id );
 
 
 //				top画面へ
@@ -142,13 +143,6 @@ public class u_rogin extends HttpServlet {
 
 
     	}
-
-
-
-
-
-
-
 
     }
 
