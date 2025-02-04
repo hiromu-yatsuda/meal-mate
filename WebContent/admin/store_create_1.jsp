@@ -47,7 +47,7 @@
 
 
 		<button onclick="location.href=''">登録</button>
-		<button onclick="location.href=''"id="cancel">キャンセル</button>
+		<button  onclick="history.back()" id="cancel">キャンセル</button>
 		</form>
 
 	</c:param>

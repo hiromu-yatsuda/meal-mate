@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>従業員登録</title>
+    <title>代表者登録</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,9 +15,9 @@
         <%@ include file="../adminnav.jsp" %>
     </header>
     <c:import url="/adminbase.jsp">
-        <c:param name="title">従業員登録</c:param>
+        <c:param name="title">代表者登録</c:param>
         <c:param name="body">
-            <h1>従業員作成</h1>
+            <h1>代表者作成</h1>
 
             <form class="form-create" id="stuff_reg" action="/meal-mate/admin/stuff/create_stuff_1" method="post">
                 <div class="input-group">
@@ -54,7 +54,7 @@
                 <button type="submit">作成</button>
             </form>
 
-                <button type="button" id="cancel">キャンセル</button>
+                <button  onclick="history.back()" id="cancel">キャンセル</button>
             </div>
         </c:param>
     </c:import>

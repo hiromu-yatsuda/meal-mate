@@ -53,7 +53,7 @@
 <div class="nav">
     <div class="hako">
         <a href="javascript:void(0)" onclick="history.back()">🔙</a>
-        <a href="http://localhost:8080/meal-mate/auth/login.jsp">Login</a>
+        <a href="/meal-mate/user/rogin">Login</a>
         <a href="http://localhost:8080/meal-mate/user/top.jsp">🏠</a>
     </div>
 </div>

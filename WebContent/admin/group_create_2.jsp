@@ -42,7 +42,7 @@
             </form>
 
             <div id="cancel">
-                <button type="button" id="cancel"> キャンセル </button>
+                <button onclick="history.back()" id="cancel"> キャンセル </button>
             </div>
         </div>
 	</div>

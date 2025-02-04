@@ -7,12 +7,12 @@
 </header>
 
 <c:import url="/adminbase.jsp">
-	<c:param name="title">従業員 - 商品登録_完了</c:param>
+	<c:param name="title">代表者 - 登録完了</c:param>
 	<c:param name="body">
 
-<h1>従業員作成が完了しました</h1>
+<h1>代表者作成が完了しました</h1>
 <div class="center">
-        	<a href="http://localhost:8080/meal-mate/stuff/top.jsp">Topへ</a>
+        	<a href="/meal-mate/admin/top">Topへ</a>
 		</div>
 
 	</c:param>

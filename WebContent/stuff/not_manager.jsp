@@ -13,9 +13,7 @@
 <h1>アクセス権限がありません</h1>
 <a href="${pageContext.request.contextPath}/staff/top">Topへ</a>
 
-<form action="/meal-mate/staff/top" method="get">
-        	<button type="submit">Topへ</button>
-        	</form>
+        	<a href="/meal-mate/staff/top">Topへ</a>
 
     </c:param>
 </c:import>

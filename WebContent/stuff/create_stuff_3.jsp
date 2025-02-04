@@ -12,9 +12,7 @@
 
 <h1>従業員作成が完了しました</h1>
 <div class="center">
-<form action="/meal-mate/staff/top" method="get">
-        	<button type="submit">Topへ</button>
-        	</form>
+        	<a href="/meal-mate/staff/top">Topへ</a>
 		</div>
 
 	</c:param>

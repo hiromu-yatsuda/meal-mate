@@ -14,9 +14,7 @@
 <h1>変更内容を保存しました</h1>
 
 <div class="center">
-    <form action="/meal-mate/staff/top" method="get">
-        	<button type="submit">Topへ</button>
-        	</form>
+        	<a href="/meal-mate/staff/top">Topへ</a>
 </div>
 
 

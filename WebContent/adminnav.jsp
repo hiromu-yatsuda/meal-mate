@@ -69,9 +69,9 @@
         <!-- 戻るボタン -->
         <a href="javascript:void(0)" onclick="history.back()">🔙</a>
         <!-- ログインページへのリンク -->
-        <a href="a_rogin.jsp">Login</a>
+        <a href="/admin/rogin">Login</a>
         <!-- ホームページへのリンク -->
-        <a href="http://localhost:8080/meal-mate/admin/a_top.jsp">🏠</a>
+        <a href="/meal-mate/admin/top">🏠</a>
     </div>
 </div>
 
