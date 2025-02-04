@@ -12,7 +12,7 @@
 <body>
     <!-- ナビゲーションを最上部に配置 -->
     <header>
-        <%@ include file="../stuffnav.jsp" %>
+        <%@ include file="../adminnav.jsp" %>
     </header>
     <c:import url="/adminbase.jsp">
         <c:param name="title">従業員登録</c:param>

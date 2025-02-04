@@ -3,7 +3,7 @@
 
 
 <header>
-    <%@ include file="../stuffnav.jsp" %>
+    <%@ include file="../adminnav.jsp" %>
 </header>
 
 <c:import url="/adminbase.jsp">

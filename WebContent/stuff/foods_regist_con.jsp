@@ -20,7 +20,7 @@
 <div id="hidden" data-json='<%= jsonArray %>' hidden=true></div>
 
         <h1>商品登録確認</h1>
-        <div id="container"></div>
+        <div class="form-create" id="container"></div>
         <div id="buttons">
         	<input type="button" id="decide" value="登録">
         	<input type="button" id="cancel" value="キャンセル">

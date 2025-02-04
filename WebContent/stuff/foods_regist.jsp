@@ -103,7 +103,6 @@ document.querySelector('#form-in').appendChild(newForm);
         </div>
         <button type="button" id="addButton"> + </button>
         <div id="confirmed">
-        <div id="button-a">
             <button type="submit" id="confirmed"> 決定 </button>
         </div>
     </form>

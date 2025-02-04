@@ -32,7 +32,6 @@
 				</form>
 
 
-
 				<form action="/meal-mate/staff/staff_list" method="get">
 				    <!-- フォームの入力フィールド -->
 				    <button class="button-top" type="submit"id="stuff">従業員一覧</button>
@@ -45,5 +44,3 @@
 				</main>
             </c:param>
         </c:import>
-
-
