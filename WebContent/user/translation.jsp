@@ -32,10 +32,10 @@
                 userLangCode = "it-IT";
                 break;
             case "9":
-                userLangCode = "pt-PT";
+                userLangCode = "ru-RU";
                 break;
             case "10":
-                userLangCode = "ru-RU";
+                userLangCode = "pt-PT";
                 break;
             case "11":
                 userLangCode = "ar-SA";
