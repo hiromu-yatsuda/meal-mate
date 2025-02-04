@@ -1,63 +1,60 @@
 // カテゴリーとアイコンのデータを定義
 // 各カテゴリー（fruits, vegetablesなど）に対応するアイコンデータを保持するオブジェクト
 // name: アイコンの名前, src: アイコン画像のパス
-const iconData = {
-    fruits: [
-        { name: "apple", src: "icons/apple.png", id:""}, // りんごアイコン
-        { name: "banana", src: "icons/banana.png",id:""}, // バナナアイコン
-        { name: "orange", src: "icons/orange.png",id:"" }, // オレンジアイコン
-        { name: "peach", src: "icons/peach.png", id:""}, // ももアイコン
-        { name: "kiwi", src: "icons/kiwi.png",id:""}, // きういアイコン
-    ],
-        vegetables: [
-        { name: "matsutake", src: "icons/matsutake.png",id:"" }, // 松茸アイコン
-        { name: "sesame", src: "icons/goma.png",id:"" }, // ごまアイコン
-        { name: "yam", src: "icons/yamaimo.png",id:"" } // 山芋アイコン
-    ],
-    meats: [
-        { name: "chicken", src: "icons/chicken.png",id:"" }, // 鶏肉アイコン
-        { name: "beef", src: "icons/beef.png",id:"" }, // 牛肉アイコン
-        { name: "pork", src: "icons/pork.png",id:"" } // 豚肉アイコン
-    ],
-    seafood: [
-        { name: "mackerel", src: "icons/saba.png",id:"" }, // 鯖アイコン
-        { name: "crab", src: "icons/kani.png",id:"" }, // カニアイコン
-        { name: "shrimp", src: "icons/ebi.png",id:"" }, // エビアイコン
-        { name: "abalone", src: "icons/awabi.png",id:"" },// アワビアイコン
-        { name: "salmon roe", src: "icons/ikura.png",id:"" }, // いくらアイコン
-        { name: "salmon", src: "icons/sake.png",id:"" }, // 鮭アイコン
-        { name: "squid", src: "icons/ika.png",id:"" } // イカアイコン
-    ],
+//const iconData = {
+//    fruits: [
+//        { name: "apple", src: "icons/apple.png", id:""}, // りんごアイコン
+//        { name: "banana", src: "icons/banana.png",id:""}, // バナナアイコン
+//        { name: "orange", src: "icons/orange.png",id:"" }, // オレンジアイコン
+//        { name: "peach", src: "icons/peach.png", id:""}, // ももアイコン
+//        { name: "kiwi", src: "icons/kiwi.png",id:""}, // きういアイコン
+//    ],
+//        vegetables: [
+//        { name: "matsutake", src: "icons/matsutake.png",id:"" }, // 松茸アイコン
+//        { name: "sesame", src: "icons/goma.png",id:"" }, // ごまアイコン
+//        { name: "yam", src: "icons/yamaimo.png",id:"" } // 山芋アイコン
+//    ],
+//    meats: [
+//        { name: "chicken", src: "icons/chicken.png",id:"" }, // 鶏肉アイコン
+//        { name: "beef", src: "icons/beef.png",id:"" }, // 牛肉アイコン
+//        { name: "pork", src: "icons/pork.png",id:"" } // 豚肉アイコン
+//    ],
+//    seafood: [
+//        { name: "mackerel", src: "icons/saba.png",id:"" }, // 鯖アイコン
+//        { name: "crab", src: "icons/kani.png",id:"" }, // カニアイコン
+//        { name: "shrimp", src: "icons/ebi.png",id:"" }, // エビアイコン
+//        { name: "abalone", src: "icons/awabi.png",id:"" },// アワビアイコン
+//        { name: "salmon roe", src: "icons/ikura.png",id:"" }, // いくらアイコン
+//        { name: "salmon", src: "icons/sake.png",id:"" }, // 鮭アイコン
+//        { name: "squid", src: "icons/ika.png",id:"" } // イカアイコン
+//    ],
+//
+//    dairy: [
+//        { name: "milk", src: "icons/milk.png",id:"" }, // 牛乳アイコン
+//        { name: "egg", src: "icons/egg.png",id:"" }, // 卵アイコン
+//        { name: "flour", src: "icons/komugiko.png",id:"" } // 小麦粉アイコン
+//    ],
+//    sonota: [
+//        { name: "walnut", src: "icons/kurumi.png",id:"" }, // くるみアイコン
+//        { name: "soba", src: "icons/soba.png",id:"" }, // 蕎麦アイコン
+//        { name: "peanuts", src: "icons/pinattsu.png",id:"" }, // ピーナッツアイコン
+//        { name: "cashew nuts", src: "icons/kashunattsu.png",id:"" }, // カシューナッツアイコン
+//        { name: "soy", src: "icons/daizu.png",id:"" }, // 大豆アイコン
+//        { name: "gelatine", src: "icons/gelatine.png",id:"" } // ゼラチンアイコン
+//    ],
+//};
 
-    dairy: [
-        { name: "milk", src: "icons/milk.png",id:"" }, // 牛乳アイコン
-        { name: "egg", src: "icons/egg.png",id:"" }, // 卵アイコン
-        { name: "flour", src: "icons/komugiko.png",id:"" } // 小麦粉アイコン
-    ],
-    sonota: [
-        { name: "walnut", src: "icons/kurumi.png",id:"" }, // くるみアイコン
-        { name: "soba", src: "icons/soba.png",id:"" }, // 蕎麦アイコン
-        { name: "peanuts", src: "icons/pinattsu.png",id:"" }, // ピーナッツアイコン
-        { name: "cashew nuts", src: "icons/kashunattsu.png",id:"" }, // カシューナッツアイコン
-        { name: "soy", src: "icons/daizu.png",id:"" }, // 大豆アイコン
-        { name: "gelatine", src: "icons/gelatine.png",id:"" } // ゼラチンアイコン
-    ],
-    vigan: [
-        { name: "chicken", src: "icons/chicken.png",id:"" }, // 鶏肉アイコン
-        { name: "beef", src: "icons/beef.png",id:"" }, // 牛肉アイコン
-        { name: "pork", src: "icons/pork.png",id:"" }, // 豚肉アイコン
-        { name: "mackerel", src: "icons/saba.png",id:"" }, // 鯖アイコン
-        { name: "crab", src: "icons/kani.png",id:"" }, // カニアイコン
-        { name: "shrimp", src: "icons/ebi.png",id:"" }, // エビアイコン
-        { name: "abalone", src: "icons/awabi.png",id:"" },// アワビアイコン
-        { name: "salmon roe", src: "icons/ikura.png",id:"" }, // いくらアイコン
-        { name: "salmon", src: "icons/sake.png",id:"" }, // 鮭アイコン
-        { name: "squid", src: "icons/ika.png",id:"" }, // イカアイコン
-        { name: "milk", src: "icons/milk.png",id:"" }, // 牛乳アイコン
-        { name: "egg", src: "icons/egg.png",id:"" }, // 卵アイコン
-        { name: "gelatine", src: "icons/gelatine.png",id:"" } // ゼラチンアイコン
-    ],
-};
+let iconData;
+
+$.ajax({
+	url: "/meal-mate/user/get_ings",
+	type: "GET",
+	dataType: "json"
+}).done(res => {
+	iconData = res;
+}).fail(err => {
+	console.log(err);
+})
 
 // DOM要素の取得
 // 各HTML要素を取得し、後で操作するための変数に格納
@@ -90,6 +87,7 @@ function displayIcons(category) {
         const iconElement = document.createElement("img");
         iconElement.src = icon.src;
         iconElement.alt = icon.name;
+        iconElement.id = icon.id;
         iconElement.classList.add("icon");
         iconElement.dataset.name = icon.name;
 
@@ -109,17 +107,19 @@ icons.addEventListener("click", (event) => {
     if (event.target.classList.contains("icon")) { // クリックされた要素がアイコンであることを確認
         const iconName = event.target.dataset.name; // アイコン名を取得
         const iconSrc = event.target.src; // アイコン画像のパスを取得
-        addSelectedIcon(iconName, iconSrc); // 選択済みアイコンリストに追加する関数を呼び出し
+        const iconId = event.target.id;
+        addSelectedIcon(iconName, iconSrc, iconId); // 選択済みアイコンリストに追加する関数を呼び出し
     }
 });
 
 // 選択されたアイコンを追加
 // 新しいアイコンを選択済みリストに追加する
-function addSelectedIcon(name, src) {
+function addSelectedIcon(name, src, id) {
     if (selectedIconList.some(icon => icon.name === name)) return; // すでに選択されている場合は何もしない
 
     const iconWrapper = document.createElement("div"); // アイコンと削除ボタンを含むコンテナを作成
     iconWrapper.classList.add("selected-icon-wrapper"); // コンテナ用のクラスを追加
+    iconWrapper.id = id;
 
     const iconElement = document.createElement("img"); // アイコン画像を作成
     iconElement.src = src; // 画像のパスを設定
@@ -150,7 +150,24 @@ submitButton.addEventListener("click", () => {
     }
 
     // データベースに送信（ここでは例としてコンソールに出力）
-    console.log("送信するデータ:", selectedIconList); // 選択済みアイコンをコンソールに表示
+//    console.log("送信するデータ:", selectedIconList); // 選択済みアイコンをコンソールに表示
+    const sa = Array.from(document.querySelectorAll(".selected-icon-wrapper"));
+    const idList = sa.map(e => e.id);
+
+    // ajax通信
+    $.ajax({
+    	url: "/meal-mate/user/update_data",
+    	type: "POST",
+    	data: {
+    		ids: idList
+    	}
+    }).done(() => {
+    	console.log("success");
+    }).fail(err => {
+    	console.log("fail");
+    	console.log(err);
+    })
+
     alert("アイコンが送信されました！"); // ユーザーに送信完了を通知
 
     // リセット処理

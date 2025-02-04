@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Categories;
 import bean.Foods;
 
 public class FoodsDAO extends DAO {
@@ -17,7 +18,7 @@ public class FoodsDAO extends DAO {
 
 		// 実行したいSQL文をプリペアードステートメントで準備
 		PreparedStatement st = con.prepareStatement(
-				"SELECT ID,NAME FROM FOODS "
+				"SELECT f.id as id, f.name as name, f.icon as icon, c.id as cid, c.name as cname FROM FOODS as f join categories as c on f.category_id = c.id"
 				);
 
 		ResultSet rs = st.executeQuery();
@@ -25,10 +26,15 @@ public class FoodsDAO extends DAO {
 		// 結果から1件ずつ取り出すループ
 		while (rs.next()) {
 			Foods f = new Foods();
+			Categories categories = new Categories();
 
 //			値のセット
+            categories.setId(rs.getInt("cid"));
+            categories.setName(rs.getString("cname"));
 			f.setId(rs.getInt("id"));
 			f.setFoodName(rs.getString("name"));
+			f.setIcon(rs.getString("icon"));
+			f.setCategories(categories);
 
 			// リストに追加
 			list.add(f);

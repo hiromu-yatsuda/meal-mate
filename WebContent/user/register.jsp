@@ -27,7 +27,6 @@
             <button class="category" id="seafood" data-category="seafood">Fish</button>
             <button class="category" id="dairy" data-category="dairy">Dairy Products</button>
             <button class="category" id="sonota" data-category="sonota">Others</button>
-            <button class="category" id="vigan" data-category="vigan">Vegan・Vegetarian</button>
         </div>
 
         <div id="icons">
@@ -36,6 +35,7 @@
 
     </main>
 
+    <script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="/meal-mate/static/register.js"></script>
 </body>
 </html>
