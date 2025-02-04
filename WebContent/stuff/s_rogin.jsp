@@ -13,7 +13,7 @@
 	        <div class="login-page">
 	            <form class="form-create" action="/meal-mate/stuff/rogin" method="post">
 
-					<p>${error}</p>
+					<p style="color: red;">${error}</p>
 
 	                <div class="login-form__group login-form__group--mail">
 	                    <label class="login-form__label">メールアドレス：</label>

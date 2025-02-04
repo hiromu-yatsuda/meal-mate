@@ -21,7 +21,7 @@
 
             <form class="form-create" id="stuff_reg" action="/meal-mate/stuff/create_stuff_1" method="post">
 
-<p>${error}</p>
+<p style="color: red;">${error}</p>
 
                 <div class="input-group">
 

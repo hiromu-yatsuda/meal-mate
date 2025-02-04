@@ -13,7 +13,7 @@
 
 		<form class="form-create" action="/meal-mate/admin/a_create_store_1" method="post">
 
-			<p>${error}</p>
+			<p style="color: red;">${error}</p>
 
 			<div class="name">
 				<label>店舗名：</label>

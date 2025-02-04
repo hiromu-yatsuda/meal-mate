@@ -96,7 +96,7 @@ body {
     <!-- フォームの開始 -->
     <form action="/meal-mate/user/rogin" method="post">
 
-        <p>${error}</p>
+        <p style="color: red;">${error}</p>
         <!-- E-mailの入力フィールド -->
         <label for="id">E-mail</label>
         <input type="text" id="id" name="id" size="20" maxlength="20" required><br><br>

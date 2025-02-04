@@ -6,14 +6,14 @@
     <c:param name="body">
 <link rel="stylesheet" href="../static/admin.css">
     <header>
-        <%@ include file="../stuffnav.jsp" %>
+        <%@ include file="../adminnav.jsp" %>
     </header>
 
 <h1>アカウント作成</h1>
 
         <form class="form-create" action="/meal-mate/admin/create_accounts_1" method="post">
 
-			<p>${error}</p>
+			<p style="color: red;">${error}</p>
 
             <div class="id">
                 <label>ID：</label>
