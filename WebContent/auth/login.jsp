@@ -94,7 +94,7 @@ body {
     <!-- ログインフォームのタイトル -->
     <h1>Login</h1>
     <!-- フォームの開始 -->
-    <form action="/meal-mate/user/rogin" method="post">
+    <form action="/meal-mate/user/login" method="post">
 
         <p style="color: red;">${error}</p>
         <!-- E-mailの入力フィールド -->

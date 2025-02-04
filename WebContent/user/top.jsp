@@ -43,12 +43,22 @@
 
 <div class="top">
     <div class="apuri">
-        <a href="http://localhost:8080/meal-mate/user/register.jsp"><img class="text_img" src="../img/touroku.png"></a>
-        <a href="http://localhost:8080/meal-mate/user/AR.jsp"><img class="text_img" src="../img/AR.png"></a>
-        <a href="http://localhost:8080/meal-mate/user/map.jsp"><img class="text_img" src="../img/map.png"></a>
-        <a href="http://localhost:8080/meal-mate/user/translation.jsp"><img class="text_img" src="../img/sei.png"></a>
-        <a href="http://localhost:8080/meal-mate/auth/login.jsp"><img class="text_img" src="../img/login3.png"></a>
+        <form action="/meal-mate/user/ingredients_register" method="GET">
+        	<input type="image" src="/meal-mate/img/touroku.png" class="text_img">
+        </form>
+        <form action="/meal-mate/user/ar" method="GET">
+        	<input type="image" src="/meal-mate/img/AR.png" class="text_img">
+        </form>
+        <form action="/meal-mate/user/map" method="GET">
+        	<input type="image" src="/meal-mate/img/map.png" class="text_img">
+        </form>
+        <form action="/meal-mate/user/translate" method="GET">
+        	<input type="image" src="/meal-mate/img/sei.png" class="text_img">
+        </form>
 
+        <form action="/meal-mate/user/login" method="GET">
+        	<input type="image" src="/meal-mate/img/login3.png" class="text_img">
+        </form>
     </div>
 </div>
 

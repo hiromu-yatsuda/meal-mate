@@ -15,14 +15,10 @@ import org.mindrot.jbcrypt.BCrypt;
 import bean.MemberAccounts;
 import dao.MemberAccountsDAO;
 
-@WebServlet(urlPatterns={"/user/rogin"})
+@WebServlet(urlPatterns={"/user/login"})
 public class u_rogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-
-
     	req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
     }
 
