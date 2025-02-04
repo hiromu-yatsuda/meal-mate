@@ -1,58 +1,109 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="/meal-mate/static/create.css" />
-
 <header>
-        <%@ include file="../userbase.jsp" %>
-    </header>
+    <%@ include file="../userbase.jsp" %>
+</header>
 
-<!-- スタッフを継承 -->
-<c:import url="/stuffbase.jsp">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Kosugi');
+/* ページ全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('../img/happa1.png') no-repeat center center;
+    background-size: cover;
+}
+
+/* フォームのコンテナ */
+.form-container {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+/* ヘッダー */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 入力フィールドのスタイル */
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container select {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 8px;
+}
+
+/* ラベルのスタイル */
+.form-container label {
+    display: block;
+    font-family: 'Kosugi', sans-serif;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* サブミットボタンのスタイル */
+.form-container input[type="submit"] {
+    width: 100%;
+    background-color: #3399FF;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* エラーメッセージのスタイル */
+.form-container p {
+    color: red;
+    text-align: center;
+}
+</style>
 
 
-	<c:param name="title">user - rogin</c:param>
-	<c:param name="body">
-
-	<h1>sign up</h1>
 
 <body>
-<p>${error}</p>
-<form class="form-create" action="/meal-mate/user/create_user_1" method="post">
+    <div class="form-container">
+        <p>${error}</p>
+        <form class="form-create" action="/meal-mate/user/create_user_1" method="post">
+			<h1>Sign Up</h1>
+            <label for="name">NAME</label>
+            <input type="text" name="name" id="name" placeholder="John Smith" required>
 
-				<div class="name">
-				<label>NAME：</label>
-    			<input type="text" name="name" id="name" placeholder="John Smith"  required>
-			</div>
+            <label for="email">EMAIL</label>
+            <input type="text" name="email" id="email" placeholder="Email address" required>
 
-				<div class="email">
-				<label>EMAIL：</label>
-    			<input type="text" name="email" id="email" placeholder="Email address"  required>
-			</div>
+            <label for="pass">PASSWORD</label>
+            <input type="password" name="pass" id="pass" placeholder="password" required>
 
+            <label for="language_list">Language</label>
+            <select id="language_list" name="language_list">
+                <c:forEach var="lang" items="${languageList}">
+                    <option value="${lang.id}">${lang.name}</option>
+                </c:forEach>
+            </select>
 
-					<div class="password">
-				<label>PASSWORD：</label>
-    			<input type="text" name="pass" id="pass" placeholder="password"  required>
-			</div>
-
-
-	<div class="langList">
-
-	<label for="language_list">Language：</label>
-<select id="language_list" name="language_list">
-    <c:forEach var="lang" items="${languageList}">
-        <option value="${lang.id}">${lang.name}</option>
-    </c:forEach>
-</select>
-</div>
-
-
-
-<button type="submit">Account Create</button>
-
-</form>
+            <input type="submit" value="Account Create">
+        </form>
+    </div>
 </body>
-
-	</c:param>
-</c:import>
