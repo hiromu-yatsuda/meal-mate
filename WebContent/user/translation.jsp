@@ -4,7 +4,7 @@
     // セッションに「language_id」が登録されているか確認する
     String userLang = (String) session.getAttribute("language_id");
     if (userLang == null || userLang.trim().isEmpty()) {
-        userLang = "en-US"; // セッションに値がなければデフォルトとして日本語を設定
+        userLang = "en-US"; // セッションに値がなければデフォルトとして英語を設定
     }
 %>
 <!DOCTYPE html>
