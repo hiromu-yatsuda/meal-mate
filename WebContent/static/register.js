@@ -153,13 +153,14 @@ submitButton.addEventListener("click", () => {
 //    console.log("送信するデータ:", selectedIconList); // 選択済みアイコンをコンソールに表示
     const sa = Array.from(document.querySelectorAll(".selected-icon-wrapper"));
     const idList = sa.map(e => e.id);
+    console.log(idList);
 
     // ajax通信
     $.ajax({
     	url: "/meal-mate/user/update_data",
-    	type: "POST",
+    	type: "GET",
     	data: {
-    		ids: idList
+    		"idList": idList.toString()
     	}
     }).done(() => {
     	console.log("success");
@@ -168,7 +169,7 @@ submitButton.addEventListener("click", () => {
     	console.log(err);
     })
 
-    alert("アイコンが送信されました！"); // ユーザーに送信完了を通知
+//    alert("アイコンが送信されました！"); // ユーザーに送信完了を通知
 
     // リセット処理
     selectedIcons.innerHTML = ""; // 選択済みアイコンの表示エリアをクリア

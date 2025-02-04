@@ -1,28 +1,34 @@
 package u_regist;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.RestFoodsDAO;
 import tool.CommonServlet;
 
 @WebServlet(urlPatterns={"/user/update_data"})
 public class SetRegistFoods extends CommonServlet {
 
     @Override
-    protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("text/plane");
+        List<String> idList = Arrays.asList(req.getParameter("idList").split(","));
+        // テスト用固定値
+        String userId = "000001";
+
+        (new RestFoodsDAO()).setRestFoods(userId, idList);
+
+        out.print("ok");
     }
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        resp.setContentType("application/json");
-        PrintWriter out = resp.getWriter();
-        String idList = (String)req.getParameter("ids");
-
-        System.out.println(idList);
-        out.print("ok");
     }
 
 }

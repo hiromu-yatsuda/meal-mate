@@ -27,4 +27,24 @@ public class RestFoodsDAO extends DAO {
 
         return foods;
     }
+
+    public void setRestFoods(String userId, List<String> idList) throws Exception {
+        Connection connection = getConnection();
+        PreparedStatement pStatement = connection.prepareStatement("insert into rest_foods (user_account_id, foods_id)"
+                + "select ?, ? where not exists ( select 1 from rest_foods where user_account_id = ? and foods_id = ? )");
+
+        for (String id: idList) {
+            pStatement.setString(1, userId);
+            pStatement.setString(2, id);
+            pStatement.setString(3, userId);
+            pStatement.setString(4, id);
+
+            pStatement.addBatch();
+        }
+
+        pStatement.executeBatch();
+
+        pStatement.close();
+        connection.close();
+    }
 }

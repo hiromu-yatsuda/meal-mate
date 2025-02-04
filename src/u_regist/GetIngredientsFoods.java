@@ -16,7 +16,6 @@ public class GetIngredientsFoods extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        System.out.println("called");
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         List<Foods> foods = (new FoodsDAO()).all();
