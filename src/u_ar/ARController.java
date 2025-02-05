@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Foods;
 import dao.FoodsDAO;
@@ -19,18 +20,14 @@ public class ARController extends CommonServlet {
         System.out.println("called");
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
-//        String barcode = req.getParameter("barcode");
-
+        HttpSession session = req.getSession();
         StringBuilder sBuilder = new StringBuilder("");
-
-//        HttpSession session = req.getSession();
-        // ユーザIDを取得し、登録されている制限食材を取得
-        // ユーザのログイン機能ができていないためコメントアウト
-//        String userId = (String)session.getAttribute("u_id");
+        String barcode = req.getParameter("barcode");
+        String userId = (String)session.getAttribute("user_id");
 
         // テスト用の固定値
-        String userId = "000001";
-        String barcode = "3904567890123";
+        userId = "000001";
+        barcode = "3904567890123";
 
         List<Foods> foods = (new FoodsDAO()).getFoods(barcode, userId);
         System.out.println();
