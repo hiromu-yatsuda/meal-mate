@@ -42,9 +42,14 @@ public class stuff_create_accounts_regist extends HttpServlet {
         }
 
 
+        HttpSession session = req.getSession();
+        String error_staff_create_regist = (String) session.getAttribute("error_staff_create_regist");
+
+
         System.out.println(groupsList);
 
         req.setAttribute("groupsList", groupsList);
+        req.setAttribute("error", error_staff_create_regist);
 
 
 
@@ -78,7 +83,9 @@ public class stuff_create_accounts_regist extends HttpServlet {
 		String g_id = req.getParameter("groups_list");
 
 
-
+//		エラーメッセージをリセット
+		String error_staff_create_regist = null;
+		session.setAttribute("error_staff_create_regist",error_staff_create_regist );
 
 
 
@@ -108,10 +115,11 @@ public class stuff_create_accounts_regist extends HttpServlet {
 //			重複していた場合→ページのリロード
 			if(mail_dup==true){
 
+				error_staff_create_regist = ("このメールアドレスは既に使用されています");
+				session.setAttribute("error_staff_create_regist",error_staff_create_regist );
 				System.out.println("メールアドレスが重複していた");
-				req.getRequestDispatcher("/admin/s_create_stuff_1.jsp")
-				.forward(req, resp);
-
+			    resp.sendRedirect(req.getContextPath() + "/admin/stuff/create_stuff_1");
+			    return; // リダイレクト後に処理を終了
 			} else {
 
 
@@ -258,6 +266,11 @@ public class stuff_create_accounts_regist extends HttpServlet {
 					// TODO 自動生成された catch ブロック
 					e.printStackTrace();
 					System.out.println("DAO登録エラー");
+					System.out.println("名前またはメールアドレスが無効か長すぎます。");
+					error_staff_create_regist = ("名前またはメールアドレスが無効か長すぎます。");
+					session.setAttribute("error_staff_create_regist",error_staff_create_regist );
+				    resp.sendRedirect(req.getContextPath() + "/admin/stuff/create_stuff_1");
+				    return; // リダイレクト後に処理を終了
 				}
 
 

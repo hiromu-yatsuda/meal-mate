@@ -10,7 +10,7 @@
 	<param-value>C:/work/pleiades/workspace/meal-mate/WebContent</param-value>
 </context-param>
 
-<!--
+
 
     <filter>
         <filter-name>AuthFilter</filter-name>
@@ -64,7 +64,6 @@
 
 
 	</filter-mapping>
- -->
 
 
 

@@ -26,7 +26,7 @@ public class AuthFilter3 implements Filter {
         if (session == null || session.getAttribute("user_id") == null || session.getAttribute("language_id") == null) {
 
 
-        	 res.sendRedirect(req.getContextPath() + "/user/rogin"); // ログインページにリダイレクト
+        	 res.sendRedirect(req.getContextPath() + "/user/login"); // ログインページにリダイレクト
         } else {
         	System.out.println("Filterのセッション突破");
             chain.doFilter(request, response);

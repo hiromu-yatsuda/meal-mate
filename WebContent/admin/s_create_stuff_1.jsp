@@ -20,6 +20,8 @@
             <h1>代表者作成</h1>
 
             <form class="form-create" id="stuff_reg" action="/meal-mate/admin/stuff/create_stuff_1" method="post">
+
+                <p>${error}</p>
                 <div class="input-group">
                     <div class="form-create-group">
                         <label for="s_name">名前</label>

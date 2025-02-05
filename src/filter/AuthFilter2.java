@@ -27,7 +27,7 @@ public class AuthFilter2 implements Filter {
 
 
 
-        	 res.sendRedirect(req.getContextPath() + "/stuff/rogin"); // ログインページにリダイレクト
+        	 res.sendRedirect(req.getContextPath() + "/stuff/login"); // ログインページにリダイレクト
         } else {
         	System.out.println("スタッフフィルター突破");
             chain.doFilter(request, response);
