@@ -41,12 +41,19 @@
         transition: transform 0.3s, color 0.3s, background-color 0.3s;
     }
 
-    .hako a:hover {
-        transform: scale(1.2);
-        color: #007bff;
-        background-color: #e0e0e0; /* ホバー時の背景色 */
-        border-color: #007bff; /* ホバー時の枠線色 */
+
+    .botannnoyatu {
+        font-size: 1.3rem; /* アイコンサイズ */
+        text-decoration: none;
+        color: #333;
+        padding: 5px 20px;
+        border: 2px solid #d3d3d3; /* 枠線 */
+        border-radius: 8px; /* 角を丸くする */
+        background-color: #f9f9f9; /* 背景色 */
+        transition: transform 0.3s, color 0.3s, background-color 0.3s;
     }
+    
+
 </style>
 </head>
 <body>
@@ -54,10 +61,10 @@
     <div class="hako">
         <a href="javascript:void(0)" onclick="history.back()">🔙</a>
         <form action="/meal-mate/user/login" method="GET">
-        	<input type="submit" value="Login">
+        	<input class="botannnoyatu" type="submit" value="Login">
         </form>
         <form action="/meal-mate/user/top" method="GET">
-        	<input type="submit" value="🏠">
+        	<input class="botannnoyatu" type="submit" value="🏠">
         </form>
     </div>
 </div>

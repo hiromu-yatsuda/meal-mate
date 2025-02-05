@@ -78,11 +78,12 @@
 		.translation-section {
 		    display: flex;
 		    flex-direction: column;
-		    justify-content: center;
+		    /*justify-content: center;*/
 		    align-items: center;
 		    gap: 15px; /* セクション間のスペースを調整 */
-		    height: 100%; /* セクションをビューポート全体に */
+		    /*height: 100%; /* セクションをビューポート全体に */
 		    box-sizing: border-box;
+		    margin-top:15%;
 		}
 		/* 上段と下段の共通スタイル */
 		.user-block1 {
