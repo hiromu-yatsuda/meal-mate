@@ -2,7 +2,7 @@
 const container = document.querySelector("#container");
 const plusButton = document.querySelector("#plusButton");
 const decisionButton = document.querySelector("#decisionButton");
-const cancelButtno = document.querySelector("#cancelButton");
+const cancelButton = document.querySelector("#cancelButton");
 const numList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 let num;
 let foodsId;

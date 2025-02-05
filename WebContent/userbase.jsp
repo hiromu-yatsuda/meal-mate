@@ -30,7 +30,7 @@
         width: 100%;
     }
 
-    .hako a {
+    .hako input, a {
         font-size: 1.3rem; /* アイコンサイズ */
         text-decoration: none;
         color: #333;
@@ -41,7 +41,7 @@
         transition: transform 0.3s, color 0.3s, background-color 0.3s;
     }
 
-    .hako a:hover {
+    .hako input, a:hover {
         transform: scale(1.2);
         color: #007bff;
         background-color: #e0e0e0; /* ホバー時の背景色 */
@@ -53,8 +53,12 @@
 <div class="nav">
     <div class="hako">
         <a href="javascript:void(0)" onclick="history.back()">🔙</a>
-        <a href="/meal-mate/user/rogin">Login</a>
-        <a href="http://localhost:8080/meal-mate/user/top.jsp">🏠</a>
+        <form action="/meal-mate/user/login" method="GET">
+        	<input type="submit" value="Login">
+        </form>
+        <form action="/meal-mate/user/top" method="GET">
+        	<input type="submit" value="🏠">
+        </form>
     </div>
 </div>
 </body>
