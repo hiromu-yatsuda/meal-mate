@@ -30,7 +30,7 @@
         width: 100%;
     }
 
-    .hako input, a {
+    .hako a {
         font-size: 1.3rem; /* アイコンサイズ */
         text-decoration: none;
         color: #333;
@@ -41,7 +41,7 @@
         transition: transform 0.3s, color 0.3s, background-color 0.3s;
     }
 
-    .hako input, a:hover {
+    .hako a:hover {
         transform: scale(1.2);
         color: #007bff;
         background-color: #e0e0e0; /* ホバー時の背景色 */
