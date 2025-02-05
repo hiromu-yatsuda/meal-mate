@@ -36,7 +36,7 @@ Quagga.init(
 
 // デバッグコンソールに出力する関数
 function consoleLog(text) {
-    console.log(text + "\n"); // 標準コンソールにも出力
+//    console.log(text + "\n"); // 標準コンソールにも出力
     consoleElm.innerHTML = ""; // デバッグ用HTML要素をクリア
     consoleItems = [text, ...consoleItems]; // 新しいログを配列の先頭に追加
     consoleItems.forEach((e) => {
@@ -46,9 +46,8 @@ function consoleLog(text) {
 
 // Ajaxを使ってバーコードに対応する食品情報を取得する関数
 function getFoods(barcode) {
-    consoleLog("called getFoods"); // 関数が呼び出されたことを記録
     if (prevBarcode != barcode) { // 前回と異なるバーコードの場合のみ実行
-        consoleLog("ajax-start"); // Ajax通信開始のログ
+        consoleLog("ajax-test"); // Ajax通信開始のログ
         prevBarcode = barcode; // 現在のバーコードを記録
         imageArray = []; // 画像配列をリセット
         $.ajax({
@@ -59,12 +58,13 @@ function getFoods(barcode) {
             },
             dataType: "json" // サーバーからのレスポンスのデータ形式
         }).done(function (res) {
-            loadFoods(res["paths"]); // 取得した画像パスを処理する
-            consoleLog("done"); // 通信成功時のログ
-        }).fail(function (res) {
-            consoleLog(res); // 通信失敗時のログ
+//        	console.log(res);
+            loadFoods(res["path"]); // 取得した画像パスを処理する
+//            consoleLog("done"); // 通信成功時のログ
+        }).fail(function (err) {
+            consoleLog(err); // 通信失敗時のログ
         }).always(function (res) {
-            consoleLog("always"); // 通信完了後（成功・失敗問わず）のログ
+//            consoleLog("always"); // 通信完了後（成功・失敗問わず）のログ
         });
     }
 }
@@ -73,7 +73,7 @@ function getFoods(barcode) {
 function loadFoods(foodsProp) {
     for (let item of foodsProp) {
         const img = new Image(); // 新しいImageオブジェクトを作成
-        img.src = `/meal-mate/img/${item}`; // 画像のパスを設定
+        img.src = item; // 画像のパスを設定
         imageArray.push(img); // 画像を配列に追加
     }
 }
@@ -124,8 +124,11 @@ function drawText() {
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
             if (count < kaisuu) {
-                ctx.drawImage(imageArray[count], rect[0] + width * i, rect[1] + height * j, width, height); // 画像を描画
+            	console.log(rect);
+                ctx.drawImage(imageArray[count], rect[0] + width * j, rect[1] + height * i, width, height); // 画像を描画
                 count++;
+            } else {
+            	break;
             }
         }
     }
