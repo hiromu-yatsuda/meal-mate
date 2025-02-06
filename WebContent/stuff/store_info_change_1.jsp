@@ -3,7 +3,11 @@
 
 <c:import url="/stuffbase.jsp">
     <c:param name="title">従業員 - 商品登録_確認</c:param>
+
+
+
     <c:param name="body">
+
 
     <header>
         <%@ include file="../stuffnav.jsp" %>
@@ -121,6 +125,7 @@ System.out.println(fogure1);
 System.out.println(fogure2);
 System.out.println(fogure3);
 
+
 if (fogure1 != null) {
     out.println("<img id='store_figure' src='" + request.getContextPath() + "/img/shop/" + fogure1 + "' style='max-width: 100px; display: block;'>");
 }
@@ -132,6 +137,7 @@ if (fogure2 != null) {
 if (fogure3 != null) {
     out.println("<img id='store_figure' src='" + request.getContextPath() + "/img/shop/" + fogure3 + "' style='max-width: 100px; display: block;'>");
 }
+
 
 
 %>
@@ -158,13 +164,12 @@ if (fogure3 != null) {
 
 
 
-        <button onclick="history.back()">戻る</button>
+        <button type="button" onclick="history.back()">戻る</button>
 	</div>
 
 
 
 	</form>
-
 
 
 <script>

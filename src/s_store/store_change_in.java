@@ -303,7 +303,7 @@ public class store_change_in extends HttpServlet {
 
 
 		if(tel_num==null || tel_num.isEmpty() ){
-			System.out.println("営業終了時間空");
+			System.out.println("電話番号空");
 			tel_num = null;
 		}
 
@@ -325,11 +325,15 @@ public class store_change_in extends HttpServlet {
 
 //		営業開始時間
 		String o_time = req.getParameter("time1");
+		int o_time_len = o_time.length();
 
+
+		System.out.println("ここがーーーーーo_time");
+		System.out.println(o_time);
 		Time t_o_time = null;
 
 
-		if(o_time.equals("00:00:00")){
+		if(o_time_len>=8){
 			t_o_time = Time.valueOf(o_time);
 
 		}else{
@@ -354,10 +358,16 @@ public class store_change_in extends HttpServlet {
 //		営業終了時間
 		String c_time = req.getParameter("time2");
 
+		int c_time_len = c_time.length();
+
+		System.out.println("ここがーーーーーo_time");
+		System.out.println(c_time);
+
+
 		Time t_c_time = null;
 //		LocalTime l_o_time = LocalTime.parse(o_time);
 
-		if(c_time.equals("00:00:00")){
+		if(c_time_len >= 8){
 
 
 			t_c_time= Time.valueOf(c_time);
@@ -373,7 +383,12 @@ public class store_change_in extends HttpServlet {
 			System.out.println("営業終了時間空");
 			c_time =null;
 		}else{
+
+			System.out.println("aaaaaaaaaaaaaaaaaaaaa");
+
 			t_c_time = Time.valueOf(c_time + ":00");
+
+			System.out.println("aaaaaaaaaaaaaaaaaaaaa");
 		}
 
 		}
@@ -452,6 +467,12 @@ public class store_change_in extends HttpServlet {
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+
+	        HttpSession session = req.getSession();
+			String error = "正しい情報を入力してください";
+			session.setAttribute("store_error",error );
+		    resp.sendRedirect(req.getContextPath() + "/staff/store/change");
+
 		}
 
 

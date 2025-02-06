@@ -29,6 +29,7 @@ public class top extends HttpServlet {
 		String error_reset = null;
 //		セッションで行っていた代用者作成用エラーメッセージ
 //		をリセットする
+		session.setAttribute("store_create_error", error_reset);
 		session.setAttribute("error_staff_create_regist", error_reset);
     	req.getRequestDispatcher("/admin/a_top.jsp").forward(req, resp);
 

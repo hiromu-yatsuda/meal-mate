@@ -99,6 +99,9 @@ System.out.print("登録コントローラまで");
 //		重複チェック
         dup=dao.duplication(s_id);
 
+        System.out.println(s_id);
+        System.out.println(dup);
+
     }
 
 

@@ -408,3 +408,7 @@ td {
     margin-top: 20px; /* 上部の余白 */
 }
 
+#photo_store123{
+	display: flex;
+
+}
