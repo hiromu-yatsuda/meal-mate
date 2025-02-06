@@ -17,7 +17,7 @@
 
 		        <form action="/meal-mate/stuff/foods/regist/csv" method="post" enctype="multipart/form-data">
 		            <button type="button" id="appu" onclick="location.href=''">CSVファイルをアップロード</button>
-		            <input type="file" name="file" accept=".txt" /><br>
+		            <input type="file" name="file" accept=".csv" required /><br>
 
 		            <button type="submit" id="sousin" onclick="location.href=''">送信</button>
 		        </form>
@@ -26,7 +26,7 @@
 		        <div id="download">
 
 
-					<a href="${pageContext.request.contextPath}/img/files/テンプレート.txt" download="テンプレート.txt" charset="UTF-8">テンプレートダウンロード(txt)</a>
+					<a href="${pageContext.request.contextPath}/img/files/テンプレート.csv" download="テンプレート.csv" charset="UTF-8">テンプレートダウンロード(csv)</a>
 
 
 

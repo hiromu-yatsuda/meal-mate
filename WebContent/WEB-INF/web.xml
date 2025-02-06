@@ -34,7 +34,7 @@
 
 
 
-
+<!--
 	<filter>
     <filter-name>AuthFilter2</filter-name>
     <filter-class>filter.AuthFilter2</filter-class>
@@ -52,6 +52,7 @@
 
 
 	</filter-mapping>
+-->
 
 		<filter>
     <filter-name>AuthFilter3</filter-name>

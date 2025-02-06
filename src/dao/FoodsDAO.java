@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import bean.Categories;
 import bean.Foods;
@@ -68,6 +70,23 @@ public class FoodsDAO extends DAO {
 	    connection.close();
 
 	    return food;
+	}
+
+	public Map<String, String> getAllNameAndId() throws Exception {
+	    Connection connection = getConnection();
+	    PreparedStatement pStatement = connection.prepareStatement("select id, name from foods");
+	    Map<String, String> foodMap = new HashMap<>();
+
+	    ResultSet rSet = pStatement.executeQuery();
+
+	    while (rSet.next()) {
+	        foodMap.put(rSet.getString("name"), rSet.getString("id"));
+	    }
+
+	    pStatement.close();
+	    connection.close();
+
+	    return foodMap;
 	}
 
 	public List<Foods> getFoods(String barcode, String userId) throws Exception {

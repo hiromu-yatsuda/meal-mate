@@ -97,9 +97,6 @@ function addInputField() {
     name.id = "name";
     name.required = true;
 
-    // 後で消す
-    name.value = "testname";
-
     // Janコードが未入力の場合のエラーコメント
     janNullWarn.textContent = "※この項目は必須です";
     janNullWarn.id = "JanNull";
@@ -122,9 +119,6 @@ function addInputField() {
     jan.classList.add("janCode");
     jan.setAttribute("readonly", true);
     jan.required = true;
-
-    // 後で消す
-    jan.value = 1111111111111;
 
     productElm.appendChild(br0);
     productElm.appendChild(isJan);
