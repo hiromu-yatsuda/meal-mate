@@ -59,7 +59,7 @@
 		/* 全体の基本設定 */
 		body {
 		    font-family: Arial, sans-serif;
-		    background-color: #f5f5f5;
+		    background-color: white;
 		    color: #333;
 		    margin: 0;
 		    padding: 0;
