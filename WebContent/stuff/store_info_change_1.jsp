@@ -24,11 +24,15 @@
 
 <c:forEach var="store" items="${storesList}">
     <div id="store-change-form" class="store-change-form">
-        <p>店舗名</p>
+        <p><b>店舗名</b></p>
         <p>${store.name}</p>
 
 
 
+        <div class="tel">
+            <p><b>電話番号</b></p>
+            <p>${store.phoneNum}</p>
+        </div>
 
 
 
@@ -61,10 +65,7 @@
 
 
 
-        <div class="tel">
-            <label for="tel_num">電話番号：</label>
-            <input type="text" value="${store.phoneNum}" name="tel_num" id="tel_num" placeholder="電話番号を入力してください" >
-        </div>
+
 
 
 
@@ -187,7 +188,7 @@ function handleFileSelect(event, previewId, inputId) {
     const files = Array.from(input.files);
 
     if (files.length > 3) {
-        alert('それぞれ選択できるファイルは3枚です');
+        alert('選択できるファイルは3枚までです');
         input.value = ''; // 入力をクリア
         return;
     }
