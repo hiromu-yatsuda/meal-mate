@@ -27,14 +27,14 @@
     	<url-pattern>/admin/a_create_store_1/regist</url-pattern>
     	<url-pattern>/admin/a_group_list/a_store_list</url-pattern>
     	<url-pattern>/admin/a_create_store_1</url-pattern>
-
+		<url-pattern>/admin/a_top.jsp</url-pattern>
 
 
     </filter-mapping>
 
 
 
-<!--
+
 	<filter>
     <filter-name>AuthFilter2</filter-name>
     <filter-class>filter.AuthFilter2</filter-class>
@@ -49,10 +49,10 @@
 	    <url-pattern>/staff/store/change</url-pattern>
 	    <url-pattern>/stuff/create_stuff_1</url-pattern>
 	    <url-pattern>/stuff/create_stuff_1/comp</url-pattern>
+	    <url-pattern>/stuff/top.jsp</url-pattern>
 
 
 	</filter-mapping>
--->
 
 		<filter>
     <filter-name>AuthFilter3</filter-name>
