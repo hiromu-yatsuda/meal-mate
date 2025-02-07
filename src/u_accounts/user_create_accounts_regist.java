@@ -1,3 +1,5 @@
+// java
+
 package u_accounts;
 
 import java.io.IOException;
@@ -30,10 +32,12 @@ public class user_create_accounts_regist extends HttpServlet {
 		LanguageDAO l_dao = new LanguageDAO();
 
 		try {
-			List<Languages> lang_list = l_dao.all();
-			System.out.println(lang_list);
+		    List<Languages> lang_list = l_dao.all();
 
-			req.setAttribute("languageList", lang_list);
+		    // 言語リストをID順（数字順）にソート
+		    lang_list.sort((lang1, lang2) -> Integer.compare(lang1.getId(), lang2.getId()));
+
+		    req.setAttribute("languageList", lang_list);
 
 
 		} catch (Exception e) {

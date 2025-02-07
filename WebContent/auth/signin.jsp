@@ -101,20 +101,11 @@ label {
 
         <!-- 言語選択フィールド -->
         <label for="lan">Language</label><br>
-        <select id="lan" name="lan" required>
-	       	<option value="ja-JP" selected>日本語</option>
-			<option value="en-US">English</option>
-			<option value="es-ES">Español</option>
-			<option value="fr-FR">Français</option>
-			<option value="de-DE">Deutsch</option>
-			<option value="zh-CN">中文</option>
-			<option value="ko-KR">한국어</option>
-			<option value="it-IT">Italiano</option>
-			<option value="ru-RU">Русский</option>
-			<option value="pt-PT">Português</option>
-			<option value="ar-SA">المملكة العربية السعودية</option>
-			<option value="vi-VN">Tiếng Việt</option>
-        </select><br><br>
+		<select id="lan" name="lan" required>
+		    <c:forEach var="lang" items="${languageList}">
+		        <option value="${lang.code}">${lang.name}</option>
+		    </c:forEach>
+		</select><br><br>
 
         <!-- Eメール入力フィールド -->
         <label for="mail">E-mail</label><br>
