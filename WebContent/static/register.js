@@ -164,6 +164,7 @@ submitButton.addEventListener("click", () => {
     	}
     }).done(() => {
     	console.log("success");
+    	alert("excellent!")
     }).fail(err => {
     	console.log("fail");
     	console.log(err);
@@ -174,4 +175,5 @@ submitButton.addEventListener("click", () => {
     // リセット処理
     selectedIcons.innerHTML = ""; // 選択済みアイコンの表示エリアをクリア
     selectedIconList = []; // 配列を初期化
+
 });
