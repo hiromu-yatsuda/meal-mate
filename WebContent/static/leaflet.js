@@ -119,7 +119,8 @@ $.ajax({
 		<br><h2><img src='../img/zikan.png'> ${res["openingTime"][i] } ～ ${res["closingTime"][i] }</h2>
 		<br><h2><img src='../img/okane.png'> ${res["avgAmountLow"][i] } ～ ${res["avgAmountHigh"][i] }円</h2>
 		<br><h2><img src='../img/dennwa.png'> ${res["phoneNum"][i] }</h2>
-		<br><h2>${res["figure1"][i] }${res["figure2"][i] }${res["figure3"][i] }`);
+		<br><h2><img src='../img/shop/${res["figure1"][i] }'><img src='../img/shop/${res["figure2"][i] }'><img src='../img/shop/${res["figure3"][i] }'>`);
+
 	}
 
 	console.log("passed");
