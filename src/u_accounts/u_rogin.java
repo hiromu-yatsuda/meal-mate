@@ -112,7 +112,7 @@ public class u_rogin extends HttpServlet {
 
 
 //				IDをセッションへ
-				req.setAttribute("user_id",dao_id );
+				session.setAttribute("user_id",dao_id );
 
 //				言語ID
 				session.setAttribute("language_id",dao_lan_id );

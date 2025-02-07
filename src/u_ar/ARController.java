@@ -26,8 +26,8 @@ public class ARController extends CommonServlet {
         String userId = (String)session.getAttribute("user_id");
 
         // テスト用の固定値
-        userId = "000001";
-        barcode = "3904567890123";
+        System.out.println(userId);
+        System.out.println(barcode);
 
         List<Foods> foods = (new FoodsDAO()).getFoods(barcode, userId);
 
