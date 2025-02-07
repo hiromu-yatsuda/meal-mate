@@ -30,28 +30,15 @@ public class ARController extends CommonServlet {
         barcode = "3904567890123";
 
         List<Foods> foods = (new FoodsDAO()).getFoods(barcode, userId);
-        System.out.println();
 
         // 登録した食材がなかった場合の処理も考える
-        if (foods.isEmpty()) {
-            System.out.println("empty");
-
-        }
-        // 読み込めた場合
-        else {
+        if (!foods.isEmpty()) {
             sBuilder.append("{\"path\": [");
             foods.forEach((Foods f) -> {
-                // ここでjson({path: [...paths]}に変換する(StringBuilder?)
-                // 最後に.toString()も多分必要
-                System.out.println(f.getIcon());
                 sBuilder.append(String.format("\"%s\", ", f.getIcon()));
             });
             sBuilder.delete(sBuilder.length()-2, sBuilder.length()).append("]}");
-            System.out.println(sBuilder);
         }
-
-        String string = "{\"paths\": [\"AR.png\", \"class.png\", \"csv.jpg\", \"gennzaiti.png\"]}";
-
         out.print(sBuilder.toString());
 
 

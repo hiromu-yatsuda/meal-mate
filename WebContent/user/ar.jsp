@@ -70,8 +70,6 @@
 
         // 結果のコールバック
         Quagga.onDetected(function(data) {
-            console.log("Barcode detected:", data.codeResult.code);
-            $('#console').text("Detected barcode: " + data.codeResult.code);
         });
     });
 </script>
