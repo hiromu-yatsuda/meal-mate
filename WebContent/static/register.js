@@ -189,7 +189,7 @@ submitButton.addEventListener("click", () => {
 //    alert("アイコンが送信されました！"); // ユーザーに送信完了を通知
 
     // リセット処理
-    selectedIcons.innerHTML = ""; // 選択済みアイコンの表示エリアをクリア
-    selectedIconList = []; // 配列を初期化
+//    selectedIcons.innerHTML = ""; // 選択済みアイコンの表示エリアをクリア
+//    selectedIconList = []; // 配列を初期化
 
 });
