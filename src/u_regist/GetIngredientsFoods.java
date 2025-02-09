@@ -1,14 +1,19 @@
 package u_regist;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.json.JSONObject;
 
 import bean.Foods;
 import dao.FoodsDAO;
+import dao.RestFoodsDAO;
 import tool.CommonServlet;
 
 @WebServlet(urlPatterns={"/user/get_ings"})
@@ -16,71 +21,75 @@ public class GetIngredientsFoods extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        HttpSession session = req.getSession();
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         List<Foods> foods = (new FoodsDAO()).all();
+        String userId = (String)session.getAttribute("user_id");
+        List<Foods> restFoods = (new RestFoodsDAO()).getRestFoods(userId);
+        List<JSONObject> restJsonList = new ArrayList<>();
+        JSONObject json = new JSONObject();
+        JSONObject foodsJson = new JSONObject();
 
-        StringBuilder jsonStr = new StringBuilder("{ ");
-        StringBuilder fruits = new StringBuilder("\"fruits\": [ ");
-        StringBuilder vegetable = new StringBuilder("\"vegetables\": [ ");
-        StringBuilder meat = new StringBuilder("\"meats\": [ ");
-        StringBuilder seafood = new StringBuilder("\"seafood\": [ ");
-        StringBuilder dairy = new StringBuilder("\"dairy\": [ ");
-        StringBuilder other = new StringBuilder("\"sonota\": [ ");
+        List<JSONObject> fruits = new ArrayList<>();
+        List<JSONObject> vegetable = new ArrayList<>();
+        List<JSONObject> meat = new ArrayList<>();
+        List<JSONObject> seafood = new ArrayList<>();
+        List<JSONObject> dairy = new ArrayList<>();
+        List<JSONObject> other = new ArrayList<>();
 
         for (Foods f: foods) {
-            String item = "{ \"name\": \"%s\", \"src\": \"%s\", \"id\": \"%d\"}, ";
-            item = String.format(item, f.getFoodName(), f.getIcon(), f.getId());
+            JSONObject food = new JSONObject();
+            food.put("name", f.getFoodName());
+            food.put("src", f.getIcon());
+            food.put("id", f.getId());
 
             switch (f.getCategories().getId()) {
             case 1:
-                fruits.append(item);
+                fruits.add(food);
                 break;
             case 2:
-                vegetable.append(item);
+                vegetable.add(food);
                 break;
             case 3:
-                meat.append(item);
+                meat.add(food);
                 break;
             case 4:
-                seafood.append(item);
+                seafood.add(food);
                 break;
             case 5:
-                dairy.append(item);
+                dairy.add(food);
                 break;
             case 6:
-                other.append(item);
+                other.add(food);
                 break;
             }
         }
-        if (fruits.length() != 0) {
-            fruits.delete(fruits.length()-2, fruits.length()).append(" ], ");
-            jsonStr.append(fruits);
-        }
-        if (vegetable.length() != 0) {
-            vegetable.delete(vegetable.length()-2, vegetable.length()).append(" ], ");
-            jsonStr.append(vegetable);
-        }
-        if (meat.length() != 0) {
-            meat.delete(meat.length()-2, meat.length()).append(" ], ");
-            jsonStr.append(meat);
-        }
-        if (seafood.length() != 0) {
-            seafood.delete(seafood.length()-2, seafood.length()).append(" ], ");
-            jsonStr.append(seafood);
-        }
-        if (dairy.length() != 0) {
-            dairy.delete(dairy.length()-2, dairy.length()).append(" ], ");
-            jsonStr.append(dairy);
-        }
-        if (other.length() != 0) {
-            other.delete(other.length()-2, other.length()).append(" ]");
-            jsonStr.append(other);
+
+        foodsJson.put("fruits", fruits);
+        foodsJson.put("vegetable", vegetable);
+        foodsJson.put("meat", meat);
+        foodsJson.put("seafood", seafood);
+        foodsJson.put("dairy", dairy);
+        foodsJson.put("other", other);
+        json.put("foodsJson", foodsJson);
+
+        for (Foods f: restFoods) {
+            JSONObject rfJson = new JSONObject();
+            rfJson.put("name", f.getFoodName());
+            rfJson.put("src", f.getIcon());
+            rfJson.put("id", f.getId());
+
+            System.out.println(String.format("%s: %d", f.getFoodName(), f.getId()));
+
+            restJsonList.add(rfJson);
         }
 
-        jsonStr.append(" }");
+        json.put("userRegs", restJsonList);
 
-        out.print(jsonStr.toString());
+        System.out.println(json);
+
+        out.print(json);
 
     }
 

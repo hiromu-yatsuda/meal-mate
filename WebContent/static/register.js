@@ -44,14 +44,17 @@
 //    ],
 //};
 
-let iconData;
+let iconData = [];
+let userRegs = [];
 
 $.ajax({
 	url: "/meal-mate/user/get_ings",
 	type: "GET",
 	dataType: "json"
 }).done(res => {
-	iconData = res;
+	iconData = res["foodsJson"];
+	userRegs = res["userRegs"];
+	setRegistedIcon();
 }).fail(err => {
 	console.log(err);
 })
@@ -66,6 +69,19 @@ const submitButton = document.getElementById("submit-button"); // 送信ボタ�
 // 選択されたアイコンを管理する配列
 // 現在選択中のアイコンを追跡するための配列
 let selectedIconList = [];
+
+function setRegistedIcon() {
+	if (userRegs.length != 0) {
+		console.log("aruyo");
+		userRegs.forEach(e => {
+			addSelectedIcon(e.name, e.src, e.id);
+			console.log("name: " + e.name);
+			console.log("id: " + e.id);
+		});
+	} else {
+		console.log("naiyo");
+	}
+}
 
 // カテゴリークリック時の処理
 // カテゴリーがクリックされたときに、そのカテゴリーに対応するアイコンを表示する

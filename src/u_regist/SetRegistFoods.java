@@ -21,7 +21,7 @@ public class SetRegistFoods extends CommonServlet {
         resp.setContentType("text/plane");
         HttpSession session = req.getSession();
         List<String> idList = Arrays.asList(req.getParameter("idList").split(","));
-        // テスト用固定値
+        System.out.println(idList);
         String userId = (String)session.getAttribute("user_id");
 
 

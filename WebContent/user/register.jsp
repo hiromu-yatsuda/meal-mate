@@ -22,11 +22,11 @@
         <div id="categories">
             <!-- カテゴリーのボタン -->
             <button class="category" id="fruits" data-category="fruits">Fruit</button>
-            <button class="category" id="vegetables" data-category="vegetables">Vegetables</button>
-            <button class="category" id="meats" data-category="meats">Meat</button>
+            <button class="category" id="vegetable" data-category="vegetable">Vegetables</button>
+            <button class="category" id="meat" data-category="meat">Meat</button>
             <button class="category" id="seafood" data-category="seafood">Fish</button>
             <button class="category" id="dairy" data-category="dairy">Dairy Products</button>
-            <button class="category" id="sonota" data-category="sonota">Others</button>
+            <button class="category" id="other" data-category="other">Others</button>
         </div>
 
         <div id="icons">
