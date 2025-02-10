@@ -14,6 +14,7 @@
 
 		<p style="color: red;">${error_message}</p>
 
+<p>${admin_accounts_password_success}</p>
 			<div class="id">
 				<label>ID：</label>
     			<input type="text" name="id" id="id" placeholder="IDを入力してください"  required>

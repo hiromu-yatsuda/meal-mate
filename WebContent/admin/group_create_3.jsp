@@ -8,9 +8,10 @@
 <header>
         <%@ include file="../adminnav.jsp" %>
     </header>
-
+<p>${group_accounts_password}</p>
         <h1>グループ作成が完了しました</h1>
 		<div class="center">
+			<a href="/meal-mate/admin/a_create_store_1">店舗登録へ</a>
         	<a href="/meal-mate/admin/top">Topへ</a>
 		</div>
     </c:param>

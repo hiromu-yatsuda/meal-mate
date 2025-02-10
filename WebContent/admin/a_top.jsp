@@ -20,17 +20,15 @@
 
  <div class="button-container">
             <div class="form-container">
-                <form action="/meal-mate/admin/a_create_store_1" method="get">
-                    <button class="button-top" type="submit" id="store">店舗登録</button>
-                </form>
 
 
-                <form action="/meal-mate/admin/stuff/create_stuff_1" method="get">
-                    <button class="button-top" type="submit" id="group">代表者作成</button>
-                </form>
 
                 <form action="/meal-mate/admin/a_create_group_1" method="get">
                     <button class="button-top" type="submit" id="group">グループ作成</button>
+                </form>
+
+                <form action="/meal-mate/admin/a_create_store_1" method="get">
+                    <button class="button-top" type="submit" id="store">店舗登録</button>
                 </form>
 
                 <form action="/meal-mate/admin/a_group_list" method="get">

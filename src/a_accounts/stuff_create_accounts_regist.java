@@ -262,6 +262,28 @@ public class stuff_create_accounts_regist extends HttpServlet {
 
 
 
+
+//			        アカウント作成時、擬似メール
+			        System.out.println("=========================================");
+			        System.out.println("");
+			        System.out.println("");
+
+			        System.out.println("email");
+			        System.out.println(s_mail);
+
+			        System.out.println("パスワード");
+			        System.out.println(password);
+
+			        System.out.println("");
+			        System.out.println("");
+			        System.out.println("=========================================");
+
+
+
+
+
+
+
 		        } catch (Exception e) {
 					// TODO 自動生成された catch ブロック
 					e.printStackTrace();

@@ -38,7 +38,7 @@ public class s_foods_regist_csv extends CommonServlet {
 
     	HttpSession session = req.getSession();
 	    String gru_id = (String) session.getAttribute("s_g_id");
-	    gru_id = "100"; // グループIDの仮置き
+//	    gru_id = "100"; // グループIDの仮置き
 
 	    // ここから追加
 	    PrintWriter out = resp.getWriter();

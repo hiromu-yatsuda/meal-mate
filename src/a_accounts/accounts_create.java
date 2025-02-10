@@ -103,12 +103,25 @@ public class accounts_create extends HttpServlet {
 
 			System.out.println(in_dao);
 
+			System.out.println("================================");
+
+			System.out.println("");
+			System.out.println("password");
+
+			System.out.println(password);
+
+			System.out.println("");
+
+			System.out.println("================================");
+
+			String password_success = ("※今回のみ表示されます。password:" + password);
+			req.setAttribute("admin_accounts_password_success",password_success );
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 
 			e.printStackTrace();
 			String error = ("このIDは既に使用されています");
-			req.setAttribute("error",error );
+			req.setAttribute("create_accounts_1_error",error );
 			System.out.println("daoでエラー");
 			req.getRequestDispatcher("/admin/a_accounts_create.jsp").forward(req, resp);
 		}

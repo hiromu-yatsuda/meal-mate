@@ -13,7 +13,7 @@
 
         <form class="form-create" action="/meal-mate/admin/a_create_group_1" method="post">
 
-			<p style="color: red;">${error}</p>
+			<p style="color: red;">${error_group_create_regist}</p>
             <div class="user_name">
                 <label>代表者名：</label>
                 <input type="text" name="user_name" id="user_name" placeholder="名前を入力してください" required>

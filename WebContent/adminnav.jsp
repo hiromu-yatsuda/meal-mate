@@ -69,7 +69,8 @@
         <!-- 戻るボタン -->
         <a href="javascript:void(0)" onclick="history.back()">🔙</a>
         <!-- ログインページへのリンク -->
-        <a href="/admin/rogin">Login</a>
+
+                <a href="/meal-mate/admin/logout">Logout</a>
         <!-- ホームページへのリンク -->
         <a href="/meal-mate/admin/top">🏠</a>
     </div>

@@ -120,4 +120,35 @@ public class FoodsDAO extends DAO {
 
 
 
+//	商品削除
+	public int delete(String jancode) throws Exception {
+		 Connection connection = getConnection();
+		 PreparedStatement pStatement1 = connection.prepareStatement("DELETE FROM GROUP_PRODUCTS   WHERE  JAN_CODE = ? ");
+		 PreparedStatement pStatement3 = connection.prepareStatement("DELETE FROM PRODUCTS   WHERE  JAN_CODE = ?");
+		 PreparedStatement pStatement2 = connection.prepareStatement("DELETE FROM PRODUCT_FOODS   WHERE  PRODUCT_ID  = ? ");
+
+
+	        pStatement1.setString(1, jancode);
+	        pStatement2.setString(1, jancode);
+	        pStatement3.setString(1, jancode);
+
+
+	        int line = pStatement1.executeUpdate();
+	        line = pStatement2.executeUpdate();
+	        line = pStatement3.executeUpdate();
+
+	        pStatement1.close();
+	        pStatement2.close();
+	        pStatement3.close();
+	        connection.close();
+
+	        return line;
+	 }
+
+
+
+
+
+
+
 }

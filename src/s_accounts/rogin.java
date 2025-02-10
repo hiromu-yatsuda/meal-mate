@@ -21,6 +21,10 @@ public class rogin extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
+    	HttpSession session = req.getSession();
+        String error = null;
+        session.setAttribute("u_ac_error", error);
+
 
     	req.getRequestDispatcher("/stuff/s_rogin.jsp").forward(req, resp);
     }

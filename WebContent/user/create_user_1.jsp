@@ -84,7 +84,7 @@ h1 {
 
 <body>
     <div class="form-container">
-        <p>${error}</p>
+        <p>${u_ac_error}</p>
         <form class="form-create" action="/meal-mate/user/create_user_1" method="post">
 			<h1>Sign Up</h1>
             <label for="name">NAME</label>

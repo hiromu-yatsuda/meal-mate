@@ -23,8 +23,17 @@ public class group_create_in extends HttpServlet {
 			HttpServletResponse resp
 		) throws ServletException, IOException {
 
+//		ログインしているアカウントのセッションからグループIDを取得
+		HttpSession session = req.getSession();
+
+		String error_group_create_regist = (String) session.getAttribute("error_group_create_regist");
 
 
+
+		req.setAttribute("error_group_create_regist",error_group_create_regist);
+
+		String reset = null;
+		session.setAttribute("error_group_create_regist",reset );
 
 		req.getRequestDispatcher("group_create_1.jsp")
 		.forward(req, resp);

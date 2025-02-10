@@ -13,7 +13,7 @@
 
         <form class="form-create" action="/meal-mate/admin/create_accounts_1" method="post">
 
-			<p style="color: red;">${error}</p>
+			<p style="color: red;">${create_accounts_1_error}</p>
 
             <div class="id">
                 <label>ID：</label>

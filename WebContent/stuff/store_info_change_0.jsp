@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- バーコード印刷用に、後ほど大幅修正あり --%>
 
 <c:import url="/adminbase.jsp">
@@ -50,8 +50,8 @@
 
 <td>${store.name}</td>
 <td>${store.phoneNum}</td>
-<td>${store.openingTime}</td>
-<td>${store.closingTime}</td>
+<td><fmt:formatDate value="${store.openingTime}" pattern="HH:mm" /></td>
+<td><fmt:formatDate value="${store.closingTime}" pattern="HH:mm" /></td>
 <td>${store.avg_amount_low}</td>
 <td>～</td>
 <td>${store.avg_amount_high}</td>

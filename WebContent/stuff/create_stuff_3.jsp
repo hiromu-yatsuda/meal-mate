@@ -11,7 +11,10 @@
 	<c:param name="body">
 
 <h1>従業員作成が完了しました</h1>
+
+		<p>${staff_password}</p>
 <div class="center">
+
         	<a href="/meal-mate/staff/top">Topへ</a>
 		</div>
 
