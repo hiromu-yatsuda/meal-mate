@@ -16,14 +16,32 @@ map.locate({ setView: true, maxZoom: 150 }); // maxZoom は位置取得時の最
 
 // 現在位置取得成功時の処理
 // ユーザーの現在位置が取得できた場合に実行される関数
+//現在地の円とマーカーを保持する変数を追加
+var currentLocationCircle = null;
+var currentLocationMarker = null;
+
+// 現在位置取得成功時の処理（修正後）
 function success(e) {
-    var radius = e.accuracy; // 取得した位置情報の精度（半径のメートル数）
-    // 現在位置にマーカーを追加し、ポップアップで「現在地」を表示
-    L.marker(e.latlng, { icon: customIcon }).addTo(map)
+    var radius = e.accuracy; // 位置情報の精度（半径）
+
+    // 既存の円がある場合は削除
+    if (currentLocationCircle) {
+        map.removeLayer(currentLocationCircle);
+    }
+    // 新しく円を描画して変数に保持
+    currentLocationCircle = L.circle(e.latlng, { radius: radius }).addTo(map);
+
+    // 既存のマーカーがある場合は削除
+    if (currentLocationMarker) {
+        map.removeLayer(currentLocationMarker);
+    }
+    // 新しくマーカーを追加して変数に保持
+    currentLocationMarker = L.marker(e.latlng, { icon: customIcon }).addTo(map)
         .bindPopup("current location").openPopup();
-    // 現在地の精度を円で表示
-    L.circle(e.latlng, radius).addTo(map);
 }
+
+// `locationfound` イベントに `success` 関数を設定
+map.on('locationfound', success);
 
 // 現在位置取得失敗時の処理
 // 位置情報の取得に失敗した場合に実行される関数
@@ -98,11 +116,13 @@ function hideDetails() {
 // 指定座標にピンを立てる関数
 // 地図上にマーカーを追加し、クリック時に詳細情報を表示する
 function addMarker(lat, lng, message) {
-    var marker = L.marker([lat, lng], { icon: customIconpin }).addTo(map); // マーカーを追加
-    marker.on('click', function() { // マーカーがクリックされたときの動作
-        showDetails(message); // 詳細情報を表示
+    var marker = L.marker([lat, lng], { icon: customIconpin }).addTo(map);
+    marker.on('click', function() {
+        showDetails(message); // 詳細を表示
+        map.setView([lat, lng], map.getZoom(), { animate: true }); // ピンの位置を地図の中心に移動
     });
 }
+
 $.ajax({
 	url: "/meal-mate/user/map/ajax",
 	type: "GET",
@@ -137,5 +157,10 @@ map.on('click', hideDetails);
 // 現在地ボタンの処理
 // ボタンをクリックすると現在地を再取得して地図を移動
 document.getElementById('locationButton').onclick = function() {
-    map.locate({ setView: true, maxZoom: 16 }); // 再度現在地を取得し地図を移動
+    map.locate({ setView: false, maxZoom: 16 }); // `setView: false` に変更し、自動移動を無効化
 };
+
+// `locationfound` イベントをリッスンし、現在地を取得したら画面の中心に移動
+map.on('locationfound', function(e) {
+    map.setView(e.latlng, 16); // 取得した現在地を画面の中心に設定
+});
