@@ -50,6 +50,44 @@ public class FoodsDAO extends DAO {
 
 	}
 
+	   public List<Foods> allEnglish() throws Exception{
+	        List<Foods> list = new ArrayList<Foods>();
+
+	        // データベースに接続
+	        Connection con = getConnection();
+
+	        // 実行したいSQL文をプリペアードステートメントで準備
+	        PreparedStatement st = con.prepareStatement(
+	                "SELECT f.id as id, f.english_name as name, f.icon as icon, c.id as cid, c.name as cname FROM FOODS_ENGLISH as f join categories as c on f.category_id = c.id"
+	                );
+
+	        ResultSet rs = st.executeQuery();
+
+	        // 結果から1件ずつ取り出すループ
+	        while (rs.next()) {
+	            Foods f = new Foods();
+	            Categories categories = new Categories();
+
+//	          値のセット
+	            categories.setId(rs.getInt("cid"));
+	            categories.setName(rs.getString("cname"));
+	            f.setId(rs.getInt("id"));
+	            f.setFoodName(rs.getString("name"));
+	            f.setIcon(rs.getString("icon"));
+	            f.setCategories(categories);
+
+	            // リストに追加
+	            list.add(f);
+	        }
+	        // データベースとの接続を解除（必ず書く！！！！！！！！）
+	        st.close();
+	        con.close();
+
+	        // リストを返却
+	        return list;
+
+	    }
+
 	// idが見当たらない場合も考える
 	public Foods getFoodsById(int id) throws Exception {
 	    Foods food = new Foods();

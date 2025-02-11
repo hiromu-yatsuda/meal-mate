@@ -24,7 +24,7 @@ public class GetIngredientsFoods extends CommonServlet {
         HttpSession session = req.getSession();
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
-        List<Foods> foods = (new FoodsDAO()).all();
+        List<Foods> foods = (new FoodsDAO()).allEnglish();
         String userId = (String)session.getAttribute("user_id");
         List<Foods> restFoods = (new RestFoodsDAO()).getRestFoods(userId);
         List<JSONObject> restJsonList = new ArrayList<>();
