@@ -52,7 +52,7 @@
         background-color: #f9f9f9; /* 背景色 */
         transition: transform 0.3s, color 0.3s, background-color 0.3s;
     }
-    
+
 
 </style>
 </head>
@@ -60,9 +60,18 @@
 <div class="nav">
     <div class="hako">
         <a href="javascript:void(0)" onclick="history.back()">🔙</a>
+        <c:choose>
+    <%-- ログイン済みの場合 --%>
+    <c:when test="${not empty sessionScope.user_name}">
+        <span>Welcome, ${sessionScope.user_name}</span>
+    </c:when>
+    <%-- 未ログインの場合 --%>
+    <c:otherwise>
         <form action="/meal-mate/user/login" method="GET">
-        	<input class="botannnoyatu" type="submit" value="Login">
+            <input class="botannnoyatu" type="submit" value="Login">
         </form>
+    </c:otherwise>
+</c:choose>
         <form action="/meal-mate/user/top" method="GET">
         	<input class="botannnoyatu" type="submit" value="🏠">
         </form>

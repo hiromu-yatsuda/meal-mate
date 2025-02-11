@@ -108,8 +108,8 @@ public class u_rogin extends HttpServlet {
 		    	System.out.println(up_success);
 
 
-
-
+//				ユーザ名をセッションへ
+		    	session.setAttribute("user_name", dao_name);  // ここでユーザ名を保存
 
 //				IDをセッションへ
 				session.setAttribute("user_id",dao_id );
