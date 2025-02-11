@@ -56,9 +56,20 @@
         	<input type="image" src="/meal-mate/img/sei.png" class="text_img">
         </form>
 
-        <form action="/meal-mate/user/login" method="GET">
-        	<input type="image" src="/meal-mate/img/login3.png" class="text_img">
-        </form>
+        <div class="login">
+		    <c:choose>
+		        <%-- ログイン済みの場合 --%>
+		        <c:when test="${not empty sessionScope.user_name}">
+		            <span>Welcome, ${sessionScope.user_name}</span>
+		        </c:when>
+		        <%-- 未ログインの場合 --%>
+		        <c:otherwise>
+		            <form action="/meal-mate/user/login" method="GET">
+		                <input type="image" src="/meal-mate/img/login3.png" class="text_img">
+		            </form>
+		        </c:otherwise>
+		    </c:choose>
+		</div>
     </div>
 </div>
 

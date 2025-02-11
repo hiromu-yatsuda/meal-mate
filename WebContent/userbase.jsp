@@ -61,17 +61,17 @@
     <div class="hako">
         <a href="javascript:void(0)" onclick="history.back()">🔙</a>
         <c:choose>
-    <%-- ログイン済みの場合 --%>
-    <c:when test="${not empty sessionScope.user_name}">
-        <span>Welcome, ${sessionScope.user_name}</span>
-    </c:when>
-    <%-- 未ログインの場合 --%>
-    <c:otherwise>
-        <form action="/meal-mate/user/login" method="GET">
-            <input class="botannnoyatu" type="submit" value="Login">
-        </form>
-    </c:otherwise>
-</c:choose>
+		    <%-- ログイン済みの場合 --%>
+		    <c:when test="${not empty sessionScope.user_name}">
+		        <span>Welcome, ${sessionScope.user_name}</span>
+		    </c:when>
+		    <%-- 未ログインの場合 --%>
+		    <c:otherwise>
+		        <form action="/meal-mate/user/login" method="GET">
+		            <input class="botannnoyatu" type="submit" value="Login">
+		        </form>
+		    </c:otherwise>
+		</c:choose>
         <form action="/meal-mate/user/top" method="GET">
         	<input class="botannnoyatu" type="submit" value="🏠">
         </form>
