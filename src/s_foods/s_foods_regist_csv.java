@@ -55,11 +55,11 @@ public class s_foods_regist_csv extends CommonServlet {
 	    InputStream inputStream = filePart.getInputStream();
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 	    List<JSONObject> jsonList = new ArrayList<>();
-	    JSONObject json = new JSONObject();
         Map<String, String> foodMap = (new FoodsDAO()).getAllNameAndId();
 	    String line;
 
 	    while ((line = reader.readLine()) != null) {
+	        JSONObject json = new JSONObject();
 	        List<String> idList = new ArrayList<>();
 	        String[] columns = line.split(",");
 
