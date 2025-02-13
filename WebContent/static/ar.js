@@ -126,8 +126,8 @@ function drawText() {
 
     const rect = calcRect(res.box); // バーコードの描画位置を計算
 
-    const width = 130; // 各画像の幅
-    const height = 130; // 各画像の高さ
+    const width = 210; // 各画像の幅
+    const height = 210; // 各画像の高さ
     const numTimes = 9; // 最大表示する画像の数
     const kaisuu = numTimes > imageArray.length ? imageArray.length : numTimes; // 実際の表示数
     let count = 0; // 描画する画像のカウンタ
@@ -157,8 +157,8 @@ function drawOkIcon() {
     }
 
     const rect = calcRect(res.box); // バーコードの描画位置を計算
-    const width = 130;
-    const height = 130;
+    const width = 210;
+    const height = 210;
 
     const okIcon = new Image;
     okIcon.src = "/meal-mate/user/icons/maru.png";

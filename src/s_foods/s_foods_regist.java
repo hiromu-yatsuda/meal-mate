@@ -64,7 +64,7 @@ public class s_foods_regist extends CommonServlet{
 	    }
 
 	    String g_id = (String) session.getAttribute("s_g_id");
-        g_id = "100"; // グループIDの仮置き
+
 
 	    if (products != null) {
 	        int line = (new ProductsDAO()).insertProducts(products, g_id);
