@@ -15,7 +15,7 @@
 
 <!-- ホーム画面に戻るボタン -->
 <div class="hako">
-    <a href="http://localhost:8080/meal-mate/user/top.jsp" id="homeButton">🏠</a>
+    <a href="/meal-mate/user/top" id="homeButton">🏠</a>
 </div>
 <!-- 現在地ボタン -->
 <button id="locationButton">
