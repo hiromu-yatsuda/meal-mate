@@ -1,5 +1,18 @@
 // translation.js
 
+
+// ページ読み込み後に初回のタッチイベントでAudioContextをアンロック（iOS Safari対策）
+document.addEventListener('touchstart', function() {
+    // AudioContextがサポートされている場合
+    if (typeof window.AudioContext !== 'undefined' || typeof window.webkitAudioContext !== 'undefined') {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+}, { once: true });
+
 // DOM（Document Object Model）が完全に読み込まれた後に実行されるイベントリスナー
 document.addEventListener('DOMContentLoaded', () => {
 	// 翻訳ボタンや出力テキストエリア、読み上げボタンなどの要素を取得
