@@ -313,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (readaloudBtn1) {
         readaloudBtn1.addEventListener('click', () => {
             if (audio) {           // audioオブジェクトが存在する場合
+            	audio.load();
                 audio.play();      // 音声ファイルを再生
                 console.log('音声ファイルを再生しました:', audio.src);
             } else {
@@ -328,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (readaloudBtn2) {
         readaloudBtn2.addEventListener('click', () => {
             if (audio) {           // audioオブジェクトが存在する場合
+            	audio.load();
                 audio.play();      // 音声ファイルを再生
                 console.log('音声ファイルを再生しました:', audio.src);
             } else {
