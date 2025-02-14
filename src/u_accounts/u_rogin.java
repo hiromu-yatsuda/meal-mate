@@ -19,12 +19,25 @@ import dao.MemberAccountsDAO;
 public class u_rogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		セッションへ
+		HttpSession session = req.getSession();
+
+		String error = (String)session.getAttribute("error" );
+
+		req.setAttribute("error",error );
+
+		String a = null;
+
+		session.setAttribute("error",a );
+
     	req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+//		セッションへ
+		HttpSession session = req.getSession();
 
     	//メールアドレスを取得
     	String u_mail = req.getParameter("id");
@@ -91,16 +104,16 @@ public class u_rogin extends HttpServlet {
 
 		    	System.out.println("ログイン失敗");
 
-//				ログインページへ
-				req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
-
+				String error = ("メールアドレスまたはパスワードが間違っています");
+				session.setAttribute("error",error );
+				// このページのリロード
+			    resp.sendRedirect(req.getContextPath() + "/user/login");
 
 
 
 		    }else{
 //		    	ログイン成功
 //				セッションへ
-				HttpSession session = req.getSession();
 
 
 		    	boolean up_success = a_dao.up_last_log(u_mail);
@@ -133,9 +146,9 @@ public class u_rogin extends HttpServlet {
 	    	System.out.println("email検索DAOでエラー");
 
 			String error = ("メールアドレスまたはパスワードが間違っています");
-			req.setAttribute("error",error );
+			session.setAttribute("error",error );
 			// このページのリロード
-		    resp.sendRedirect(req.getContextPath() + "/user/create_user_1");
+		    resp.sendRedirect(req.getContextPath() + "/user/login");
 
 
     	}
