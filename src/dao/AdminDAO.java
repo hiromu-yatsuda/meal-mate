@@ -31,7 +31,7 @@ public class AdminDAO extends DAO {
 		 String password = null;
 
 		 Connection connection = getConnection();
-		 PreparedStatement pStatement = connection.prepareStatement("SELECT *  FROM A_ACCOUNTS where ID LIKE ?");
+		 PreparedStatement pStatement = connection.prepareStatement("SELECT *  FROM A_ACCOUNTS where ID = ?");
 
 
 		 pStatement.setString(1, id);

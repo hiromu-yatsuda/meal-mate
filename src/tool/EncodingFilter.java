@@ -26,7 +26,7 @@ public class EncodingFilter implements Filter {
 			throws IOException, ServletException {
 		// 共通の前処理を記述
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		 System.out.println("エンコーディングフィルターの前処理");
 
 		// 次のフィルター、またはサーブレットの処理を呼び出す

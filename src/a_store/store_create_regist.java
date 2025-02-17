@@ -137,7 +137,7 @@ public class store_create_regist extends HttpServlet {
 				int sto_reg_dao = dao.insert(sto_name, sto_tel, sto_gru_id, latitude, longitude);
 				System.out.println(sto_reg_dao);
 
-				req.getRequestDispatcher("/admin/store_create_3.jsp").forward(req, resp);
+//				req.getRequestDispatcher("/admin/store_create_3.jsp").forward(req, resp);
 
 
 //              } catch (Exception e) {

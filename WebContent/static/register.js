@@ -46,6 +46,9 @@
 
 let iconData = [];
 let userRegs = [];
+//選択されたアイコンを管理する配列
+//現在選択中のアイコンを追跡するための配列
+let selectedIconList = [];
 
 $.ajax({
 	url: "/meal-mate/user/get_ings",
@@ -54,6 +57,9 @@ $.ajax({
 }).done(res => {
 	iconData = res["foodsJson"];
 	userRegs = res["userRegs"];
+	userRegs.forEach(e => {
+		console.log(JSON.parse(e));
+	});
 	setRegistedIcon();
 }).fail(err => {
 	console.log(err);
@@ -66,9 +72,7 @@ const icons = document.getElementById("icons"); // アイコン一覧のコン�
 const selectedIcons = document.getElementById("selected-icons"); // 選択されたアイコンの表示エリア
 const submitButton = document.getElementById("submit-button"); // 送信ボタン
 
-// 選択されたアイコンを管理する配列
-// 現在選択中のアイコンを追跡するための配列
-let selectedIconList = [];
+
 
 function setRegistedIcon() {
 	if (userRegs.length != 0) {

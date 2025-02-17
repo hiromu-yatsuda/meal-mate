@@ -9,8 +9,6 @@ import java.util.List;
 import bean.Foods;
 
 public class RestFoodsDAO extends DAO {
-    // エラー(?の2コメに値をセットしていない)
-    // 引数が足りなそうだけどいつ使う?
     public List<Foods> getRestFoods(String userId) throws Exception {
         List<Foods> foods = new ArrayList<Foods>();
         Connection connection = getConnection();

@@ -60,7 +60,7 @@ public class ProductFoods extends DAO {
 
              int_max_pStatement = int_max_pStatement + 1;
 
-                PreparedStatement pStatement = connection.prepareStatement("insert into PRODUCT_FOODS values (?, ?,?)");
+                PreparedStatement pStatement = connection.prepareStatement("insert into PRODUCT_FOODS values (?, ?, ?)");
 
 
                 pStatement.setInt(1, int_max_pStatement);
