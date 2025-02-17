@@ -244,6 +244,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const text = outputText1.value; // 上段のテキストエリアからテキストを取得
             const sourceLang = getSelectedLang('userLang1'); // 翻訳元の言語コードを取得
             const targetLang = getSelectedLang('userLang2'); // 翻訳後の言語コードを取得
+
+            // 録音を自動で終了
+            if (recognizing1) {
+                recognition1.stop();
+                recognizing1 = false;
+                recordBtn1.textContent = '🎤';
+                recordBtn1.classList.remove('recording');
+            }
+
             if (text) {
             	// sendTextToServer関数を実行する
             	// 41行目に定義されている
@@ -285,6 +294,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const text = outputText2.value;
             const sourceLang = getSelectedLang('userLang2');
             const targetLang = getSelectedLang('userLang1');
+
+            // 録音を自動で終了
+            if (recognizing2) {
+                recognition2.stop();
+                recognizing2 = false;
+                recordBtn2.textContent = '🎤';
+                recordBtn2.classList.remove('recording');
+            }
+
             if (text) {
             	// sendTextToServer関数を実行する
             	// 41行目に定義されている
