@@ -12,8 +12,8 @@ import javax.servlet.annotation.WebFilter;
 
 //フィルターを適用するURLの範囲を指定
 // * は任意の文字列　＝＞　すべてのURLに対して適用
-@WebFilter(urlPatterns = { "/*" })
-public class EncodingFilter implements Filter {
+@WebFilter(urlPatterns = { "*.js" })
+public class EncodingFilter2 implements Filter {
 
 	@Override
 	public void destroy() {
@@ -26,8 +26,8 @@ public class EncodingFilter implements Filter {
 			throws IOException, ServletException {
 		// 共通の前処理を記述
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		 System.out.println("フィルター1");
+		response.setContentType("text/html; charset=UTF-8");
+		 System.out.println("フィルター2");
 
 		// 次のフィルター、またはサーブレットの処理を呼び出す
 		chain.doFilter(request, response);

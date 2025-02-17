@@ -15,6 +15,7 @@ public class AR extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        resp.setContentType("text/html; charset=UTF-8");
         System.out.println("passed");
         HttpSession session = req.getSession();
         PrintWriter out = resp.getWriter();
@@ -22,10 +23,7 @@ public class AR extends CommonServlet {
         int restFoodsSize = (new RestFoodsDAO()).getRestFoodsSize(userId);
         System.out.println(restFoodsSize);
         if (restFoodsSize == 0) {
-            out.print("<script type='text/javascript'>");
-            out.print("alert('制限食材が登録されていません');");
-            out.print("window.location.href='/meal-mate/user/ingredients_register';");
-            out.print("</script>");
+            req.getRequestDispatcher("/user/alert.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("/user/ar.jsp").forward(req, resp);
         }

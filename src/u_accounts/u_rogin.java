@@ -22,13 +22,7 @@ public class u_rogin extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-<<<<<<< HEAD
 
-//		セッションへ
-
-=======
-//		セッションへ
->>>>>>> branch 'master' of https://github.com/hiromu-yatsuda/meal-mate.git
 		HttpSession session = req.getSession();
 
 		String error = (String)session.getAttribute("error" );
@@ -47,11 +41,6 @@ public class u_rogin extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//		セッションへ
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/hiromu-yatsuda/meal-mate.git
 		HttpSession session = req.getSession();
 
     	//メールアドレスを取得
@@ -135,14 +124,11 @@ public class u_rogin extends HttpServlet {
 		    	System.out.println("ログイン失敗");
 
 				String error = ("メールアドレスまたはパスワードが間違っています");
-<<<<<<< HEAD
 
 				session.setAttribute("error",error );
-=======
 				session.setAttribute("error",error );
 				// このページのリロード
 			    resp.sendRedirect(req.getContextPath() + "/user/login");
->>>>>>> branch 'master' of https://github.com/hiromu-yatsuda/meal-mate.git
 
 				// このページのリロード
 
@@ -193,18 +179,11 @@ public class u_rogin extends HttpServlet {
 	    	System.out.println("email検索DAOでエラー");
 
 			String error = ("メールアドレスまたはパスワードが間違っています");
-<<<<<<< HEAD
 
 			session.setAttribute("error",error );
 
-=======
 			session.setAttribute("error",error );
->>>>>>> branch 'master' of https://github.com/hiromu-yatsuda/meal-mate.git
-			// このページのリロード
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/hiromu-yatsuda/meal-mate.git
 		    resp.sendRedirect(req.getContextPath() + "/user/login");
 
 
