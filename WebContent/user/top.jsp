@@ -15,31 +15,32 @@
     	overflow: hidden; /* スクロールを無効にする */
     }
     .top {
-        padding: 44.24% 0%;
+        padding: 44.24% 5% 0%;
     }
     .text_img {
         width: 100px; /* 幅を指定 */
         height: 100px; /* 高さを指定 */
         object-fit: contain; /* アスペクト比を保つ */
+        justify-content: center; /* 横方向の中央揃え */
     }
-    .apuri {
-        display: flex; /* Flexboxを有効化 */
-        flex-wrap: wrap; /* 改行を許可 */
-    	gap: 40px 60px;
-        justify-content: center; /* 中央揃え */
-        align-items: center; /* 垂直方向の調整 */
+	.apuri {
+	    display: grid;
+	    grid-template-columns: repeat(2, 1fr); /* 2列に固定 */
+    	gap: 40px 0px;
+	    justify-content: center; /* 横方向の中央揃え */
+	    align-items: center; /* 縦方向の中央揃え */
+	    place-items: center; /* グリッド内の要素を中央に配置 */
+	    width: 100%; /* 横幅を100%にする */
+	}
+	.login {
+        display: flex; /* フレックスボックスを使用 */
+        justify-content: center; /* 横方向で中央揃え */
+        align-items: center; /* 縦方向で中央揃え */
+        margin-top: 20px; /* 上に少しスペースを追加 */
     }
-
 </style>
 </head>
 <body>
-
-
-<form action="/meal-mate/user/create_user_1" method="get">
-    <!-- フォームの入力フィールド -->
-
-</form>
-
 
 <div class="top">
     <div class="apuri">
@@ -55,24 +56,27 @@
         <form action="/meal-mate/user/translate" method="GET">
         	<input type="image" src="/meal-mate/img/sei.png" class="text_img">
         </form>
-
-        <div class="login">
-		    <c:choose>
-		        <%-- ログイン済みの場合 --%>
-		        <c:when test="${not empty sessionScope.user_name}">
-		            <span>Welcome, ${sessionScope.user_name}</span>
-		        </c:when>
-		        <%-- 未ログインの場合 --%>
-		        <c:otherwise>
-		            <form action="/meal-mate/user/login" method="GET">
-		                <input type="image" src="/meal-mate/img/login3.png" class="text_img">
-		            </form>
-		        </c:otherwise>
-		    </c:choose>
-		</div>
     </div>
 </div>
 
+<div class="login">
+    <c:choose>
+        <%-- ログイン済みの場合 --%>
+        <c:when test="${not empty sessionScope.user_name}">
+            <span>Welcome, ${sessionScope.user_name}</span>
+        </c:when>
+        <%-- 未ログインの場合 --%>
+        <c:otherwise>
+            <form action="/meal-mate/user/login" method="GET">
+                <input type="image" src="/meal-mate/img/login3.png" class="text_img">
+            </form>
+        </c:otherwise>
+    </c:choose>
+</div>
+
+<form action="/meal-mate/user/create_user_1" method="get">
+    <!-- フォームの入力フィールド -->
+</form>
 
 </body>
 </html>
