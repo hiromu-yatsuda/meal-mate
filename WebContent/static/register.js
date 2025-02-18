@@ -55,13 +55,17 @@ $.ajax({
 	type: "GET",
 	dataType: "json"
 }).done(res => {
+	console.log("success");
 	iconData = res["foodsJson"];
 	userRegs = res["userRegs"];
+	console.log("first start");
 	userRegs.forEach(e => {
-		console.log(JSON.parse(e));
+		console.log(e.id);
 	});
+	console.log("first end");
 	setRegistedIcon();
 }).fail(err => {
+	console.log("error");
 	console.log(err);
 })
 
@@ -135,7 +139,7 @@ icons.addEventListener("click", (event) => {
 // 選択されたアイコンを追加
 // 新しいアイコンを選択済みリストに追加する
 function addSelectedIcon(name, src, id) {
-    if (selectedIconList.some(icon => icon.name === name)) return; // すでに選択されている場合は何もしない
+    if (selectedIconList.some(icon => icon.id == id)) return; // すでに選択されている場合は何もしない
 
     const iconWrapper = document.createElement("div"); // アイコンと削除ボタンを含むコンテナを作成
     iconWrapper.classList.add("selected-icon-wrapper"); // コンテナ用のクラスを追加
@@ -158,7 +162,7 @@ function addSelectedIcon(name, src, id) {
     iconWrapper.appendChild(removeButton); // コンテナに削除ボタンを追加
     selectedIcons.appendChild(iconWrapper); // 選択済みアイコンの表示エリアにコンテナを追加
 
-    selectedIconList.push({ name, src }); // 配列にアイコンデータを追加
+    selectedIconList.push({ name, src, id }); // 配列にアイコンデータを追加
 }
 
 // 送信ボタンクリック時の処理

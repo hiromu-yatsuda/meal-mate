@@ -112,7 +112,7 @@ public class ProductsDAO extends DAO {
                 for (String s: p.getCheckedItemsId()) {
                     pStatement2.setInt(1, nextId1);
                     pStatement2.setString(2, p.getJan());
-                    pStatement2.setString(3, s);
+                    pStatement2.setInt(3, Integer.parseInt(s));
                     pStatement2.addBatch();
                     nextId1++;
                 }
@@ -142,26 +142,23 @@ public class ProductsDAO extends DAO {
 
 
 
-
-
     public List<ProductsList> searchGroupId(String g_id)throws Exception {
         List<ProductsList> pro_list = new ArrayList<ProductsList>();
 
 
         Connection connection = getConnection();
         PreparedStatement pStatement = connection.prepareStatement("SELECT "
-        		+ "PRODUCTS.name AS pro_name, "
-        		+ "PRODUCTS.JAN_CODE, "
-        		+ "GROUP_CONCAT(PRODUCT_FOODS.FOODS_ID ORDER BY PRODUCT_FOODS.FOODS_ID ASC) AS FOODS_IDS, "
-        		+ "GROUP_CONCAT(FOODS.NAME ORDER BY FOODS.NAME ASC) AS FOOD_NAMES "
-        		+ "FROM PRODUCTS "
-        		+ "INNER JOIN GROUP_PRODUCTS ON PRODUCTS.JAN_CODE = GROUP_PRODUCTS.JAN_CODE "
-        		+ "INNER JOIN PRODUCT_FOODS ON GROUP_PRODUCTS.JAN_CODE = PRODUCT_FOODS.PRODUCT_ID "
-        		+ "INNER JOIN FOODS ON PRODUCT_FOODS.FOODS_ID = FOODS.ID "
-        		+ "WHERE GROUP_PRODUCTS.GROUP_ID = ? "
-        		+ "GROUP BY PRODUCTS.name, PRODUCTS.JAN_CODE "
-        		+ "ORDER BY PRODUCTS.name ASC, PRODUCTS.JAN_CODE ASC;");
-
+                + "PRODUCTS.name AS pro_name, "
+                + "PRODUCTS.JAN_CODE, "
+                + "string_agg(PRODUCT_FOODS.FOODS_ID::text, ',' ORDER BY PRODUCT_FOODS.FOODS_ID ASC) AS FOODS_IDS, "
+                + "string_agg(FOODS.NAME, ',' ORDER BY FOODS.NAME ASC) AS FOOD_NAMES "
+                + "FROM PRODUCTS "
+                + "INNER JOIN GROUP_PRODUCTS ON PRODUCTS.JAN_CODE = GROUP_PRODUCTS.JAN_CODE "
+                + "INNER JOIN PRODUCT_FOODS ON GROUP_PRODUCTS.JAN_CODE = PRODUCT_FOODS.PRODUCT_ID "
+                + "INNER JOIN FOODS ON PRODUCT_FOODS.FOODS_ID = FOODS.ID "
+                + "WHERE GROUP_PRODUCTS.GROUP_ID = ? "
+                + "GROUP BY PRODUCTS.name, PRODUCTS.JAN_CODE "
+                + "ORDER BY PRODUCTS.name ASC, PRODUCTS.JAN_CODE ASC;");
         pStatement.setString(1, g_id);
         ResultSet rSet = pStatement.executeQuery();
 

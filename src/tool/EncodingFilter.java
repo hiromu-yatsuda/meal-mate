@@ -27,7 +27,7 @@ public class EncodingFilter implements Filter {
 		// 共通の前処理を記述
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		 System.out.println("フィルター1");
+//		 System.out.println("フィルター1");
 
 		// 次のフィルター、またはサーブレットの処理を呼び出す
 		chain.doFilter(request, response);

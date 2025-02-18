@@ -66,12 +66,14 @@ public class RestFoodsDAO extends DAO {
 
         for (String id: idList) {
             insert.setString(1, userId);
-            insert.setString(2, id);
+            insert.setInt(2, Integer.parseInt(id));
             insert.addBatch();
         }
 
         insert.executeBatch();
         insert.close();
+
+        System.out.println("insert成功");
 
         connection.close();
     }

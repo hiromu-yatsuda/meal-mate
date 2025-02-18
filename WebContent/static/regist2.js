@@ -303,7 +303,6 @@ function sendData() {
 		body: JSON.stringify(data)
 	}).then(res => res.text())
 	.then(data => {
-//		console.log(data);
 		window.location.href = "/meal-mate/stuff/foods_regist_con.jsp";
 	})
 }

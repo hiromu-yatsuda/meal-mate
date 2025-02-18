@@ -118,7 +118,7 @@ public class FoodsDAO extends DAO {
 	    ResultSet rSet = pStatement.executeQuery();
 
 	    while (rSet.next()) {
-	        foodMap.put(rSet.getString("name"), rSet.getString("id"));
+	        foodMap.put(rSet.getString("name"), Integer.toString(rSet.getInt("id")));
 	    }
 
 	    pStatement.close();

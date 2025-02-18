@@ -16,26 +16,30 @@ public class ProductFoods extends DAO {
         Connection connection = getConnection();
         PreparedStatement pStatement = connection.prepareStatement("select * from product_foods pf join foods f on pf.foods_id = f.id where product_id = ?");
 
+        System.out.println("searchFoodsByJanCode\n\n\n\n\n2");
         pStatement.setString(1, janCode);
 
+        System.out.println("searchFoodsByJanCode\n\n\n\n\n3");
         ResultSet rSet = pStatement.executeQuery();
 
         while (rSet.next()) {
             int foodId = rSet.getInt("foods_id");
             Foods food = new Foods();
+            System.out.println("searchFoodsByJanCode\n\n\n\n\n4-1");
             food.setId(rSet.getInt("id"));
+            System.out.println("searchFoodsByJanCode\n\n\n\n\n4");
             food.setFoodName(rSet.getString("name"));
             food.setIcon(rSet.getString("icon"));
 
             foods.add(food);
         }
 
+        System.out.println("searchFoodsByJanCode\n\n\n\n\n5");
         pStatement.close();
         connection.close();
 
         return foods;
     }
-
 
 
     	public int insert(String janCode,String foodsId)throws Exception {
@@ -63,9 +67,12 @@ public class ProductFoods extends DAO {
                 PreparedStatement pStatement = connection.prepareStatement("insert into PRODUCT_FOODS values (?, ?, ?)");
 
 
+                System.out.println("proffood.insert\n\n\n\n\n2");
                 pStatement.setInt(1, int_max_pStatement);
+                System.out.println("proffood.insert\n\n\n\n\n3");
                 pStatement.setString(2, janCode);
-                pStatement.setString(3, foodsId);
+                pStatement.setInt(3, Integer.parseInt(foodsId));
+                System.out.println("proffood.insert\n\n\n\n\n4");
 
                 int line = pStatement.executeUpdate();
 
