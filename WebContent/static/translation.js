@@ -344,6 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (readaloudBtn1) {
         readaloudBtn1.addEventListener('click', () => {
             if (audio) {           // audioオブジェクトが存在する場合
+            	audio.pause();
             	audio.load();
                 audio.play();      // 音声ファイルを再生
                 console.log('音声ファイルを再生しました:', audio.src);
@@ -354,12 +355,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * 読み上げボタン1（上段）のクリックイベント設定
+     * 読み上げボタン2（下段）のクリックイベント設定
      * 上段の翻訳結果を音声で再生する
      */
     if (readaloudBtn2) {
         readaloudBtn2.addEventListener('click', () => {
             if (audio) {           // audioオブジェクトが存在する場合
+            	audio.pause();
             	audio.load();
                 audio.play();      // 音声ファイルを再生
                 console.log('音声ファイルを再生しました:', audio.src);
