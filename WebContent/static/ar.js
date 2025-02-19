@@ -3,31 +3,12 @@ let time = 0; // 検出後の残り時間（フレーム単位）
 const timeAllowed = 30; // バーコード検出の有効時間（フレーム単位）
 let res; // Quaggaの検出結果を保存する変数
 let imageArray = []; // 表示する画像の配列
-let imageAllArray = {}; // 表示する全画像の配列
 let prevBarcode = ""; // 前回のバーコードを記録して、同じバーコードを繰り返さないようにする
 const frameRate = 10; // 1秒あたりのフレーム数（描画頻度を制御）
 let i = 0; // フレームごとのカウンタ
 let isOk = false;
 const batsu = new Image();
 batsu.src = "/meal-mate/user/icons/batu.png";
-
-$.ajax({
-    url: "/meal-mate/ajax-test", // サーバーのエンドポイント
-    type: "GET", // HTTPメソッド
-    dataType: "json" // サーバーからのレスポンスのデータ形式
-}).done(function (res) {
-	console.log("done");
-	for(){
-		imageAllArray[res["id"]] = new Image(res["path"])
-	}
-    loadFoods(res["path"]); // 取得した画像パスを処理する
-}).fail(function (err) {
-    consoleLog(err); // 通信失敗時のログ
-}).always(res => {
-	if (res.responseText == "") {
-		isOk = true;
-	}
-});
 
 // デバッグ用の要素（後で削除する場合を想定）
 const consoleElm = document.querySelector("#console"); // コンソール出力用のHTML要素
@@ -96,8 +77,8 @@ $(document).ready(function() {
         if (i === 0 && imageArray.length > 0) { // 描画頻度を制御
             drawText(); // 画像を描画
         } else if (isOk && time > 0) {
-        	console.log("drawOkIcon");
         	drawOkIcon();
+        	console.log("drawOkIconFinish");
         }
         i = (i + 1) % frameRate; // フレームカウンタを更新
     });
@@ -201,8 +182,9 @@ function drawText() {
     const kaisuu = numTimes > imageArray.length ? imageArray.length : numTimes; // 実際の表示数
     let count = 0; // 描画する画像のカウンタ
 
-
-    ctx.drawImage(batsu, rect[0]-200, rect[1]-200, width, height);
+    const batsuRectX = kaisuu == 1 ? rect[0]: kaisuu == 2 ? rect[0] + width/2: rect[0]+width;
+    const batsuRectY = rect[1]-210;
+    ctx.drawImage(batsu, batsuRectX, batsuRectY, width, height);
 
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
