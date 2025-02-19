@@ -149,7 +149,6 @@ $.ajax({
 			console.log(res["figure3"][i]);
 		}
 		html += "</h2>";
-		console.log(commonHtml + html);
 		addMarker(res["latitude"][i], res["longitude"][i], commonHtml + html);
 
 	}

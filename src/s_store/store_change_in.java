@@ -36,7 +36,6 @@ public class store_change_in extends HttpServlet {
 		boolean s_action = (boolean)session.getAttribute("s_action");
 
 
-
 		if(s_action == false){
 
 			req.getRequestDispatcher("/stuff/not_manager.jsp").forward(req, resp);
@@ -44,14 +43,10 @@ public class store_change_in extends HttpServlet {
 
 
 
-
 //		// グループID仮置き
 //		se_g_id = "101";
 //		System.out.println("仮置き後");
 //		System.out.println(se_g_id);
-
-
-
 
 
 
@@ -81,7 +76,6 @@ public class store_change_in extends HttpServlet {
 
 
 
-
 				for(Stores store : s_list){
 
 					String s1 = store.getFigure1();
@@ -105,8 +99,6 @@ public class store_change_in extends HttpServlet {
 					System.out.println(c_time);
 
 				}
-
-
 
 
 
@@ -148,10 +140,8 @@ public class store_change_in extends HttpServlet {
 		b_action = "on".equals(s_action);
 
 
-
 		System.out.println("公開チェックボタン↓");
 		System.out.println(b_action);
-
 
 
 
@@ -159,10 +149,8 @@ public class store_change_in extends HttpServlet {
 
 
 
-
 		// アップロードされたファイルそのものを取得
 				// 以後パートと呼ぶ
-
 
 
 //		List<Part> parts = (List<Part>) req.getParts();
@@ -176,12 +164,10 @@ public class store_change_in extends HttpServlet {
 
 
 
-
 			    // アップロードされたファイルを取得
 			    List<Part> parts = (List<Part>) req.getParts();
 			    System.out.println("fileのリストの表示");
 			    System.out.println(parts);
-
 
 
 				// 保存するファイル名を決定（今回は現在日時を経過ミリ秒換算したものとした）
@@ -189,12 +175,10 @@ public class store_change_in extends HttpServlet {
 
 
 
-
 //				DAOに保存するファイル名（最終）
 				String dao_savedFileName1=null;
 				String dao_savedFileName2=null;
 				String dao_savedFileName3=null;
-
 
 
 //				DAOに
@@ -213,8 +197,6 @@ public class store_change_in extends HttpServlet {
 
 
 
-
-
 //			    for (Part parttt : parts) {
 //			        if (part.getName().equals("file1[]")) {
 //			            // パートのファイル名を取得
@@ -225,16 +207,13 @@ public class store_change_in extends HttpServlet {
 
 
 
-
 				// パートのファイル名を取得
 //				String originalFileName = part.getSubmittedFileName();
 
 
 
-
 				// ファイル名から拡張子を取得
 				String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-
 
 
 				// 保存するファイル名を決定（今回は現在日時を経過ミリ秒換算したものとした）
@@ -252,10 +231,6 @@ public class store_change_in extends HttpServlet {
 			        } else if (fileIndex == 2) {
 			            dao_savedFileName3 = savedFileName;
 			        }
-
-
-
-
 
 
 
@@ -285,15 +260,11 @@ public class store_change_in extends HttpServlet {
 				part.write(savePath);
 
 
-
 		        fileIndex++; // ファイルインデックスをインクリメント
 			        }}
 
 
 //				ファイル保存	>>>>>
-
-
-
 
 
 
@@ -308,7 +279,6 @@ public class store_change_in extends HttpServlet {
 		}
 
 		System.out.println(tel_num);
-
 
 
 ////		メールアドレスを取得
@@ -349,9 +319,7 @@ public class store_change_in extends HttpServlet {
 		}
 
 
-
 		System.out.println(o_time);
-
 
 
 
@@ -377,8 +345,6 @@ public class store_change_in extends HttpServlet {
 
 
 
-
-
 		if(c_time==null || c_time.isEmpty() ){
 			System.out.println("営業終了時間空");
 			c_time =null;
@@ -396,7 +362,6 @@ public class store_change_in extends HttpServlet {
 
 
 
-
 //		平均利用額（上）
 		int dao_amount_high = 0;
 		String amount_high = req.getParameter("amount1");
@@ -410,21 +375,17 @@ public class store_change_in extends HttpServlet {
 		System.out.println(dao_amount_high);
 
 
-
 //		平均利用額（下）
 		int dao_amount_low=0;
 		String amount_low = req.getParameter("amount2");
 
 		if(amount_low==null || amount_low.isEmpty() ){
-			System.out.println("平均利用額（上）空");
+			System.out.println("平均利用額（下）空");
 
 		}else{
-			dao_amount_low = Integer.parseInt(amount_high);
+			dao_amount_low = Integer.parseInt(amount_low);
 		}
 		System.out.println(dao_amount_low);
-
-
-
 
 
 
@@ -462,8 +423,6 @@ public class store_change_in extends HttpServlet {
 
 
 
-
-
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -481,14 +440,7 @@ public class store_change_in extends HttpServlet {
 
 
 
-
-
-
-
-
-
 		req.getRequestDispatcher("/stuff/store_info_change_2.jsp").forward(req, resp);
-
 
 
 	}
