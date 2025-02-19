@@ -133,23 +133,29 @@ $.ajax({
 	console.log("件数: " + storeLength)
 
 	for (let i=0; i<storeLength; i++) {
-//		addMarker(res["latitude"][i], res["longitude"][i], "<h1>店舗名" + res["storeName"][i] + "</h1><br><h2>営業時間: " + res[]);
-		addMarker(res["latitude"][i], res["longitude"][i],
-		`<h1 class="heading-2"><img src='../img/omise.png'> ${ res["storeName"][i] }</h1>
-		<br><h2><img src='../img/zikan.png'> ${res["openingTime"][i] } ～ ${res["closingTime"][i] }</h2>
-		<br><h2><img src='../img/okane.png'> ${res["avgAmountLow"][i] } ～ ${res["avgAmountHigh"][i] }円</h2>
-		<br><h2><img src='../img/dennwa.png'> ${res["phoneNum"][i] }</h2>
-		<br><h2><img src='../img/shop/${res["figure1"][i] }'><img src='../img/shop/${res["figure2"][i] }'><img src='../img/shop/${res["figure3"][i] }'>`);
+		const commonHtml = `<h1 class="heading-2"><img src='../img/omise.png'> ${ res["storeName"][i] }</h1>
+			<br><h2><img src='../img/zikan.png'> ${res["openingTime"][i] } ～ ${res["closingTime"][i] }</h2>
+			<br><h2><img src='../img/okane.png'> ${res["avgAmountLow"][i] } ～ ${res["avgAmountHigh"][i] }円</h2>
+			<br><h2><img src='../img/dennwa.png'> ${res["phoneNum"][i] }</h2>`;
+		let html = "<br><h2>";
+		if (res["figure1"][i] !== "null") {
+			html += `<img src='../img/shop/${res["figure1"][i]}' style="width: 100px; height: 100px; object-fit: cover; margin-right: 10px;">`;
+		}
+		if (res["figure2"][i] !== "null") {
+			html += `<img src='../img/shop/${res["figure2"][i]}' style="width: 100px; height: 100px; object-fit: cover; margin-right: 10px;">`;
+		}
+		if (res["figure3"][i] !== "null") {
+			html += `<img src='../img/shop/${res["figure3"][i]}' style="width: 100px; height: 100px; object-fit: cover;">`;
+			console.log(res["figure3"][i]);
+		}
+		html += "</h2>";
+		console.log(commonHtml + html);
+		addMarker(res["latitude"][i], res["longitude"][i], commonHtml + html);
 
 	}
 
 	console.log("passed");
 })
-
-// 例: 特定の座標にピンを立てる
-//addMarker(32.789884, 130.987154, "<h2>ラーメン山口どっこいしょ</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
-//addMarker(32.639884, 131.087154, "<h2>うどん屋モッコリ堂</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
-//addMarker(36.160657, 139.244206, "<h2>八ツ田の家</h2><br>営業時間 8:00~24:00<br>1000~1050円<br>070-1274-0112");
 
 // 地図クリック時に詳細情報を非表示にする
 map.on('click', hideDetails);
