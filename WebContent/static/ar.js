@@ -9,6 +9,8 @@ let i = 0; // フレームごとのカウンタ
 let isOk = false;
 const batsu = new Image();
 batsu.src = "/meal-mate/user/icons/batu.png";
+const okIcon = new Image;
+okIcon.src = "/meal-mate/user/icons/maru.png";
 
 // デバッグ用の要素（後で削除する場合を想定）
 const consoleElm = document.querySelector("#console"); // コンソール出力用のHTML要素
@@ -210,8 +212,7 @@ function drawOkIcon() {
     const width = 210;
     const height = 210;
 
-    const okIcon = new Image;
-    okIcon.src = "/meal-mate/user/icons/maru.png";
+
 
     ctx.drawImage(okIcon, rect[0], rect[1], width, height);
 }

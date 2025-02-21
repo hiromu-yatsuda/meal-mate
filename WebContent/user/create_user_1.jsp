@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header>
-    <%@ include file="../userbase.jsp" %>
+<%@ include file="../userbase.jsp" %>
 </header>
 
 <style>
@@ -81,29 +81,36 @@ h1 {
 </style>
 
 
-
 <body>
-    <div class="form-container">
-        <p>${u_ac_error}</p>
-        <form class="form-create" action="/meal-mate/user/create_user_1" method="post">
-			<h1>Sign Up</h1>
-            <label for="name">NAME</label>
-            <input type="text" name="name" id="name" placeholder="John Smith" required>
+<div class="form-container">
+<p>${u_ac_error}</p>
+<form class="form-create" action="/meal-mate/user/create_user_1" method="post">
+<h1>Sign Up</h1>
+<label for="name">NAME</label>
+<input type="text" name="name" id="name" placeholder="John Smith" required>
 
             <label for="email">EMAIL</label>
-            <input type="text" name="email" id="email" placeholder="Email address" required>
+<input type="text" name="email" id="email" placeholder="Email address" required>
 
             <label for="pass">PASSWORD</label>
-            <input type="password" name="pass" id="pass" placeholder="password" required>
+<input type="password" name="pass" id="pass" placeholder="password" required>
 
             <label for="language_list">Language</label>
-            <select id="language_list" name="language_list">
-                <c:forEach var="lang" items="${languageList}">
-                    <option value="${lang.id}">${lang.name}</option>
-                </c:forEach>
-            </select>
-
-            <input type="submit" value="Account Create">
-        </form>
-    </div>
+<select id="language_list" name="language_list">
+<option value="1">日本語</option>
+<option value="2" selected>English</option>
+<option value="3">Español</option>
+<option value="4">Français</option>
+<option value="5">Deutsch</option>
+<option value="6">中文</option>
+<option value="7">한국어</option>
+<option value="8">Italiano</option>
+<option value="9">Русский</option>
+<option value="10">Português</option>
+<option value="11">المملكة العربية السعودية</option>
+<option value="12">Tiếng Việt</option>
+</select>
+<input type="submit" value="Account Create">
+</form>
+</div>
 </body>
